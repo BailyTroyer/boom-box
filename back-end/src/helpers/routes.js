@@ -10,9 +10,13 @@ var vote = require('../models/vote')
 // router.post("/auth", auth.signUp);
 
 // party routes
-router.patch("/party", party.joinParty);
+
 router.delete("/party", party.endParty);
 router.post("/party", party.createParty);
+
+// party attendance
+router.post("/party/attendance", party.joinParty);
+router.delete("/party/attendance", party.leaveParty);
 
 // party info
 router.get("/party/info", party.getPartyInfo);

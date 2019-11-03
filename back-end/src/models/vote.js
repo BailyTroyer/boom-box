@@ -7,11 +7,7 @@ class Vote {
 
         client.connect(async (err, cli) => { 
             const db =  cli.db("boom-box")
-            const curr_songs = await db.collection("parties").findAndModify(
-                query: {party_code: party_code}, 
-                update: {$inc: {song_queue.$[elem].votes: 1} },
-                arrayFilters: [{"elem.song_id": song_id  } ]
-            })
+            const curr_songs = await db.collection("parties").update({party_code: party_code,})
 
             if (result.result.nModified === 1) {
                 res.status(200).send("Upvoted");
