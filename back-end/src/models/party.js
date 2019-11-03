@@ -7,7 +7,7 @@ class Party {
 
         client.connect(async (err, cli) => { 
             const db =  cli.db("boom-box")
-            const result = await db.collection("parties").updateOne({party_code: "hey"}, {$push: {guests: user_id}})
+            const result = await db.collection("parties").updateOne({party_code: party_code}, {$push: {guests: user_id}})
 
             if (result.result.nModified === 1) {
                 res.status(200).send("You're in!");
