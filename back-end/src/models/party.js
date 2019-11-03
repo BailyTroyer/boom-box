@@ -25,23 +25,24 @@ class Party {
     async selectRandomUsers(req, res){
         res.status(200).send("Select random users");
 
+    }
     async emergency(req, res){
         
         const db =  cli.db("boom-box")
         const curr_songs = await db.collection("parties").findAndModify(
-            query: {party_code: party_code}, 
-            update: {$inc: {cops: 1} }
-        )
+            {query: {party_code: party_code}}, 
+            {update: {$inc: {cops: 1} }}
+        );
 
         if (result.result.nModified === 1) {
             res.status(200).send("Cops joined the party");
         } else {
             res.status(400).send("Something fucked up");
         }
-    });
+    );
 
     client.close();
-    }
+    
 
     }
 }
