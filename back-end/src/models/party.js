@@ -16,10 +16,16 @@ class Party {
                     res.status(200).send("You're in!");
                 })
                 .catch(result => {
+                    console.log("inner")
+                    console.log(req.body)
+                    console.log(result)
                     res.status(400).send("You fucked up");
                 })  
             })
             .catch(result => {
+                console.log("outer")
+                console.log(req.body)
+                console.log(result)
                 res.status(400).send("You fucked up");
             })
         });
@@ -70,13 +76,21 @@ class Party {
     }
 
     async createParty(req, res){
-        const { party_code, size, name } = req.body
+        const { party_code, size, name, token } = req.body
 
         const client = newClient();
         client.connect((err, cli) => { 
             const db =  cli.db("boom-box")
 
-            db.collection("parties").insertOne({party_code: party_code, size: size, name: name})
+            db.collection("parties").insertOne({
+                party_code: party_code, 
+                size: size, 
+                name: name, 
+                token: token, 
+                song_nominations: [],
+                guests: [],
+                cops: 0
+            })
             .then(result => {
                 res.status(200).send("Created party");
             })
@@ -95,9 +109,9 @@ class Party {
         client.connect((err, cli) => { 
             const db =  cli.db("boom-box")
 
-            db.collection("parties").insertOne({party_code: party_code, size: size, name: name})
+            db.collection("parties").updateOne({party_code: party_code}, {$push: {song_nominations: song}})
             .then(result => {
-                res.status(200).send("Nominate song");
+                res.status(200).send("Nominated song");
             })
             .catch(result => {
                 res.status(400).send("You fucked up");
