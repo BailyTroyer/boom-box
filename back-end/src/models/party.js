@@ -153,7 +153,23 @@ class Party {
     }
 
     async getPartyInfo(req, res){
-        res.status(200).send("Select random users");
+
+        const { party_code } = req.body
+
+        const client = newClient();
+        client.connect(async (err, cli) => { 
+            const db =  cli.db("boom-box")
+            
+            const party = await db.collection("parties").findOne({party_code: party_code})
+            
+            .then(result => {
+                res.status(200).send(party);
+            })
+            .catch(result => {
+                res.status(400).send("You fucked up");
+            })
+        });
+        client.close();  
     }
 }
 
