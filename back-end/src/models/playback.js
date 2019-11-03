@@ -26,6 +26,26 @@ class Playback {
 
         client.close()
     }
+
+    async getSongInfo(songUrl, token){
+        const songId = songUrl.replace("https://open.spotify.com/track/" , "")
+
+        const options = {
+            uri: `https://api.spotify.com/v1/tracks/${songId}`,
+            headers: {'Authorization': 'Bearer ' + token}
+        }
+
+        const songInfo = await request(options)
+            .then((err, response, body) => {
+                return body
+            })
+            .catch(err => {
+                console.log(err)
+                return err
+            })
+
+        return songInfo;
+    }
 }
 
 module.exports = new Playback();

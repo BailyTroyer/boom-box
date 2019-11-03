@@ -1,4 +1,6 @@
 var newClient = require('../helpers/mongo');
+var Playback = require('./playback')
+var Vote = require('./vote')
 var bcrypt = require("bcrypt")
 
 class Party {
@@ -76,13 +78,16 @@ class Party {
     }
 
     async createParty(req, res){
-        const { party_code, size, name, token } = req.body
+        const { party_code, size, name, token, starter_song } = req.body
+
+        const songInfo = Playback.getSongInfo(starter_song, token)
 
         const client = newClient();
         client.connect((err, cli) => { 
             const db =  cli.db("boom-box")
 
             db.collection("parties").insertOne({
+                now_playing: songInfo,
                 party_code: party_code, 
                 size: size, 
                 name: name, 
@@ -99,6 +104,8 @@ class Party {
             })
         });
         client.close();
+
+        checkF
     }
 
 
