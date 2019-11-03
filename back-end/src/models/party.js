@@ -15,6 +15,8 @@ class Party {
                 res.status(400).send("You fucked up");
             }
         });
+
+        client.close();
     }
 
     async endParty(req, res){
