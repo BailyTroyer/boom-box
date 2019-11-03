@@ -46,6 +46,29 @@ class Playback {
 
         return songInfo;
     }
+
+    async addSongToPlaylist(song, playlistId, token){
+        // https://developer.spotify.com/console/post-playlists
+        // {
+        //     "name": "New Playlist",
+        //     "description": "New playlist description",
+        //     "public": false
+        // }
+
+        const songUri = song.uri
+
+        const options = {
+            uri: `https://api.spotify.com/v1/playlists/${playlistId}/tracks`, 
+            headers: {'Authorization': 'Bearer ' + token},
+            body: {uris: [songUri]}
+        }
+
+        request(options)
+        .then((err, res, body) => {})
+        .catch(err => {
+            console.log(err)
+        })
+    }
 }
 
 module.exports = new Playback();

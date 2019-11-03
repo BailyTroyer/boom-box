@@ -1,7 +1,8 @@
 var newClient = require('../helpers/mongo');
 var Playback = require('./playback')
 var Vote = require('./vote')
-var bcrypt = require("bcrypt")
+var request = require('request-promise-native');
+
 
 class Party {
     async joinParty(req, res){
@@ -18,16 +19,10 @@ class Party {
                     res.status(200).send("You're in!");
                 })
                 .catch(result => {
-                    console.log("inner")
-                    console.log(req.body)
-                    console.log(result)
                     res.status(400).send("You fucked up");
                 })  
             })
             .catch(result => {
-                console.log("outer")
-                console.log(req.body)
-                console.log(result)
                 res.status(400).send("You fucked up");
             })
         });
@@ -78,16 +73,18 @@ class Party {
     }
 
     async createParty(req, res){
-        const { party_code, size, name, token, starter_song } = req.body
+        const { party_code, size, name, token, starter_song, user_id } = req.body
 
-        const songInfo = Playback.getSongInfo(starter_song, token)
+        const songInfo = Playback.getSongInfo(starter_song, token);
+        const playlist =  await createPartyPlaylist(name, user_id, token);
 
         const client = newClient();
-        client.connect((err, cli) => { 
+        client.connect((err, cli) => {
             const db =  cli.db("boom-box")
 
             db.collection("parties").insertOne({
                 now_playing: songInfo,
+                playlist: playlist,
                 party_code: party_code, 
                 size: size, 
                 name: name, 
@@ -105,7 +102,8 @@ class Party {
         });
         client.close();
 
-        checkF
+        // runs for the life of the party
+        Vote.checkForSongEndingSoon(party_code, token);
     }
 
 
@@ -148,7 +146,6 @@ class Party {
                 {'party_code': party_code}, 
                 {$inc: {'cops': 1}})
             .then(result => {
-                console.log(result)
                 res.status(200).send("Oh shit da cops");
             })
             .catch(result => {
@@ -161,7 +158,7 @@ class Party {
 
     async getPartyInfo(req, res){
 
-        const { party_code } = req.body
+        const { party_code } = req.query
 
         const client = newClient();
         client.connect(async (err, cli) => { 
@@ -177,6 +174,26 @@ class Party {
         });
         client.close();  
     }
+}
+
+const createPartyPlaylist = async (name, user_id, token) => {
+    const payload = {name: name, description: `${name} - ${new Date().toDateString()}`, public: false}
+    const options = {
+        method: 'POST',
+        uri: `https://api.spotify.com/v1/users/${user_id}/playlists`, 
+        headers: {'Authorization': 'Bearer ' + token},
+        body: payload,
+        json: true
+    }
+
+    return await request(options)
+    .then((err, res, body) => {
+        return body
+    })
+    .catch(err => {
+        console.log(err)
+        return {}
+    })
 }
 
 module.exports = new Party();

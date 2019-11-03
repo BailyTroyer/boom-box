@@ -1,5 +1,7 @@
 var newClient = require('../helpers/mongo');
-var bcrypt = require("bcrypt")
+var Playback = require('./playback')
+var request = require('request-promise-native');
+
 
 class Vote {
     async voteForSong(req, res){
@@ -12,8 +14,6 @@ class Vote {
                 {'party_code': party_code}, 
                 {$inc: {'song_nominations.$[elem].votes': 1}},
                 {arrayFilters: [{'elem.song_id': song_id  }]})
-
-
 
             .then(result => {
                 res.status(200).send("Upvoted");
@@ -30,40 +30,69 @@ class Vote {
         const client = newClient();
         client.connect(async (err, cli) => { 
             const db =  cli.db("boom-box")
-            const party = await db.collection("parties").findOne({'party_code': party_code})
-
-            const songDuration = party.now_playing.duration_ms
+            
 
             const options = {
+                method: 'GET',
                 uri: "https://api.spotify.com/v1/me/player", 
-                headers: {'Authorization': 'Bearer ' + token}
+                headers: {'Authorization': 'Bearer ' + token},
+                json: false
             }
 
-            setInterval(() => {
+            setInterval(async () => {
+                const party = await db.collection("parties").findOne({'party_code': party_code})
+                const songDuration = party.now_playing.duration_ms
+
+
                 request(options)
-                .then(err, res, body => {
+                .then( async (err, res, body) => {
+                    console.log(body)
+                    console.log(res)
                     var progress = body.progress_ms
 
                     if(songDuration - progress < 10000){
-                        clearInterval();
                         // add highest rated song to playlist
+                        const party = await db.collection("parties").findOne({'party_code': party_code})
+                        var nominations = party.song_nominations
+                        nominations.sort(this.sortByVotes)
+                        const nextSong = nominations[0]
+
+                        Playback.addSongToPlaylist(nextSong, party.playlist.id, token)
+
+                        // checking for new song to play
+                        setInterval(() => {
+                            request(options)
+                            .then((err, res, body) => {
+                                // the song has changed, stop waiting
+                                if(body.item.id !== party.now_playing.id){
+                                    clearInterval();
+                                    // update party info
+                                    db.collection("parties").updateOne({party_code: party_code}, {now_playing: nextSong})
+                                    .then(result => {})
+                                    .catch(result => {})
+                                }
+                            })
+                            .catch(err => {})
+                        }, 2000)
+
                     }
-                    res.status(200).send(body);
                 })
                 .catch(err => {
                     console.log(err)
-                    res.status(400).send("Something fucked up");
                 })
             } ,10000)
-
-
-
-
-
         });
 
         client.close()
     }
+
+    sortByVotes(firstEl, secondEl){
+        if(firstEl.votes < secondEl.votes) return -1;
+        if(firstEl.votes > secondEl.votes) return 1;
+        return 0
+    }
 }
+
+
 
 module.exports = new Vote();
