@@ -5,7 +5,7 @@ $ cd \back-end
 # install dependencies
 $ npm install
 # start the server
-$ npm start
+$ npm run dev
 ```
 
 Runs at localhost:3000
