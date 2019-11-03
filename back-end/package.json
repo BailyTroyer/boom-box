@@ -3,13 +3,17 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "node ./app.js"
+    "dev": "node ./src/app.js"
   },
   "dependencies": {
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "express-ws": "^4.0.0",
+    "mongodb": "^3.3.3",
     "morgan": "~1.9.1"
-  }
+  },
+  "devDependencies": {}
 }
