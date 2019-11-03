@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "node ./src/app.js"
+    "dev": "nodemon ./src/app.js"
   },
   "dependencies": {
     "bcrypt": "^3.0.6",
@@ -13,7 +13,8 @@
     "express": "~4.16.1",
     "express-ws": "^4.0.0",
     "mongodb": "^3.3.3",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "nodemon": "^1.19.4"
   },
   "devDependencies": {}
 }

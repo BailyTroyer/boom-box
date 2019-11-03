@@ -1,18 +1,21 @@
 var router = require('express').Router();
 
-var auth = require('../models/auth')
+// var auth = require('../models/auth')
 var party = require('../models/party')
 var search = require('../models/search')
 var vote = require('../models/vote')
 
-// auth routes
-router.get("/auth", auth.signIn);
-router.post("/auth", auth.signUp);
+// // auth routes
+// router.get("/auth", auth.signIn);
+// router.post("/auth", auth.signUp);
 
 // party routes
-router.get("/party", party.joinParty);
+router.patch("/party", party.joinParty);
 router.delete("/party", party.endParty);
 router.post("/party", party.createParty);
+
+// party info
+router.get("/party/info", party.getPartyInfo);
 
 // nomination routes
 router.post("/party/nomination", party.nominateSong);

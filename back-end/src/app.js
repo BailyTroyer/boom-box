@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var routes = require('./helpers/routes');
 
 var app = express();
+var port = 3000;
 
 app.use(bodyParser.json());
 // support application/x-www-form-urlencoded post data
@@ -20,4 +21,6 @@ logResponse = (req, res, next) => {
 app.use(logResponse);
 app.use('/', routes)
 
-app.listen(3000);
+app.listen(port);
+
+console.log(`Running on localhost:${port}`)
