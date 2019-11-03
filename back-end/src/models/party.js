@@ -21,6 +21,10 @@ class Party {
     async removeNomination(req, res){
         res.status(200).send("Remove song nomination");
     }
+
+    async selectRandomUsers(req, res){
+        res.status(200).send("Select random users");
+    }
 }
 
 module.exports = new Party();

@@ -18,6 +18,9 @@ router.post("/party", party.createParty);
 router.post("/party/nomination", party.nominateSong);
 router.delete("/party/nomination", party.removeNomination);
 
+// random routes
+router.get("/party/random", party.selectRandomUsers);
+
 // search routes
 router.get("/search", search.searchForSong);
 
