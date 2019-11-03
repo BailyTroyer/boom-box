@@ -1,11 +1,11 @@
-var client = require('../helpers/mongo');
+var newClient = require('../helpers/mongo');
 var bcrypt = require("bcrypt")
-
 
 class Party {
     async joinParty(req, res){
         const { party_code, user_id } = req.body
 
+        const client = newClient();
         client.connect((err, cli) => { 
             const db =  cli.db("boom-box")
             db.collection("parties").updateOne({party_code: party_code}, {$push: {guests: user_id}})
@@ -29,6 +29,7 @@ class Party {
     async leaveParty(req, res){
         const { user_id } = req.body
 
+        const client = newClient();
         client.connect((err, cli) => {
             const db =  cli.db("boom-box")
 
@@ -47,6 +48,7 @@ class Party {
     async endParty(req, res){
         const { party_code } = req.body
 
+        const client = newClient();
         client.connect(async (err, cli) => { 
             const db =  cli.db("boom-box")
             
@@ -70,6 +72,7 @@ class Party {
     async createParty(req, res){
         const { party_code, size, name } = req.body
 
+        const client = newClient();
         client.connect((err, cli) => { 
             const db =  cli.db("boom-box")
 
@@ -88,6 +91,7 @@ class Party {
     async nominateSong(req, res){
         const { party_code, song } = req.body
 
+        const client = newClient();
         client.connect((err, cli) => { 
             const db =  cli.db("boom-box")
 
@@ -109,6 +113,26 @@ class Party {
     async selectRandomUsers(req, res){
         res.status(200).send("Select random users");
     }
+
+    // async emergency(req, res){
+        
+    //     const db =  cli.db("boom-box")
+    //     const curr_songs = await db.collection("parties").findAndModify(
+    //         query: {party_code: party_code}, 
+    //         update: {$inc: {cops: 1} }
+    //     )
+
+    //     if (result.result.nModified === 1) {
+    //         res.status(200).send("Cops joined the party");
+    //     } else {
+    //         res.status(400).send("Something fucked up");
+    //     }
+    // });
+
+    // client.close();
+    // }
+
+    // }
 
     async getPartyInfo(req, res){
         res.status(200).send("Select random users");
