@@ -19,5 +19,12 @@ app.ws('/', function(ws, req) {
   });
   console.log('socket', req.testing);
 });
- 
+
+app.ws('/police', function(ws, req) {
+  ws.on('The Police are here!', function(msg) {
+    console.lgo(msg);
+  });
+  console.log('police', req.testing)
+});
+
 app.listen(3000);
