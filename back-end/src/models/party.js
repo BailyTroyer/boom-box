@@ -162,12 +162,11 @@ class Party {
             
             const party = await db.collection("parties").findOne({party_code: party_code})
             
-            .then(result => {
+            if(party){
                 res.status(200).send(party);
-            })
-            .catch(result => {
+            }else{
                 res.status(400).send("You fucked up");
-            })
+            }
         });
         client.close();  
     }
