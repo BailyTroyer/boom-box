@@ -14,9 +14,9 @@ router.get("/party", party.joinParty);
 router.delete("/party", party.endParty);
 router.post("/party", party.createParty);
 
-// // nomination routes
-// router.post("/party/nomination", party.nominateSong);
-// router.delete("/party/nomination", party.removeNomination);
+// nomination routes
+router.post("/party/nomination", party.nominateSong);
+router.delete("/party/nomination", party.removeNomination);
 
 // search routes
 router.get("/search", search.searchForSong);

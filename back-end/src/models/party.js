@@ -13,6 +13,14 @@ class Party {
     async createParty(req, res){
         res.status(200).send("Create party");
     }
+
+    async nominateSong(req, res){
+        res.status(200).send("Nominate song");
+    }
+
+    async removeNomination(req, res){
+        res.status(200).send("Remove song nomination");
+    }
 }
 
 module.exports = new Party();
