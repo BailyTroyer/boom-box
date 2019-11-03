@@ -28,6 +28,8 @@ router.delete("/party/nomination", party.removeNomination);
 // random routes
 router.get("/party/random", party.selectRandomUsers);
 
+router.post("/party/cops", party.emergency);
+
 // search routes
 router.get("/search", search.searchForSong);
 

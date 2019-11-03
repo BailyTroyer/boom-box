@@ -114,25 +114,28 @@ class Party {
         res.status(200).send("Select random users");
     }
 
-    // async emergency(req, res){
-        
-    //     const db =  cli.db("boom-box")
-    //     const curr_songs = await db.collection("parties").findAndModify(
-    //         query: {party_code: party_code}, 
-    //         update: {$inc: {cops: 1} }
-    //     )
+    async emergency(req, res){
+        var { party_code } = req.body
 
-    //     if (result.result.nModified === 1) {
-    //         res.status(200).send("Cops joined the party");
-    //     } else {
-    //         res.status(400).send("Something fucked up");
-    //     }
-    // });
+        const client = newClient();
+        client.connect(async (err, cli) => { 
+            const db =  cli.db("boom-box");
+            db.collection("parties").findOneAndUpdate(
+                {'party_code': party_code}, 
+                {$inc: {'cops': 1}})
+            .then(result => {
+                // db.close();
+                // res.status(200).send("Upvoted");
+                res.status(200).send("Oh shit da cops");
+                // return client.close();
+            })
+            .catch(result => {
+                res.status(400).send("A small piece of me died inside");
+            })
+        });
 
-    // client.close();
-    // }
-
-    // }
+        client.close();
+    }
 
     async getPartyInfo(req, res){
         res.status(200).send("Select random users");
