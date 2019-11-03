@@ -16,10 +16,7 @@ class Vote {
 
 
             .then(result => {
-                // db.close();
-                // res.status(200).send("Upvoted");
                 res.status(200).send("Upvoted");
-                // return client.close();
             })
             .catch(result => {
                 res.status(400).send("A small piece of me died inside");

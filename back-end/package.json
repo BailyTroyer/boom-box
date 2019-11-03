@@ -14,7 +14,8 @@
     "express-ws": "^4.0.0",
     "mongodb": "^3.3.3",
     "morgan": "~1.9.1",
-    "nodemon": "^1.19.4"
+    "nodemon": "^1.19.4",
+    "request-promise-native": "^1.0.7"
   },
   "devDependencies": {}
 }

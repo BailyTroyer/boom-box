@@ -1,4 +1,5 @@
 var newClient = require('../helpers/mongo');
+var request = require('request-promise-native');
 
 class Playback {
     async pauseMusic(req, res){
@@ -8,13 +9,19 @@ class Playback {
         client.connect(async (err, cli) => { 
             const db =  cli.db("boom-box")
             const party = await db.collection("parties").findOne({'party_code': party_code})
+            
+            const options = {
+                uri: "https://api.spotify.com/v1/me/player/pause", 
+                headers: {'Authorization': 'Bearer ' + party.token}
+            }
 
-            .then(result => {
-                res.status(200).send("Upvoted");
-            })
-            .catch(result => {
-                res.status(400).send("Something fucked up");
-            })
+            request(options)
+                .then(result => {
+                    res.status(200).send("Paused");
+                })
+                .catch(result => {
+                    res.status(400).send("Something fucked up");
+                })
         });
 
         client.close()

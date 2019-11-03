@@ -11,7 +11,7 @@ class Party {
             db.collection("parties").updateOne({party_code: party_code}, {$push: {guests: user_id}})
             .then(result => {
                 // add party to user document
-                db.collection("users").updateOne({user_id: user_id}, {party_code: party_code, host: true})
+                db.collection("users").updateOne({user_id: user_id}, {$set: {party_code: party_code, host: true}}, { upsert: true })
                 .then(result => {
                     res.status(200).send("You're in!");
                 })
@@ -134,14 +134,15 @@ class Party {
         const client = newClient();
         client.connect(async (err, cli) => { 
             const db =  cli.db("boom-box");
+
+
+
             db.collection("parties").findOneAndUpdate(
                 {'party_code': party_code}, 
                 {$inc: {'cops': 1}})
             .then(result => {
-                // db.close();
-                // res.status(200).send("Upvoted");
+                console.log(result)
                 res.status(200).send("Oh shit da cops");
-                // return client.close();
             })
             .catch(result => {
                 res.status(400).send("A small piece of me died inside");
