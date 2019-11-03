@@ -64,3 +64,4 @@ typings/
 .fusebox/
 # DynamoDB Local files
 .dynamodb/
+package-lock.json
