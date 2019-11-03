@@ -36,11 +36,10 @@ class Playback {
         }
 
         const songInfo = await request(options)
-            .then((err, response, body) => {
+            .then(body => {
                 return body
             })
             .catch(err => {
-                console.log(err)
                 return err
             })
 
@@ -55,17 +54,26 @@ class Playback {
         //     "public": false
         // }
 
-        const songUri = song.uri
+        const songUri = JSON.parse(song).uri
+
+        console.log(JSON.parse(song))
+
+        //songUri = "spotify:track:4iV5W9uYEdYUVa79Axb7Rh"
+        //playlistId = "5DejKuy4jZsSUuqpKRX4vi"
 
         const options = {
             uri: `https://api.spotify.com/v1/playlists/${playlistId}/tracks`, 
             headers: {'Authorization': 'Bearer ' + token},
-            body: {uris: [songUri]}
+            body: {uris: [songUri]},
+            json: true
         }
 
         request(options)
-        .then((err, res, body) => {})
-        .catch(err => {
+        .then((body) => {
+            console.log("BODY------------------------------------")
+            console.log(body)
+        })
+        .catch((err) => {
             console.log(err)
         })
     }

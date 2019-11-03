@@ -75,8 +75,10 @@ class Party {
     async createParty(req, res){
         const { party_code, size, name, token, starter_song, user_id } = req.body
 
-        const songInfo = Playback.getSongInfo(starter_song, token);
+        const songInfo = await Playback.getSongInfo(starter_song, token);
         const playlist =  await createPartyPlaylist(name, user_id, token);
+
+        await Playback.addSongToPlaylist(songInfo, playlist.id, token)
 
         const client = newClient();
         client.connect((err, cli) => {
@@ -108,13 +110,15 @@ class Party {
 
 
     async nominateSong(req, res){
-        const { party_code, song } = req.body
+        const { party_code, song_url, token } = req.body
+
+        const songInfo = await Playback.getSongInfo(song_url, token) 
 
         const client = newClient();
         client.connect((err, cli) => { 
             const db =  cli.db("boom-box")
 
-            db.collection("parties").updateOne({party_code: party_code}, {$push: {song_nominations: song}})
+            db.collection("parties").updateOne({party_code: party_code}, {$push: {song_nominations: songInfo}})
             .then(result => {
                 res.status(200).send("Nominated song");
             })
@@ -134,13 +138,26 @@ class Party {
     }
 
     async emergency(req, res){
-        var { party_code } = req.body
+        var { party_code, token } = req.body
 
         const client = newClient();
         client.connect(async (err, cli) => { 
             const db =  cli.db("boom-box");
 
+            const party = await db.collection("parties").findOne({party_code: party_code})
 
+            if(party.cops >= 4){
+                const options = {
+                    method: 'PUT',
+                    uri: "https://api.spotify.com/v1/me/player/pause", 
+                    headers: {'Authorization': 'Bearer ' + token}
+                }
+
+                request(options)
+                .then(() => {console.log("Paused Song")})
+                .catch(() => {console.log("Pause Error")})
+                
+            }
 
             db.collection("parties").findOneAndUpdate(
                 {'party_code': party_code}, 
@@ -187,12 +204,11 @@ const createPartyPlaylist = async (name, user_id, token) => {
     }
 
     return await request(options)
-    .then((err, res, body) => {
+    .then(body => {
         return body
     })
     .catch(err => {
         console.log(err)
-        return {}
     })
 }
 

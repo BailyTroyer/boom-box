@@ -36,7 +36,7 @@ class Vote {
                 method: 'GET',
                 uri: "https://api.spotify.com/v1/me/player", 
                 headers: {'Authorization': 'Bearer ' + token},
-                json: false
+                json: true
             }
 
             setInterval(async () => {
@@ -45,14 +45,16 @@ class Vote {
 
 
                 request(options)
-                .then( async (err, res, body) => {
-                    console.log(body)
-                    console.log(res)
+                .then(async (body) => {
+                    // spotify is not open
+                    if(!body){return}
+
+
                     var progress = body.progress_ms
 
                     if(songDuration - progress < 10000){
                         // add highest rated song to playlist
-                        const party = await db.collection("parties").findOne({'party_code': party_code})
+                        const party = db.collection("parties").findOne({'party_code': party_code})
                         var nominations = party.song_nominations
                         nominations.sort(this.sortByVotes)
                         const nextSong = nominations[0]
@@ -62,7 +64,7 @@ class Vote {
                         // checking for new song to play
                         setInterval(() => {
                             request(options)
-                            .then((err, res, body) => {
+                            .then((body) => {
                                 // the song has changed, stop waiting
                                 if(body.item.id !== party.now_playing.id){
                                     clearInterval();
@@ -74,7 +76,6 @@ class Vote {
                             })
                             .catch(err => {})
                         }, 2000)
-
                     }
                 })
                 .catch(err => {
