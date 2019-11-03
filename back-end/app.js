@@ -34,7 +34,7 @@ app.put('/user', function (req, res) {
       offset: {
       position: 0
     },
-      position_ms: 0,
+      position_ms: 70000,
     },
     json: true // Automatically stringifies the body to JSON
   };
