@@ -1,0 +1,36 @@
+PODS:
+  - Alamofire (4.8.2)
+  - BulletinBoard (4.0.0)
+  - lottie-ios (3.1.2)
+  - SpotifyLogin (0.1.6)
+  - Starscream (3.0.6)
+  - SwiftyJSON (5.0.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - BulletinBoard
+  - lottie-ios
+  - SpotifyLogin (~> 0.1)
+  - Starscream (~> 3.0.2)
+  - SwiftyJSON
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - BulletinBoard
+    - lottie-ios
+    - SpotifyLogin
+    - Starscream
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  BulletinBoard: 2e312814ff70f3af364a6dda3857a801f6d2adb6
+  lottie-ios: 49cd85b1f24f61a7708ad7ec76a523ab2d0e3100
+  SpotifyLogin: 9cdf82ff13e5f37e5ddc7fd07cf9793a9ebd1124
+  Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+
+PODFILE CHECKSUM: f8434a793ce029f6e7821487327000c66d7f3adb
+
+COCOAPODS: 1.7.5

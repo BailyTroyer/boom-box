@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2P0-Hj-6J2">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="AirbnbCereal-Book.ttf">
+            <string>AirbnbCerealApp-Book</string>
+        </array>
+        <array key="AirbnbCereal-ExtraBold.ttf">
+            <string>AirbnbCerealApp-ExtraBold</string>
+        </array>
+        <array key="AirbnbCereal-Light.ttf">
+            <string>AirbnbCerealApp-Light</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Small Party View-->
+        <scene sceneID="CJw-vC-S1i">
+            <objects>
+                <viewController id="2P0-Hj-6J2" customClass="SmallPartyView" customModule="Spotify" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yqP-mr-dOG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CNc-hk-vER">
+                                <rect key="frame" x="0.0" y="192" width="414" height="704"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="songCard" rowHeight="125" id="nT7-xO-9a8" customClass="SongCardTableViewCell" customModule="Spotify" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="125"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nT7-xO-9a8" id="awO-uZ-Js7">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="125"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gve-CQ-DVf" customClass="CardView" customModule="Spotify" customModuleProvider="target">
+                                                    <rect key="frame" x="10" y="11" width="395" height="107"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bad Boys - Inner Circle" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="quv-9d-ap6">
+                                                            <rect key="frame" x="69" y="23" width="250" height="66"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="66" id="G6X-73-4MY"/>
+                                                                <constraint firstAttribute="width" constant="250" id="XKJ-r3-Njh"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="15"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="Giw-ef-8MP">
+                                                            <rect key="frame" x="327" y="29" width="50" height="50"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="50" id="9pk-FO-3WR"/>
+                                                                <constraint firstAttribute="height" constant="49.999999999999091" id="wsf-Da-bSM"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="SOB-qS-Mg0">
+                                                            <rect key="frame" x="8" y="38" width="51" height="31"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="49" id="CXM-Sg-iFh"/>
+                                                                <constraint firstAttribute="height" constant="31" id="tds-D8-CjU"/>
+                                                            </constraints>
+                                                        </switch>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="quv-9d-ap6" firstAttribute="leading" secondItem="SOB-qS-Mg0" secondAttribute="trailing" constant="12" id="3dI-10-LrL"/>
+                                                        <constraint firstItem="Giw-ef-8MP" firstAttribute="top" secondItem="Gve-CQ-DVf" secondAttribute="top" constant="29" id="9Zy-Or-Xxb"/>
+                                                        <constraint firstItem="quv-9d-ap6" firstAttribute="top" secondItem="Gve-CQ-DVf" secondAttribute="top" constant="23" id="AKM-vm-loE"/>
+                                                        <constraint firstAttribute="height" constant="107" id="LIp-UT-XXI"/>
+                                                        <constraint firstItem="SOB-qS-Mg0" firstAttribute="leading" secondItem="Gve-CQ-DVf" secondAttribute="leading" constant="8" id="N16-8Z-dJF"/>
+                                                        <constraint firstItem="Giw-ef-8MP" firstAttribute="leading" secondItem="quv-9d-ap6" secondAttribute="trailing" constant="8" id="Oym-ZK-yoA"/>
+                                                        <constraint firstAttribute="bottom" secondItem="SOB-qS-Mg0" secondAttribute="bottom" constant="38" id="VQb-sc-C4P"/>
+                                                        <constraint firstItem="SOB-qS-Mg0" firstAttribute="top" secondItem="Gve-CQ-DVf" secondAttribute="top" constant="38" id="ZF6-PM-B72"/>
+                                                        <constraint firstAttribute="bottom" secondItem="quv-9d-ap6" secondAttribute="bottom" constant="18" id="hpa-8d-ClW"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Giw-ef-8MP" secondAttribute="trailing" constant="18" id="xw6-RQ-G1h"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                            <real key="value" value="0.10000000000000001"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="30"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Gve-CQ-DVf" firstAttribute="leading" secondItem="awO-uZ-Js7" secondAttribute="leading" constant="10" id="0OG-b4-bUQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="Gve-CQ-DVf" secondAttribute="trailing" constant="9" id="9qL-f7-nDy"/>
+                                                <constraint firstAttribute="bottom" secondItem="Gve-CQ-DVf" secondAttribute="bottom" constant="7" id="hHD-vl-3xa"/>
+                                                <constraint firstItem="Gve-CQ-DVf" firstAttribute="top" secondItem="awO-uZ-Js7" secondAttribute="top" constant="11" id="rkA-8Y-woC"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="profilePicture" destination="Giw-ef-8MP" id="TCB-6w-Ryg"/>
+                                            <outlet property="songName" destination="quv-9d-ap6" id="929-WG-ZSN"/>
+                                            <outlet property="songSwitch" destination="SOB-qS-Mg0" id="uYD-nq-5nm"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="xMf-Hz-RB2">
+                                <rect key="frame" x="157" y="50" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="99.999999999999091" id="QTj-hW-O9J"/>
+                                    <constraint firstAttribute="width" constant="100" id="gnk-wV-szR"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Baily Troyer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnH-MC-8Uw">
+                                <rect key="frame" x="150" y="158" width="114.5" height="26"/>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-ExtraBold" family="Airbnb Cereal App" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJz-nh-7Vm">
+                                <rect key="frame" x="26" y="44" width="48" height="48"/>
+                                <state key="normal" image="close"/>
+                                <connections>
+                                    <action selector="exit:" destination="2P0-Hj-6J2" eventType="touchUpInside" id="RkS-rN-chg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NS8-rZ-3ge">
+                                <rect key="frame" x="317" y="41" width="72" height="72"/>
+                                <state key="normal" image="alert"/>
+                                <connections>
+                                    <action selector="cops:" destination="2P0-Hj-6J2" eventType="touchUpInside" id="3uj-aH-fVQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Owf-Df-SeH">
+                                <rect key="frame" x="261" y="47" width="48" height="48"/>
+                                <state key="normal" image="add"/>
+                                <connections>
+                                    <action selector="recommendSong:" destination="2P0-Hj-6J2" eventType="touchUpInside" id="vCA-LH-1Lo"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="xnH-MC-8Uw" firstAttribute="centerX" secondItem="l6N-Eh-Iht" secondAttribute="centerX" id="9M4-FI-xFc"/>
+                            <constraint firstItem="xMf-Hz-RB2" firstAttribute="top" secondItem="l6N-Eh-Iht" secondAttribute="top" constant="6" id="C4k-p0-3Lq"/>
+                            <constraint firstItem="xnH-MC-8Uw" firstAttribute="top" secondItem="xMf-Hz-RB2" secondAttribute="bottom" constant="8" id="DnF-hQ-AtC"/>
+                            <constraint firstItem="Owf-Df-SeH" firstAttribute="top" secondItem="l6N-Eh-Iht" secondAttribute="top" constant="3" id="IhY-Pt-qzf"/>
+                            <constraint firstItem="l6N-Eh-Iht" firstAttribute="trailing" secondItem="CNc-hk-vER" secondAttribute="trailing" id="KbG-Me-23c"/>
+                            <constraint firstItem="kJz-nh-7Vm" firstAttribute="top" secondItem="l6N-Eh-Iht" secondAttribute="top" id="RTK-ph-Tkl"/>
+                            <constraint firstItem="CNc-hk-vER" firstAttribute="leading" secondItem="l6N-Eh-Iht" secondAttribute="leading" id="UG9-L9-eDV"/>
+                            <constraint firstItem="CNc-hk-vER" firstAttribute="top" secondItem="xnH-MC-8Uw" secondAttribute="bottom" constant="8" id="d6z-74-M6U"/>
+                            <constraint firstItem="CNc-hk-vER" firstAttribute="bottom" secondItem="l6N-Eh-Iht" secondAttribute="bottom" constant="34" id="gqz-4B-GJL"/>
+                            <constraint firstItem="l6N-Eh-Iht" firstAttribute="trailing" secondItem="NS8-rZ-3ge" secondAttribute="trailing" constant="25" id="j4U-Sc-7iL"/>
+                            <constraint firstItem="NS8-rZ-3ge" firstAttribute="leading" secondItem="Owf-Df-SeH" secondAttribute="trailing" constant="8" id="kga-xO-9eA"/>
+                            <constraint firstItem="l6N-Eh-Iht" firstAttribute="top" secondItem="NS8-rZ-3ge" secondAttribute="top" constant="3" id="qAo-ot-bGV"/>
+                            <constraint firstItem="kJz-nh-7Vm" firstAttribute="leading" secondItem="l6N-Eh-Iht" secondAttribute="leading" constant="26" id="rmG-4y-38p"/>
+                            <constraint firstItem="xMf-Hz-RB2" firstAttribute="centerX" secondItem="l6N-Eh-Iht" secondAttribute="centerX" id="xHE-f5-pXJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="l6N-Eh-Iht"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="TWn-HW-t8B"/>
+                    <connections>
+                        <outlet property="hostName" destination="xnH-MC-8Uw" id="dmy-zV-TeH"/>
+                        <outlet property="profPic" destination="xMf-Hz-RB2" id="mZP-Jc-N2D"/>
+                        <outlet property="tableView" destination="CNc-hk-vER" id="BaX-4D-13j"/>
+                        <segue destination="JzL-3X-Ymn" kind="push" identifier="popup" id="SRz-fI-M8u"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Frx-zM-qbq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="214.49275362318843" y="-1.3392857142857142"/>
+        </scene>
+        <!--New Song-->
+        <scene sceneID="j8o-R5-amP">
+            <objects>
+                <viewController id="JzL-3X-Ymn" customClass="NewSong" customModule="Spotify" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DOq-Cr-b4k">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Here's your party code!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WtL-Qo-tgb">
+                                <rect key="frame" x="91.5" y="76" width="231" height="29"/>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Light" family="Airbnb Cereal App" pointSize="22"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's go!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xy8-uQ-M4z">
+                                <rect key="frame" x="176.5" y="113" width="61" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="19" id="Y4f-wB-NMc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="16"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Song Link" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P5B-Px-58T">
+                                <rect key="frame" x="20" y="194" width="374" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="adP-VS-7yA"/>
+                                    <constraint firstAttribute="width" constant="374" id="bDv-2X-MUd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GAn-w5-VO3">
+                                <rect key="frame" x="20" y="20" width="24" height="24"/>
+                                <state key="normal" image="close"/>
+                                <connections>
+                                    <action selector="back:" destination="JzL-3X-Ymn" eventType="touchUpInside" id="MRc-Q4-mrM"/>
+                                    <action selector="exit:" destination="2P0-Hj-6J2" eventType="touchUpInside" id="wqf-2b-2Wm"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Xy8-uQ-M4z" firstAttribute="centerX" secondItem="Sab-fP-wcW" secondAttribute="centerX" id="7Fn-LW-5nu"/>
+                            <constraint firstItem="P5B-Px-58T" firstAttribute="centerX" secondItem="Sab-fP-wcW" secondAttribute="centerX" id="Kwx-AP-zk3"/>
+                            <constraint firstItem="P5B-Px-58T" firstAttribute="top" secondItem="Xy8-uQ-M4z" secondAttribute="bottom" constant="62" id="L7z-F3-bD6"/>
+                            <constraint firstItem="WtL-Qo-tgb" firstAttribute="centerX" secondItem="Sab-fP-wcW" secondAttribute="centerX" id="Udf-sd-Z3O"/>
+                            <constraint firstItem="WtL-Qo-tgb" firstAttribute="top" secondItem="Sab-fP-wcW" secondAttribute="top" constant="76" id="mQv-BP-dw4"/>
+                            <constraint firstItem="GAn-w5-VO3" firstAttribute="top" secondItem="Sab-fP-wcW" secondAttribute="top" constant="20" id="pxl-mX-RuK"/>
+                            <constraint firstItem="GAn-w5-VO3" firstAttribute="leading" secondItem="Sab-fP-wcW" secondAttribute="leading" constant="20" id="uFj-S8-Th2"/>
+                            <constraint firstItem="Xy8-uQ-M4z" firstAttribute="top" secondItem="WtL-Qo-tgb" secondAttribute="bottom" constant="8" id="zQa-kt-xCV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Sab-fP-wcW"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ozS-Fl-llB"/>
+                    <connections>
+                        <outlet property="songLink" destination="P5B-Px-58T" id="7Qg-U2-iPN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UDg-Gz-7hd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="911" y="-2"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="add" width="24" height="24"/>
+        <image name="alert" width="36" height="36"/>
+        <image name="close" width="24" height="24"/>
+        <image name="profile" width="2363" height="3992"/>
+    </resources>
+</document>

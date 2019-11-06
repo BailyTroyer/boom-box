@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Vfk-aL-Jrq">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="AirbnbCereal-ExtraBold.ttf">
+            <string>AirbnbCerealApp-ExtraBold</string>
+        </array>
+        <array key="AirbnbCereal-Light.ttf">
+            <string>AirbnbCerealApp-Light</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Large Party View-->
+        <scene sceneID="OSG-zy-bQI">
+            <objects>
+                <viewController id="Vfk-aL-Jrq" customClass="LargePartyView" customModule="Spotify" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="I6B-Be-W7D">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="t9w-bg-UGq">
+                                <rect key="frame" x="145" y="51" width="125" height="125"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="124.99999999999909" id="XFz-4k-n0a"/>
+                                    <constraint firstAttribute="width" constant="125" id="kt1-tO-DXs"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Baily Troyer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEb-10-5JS">
+                                <rect key="frame" x="144.5" y="192" width="125" height="29"/>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-ExtraBold" family="Airbnb Cereal App" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ega-Ch-J0p">
+                                <rect key="frame" x="0.0" y="237" width="414" height="659"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="EmL-fc-2ng">
+                                    <size key="itemSize" width="180" height="180"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SongCell" id="GAE-qn-aeM" customClass="SongCell" customModule="Spotify" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="YOi-3E-sbI">
+                                            <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nn1-Zj-ZJa" customClass="CardView" customModule="Spotify" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="8" width="164" height="164"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="drake" translatesAutoresizingMaskIntoConstraints="NO" id="Frn-pv-GbA">
+                                                            <rect key="frame" x="0.0" y="0.0" width="164" height="99"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="166" id="623-9z-T83"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a long song can be" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bH5-X1-roP">
+                                                            <rect key="frame" x="8" y="107" width="158" height="41"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="158" id="WfJ-fT-Xv5"/>
+                                                                <constraint firstAttribute="height" constant="41" id="kMD-gw-xaE"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="AirbnbCerealApp-Light" family="Airbnb Cereal App" pointSize="15"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="Frn-pv-GbA" secondAttribute="trailing" id="Rit-ab-t6H"/>
+                                                        <constraint firstItem="Frn-pv-GbA" firstAttribute="leading" secondItem="Nn1-Zj-ZJa" secondAttribute="leading" id="V4p-4w-EdO"/>
+                                                        <constraint firstAttribute="bottom" secondItem="bH5-X1-roP" secondAttribute="bottom" constant="16" id="a5i-Ue-edd"/>
+                                                        <constraint firstItem="bH5-X1-roP" firstAttribute="top" secondItem="Frn-pv-GbA" secondAttribute="bottom" constant="8" id="gFv-wy-v6N"/>
+                                                        <constraint firstItem="bH5-X1-roP" firstAttribute="leading" secondItem="Nn1-Zj-ZJa" secondAttribute="leading" constant="8" id="kOY-Ts-ryZ"/>
+                                                        <constraint firstItem="Frn-pv-GbA" firstAttribute="top" secondItem="Nn1-Zj-ZJa" secondAttribute="top" id="lrY-8l-HMl"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="30"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                            <real key="value" value="0.10000000000000001"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Nn1-Zj-ZJa" firstAttribute="leading" secondItem="YOi-3E-sbI" secondAttribute="leading" constant="8" id="0j6-S5-YJc"/>
+                                                <constraint firstAttribute="bottom" secondItem="Nn1-Zj-ZJa" secondAttribute="bottom" constant="8" id="0kN-Wx-O8e"/>
+                                                <constraint firstItem="Nn1-Zj-ZJa" firstAttribute="top" secondItem="YOi-3E-sbI" secondAttribute="top" constant="8" id="EZ1-nI-cKW"/>
+                                                <constraint firstAttribute="height" secondItem="Nn1-Zj-ZJa" secondAttribute="height" multiplier="1.09697" id="fLR-FU-XgC"/>
+                                                <constraint firstAttribute="trailing" secondItem="Nn1-Zj-ZJa" secondAttribute="trailing" constant="8" id="htf-In-4wd"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="180" height="180"/>
+                                        <connections>
+                                            <outlet property="songImage" destination="Frn-pv-GbA" id="kSG-YQ-gBh"/>
+                                            <outlet property="songTitle" destination="bH5-X1-roP" id="4j4-Gw-fK4"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G3R-4Y-wph">
+                                <rect key="frame" x="20" y="44" width="48" height="48"/>
+                                <state key="normal" image="close"/>
+                                <connections>
+                                    <action selector="exit:" destination="Vfk-aL-Jrq" eventType="touchUpInside" id="5fL-KQ-Hn3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e2q-WI-uMe">
+                                <rect key="frame" x="317" y="41" width="72" height="72"/>
+                                <state key="normal" image="alert"/>
+                                <connections>
+                                    <action selector="cops:" destination="Vfk-aL-Jrq" eventType="touchUpInside" id="MSi-14-4EW"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="nEb-10-5JS" firstAttribute="top" secondItem="t9w-bg-UGq" secondAttribute="bottom" constant="7.0000000000009095" id="4RP-FR-W1x"/>
+                            <constraint firstItem="2g5-du-yKr" firstAttribute="trailing" secondItem="e2q-WI-uMe" secondAttribute="trailing" constant="25" id="4pd-ed-jQy"/>
+                            <constraint firstItem="t9w-bg-UGq" firstAttribute="top" secondItem="2g5-du-yKr" secondAttribute="top" constant="16" id="5RA-cu-N1u"/>
+                            <constraint firstItem="2g5-du-yKr" firstAttribute="trailing" secondItem="ega-Ch-J0p" secondAttribute="trailing" id="6X0-l1-Dpf"/>
+                            <constraint firstItem="ega-Ch-J0p" firstAttribute="top" secondItem="nEb-10-5JS" secondAttribute="bottom" constant="16" id="NYD-Gz-ZWw"/>
+                            <constraint firstItem="ega-Ch-J0p" firstAttribute="bottom" secondItem="2g5-du-yKr" secondAttribute="bottom" constant="34" id="Ppg-c5-f0Q"/>
+                            <constraint firstItem="G3R-4Y-wph" firstAttribute="leading" secondItem="2g5-du-yKr" secondAttribute="leading" constant="20" id="VhU-27-fe4"/>
+                            <constraint firstItem="G3R-4Y-wph" firstAttribute="top" secondItem="2g5-du-yKr" secondAttribute="top" id="aGW-6Y-j45"/>
+                            <constraint firstItem="ega-Ch-J0p" firstAttribute="leading" secondItem="2g5-du-yKr" secondAttribute="leading" id="aVH-ht-1MS"/>
+                            <constraint firstItem="nEb-10-5JS" firstAttribute="centerX" secondItem="2g5-du-yKr" secondAttribute="centerX" id="ddv-Q0-jAd"/>
+                            <constraint firstItem="2g5-du-yKr" firstAttribute="top" secondItem="e2q-WI-uMe" secondAttribute="top" constant="3" id="fy4-c3-eKB"/>
+                            <constraint firstItem="nEb-10-5JS" firstAttribute="centerX" secondItem="ega-Ch-J0p" secondAttribute="centerX" id="i65-t0-sGs"/>
+                            <constraint firstItem="t9w-bg-UGq" firstAttribute="centerX" secondItem="2g5-du-yKr" secondAttribute="centerX" id="z1H-wv-vJe"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="2g5-du-yKr"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="jCj-xP-U3f"/>
+                    <connections>
+                        <outlet property="collectionView" destination="ega-Ch-J0p" id="ri0-aD-Imr"/>
+                        <outlet property="profilePicture" destination="t9w-bg-UGq" id="qua-t9-J5E"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZES-lC-v1U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="992.75362318840587" y="-1.3392857142857142"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="alert" width="36" height="36"/>
+        <image name="close" width="24" height="24"/>
+        <image name="drake" width="1000" height="563"/>
+        <image name="profile" width="2363" height="3992"/>
+    </resources>
+</document>

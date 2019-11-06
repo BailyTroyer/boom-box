@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Mqt-EG-5gB">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="AirbnbCereal-Book.ttf">
+            <string>AirbnbCerealApp-Book</string>
+        </array>
+        <array key="AirbnbCereal-Light.ttf">
+            <string>AirbnbCerealApp-Light</string>
+        </array>
+        <array key="AirbnbCereal-Medium.ttf">
+            <string>AirbnbCerealApp-Medium</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Name View-->
+        <scene sceneID="bwv-QG-M3C">
+            <objects>
+                <viewController id="Mqt-EG-5gB" customClass="NameView" customModule="Spotify" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="djz-SC-0FS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ag-tL-YMY">
+                                <rect key="frame" x="20" y="44" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="xzE-Mj-zhF"/>
+                                </constraints>
+                                <state key="normal" image="close"/>
+                                <connections>
+                                    <action selector="cancel:" destination="Mqt-EG-5gB" eventType="touchUpInside" id="9dY-Hy-yOe"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's get started" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gyl-P2-I1Y">
+                                <rect key="frame" x="125" y="120" width="164" height="29"/>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Light" family="Airbnb Cereal App" pointSize="22"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's the name of your party?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgu-HI-wqZ">
+                                <rect key="frame" x="91.5" y="171" width="231" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="19" id="5N7-z2-UEK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="16"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HAR-9c-d1Y">
+                                <rect key="frame" x="20" y="238" width="374" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="RqO-pU-4op"/>
+                                    <constraint firstAttribute="width" constant="374" id="YnR-Li-Rse"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="7Ag-tL-YMY" firstAttribute="leading" secondItem="XhH-Fg-68J" secondAttribute="leading" constant="20" id="6GK-KP-S5s"/>
+                            <constraint firstItem="dgu-HI-wqZ" firstAttribute="top" secondItem="gyl-P2-I1Y" secondAttribute="bottom" constant="22" id="DnO-Yl-Yg1"/>
+                            <constraint firstItem="HAR-9c-d1Y" firstAttribute="top" secondItem="dgu-HI-wqZ" secondAttribute="bottom" constant="48" id="Dne-rr-MR3"/>
+                            <constraint firstItem="HAR-9c-d1Y" firstAttribute="centerX" secondItem="XhH-Fg-68J" secondAttribute="centerX" id="Dva-yY-utQ"/>
+                            <constraint firstItem="7Ag-tL-YMY" firstAttribute="top" secondItem="XhH-Fg-68J" secondAttribute="top" id="NR0-m7-WVy"/>
+                            <constraint firstItem="gyl-P2-I1Y" firstAttribute="centerX" secondItem="XhH-Fg-68J" secondAttribute="centerX" id="sot-6k-Q9c"/>
+                            <constraint firstItem="gyl-P2-I1Y" firstAttribute="top" secondItem="XhH-Fg-68J" secondAttribute="top" constant="76" id="wVq-3c-lxr"/>
+                            <constraint firstItem="dgu-HI-wqZ" firstAttribute="centerX" secondItem="XhH-Fg-68J" secondAttribute="centerX" id="xJS-fP-gyk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="XhH-Fg-68J"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="fld-m3-oh4"/>
+                    <connections>
+                        <outlet property="label1" destination="gyl-P2-I1Y" id="VFD-gY-9QM"/>
+                        <outlet property="label2" destination="dgu-HI-wqZ" id="hHV-pU-arf"/>
+                        <outlet property="name" destination="HAR-9c-d1Y" id="sbb-4x-27o"/>
+                        <segue destination="iFV-xN-lQt" kind="modal" identifier="number_people" modalPresentationStyle="fullScreen" id="e7t-6U-dRb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Gw-fo-pqi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-184" y="137"/>
+        </scene>
+        <!--Party Code-->
+        <scene sceneID="Z7g-DL-rgZ">
+            <objects>
+                <viewController id="FZM-4X-uah" customClass="PartyCode" customModule="Spotify" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8AD-Ku-GIT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IjD-xa-RQ4">
+                                <rect key="frame" x="20" y="44" width="36" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="1h8-E0-HF1"/>
+                                </constraints>
+                                <state key="normal" image="left"/>
+                                <connections>
+                                    <action selector="back:" destination="FZM-4X-uah" eventType="touchUpInside" id="hcJ-fj-kD7"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Here's your party code!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ULA-2y-eDO">
+                                <rect key="frame" x="91.5" y="120" width="231" height="29"/>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Light" family="Airbnb Cereal App" pointSize="22"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1bd42fh" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzu-Hk-R0t">
+                                <rect key="frame" x="20" y="238" width="374" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="374" id="gnd-tN-d7F"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Medium" family="Airbnb Cereal App" pointSize="22"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qF6-ua-xtv">
+                                <rect key="frame" x="142.5" y="275" width="129" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="129" id="8B5-ep-xZX"/>
+                                    <constraint firstAttribute="height" constant="30" id="Ph1-4P-W7H"/>
+                                </constraints>
+                                <state key="normal" title="Copy to Clipboard!"/>
+                                <connections>
+                                    <action selector="copyClipBoard:" destination="FZM-4X-uah" eventType="touchUpInside" id="CqE-EM-7cQ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's go!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Nv-uk-wAZ">
+                                <rect key="frame" x="176.5" y="157" width="61" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="19" id="TrN-qe-14i"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="16"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="1Nv-uk-wAZ" firstAttribute="top" secondItem="ULA-2y-eDO" secondAttribute="bottom" constant="8" id="Kh3-FY-07O"/>
+                            <constraint firstItem="IjD-xa-RQ4" firstAttribute="leading" secondItem="JqY-y3-ahf" secondAttribute="leading" constant="20" id="TpJ-34-4R5"/>
+                            <constraint firstItem="IjD-xa-RQ4" firstAttribute="top" secondItem="JqY-y3-ahf" secondAttribute="top" id="Zrp-rk-LAO"/>
+                            <constraint firstItem="ULA-2y-eDO" firstAttribute="centerX" secondItem="JqY-y3-ahf" secondAttribute="centerX" id="ahH-T2-Dag"/>
+                            <constraint firstItem="zzu-Hk-R0t" firstAttribute="top" secondItem="ULA-2y-eDO" secondAttribute="bottom" constant="89" id="eyZ-Ma-hC7"/>
+                            <constraint firstItem="qF6-ua-xtv" firstAttribute="top" secondItem="zzu-Hk-R0t" secondAttribute="bottom" constant="8" id="hU4-cl-Ymu"/>
+                            <constraint firstItem="1Nv-uk-wAZ" firstAttribute="centerX" secondItem="JqY-y3-ahf" secondAttribute="centerX" id="hit-Wt-V13"/>
+                            <constraint firstItem="ULA-2y-eDO" firstAttribute="top" secondItem="JqY-y3-ahf" secondAttribute="top" constant="76" id="smF-Xl-RCO"/>
+                            <constraint firstItem="zzu-Hk-R0t" firstAttribute="centerX" secondItem="JqY-y3-ahf" secondAttribute="centerX" id="vG5-7r-cZY"/>
+                            <constraint firstItem="qF6-ua-xtv" firstAttribute="centerX" secondItem="JqY-y3-ahf" secondAttribute="centerX" id="wEf-AD-oRb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="JqY-y3-ahf"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Db6-xs-Oxm"/>
+                    <connections>
+                        <outlet property="label1" destination="ULA-2y-eDO" id="Yec-cg-e0f"/>
+                        <outlet property="label2" destination="1Nv-uk-wAZ" id="bbq-ry-Ge6"/>
+                        <outlet property="partyCode" destination="zzu-Hk-R0t" id="pTe-90-gWY"/>
+                        <segue destination="k6a-6h-Yfq" kind="modal" identifier="to_large_party" modalPresentationStyle="fullScreen" id="sRp-jc-r3u"/>
+                        <segue destination="vG3-Ub-acf" kind="modal" identifier="to_small_party" modalPresentationStyle="fullScreen" id="bRQ-iI-1IM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mxl-hy-xoo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2171" y="137"/>
+        </scene>
+        <!--LargeParty-->
+        <scene sceneID="Ic2-eT-vLG">
+            <objects>
+                <viewControllerPlaceholder storyboardName="LargeParty" id="k6a-6h-Yfq" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="NEm-d3-IEf"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yya-cm-b8d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2960" y="-17"/>
+        </scene>
+        <!--SmallParty-->
+        <scene sceneID="Ecx-Pv-oOr">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SmallParty" id="vG3-Ub-acf" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="L97-iW-vuZ"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E2a-C9-Wv0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2942" y="23"/>
+        </scene>
+        <!--Number People-->
+        <scene sceneID="oJe-De-m0i">
+            <objects>
+                <viewController id="iFV-xN-lQt" customClass="NumberPeople" customModule="Spotify" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="U5h-wr-fF0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How many?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lx5-Bb-z5i">
+                                <rect key="frame" x="148.5" y="120" width="117" height="29"/>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Light" family="Airbnb Cereal App" pointSize="22"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guess how many you expect to come :)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Gn-d0-xDU">
+                                <rect key="frame" x="63" y="171" width="288" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="19" id="eaG-CK-zEF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="16"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Number of People" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5rZ-Qu-zry">
+                                <rect key="frame" x="20" y="238" width="374" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="374" id="Bux-2r-Q8U"/>
+                                    <constraint firstAttribute="height" constant="29" id="RSg-vf-pGd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dpq-Gd-4xE">
+                                <rect key="frame" x="20" y="44" width="36" height="36"/>
+                                <state key="normal" image="left"/>
+                                <connections>
+                                    <action selector="back:" destination="iFV-xN-lQt" eventType="touchUpInside" id="Ma8-0L-Lkx"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="4Gn-d0-xDU" firstAttribute="centerX" secondItem="KDg-Bl-fhV" secondAttribute="centerX" id="1up-OX-fWp"/>
+                            <constraint firstItem="Lx5-Bb-z5i" firstAttribute="top" secondItem="KDg-Bl-fhV" secondAttribute="top" constant="76" id="944-Bo-jdZ"/>
+                            <constraint firstItem="4Gn-d0-xDU" firstAttribute="top" secondItem="Lx5-Bb-z5i" secondAttribute="bottom" constant="22" id="U8U-qy-qTO"/>
+                            <constraint firstItem="5rZ-Qu-zry" firstAttribute="top" secondItem="4Gn-d0-xDU" secondAttribute="bottom" constant="48" id="Umc-62-Gyy"/>
+                            <constraint firstItem="Dpq-Gd-4xE" firstAttribute="top" secondItem="KDg-Bl-fhV" secondAttribute="top" id="gQh-vs-R7j"/>
+                            <constraint firstItem="Lx5-Bb-z5i" firstAttribute="centerX" secondItem="KDg-Bl-fhV" secondAttribute="centerX" id="lRY-GU-Xql"/>
+                            <constraint firstItem="5rZ-Qu-zry" firstAttribute="centerX" secondItem="KDg-Bl-fhV" secondAttribute="centerX" id="mUD-wL-OFw"/>
+                            <constraint firstItem="Dpq-Gd-4xE" firstAttribute="leading" secondItem="KDg-Bl-fhV" secondAttribute="leading" constant="20" id="yDN-nf-hOQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="KDg-Bl-fhV"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="vMc-gD-rDE"/>
+                    <connections>
+                        <outlet property="nubmerPeople" destination="5rZ-Qu-zry" id="1I5-ZK-ZIE"/>
+                        <segue destination="dAX-fp-wiQ" kind="modal" identifier="starter_song" modalPresentationStyle="fullScreen" id="Hfv-c4-BxF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bjh-m1-dKc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="628" y="137"/>
+        </scene>
+        <!--Starter Song-->
+        <scene sceneID="aIg-Wu-FvY">
+            <objects>
+                <viewController id="dAX-fp-wiQ" customClass="StarterSong" customModule="Spotify" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AT4-XE-3sP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Starter Song" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oee-nC-0nD">
+                                <rect key="frame" x="144" y="120" width="126" height="29"/>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Light" family="Airbnb Cereal App" pointSize="22"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter a link to a starter song in Spotify" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tNb-rC-JYx">
+                                <rect key="frame" x="68.5" y="171" width="277.5" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="19" id="Ds0-1Y-QkB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="16"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PSK-c3-Xll">
+                                <rect key="frame" x="20" y="44" width="36" height="36"/>
+                                <state key="normal" image="left"/>
+                                <connections>
+                                    <action selector="back:" destination="dAX-fp-wiQ" eventType="touchUpInside" id="WeN-c4-2HQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7me-Ik-ffW">
+                                <rect key="frame" x="132.5" y="239" width="149" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="bzp-bZ-lBn"/>
+                                </constraints>
+                                <state key="normal" title="Paste from Clipboard!"/>
+                                <connections>
+                                    <action selector="copyClipBoard:" destination="FZM-4X-uah" eventType="touchUpInside" id="G8H-aH-KrB"/>
+                                    <action selector="pasteFromClipboard:" destination="dAX-fp-wiQ" eventType="touchUpInside" id="DeC-Qv-OPQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="7me-Ik-ffW" firstAttribute="top" secondItem="tNb-rC-JYx" secondAttribute="bottom" constant="49" id="38j-BH-hrv"/>
+                            <constraint firstItem="7me-Ik-ffW" firstAttribute="centerX" secondItem="snO-Fh-Rmc" secondAttribute="centerX" id="R8Q-Yd-DvT"/>
+                            <constraint firstItem="PSK-c3-Xll" firstAttribute="top" secondItem="snO-Fh-Rmc" secondAttribute="top" id="dtS-hN-BcI"/>
+                            <constraint firstItem="tNb-rC-JYx" firstAttribute="centerX" secondItem="snO-Fh-Rmc" secondAttribute="centerX" id="eNx-8S-Qa9"/>
+                            <constraint firstItem="Oee-nC-0nD" firstAttribute="centerX" secondItem="snO-Fh-Rmc" secondAttribute="centerX" id="f3U-3Q-h2N"/>
+                            <constraint firstItem="Oee-nC-0nD" firstAttribute="top" secondItem="snO-Fh-Rmc" secondAttribute="top" constant="76" id="fib-Qa-c3r"/>
+                            <constraint firstItem="PSK-c3-Xll" firstAttribute="leading" secondItem="snO-Fh-Rmc" secondAttribute="leading" constant="20" id="i5z-Pn-0A1"/>
+                            <constraint firstItem="tNb-rC-JYx" firstAttribute="top" secondItem="Oee-nC-0nD" secondAttribute="bottom" constant="22" id="oS4-iK-boW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="snO-Fh-Rmc"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="EQj-su-dH0"/>
+                    <connections>
+                        <segue destination="FZM-4X-uah" kind="modal" identifier="party_code" modalPresentationStyle="fullScreen" id="eHx-U2-kwf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lky-mX-w90" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1376.8115942028987" y="136.60714285714286"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="close" width="24" height="24"/>
+        <image name="left" width="36" height="36"/>
+    </resources>
+</document>
