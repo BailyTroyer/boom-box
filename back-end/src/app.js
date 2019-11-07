@@ -1,9 +1,9 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var routes = require('./helpers/routes');
+import express from 'express';
+import bodyParser from 'body-parser';
+import routes from './helpers/routes';
 
-var app = express();
-var port = 3000;
+const app = express();
+const port = 3000;
 
 
 app.use(bodyParser.json());
@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 // set up request console logging
-logResponse = (req, res, next) => {
+const logResponse = (req, res, next) => {
     res.on("finish", () => {
         console.log(`[${new Date().toISOString()}] ${req.ip} - ${req.method} ` +
         `${req.originalUrl} - ${res.statusCode} ${res.statusMessage}`);

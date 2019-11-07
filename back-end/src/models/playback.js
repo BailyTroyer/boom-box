@@ -1,9 +1,10 @@
-var newClient = require('../helpers/mongo');
-var request = require('request-promise-native');
+import newClient from '../helpers/mongo';
+import request from 'request-promise-native';
+
 
 class Playback {
-    async pauseMusic(req, res){
-        var { party_code } = req.body
+    static async pauseMusic(req, res){
+        const { party_code } = req.body
 
         const client = newClient();
         client.connect(async (err, cli) => { 
@@ -15,7 +16,7 @@ class Playback {
                 headers: {'Authorization': 'Bearer ' + party.token}
             }
 
-            request(options)
+            await request(options)
                 .then(result => {
                     res.status(200).send("Paused");
                 })
@@ -27,7 +28,7 @@ class Playback {
         client.close()
     }
 
-    async getSongInfo(songUrl, token){
+    static async getSongInfo(songUrl, token){
         const songId = songUrl.replace("https://open.spotify.com/track/" , "")
 
         const options = {
@@ -46,37 +47,20 @@ class Playback {
         return songInfo;
     }
 
-    async addSongToPlaylist(song, playlistId, token){
-        // https://developer.spotify.com/console/post-playlists
-        // {
-        //     "name": "New Playlist",
-        //     "description": "New playlist description",
-        //     "public": false
-        // }
+    static async addSongToPlaylist(song, playlistId, token){
 
         const songUri = JSON.parse(song).uri
 
-        console.log(JSON.parse(song))
-
-        //songUri = "spotify:track:4iV5W9uYEdYUVa79Axb7Rh"
-        //playlistId = "5DejKuy4jZsSUuqpKRX4vi"
-
         const options = {
-            uri: `https://api.spotify.com/v1/playlists/${playlistId}/tracks`, 
-            headers: {'Authorization': 'Bearer ' + token},
-            body: {uris: [songUri]},
-            json: true
+            method: 'POST',
+            uri: `https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${songUri}`, 
+            headers: {'Authorization': 'Bearer ' + token}
         }
 
         request(options)
-        .then((body) => {
-            console.log("BODY------------------------------------")
-            console.log(body)
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+            .then(body => {})
+            .catch(err => {console.log(err.message)})
     }
 }
 
-module.exports = new Playback();
+export default Playback;

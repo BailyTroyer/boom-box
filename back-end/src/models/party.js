@@ -1,11 +1,11 @@
-var newClient = require('../helpers/mongo');
-var Playback = require('./playback')
-var Vote = require('./vote')
-var request = require('request-promise-native');
+import newClient from '../helpers/mongo';
+import Playback from './playback'
+import Vote from './vote'
+import request from 'request-promise-native';
 
 
 class Party {
-    async joinParty(req, res){
+    static async joinParty(req, res){
         const { party_code, user_id } = req.body
 
         const client = newClient();
@@ -29,7 +29,7 @@ class Party {
         client.close();
     }
 
-    async leaveParty(req, res){
+    static async leaveParty(req, res){
         const { user_id } = req.body
 
         const client = newClient();
@@ -48,7 +48,7 @@ class Party {
         client.close();
     }
 
-    async endParty(req, res){
+    static async endParty(req, res){
         const { party_code } = req.body
 
         const client = newClient();
@@ -57,7 +57,7 @@ class Party {
             
             const party = await db.collection("parties").findOne({party_code: party_code})
             
-            for(var guest_id in party.guests){
+            for(let guest_id in party.guests){
                 db.collection("users").updateOne({user_id: guest_id}, {party_code: null})
             }
 
@@ -72,11 +72,13 @@ class Party {
         client.close();   
     }
 
-    async createParty(req, res){
+    static async createParty(req, res){
         const { party_code, size, name, token, starter_song, user_id } = req.body
 
         const songInfo = await Playback.getSongInfo(starter_song, token);
-        const playlist =  await createPartyPlaylist(name, user_id, token);
+        const playlist = await createPartyPlaylist(name, user_id, token);
+
+        console.log(playlist.id)
 
         await Playback.addSongToPlaylist(songInfo, playlist.id, token)
 
@@ -109,7 +111,7 @@ class Party {
     }
 
 
-    async nominateSong(req, res){
+    static async nominateSong(req, res){
         const { party_code, song_url, token } = req.body
 
         const songInfo = await Playback.getSongInfo(song_url, token) 
@@ -129,16 +131,16 @@ class Party {
         client.close();
     }
 
-    async removeNomination(req, res){
+    static async removeNomination(req, res){
         res.status(200).send("Remove song nomination");
     }
 
-    async selectRandomUsers(req, res){
+    static async selectRandomUsers(req, res){
         res.status(200).send("Select random users");
     }
 
-    async emergency(req, res){
-        var { party_code, token } = req.body
+    static async emergency(req, res){
+        const { party_code, token } = req.body
 
         const client = newClient();
         client.connect(async (err, cli) => { 
@@ -146,7 +148,7 @@ class Party {
 
             const party = await db.collection("parties").findOne({party_code: party_code})
 
-            if(party.cops >= 4){
+            if(party.cops === 5){
                 const options = {
                     method: 'PUT',
                     uri: "https://api.spotify.com/v1/me/player/pause", 
@@ -154,9 +156,8 @@ class Party {
                 }
 
                 request(options)
-                .then(() => {console.log("Paused Song")})
-                .catch(() => {console.log("Pause Error")})
-                
+                    .then(() => {console.log("Paused Song")})
+                    .catch(() => {console.log("Pause Error")})
             }
 
             db.collection("parties").findOneAndUpdate(
@@ -173,7 +174,7 @@ class Party {
         client.close();
     }
 
-    async getPartyInfo(req, res){
+    static async getPartyInfo(req, res){
 
         const { party_code } = req.query
 
@@ -212,4 +213,4 @@ const createPartyPlaylist = async (name, user_id, token) => {
     })
 }
 
-module.exports = new Party();
+export default Party;

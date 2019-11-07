@@ -1,39 +1,35 @@
-var router = require('express').Router();
+import { Router } from 'express';
 
-// var auth = require('../models/auth')
-var party = require('../models/party')
-var search = require('../models/search')
-var vote = require('../models/vote')
+import party from '../models/party'
+import search from '../models/search'
+import vote from '../models/vote'
 
-// // auth routes
-// router.get("/auth", auth.signIn);
-// router.post("/auth", auth.signUp);
+const routes = Router()
 
 // party routes
-
-router.delete("/party", party.endParty);
-router.post("/party", party.createParty);
+routes.delete("/party", party.endParty);
+routes.post("/party", party.createParty);
 
 // party attendance
-router.post("/party/attendance", party.joinParty);
-router.delete("/party/attendance", party.leaveParty);
+routes.post("/party/attendance", party.joinParty);
+routes.delete("/party/attendance", party.leaveParty);
 
 // party info
-router.get("/party/info", party.getPartyInfo);
+routes.get("/party/info", party.getPartyInfo);
 
 // nomination routes
-router.post("/party/nomination", party.nominateSong);
-router.delete("/party/nomination", party.removeNomination);
+routes.post("/party/nomination", party.nominateSong);
+routes.delete("/party/nomination", party.removeNomination);
 
 // random routes
-router.get("/party/random", party.selectRandomUsers);
+routes.get("/party/random", party.selectRandomUsers);
 
-router.post("/party/cops", party.emergency);
+routes.post("/party/cops", party.emergency);
 
 // search routes
-router.get("/search", search.searchForSong);
+routes.get("/search", search.searchForSong);
 
 // voting routes
-router.post("/vote", vote.voteForSong);
+routes.post("/vote", vote.voteForSong);
 
-module.exports = router;
+export default routes;

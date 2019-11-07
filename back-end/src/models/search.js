@@ -1,10 +1,9 @@
-var db = require('../helpers/mongo');
-var bcrypt = require("bcrypt")
+import request from 'request-promise-native';
 
 class Search {
-    async searchForSong(req, res){
+    static async searchForSong(req, res){
         res.status(200).send("Search for song");
     }
 }
 
-module.exports = new Search();
+export default Search;

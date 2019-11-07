@@ -1,11 +1,11 @@
-var newClient = require('../helpers/mongo');
-var Playback = require('./playback')
-var request = require('request-promise-native');
+import newClient from '../helpers/mongo';
+import Playback from './playback'
+import request from 'request-promise-native';
 
 
 class Vote {
-    async voteForSong(req, res){
-        var { party_code, user_id, song_id } = req.body
+    static async voteForSong(req, res){
+        const { party_code, user_id, song_id } = req.body
 
         const client = newClient();
         client.connect(async (err, cli) => { 
@@ -26,7 +26,7 @@ class Vote {
         client.close();
     }
 
-    async checkForSongEndingSoon(party_code, token){
+    static async checkForSongEndingSoon(party_code, token){
         const client = newClient();
         client.connect(async (err, cli) => { 
             const db =  cli.db("boom-box")
@@ -50,12 +50,12 @@ class Vote {
                     if(!body){return}
 
 
-                    var progress = body.progress_ms
+                    const progress = body.progress_ms
 
                     if(songDuration - progress < 10000){
                         // add highest rated song to playlist
                         const party = db.collection("parties").findOne({'party_code': party_code})
-                        var nominations = party.song_nominations
+                        const nominations = party.song_nominations
                         nominations.sort(this.sortByVotes)
                         const nextSong = nominations[0]
 
@@ -96,4 +96,4 @@ class Vote {
 
 
 
-module.exports = new Vote();
+export default Vote;

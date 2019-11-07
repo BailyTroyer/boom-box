@@ -7,7 +7,7 @@
 //         var password = req.body.password
 
 //         var success = verifyUser(username, password);
-        
+
 //         if (success) {
 //             res.status(200).send("You're in!");
 //         } else {
@@ -15,7 +15,7 @@
 //         }
 //     }
 
-    
+
 //     async signUp(req, res){
 //         res.status(200).send("Sign up");
 //     }
@@ -32,3 +32,4 @@
 // }
 
 // module.exports = new Auth();
+"use strict";
