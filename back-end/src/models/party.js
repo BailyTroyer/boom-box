@@ -78,8 +78,6 @@ class Party {
         const songInfo = await Playback.getSongInfo(starter_song, token);
         const playlist = await createPartyPlaylist(name, user_id, token);
 
-        console.log(playlist.id)
-
         await Playback.addSongToPlaylist(songInfo, playlist.id, token)
 
         const client = newClient();
@@ -98,9 +96,12 @@ class Party {
                 cops: 0
             })
             .then(result => {
+                //start playing playlist
+                startParty(playlist.id, token);
                 res.status(200).send("Created party");
             })
             .catch(result => {
+                console.log(result)
                 res.status(400).send("You fucked up");
             })
         });
@@ -109,7 +110,6 @@ class Party {
         // runs for the life of the party
         Vote.checkForSongEndingSoon(party_code, token);
     }
-
 
     static async nominateSong(req, res){
         const { party_code, song_url, token } = req.body
@@ -211,6 +211,26 @@ const createPartyPlaylist = async (name, user_id, token) => {
     .catch(err => {
         console.log(err)
     })
+}
+
+const startParty = async (playlistId, token) => {
+    const context = `spotify:playlist:${playlistId}`
+    const options = {
+        method: 'PUT',
+        uri: "	https://api.spotify.com/v1/me/player/play", 
+        headers: {'Authorization': 'Bearer ' + token},
+        body: { context_uri: context },
+        json: true
+    }
+
+    request(options)
+        .then(result => {
+            //start playing playlist
+            //res.status(200).send("Started party");
+        })
+        .catch(result => {
+            //res.status(400).send("You fucked up");
+        })
 }
 
 export default Party;

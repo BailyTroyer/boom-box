@@ -41,28 +41,39 @@ class Vote {
 
             setInterval(async () => {
                 const party = await db.collection("parties").findOne({'party_code': party_code})
+                //console.log(party.now_playing)
                 const songDuration = party.now_playing.duration_ms
 
 
                 request(options)
                 .then(async (body) => {
-                    // spotify is not open
+                    // spotify is not open on any of the user's devices
                     if(!body){return}
-
-
+                    // the user hasnt started the party playlist
+                    if(body.item.id !== party.now_playing.id){
+                        console.log(`Start playing - ${party.now_playing.name} - in the party playlist`)
+                        return
+                    }
+                    
                     const progress = body.progress_ms
 
+                    console.log(progress + ' / ' + songDuration)
+
                     if(songDuration - progress < 10000){
+                        console.log("Last 10 seconds")
                         // add highest rated song to playlist
                         const party = db.collection("parties").findOne({'party_code': party_code})
                         const nominations = party.song_nominations
-                        nominations.sort(this.sortByVotes)
+                        nominations.sort(sortByVotes)
                         const nextSong = nominations[0]
+
+                        console.log(`Next song: ${nextSong.name}`)
 
                         Playback.addSongToPlaylist(nextSong, party.playlist.id, token)
 
-                        // checking for new song to play
+                        // checking if new song has started playing
                         setInterval(() => {
+                            console.log("New song started")
                             request(options)
                             .then((body) => {
                                 // the song has changed, stop waiting
@@ -81,19 +92,18 @@ class Vote {
                 .catch(err => {
                     console.log(err)
                 })
-            } ,10000)
+            }, 8000)
         });
 
         client.close()
     }
-
-    sortByVotes(firstEl, secondEl){
-        if(firstEl.votes < secondEl.votes) return -1;
-        if(firstEl.votes > secondEl.votes) return 1;
-        return 0
-    }
 }
 
+const sortByVotes = (firstEl, secondEl) => {
+    if(firstEl.votes < secondEl.votes) return -1;
+    if(firstEl.votes > secondEl.votes) return 1;
+    return 0
+}
 
 
 export default Vote;

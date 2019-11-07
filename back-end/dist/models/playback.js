@@ -61,40 +61,24 @@ var Playback = function () {
             var songInfo = await (0, _requestPromiseNative2.default)(options).then(function (body) {
                 return body;
             }).catch(function (err) {
-                return err;
+                return null;
             });
 
-            return songInfo;
+            if (songInfo) return JSON.parse(songInfo);
         }
     }, {
         key: 'addSongToPlaylist',
         value: async function addSongToPlaylist(song, playlistId, token) {
-            // https://developer.spotify.com/console/post-playlists
-            // {
-            //     "name": "New Playlist",
-            //     "description": "New playlist description",
-            //     "public": false
-            // }
 
-            var songUri = JSON.parse(song).uri;
-
-            //console.log(JSON.parse(song))
-
-            //songUri = "spotify:track:5FkoSXiJPKTNyYgALRJFhD"
-            //playlistId = "4BZDRqB3J3SH79zJmy3vdR"
+            var songUri = song.uri;
 
             var options = {
                 method: 'POST',
                 uri: 'https://api.spotify.com/v1/playlists/' + playlistId + '/tracks?uris=' + songUri,
                 headers: { 'Authorization': 'Bearer ' + token }
-                //body: {uris: songUri}
             };
 
-            (0, _requestPromiseNative2.default)(options).then(function (body) {
-                console.log("BODY----------------------------------------------");
-                console.log(body);
-            }).catch(function (err) {
-                console.log("ERROR----------------------------------------------");
+            (0, _requestPromiseNative2.default)(options).then(function (body) {}).catch(function (err) {
                 console.log(err.message);
             });
         }

@@ -27,14 +27,7 @@ var Vote = function () {
         _classCallCheck(this, Vote);
     }
 
-    _createClass(Vote, [{
-        key: 'sortByVotes',
-        value: function sortByVotes(firstEl, secondEl) {
-            if (firstEl.votes < secondEl.votes) return -1;
-            if (firstEl.votes > secondEl.votes) return 1;
-            return 0;
-        }
-    }], [{
+    _createClass(Vote, null, [{
         key: 'voteForSong',
         value: async function voteForSong(req, res) {
             var _req$body = req.body,
@@ -58,8 +51,6 @@ var Vote = function () {
     }, {
         key: 'checkForSongEndingSoon',
         value: async function checkForSongEndingSoon(party_code, token) {
-            var _this = this;
-
             var client = (0, _mongo2.default)();
             client.connect(async function (err, cli) {
                 var db = cli.db("boom-box");
@@ -73,27 +64,39 @@ var Vote = function () {
 
                 setInterval(async function () {
                     var party = await db.collection("parties").findOne({ 'party_code': party_code });
+                    //console.log(party.now_playing)
                     var songDuration = party.now_playing.duration_ms;
 
                     (0, _requestPromiseNative2.default)(options).then(async function (body) {
-                        // spotify is not open
+                        // spotify is not open on any of the user's devices
                         if (!body) {
+                            return;
+                        }
+                        // the user hasnt started the party playlist
+                        if (body.item.id !== party.now_playing.id) {
+                            console.log("Start playing the playlist");
                             return;
                         }
 
                         var progress = body.progress_ms;
 
+                        console.log(progress + ' / ' + songDuration);
+
                         if (songDuration - progress < 10000) {
+                            console.log("Last 10 seconds");
                             // add highest rated song to playlist
                             var _party = db.collection("parties").findOne({ 'party_code': party_code });
                             var nominations = _party.song_nominations;
-                            nominations.sort(_this.sortByVotes);
+                            nominations.sort(sortByVotes);
                             var nextSong = nominations[0];
+
+                            console.log('Next song: ' + nextSong.name);
 
                             _playback2.default.addSongToPlaylist(nextSong, _party.playlist.id, token);
 
-                            // checking for new song to play
+                            // checking if new song has started playing
                             setInterval(function () {
+                                console.log("New song started");
                                 (0, _requestPromiseNative2.default)(options).then(function (body) {
                                     // the song has changed, stop waiting
                                     if (body.item.id !== _party.now_playing.id) {
@@ -116,5 +119,11 @@ var Vote = function () {
 
     return Vote;
 }();
+
+var sortByVotes = function sortByVotes(firstEl, secondEl) {
+    if (firstEl.votes < secondEl.votes) return -1;
+    if (firstEl.votes > secondEl.votes) return 1;
+    return 0;
+};
 
 exports.default = Vote;

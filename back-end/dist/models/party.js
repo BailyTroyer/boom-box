@@ -113,8 +113,6 @@ var Party = function () {
             var songInfo = await _playback2.default.getSongInfo(starter_song, token);
             var playlist = await createPartyPlaylist(name, user_id, token);
 
-            console.log(playlist.id);
-
             await _playback2.default.addSongToPlaylist(songInfo, playlist.id, token);
 
             var client = (0, _mongo2.default)();
@@ -132,8 +130,11 @@ var Party = function () {
                     guests: [],
                     cops: 0
                 }).then(function (result) {
+                    //start playing playlist
+                    startParty(playlist.id, token);
                     res.status(200).send("Created party");
                 }).catch(function (result) {
+                    console.log(result);
                     res.status(400).send("You fucked up");
                 });
             });
@@ -251,6 +252,24 @@ var createPartyPlaylist = async function createPartyPlaylist(name, user_id, toke
         return body;
     }).catch(function (err) {
         console.log(err);
+    });
+};
+
+var startParty = async function startParty(playlistId, token) {
+    var context = 'spotify:playlist:' + playlistId;
+    var options = {
+        method: 'PUT',
+        uri: "	https://api.spotify.com/v1/me/player/play",
+        headers: { 'Authorization': 'Bearer ' + token },
+        body: { context_uri: context },
+        json: true
+    };
+
+    (0, _requestPromiseNative2.default)(options).then(function (result) {
+        //start playing playlist
+        //res.status(200).send("Started party");
+    }).catch(function (result) {
+        //res.status(400).send("You fucked up");
     });
 };
 

@@ -33,7 +33,7 @@ class Playback {
 
         const options = {
             uri: `https://api.spotify.com/v1/tracks/${songId}`,
-            headers: {'Authorization': 'Bearer ' + token}
+            headers: {'Authorization': 'Bearer ' + token},
         }
 
         const songInfo = await request(options)
@@ -41,15 +41,15 @@ class Playback {
                 return body
             })
             .catch(err => {
-                return err
+                return null
             })
-
-        return songInfo;
+        
+        if(songInfo) return JSON.parse(songInfo);  
     }
 
     static async addSongToPlaylist(song, playlistId, token){
 
-        const songUri = JSON.parse(song).uri
+        const songUri = song.uri
 
         const options = {
             method: 'POST',
