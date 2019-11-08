@@ -3,13 +3,25 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "node ./app.js"
+    "build": "babel --presets es2015 -d dist/ src",
+    "dev": "nodemon --watch src --exec \"npm start\"",
+    "start": "npm run build && node dist/app.js"
   },
   "dependencies": {
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "express-ws": "^4.0.0",
-    "morgan": "~1.9.1"
+    "mongodb": "^3.3.3",
+    "morgan": "~1.9.1",
+    "nodemon": "^1.19.4",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.7"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1"
   }
 }
