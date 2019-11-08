@@ -48,9 +48,12 @@ class Vote {
                 request(options)
                 .then(async (body) => {
                     // spotify is not open on any of the user's devices
-                    if(!body){return}
+                    if(!body){
+                        console.log("Cmon, at least open Spotify")
+                        return
+                    }
                     // the user hasnt started the party playlist
-                    if(body.item.id !== party.now_playing.id){
+                    if(body.item.id !== party.now_playing.id || body.context.href !== party.playlist.href){
                         console.log(`Start playing - ${party.now_playing.name} - in the party playlist`)
                         return
                     }
@@ -62,27 +65,31 @@ class Vote {
                     if(songDuration - progress < 10000){
                         console.log("Last 10 seconds")
                         // add highest rated song to playlist
-                        const party = db.collection("parties").findOne({'party_code': party_code})
+                        const party = await db.collection("parties").findOne({'party_code': party_code})
                         const nominations = party.song_nominations
+
+                        // if no nominations are up
+                        if(nominations.length === 0) return
+
                         nominations.sort(sortByVotes)
                         const nextSong = nominations[0]
 
                         console.log(`Next song: ${nextSong.name}`)
 
-                        Playback.addSongToPlaylist(nextSong, party.playlist.id, token)
+                        await Playback.addSongToPlaylist(nextSong, party.playlist.id, token)
 
                         // checking if new song has started playing
-                        setInterval(() => {
-                            console.log("New song started")
+                        let intervalId = setInterval(() => {
+                            
                             request(options)
                             .then((body) => {
                                 // the song has changed, stop waiting
                                 if(body.item.id !== party.now_playing.id){
-                                    clearInterval();
+                                    console.log("New song started")
+                                    clearInterval(intervalId);
                                     // update party info
-                                    db.collection("parties").updateOne({party_code: party_code}, {now_playing: nextSong})
-                                    .then(result => {})
-                                    .catch(result => {})
+                                    db.collection("parties").updateOne({party_code: party_code}, {$set: {now_playing: nextSong}})
+                                    db.collection("parties").updateOne({party_code: party_code}, {$pull: {song_nominations: {id: nextSong.id}}})
                                 }
                             })
                             .catch(err => {})
