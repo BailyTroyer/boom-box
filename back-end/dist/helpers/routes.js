@@ -48,4 +48,9 @@ routes.get("/search", _search2.default.searchForSong);
 // voting routes
 routes.post("/vote", _vote2.default.voteForSong);
 
+// hello world
+routes.get("/", function (req, res) {
+  res.status(200).send("Hello, Boomer");
+});
+
 exports.default = routes;
