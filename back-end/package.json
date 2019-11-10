@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "build": "babel --presets es2015 -d dist/ src",
-    "dev": "nodemon --watch src --exec \"npm start\"",
-    "start": "npm run build && node dist/app.js"
+    "dev": "nodemon --watch src --exec \"run build && node dist/app.js\"",
+    "start": "node dist/app.js"
   },
   "dependencies": {
     "bcrypt": "^3.0.6",
