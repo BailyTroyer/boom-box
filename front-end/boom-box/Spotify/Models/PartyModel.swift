@@ -25,7 +25,8 @@ class Party {
   var voteSongId: String?
   
 
-  let apiUrl = "https://8acf8907.ngrok.io"
+  let apiUrl = "https://b8166e01.ngrok.io"
+  //let apiUrl = "https://boom-box-beta.appspot.com"
   
   func getImage(completion: @escaping (_ repsonse: String) -> Void) {
     

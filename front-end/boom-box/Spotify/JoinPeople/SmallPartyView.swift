@@ -22,6 +22,8 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   @IBOutlet weak var nominate: UIButton!
   @IBOutlet weak var exit: UIButton!
   
+  var dataTimer: Timer!
+  
   var song_nominations: [JSON] = []
   
   var first: Bool = true
@@ -83,8 +85,8 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
           table.profilePicture.image = UIImage(data: data!)
           
           UIView.animate(withDuration: 0.3, animations: {
-             table.profilePicture.alpha = 1
-           })
+            table.profilePicture.alpha = 0.6
+          })
         }
       }
     }
@@ -135,7 +137,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
     
-    _ = Timer.scheduledTimer(withTimeInterval: 8.0, repeats: true) { timer in
+    self.dataTimer = Timer.scheduledTimer(withTimeInterval: 8.0, repeats: true) { timer in
       self.fetchData()
     }
   }
@@ -167,7 +169,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
       self.guestCount.text = "\(data["guests"].arrayValue.count + 1)"
       self.nowPlayingTitle.text = "\(data["now_playing"]["name"].string!) - \(data["now_playing"]["artists"][0]["name"].string!)"
       
-      if let url = URL(string: data["now_playing"]["album"]["images"][0]["url"].string!) {
+      if let url = URL(string: data["now_playing"]["album"]["images"][1]["url"].string!) {
         DispatchQueue.global().async {
           let data = try? Data(contentsOf: url) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
           DispatchQueue.main.async {
@@ -257,6 +259,10 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   override func viewDidAppear(_ animated: Bool) {
     self.tableView.reloadData()
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    self.dataTimer.invalidate()
   }
   
   @IBAction func cops(_ sender: Any) {

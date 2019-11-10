@@ -29,10 +29,10 @@ bower_components
 # node-waf configuration
 .lock-wscript
 # Compiled binary addons (https://nodejs.org/api/addons.html)
-dist/
+back-end/dist/
 build/Release
 # Dependency directories
-node_modules/
+back-end/node_modules/
 jspm_packages/
 # TypeScript v1 declaration files
 typings/

@@ -9,8 +9,16 @@ class Party {
         const { party_code, user_id } = req.body
 
         const client = newClient();
-        client.connect((err, cli) => { 
+        client.connect(async (err, cli) => { 
             const db =  cli.db("boom-box")
+
+            const party = await db.collection("parties").findOne({party_code: party_code})
+            if(!party){
+                client.close()
+                res.status(404).send("That party Doesnt Exist!");
+                return
+            }
+
             db.collection("parties").updateOne({party_code: party_code}, {$push: {guests: user_id}})
             .then(result => {
                 // add party to user document

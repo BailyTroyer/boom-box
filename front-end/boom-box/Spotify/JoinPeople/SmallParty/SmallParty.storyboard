@@ -41,50 +41,44 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gve-CQ-DVf" customClass="CardView" customModule="Spotify" customModuleProvider="target">
                                                     <rect key="frame" x="10" y="11" width="394" height="107"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bad Boys - Inner Circle" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="quv-9d-ap6">
-                                                            <rect key="frame" x="80" y="23" width="211" height="71"/>
-                                                            <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="15"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="SOB-qS-Mg0">
-                                                            <rect key="frame" x="8" y="57" width="51" height="31"/>
-                                                        </switch>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Giw-ef-8MP">
-                                                            <rect key="frame" x="299" y="13" width="80" height="81"/>
-                                                            <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="80" id="5dG-Hm-zHm"/>
-                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="He9-hK-g57"/>
-                                                                <constraint firstAttribute="width" secondItem="Giw-ef-8MP" secondAttribute="height" multiplier="1:1" id="TJA-ZZ-8lU"/>
-                                                                <constraint firstAttribute="height" constant="80" id="ph7-dr-w0b"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="0.0" y="0.0" width="394" height="107"/>
                                                         </imageView>
+                                                        <switch contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="SOB-qS-Mg0">
+                                                            <rect key="frame" x="8" y="57" width="51" height="31"/>
+                                                            <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </switch>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0re-r0-HKS">
                                                             <rect key="frame" x="13" y="23" width="38" height="30"/>
-                                                            <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="15"/>
-                                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="18"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <size key="shadowOffset" width="1" height="1"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bad" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pd-m4-tBM" userLabel="Song Name">
+                                                            <rect key="frame" x="73" y="15" width="265" height="76"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="19"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstItem="quv-9d-ap6" firstAttribute="leading" secondItem="Gve-CQ-DVf" secondAttribute="leading" constant="80" id="0Mu-me-N9K"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Giw-ef-8MP" secondAttribute="trailing" constant="15" id="1lT-cP-ykb"/>
-                                                        <constraint firstItem="Giw-ef-8MP" firstAttribute="leading" secondItem="quv-9d-ap6" secondAttribute="trailing" constant="8" id="ILI-Wr-6DA"/>
+                                                        <constraint firstItem="Giw-ef-8MP" firstAttribute="centerY" secondItem="Gve-CQ-DVf" secondAttribute="centerY" id="3Rd-gS-4R1"/>
+                                                        <constraint firstItem="Giw-ef-8MP" firstAttribute="centerX" secondItem="Gve-CQ-DVf" secondAttribute="centerX" id="8XY-Ak-11i"/>
                                                         <constraint firstItem="SOB-qS-Mg0" firstAttribute="leading" secondItem="Gve-CQ-DVf" secondAttribute="leadingMargin" id="JhH-6T-8fZ"/>
+                                                        <constraint firstAttribute="height" constant="107" id="Q4Y-bm-Ait"/>
+                                                        <constraint firstItem="Giw-ef-8MP" firstAttribute="leading" secondItem="Gve-CQ-DVf" secondAttribute="leading" id="Tr0-CS-ksq"/>
                                                         <constraint firstItem="0re-r0-HKS" firstAttribute="centerX" secondItem="SOB-qS-Mg0" secondAttribute="centerX" id="Xf0-St-0nS"/>
-                                                        <constraint firstItem="Giw-ef-8MP" firstAttribute="top" secondItem="Gve-CQ-DVf" secondAttribute="top" constant="13" id="bNk-xF-VKL"/>
                                                         <constraint firstItem="SOB-qS-Mg0" firstAttribute="top" secondItem="0re-r0-HKS" secondAttribute="bottom" constant="4" id="bkz-xE-QzP"/>
-                                                        <constraint firstItem="Giw-ef-8MP" firstAttribute="centerY" secondItem="Gve-CQ-DVf" secondAttribute="centerY" id="c4o-9H-vDh"/>
-                                                        <constraint firstItem="quv-9d-ap6" firstAttribute="top" secondItem="Gve-CQ-DVf" secondAttribute="top" constant="23" id="cyL-kZ-T29"/>
-                                                        <constraint firstItem="quv-9d-ap6" firstAttribute="firstBaseline" secondItem="0re-r0-HKS" secondAttribute="firstBaseline" id="mI9-9g-3Ou"/>
-                                                        <constraint firstItem="quv-9d-ap6" firstAttribute="bottom" secondItem="Giw-ef-8MP" secondAttribute="bottom" id="mtw-G0-PbE"/>
+                                                        <constraint firstItem="Giw-ef-8MP" firstAttribute="top" secondItem="Gve-CQ-DVf" secondAttribute="top" id="k58-Xq-Ews"/>
                                                         <constraint firstAttribute="bottom" secondItem="SOB-qS-Mg0" secondAttribute="bottom" constant="19" id="xMn-QQ-PHm"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                            <real key="value" value="0.0"/>
+                                                            <real key="value" value="0.10000000000000001"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                             <real key="value" value="30"/>
@@ -106,7 +100,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="profilePicture" destination="Giw-ef-8MP" id="7CM-dV-ucj"/>
-                                            <outlet property="songName" destination="quv-9d-ap6" id="929-WG-ZSN"/>
+                                            <outlet property="songName" destination="1pd-m4-tBM" id="j7T-Kz-ez2"/>
                                             <outlet property="songSwitch" destination="SOB-qS-Mg0" id="uYD-nq-5nm"/>
                                             <outlet property="votes" destination="0re-r0-HKS" id="a3T-IV-HYq"/>
                                         </connections>

@@ -30,7 +30,7 @@ class SongCardTableViewCell: UITableViewCell {
     profilePicture.layer.borderWidth = 1.0
     profilePicture.layer.masksToBounds = false
     profilePicture.layer.borderColor = UIColor.white.cgColor
-    profilePicture.layer.cornerRadius = profilePicture.frame.size.width / 8
+    profilePicture.layer.cornerRadius = 30
     profilePicture.clipsToBounds = true
     
     songSwitch.addTarget(self, action: #selector(onSwitchValueChanged(sender:)), for: .valueChanged)
