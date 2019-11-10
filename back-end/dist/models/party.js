@@ -39,12 +39,15 @@ var Party = function () {
                 user_id = _req$body.user_id;
 
 
+            console.log(party_code);
+            console.log(user_id);
+
             var client = (0, _mongo2.default)();
             client.connect(function (err, cli) {
                 var db = cli.db("boom-box");
                 db.collection("parties").updateOne({ party_code: party_code }, { $push: { guests: user_id } }).then(function (result) {
                     // add party to user document
-                    db.collection("users").updateOne({ user_id: user_id }, { $set: { party_code: party_code, host: true } }, { upsert: true }).then(function (result) {
+                    db.collection("users").updateOne({ user_id: user_id }, { $set: { party_code: party_code, host: false } }, { upsert: true }).then(function (result) {
                         res.status(200).send("You're in!");
                     }).catch(function (result) {
                         res.status(400).send("You fucked up");
@@ -153,10 +156,21 @@ var Party = function () {
 
 
             var songInfo = await _playback2.default.getSongInfo(song_url, token);
+            songInfo.votes = 0;
 
             var client = (0, _mongo2.default)();
-            client.connect(function (err, cli) {
+            client.connect(async function (err, cli) {
                 var db = cli.db("boom-box");
+
+                var party = await db.collection("parties").findOne({ party_code: party_code });
+
+                // if the dong is already in the nominations
+                if (party.song_nominations.find(function (song) {
+                    return song.id === songInfo.id;
+                })) {
+                    res.status(200).send("Song already nominated");
+                    return;
+                }
 
                 db.collection("parties").updateOne({ party_code: party_code }, { $push: { song_nominations: songInfo } }).then(function (result) {
                     res.status(200).send("Nominated song");
@@ -226,7 +240,7 @@ var Party = function () {
                 var party = await db.collection("parties").findOne({ party_code: party_code });
 
                 if (party) {
-                    res.status(200).send(party);
+                    res.status(200).json(party);
                 } else {
                     res.status(400).send("You fucked up");
                 }

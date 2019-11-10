@@ -44,27 +44,39 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//    song_nominations.count
-    return 8
+    //print("noms: \(song_nominations.count)")
+    return self.song_nominations.count
+    //return 8
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    if(indexPath.row > self.song_nominations.count - 1){return UITableViewCell()}
     let table =  tableView.dequeueReusableCell(withIdentifier: "songCard", for: indexPath) as! SongCardTableViewCell
-    table.setSelected(true, animated: false)
-//    table.songName.text = ""
-//    table.profilePicture.image
     
-    Party.shared.getImage(completion: { imageURL in
+    let song = song_nominations[indexPath.row]
+    
+    table.setSelected(true, animated: false)
+    
+    if(Party.shared.voteSongId == song["id"].string && Party.shared.vote!){
+      table.songSwitch.isOn = true
+    }
+    else{
+      table.songSwitch.isOn = false
+    }
+    
+    table.songName.text = "\(song["name"].string!) - \(song["artists"][0]["name"].string!)"
+    table.songId = song["id"].string!
+    table.votes.text = "\(song["votes"].int!)"
+    
       
-      if let url = URL(string: imageURL) {
-        DispatchQueue.global().async {
-          let data = try? Data(contentsOf: url) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-          DispatchQueue.main.async {
-            table.profilePicture.image = UIImage(data: data!)
-          }
+    if let url = URL(string: song["album"]["images"][0]["url"].string!) {
+      DispatchQueue.global().async {
+        let data = try? Data(contentsOf: url) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+        DispatchQueue.main.async {
+          table.profilePicture.image = UIImage(data: data!)
         }
       }
-    })
+    }
     
     return table
     
@@ -107,7 +119,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     Party.shared.getPartyInfo(completion: { data in
-      print(data)
+      //print(data)
     })
     
   }
@@ -116,21 +128,21 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     fetchData()
   }
   
-  private func fetchData() {
+  func fetchData() {
     
     // check for updates
     self.refreshControl.endRefreshing()
     
     Party.shared.getPartyInfo(completion: { data in
       print(data)
-      let nominations = data["song_nominations"]
-      self.song_nominations = [nominations]
+      if(!data["song_nominations"].exists()){return}
+      // sort nominations by votes
+      self.song_nominations = data["song_nominations"].arrayValue.sorted(by: {(a, b) in
+        return a["votes"].int! > b["votes"].int!
+      })
+      
+      self.tableView.reloadData()
     })
-    
-    self.tableView.reloadData()
-    
-//    bulletinManager.showBulletin(above: self)
-
   }
   
   

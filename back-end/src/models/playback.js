@@ -41,14 +41,15 @@ class Playback {
                 return body
             })
             .catch(err => {
+                console.log(err)
                 return null
             })
         
         if(songInfo) return JSON.parse(songInfo);  
     }
 
-    static async addSongToPlaylist(song, playlistId, token){
-
+    static async addSongToPlaylist(song, playlistId, token ){
+    
         const songUri = song.uri
 
         const options = {
@@ -60,6 +61,7 @@ class Playback {
         request(options)
             .then(body => {})
             .catch(err => {console.log(err.message)})
+
     }
 }
 

@@ -61,6 +61,7 @@ var Playback = function () {
             var songInfo = await (0, _requestPromiseNative2.default)(options).then(function (body) {
                 return body;
             }).catch(function (err) {
+                console.log(err);
                 return null;
             });
 

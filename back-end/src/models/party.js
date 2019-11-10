@@ -8,13 +8,16 @@ class Party {
     static async joinParty(req, res){
         const { party_code, user_id } = req.body
 
+        console.log(party_code)
+        console.log(user_id)
+
         const client = newClient();
         client.connect((err, cli) => { 
             const db =  cli.db("boom-box")
             db.collection("parties").updateOne({party_code: party_code}, {$push: {guests: user_id}})
             .then(result => {
                 // add party to user document
-                db.collection("users").updateOne({user_id: user_id}, {$set: {party_code: party_code, host: true}}, { upsert: true })
+                db.collection("users").updateOne({user_id: user_id}, {$set: {party_code: party_code, host: false}}, { upsert: true })
                 .then(result => {
                     res.status(200).send("You're in!");
                 })
@@ -114,11 +117,20 @@ class Party {
     static async nominateSong(req, res){
         const { party_code, song_url, token } = req.body
 
-        const songInfo = await Playback.getSongInfo(song_url, token) 
+        let songInfo = await Playback.getSongInfo(song_url, token)
+        songInfo.votes = 0
 
         const client = newClient();
-        client.connect((err, cli) => { 
+        client.connect(async (err, cli) => { 
             const db =  cli.db("boom-box")
+
+            const party = await db.collection("parties").findOne({party_code: party_code})
+
+            // if the dong is already in the nominations
+            if(party.song_nominations.find(song => song.id === songInfo.id)){
+                res.status(200).send("Song already nominated");
+                return
+            }
 
             db.collection("parties").updateOne({party_code: party_code}, {$push: {song_nominations: songInfo}})
             .then(result => {
@@ -185,7 +197,7 @@ class Party {
             const party = await db.collection("parties").findOne({party_code: party_code})
             
             if(party){
-                res.status(200).send(party);
+                res.status(200).json(party);
             }else{
                 res.status(400).send("You fucked up");
             }

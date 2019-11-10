@@ -18,6 +18,8 @@ class PartyCode: UIViewController {
   var continueButton: UIButton = UIButton()
   
   var uuid: String?
+    
+  var started = false
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -86,7 +88,11 @@ class PartyCode: UIViewController {
   
   @objc func next_view() {
     // call createParty
+    if(self.started){return}
+    
     Party.shared.createParty(completion: { response in
+      
+      self.started = true
       
       if response {
         if Party.shared.size == "medium" {

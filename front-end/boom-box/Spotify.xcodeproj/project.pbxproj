@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		451EF03C05853DE8C855A163 /* Pods_Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62BB019DE5A6861E8AECAB20 /* Pods_Spotify.framework */; };
-		EB500678236EA5020067979E /* dancing.json in Resources */ = {isa = PBXBuildFile; fileRef = EB500677236EA5020067979E /* dancing.json */; };
-		EB50067A236EA5070067979E /* music-load.json in Resources */ = {isa = PBXBuildFile; fileRef = EB500679236EA5070067979E /* music-load.json */; };
+		4D10D35B23774ED600E86EFD /* duck.json in Resources */ = {isa = PBXBuildFile; fileRef = 4D10D35823774ED500E86EFD /* duck.json */; };
+		4D10D35C23774ED600E86EFD /* dancing.json in Resources */ = {isa = PBXBuildFile; fileRef = 4D10D35923774ED600E86EFD /* dancing.json */; };
+		4D10D35D23774ED600E86EFD /* music-load.json in Resources */ = {isa = PBXBuildFile; fileRef = 4D10D35A23774ED600E86EFD /* music-load.json */; };
 		EB50067C236EA8210067979E /* NumberPeople.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB50067B236EA8210067979E /* NumberPeople.swift */; };
 		EB50067E236EAB2B0067979E /* SmallParty.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB50067D236EAB2B0067979E /* SmallParty.storyboard */; };
 		EB500680236EAB370067979E /* LargeParty.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB50067F236EAB370067979E /* LargeParty.storyboard */; };
@@ -29,7 +30,6 @@
 		EB814343236E24D90047C22B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB814342236E24D90047C22B /* Extensions.swift */; };
 		EB814345236E26AA0047C22B /* PartyCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB814344236E26AA0047C22B /* PartyCode.swift */; };
 		EB81434C236E37800047C22B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB81434B236E37800047C22B /* Main.storyboard */; };
-		EB814356236E3B390047C22B /* duck.json in Resources */ = {isa = PBXBuildFile; fileRef = EB814355236E3B390047C22B /* duck.json */; };
 		EB814360236E5CDC0047C22B /* JoinPeople.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB81435F236E5CDC0047C22B /* JoinPeople.storyboard */; };
 		EB814362236E5EE00047C22B /* PartyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB814361236E5EE00047C22B /* PartyView.swift */; };
 		EB814364236E682F0047C22B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB814363236E682F0047C22B /* LoginViewController.swift */; };
@@ -46,11 +46,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D10D35823774ED500E86EFD /* duck.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = duck.json; sourceTree = "<group>"; };
+		4D10D35923774ED600E86EFD /* dancing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dancing.json; sourceTree = "<group>"; };
+		4D10D35A23774ED600E86EFD /* music-load.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "music-load.json"; sourceTree = "<group>"; };
 		5627D62E736CF97C6E19E280 /* Pods-Spotify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spotify.debug.xcconfig"; path = "Target Support Files/Pods-Spotify/Pods-Spotify.debug.xcconfig"; sourceTree = "<group>"; };
 		62BB019DE5A6861E8AECAB20 /* Pods_Spotify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spotify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63995E4BA735DF84013D26AE /* Pods-Spotify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spotify.release.xcconfig"; path = "Target Support Files/Pods-Spotify/Pods-Spotify.release.xcconfig"; sourceTree = "<group>"; };
-		EB500677236EA5020067979E /* dancing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = dancing.json; path = ../../../../../Downloads/dancing.json; sourceTree = "<group>"; };
-		EB500679236EA5070067979E /* music-load.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "music-load.json"; path = "../../../../../Downloads/music-load.json"; sourceTree = "<group>"; };
 		EB50067B236EA8210067979E /* NumberPeople.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPeople.swift; sourceTree = "<group>"; };
 		EB50067D236EAB2B0067979E /* SmallParty.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SmallParty.storyboard; sourceTree = "<group>"; };
 		EB50067F236EAB370067979E /* LargeParty.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LargeParty.storyboard; sourceTree = "<group>"; };
@@ -70,18 +71,17 @@
 		EB81433E236E14630047C22B /* CreateParty.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateParty.storyboard; sourceTree = "<group>"; };
 		EB814340236E245F0047C22B /* NameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameView.swift; sourceTree = "<group>"; };
 		EB814342236E24D90047C22B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		EB814344236E26AA0047C22B /* PartyCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyCode.swift; sourceTree = "<group>"; };
+		EB814344236E26AA0047C22B /* PartyCode.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = PartyCode.swift; sourceTree = "<group>"; };
 		EB81434B236E37800047C22B /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		EB814355236E3B390047C22B /* duck.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = duck.json; path = ../../../../../Downloads/duck.json; sourceTree = "<group>"; };
 		EB81435D236E3D920047C22B /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
 		EB81435F236E5CDC0047C22B /* JoinPeople.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = JoinPeople.storyboard; sourceTree = "<group>"; };
 		EB814361236E5EE00047C22B /* PartyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyView.swift; sourceTree = "<group>"; };
 		EB814363236E682F0047C22B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EB814365236E7D3B0047C22B /* JoinPeople.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinPeople.swift; sourceTree = "<group>"; };
-		EB814368236E7FD20047C22B /* PartyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyModel.swift; sourceTree = "<group>"; };
+		EB814368236E7FD20047C22B /* PartyModel.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = PartyModel.swift; sourceTree = "<group>"; tabWidth = 2; };
 		EB81436A236E85FF0047C22B /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
-		EB81436C236E87C40047C22B /* SongCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCardTableViewCell.swift; sourceTree = "<group>"; };
-		EB81436E236E89600047C22B /* SmallPartyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallPartyView.swift; sourceTree = "<group>"; };
+		EB81436C236E87C40047C22B /* SongCardTableViewCell.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = SongCardTableViewCell.swift; sourceTree = "<group>"; };
+		EB81436E236E89600047C22B /* SmallPartyView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = SmallPartyView.swift; sourceTree = "<group>"; };
 		EB814372236E93710047C22B /* LargePartyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargePartyView.swift; sourceTree = "<group>"; };
 		EB814374236E94E80047C22B /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
 		EBB8329B236EC71500AC581A /* NewSong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSong.swift; sourceTree = "<group>"; };
@@ -141,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				EB814367236E7FC90047C22B /* Models */,
+				4D10D35923774ED600E86EFD /* dancing.json */,
 				EB81434A236E375E0047C22B /* Splash */,
 				EB81433D236E14520047C22B /* JoinPeople */,
 				EB81433C236E14470047C22B /* CreateParty */,
@@ -197,9 +198,8 @@
 		EB81434A236E375E0047C22B /* Splash */ = {
 			isa = PBXGroup;
 			children = (
-				EB814355236E3B390047C22B /* duck.json */,
-				EB500677236EA5020067979E /* dancing.json */,
-				EB500679236EA5070067979E /* music-load.json */,
+				4D10D35823774ED500E86EFD /* duck.json */,
+				4D10D35A23774ED600E86EFD /* music-load.json */,
 				EB81434B236E37800047C22B /* Main.storyboard */,
 				EB814361236E5EE00047C22B /* PartyView.swift */,
 				EB814363236E682F0047C22B /* LoginViewController.swift */,
@@ -300,16 +300,16 @@
 				EB81433B236E14060047C22B /* AirbnbCereal-Black.ttf in Resources */,
 				EB814336236E14060047C22B /* AirbnbCereal-ExtraBold.ttf in Resources */,
 				EB814339236E14060047C22B /* AirbnbCereal-Bold.ttf in Resources */,
-				EB50067A236EA5070067979E /* music-load.json in Resources */,
 				EB814338236E14060047C22B /* AirbnbCereal-Medium.ttf in Resources */,
+				4D10D35D23774ED600E86EFD /* music-load.json in Resources */,
 				EB81430E236E03410047C22B /* LaunchScreen.storyboard in Resources */,
+				4D10D35B23774ED600E86EFD /* duck.json in Resources */,
 				EB500680236EAB370067979E /* LargeParty.storyboard in Resources */,
 				EB81433A236E14060047C22B /* AirbnbCereal-Light.ttf in Resources */,
-				EB814356236E3B390047C22B /* duck.json in Resources */,
 				EB81430B236E03410047C22B /* Assets.xcassets in Resources */,
 				EB50067E236EAB2B0067979E /* SmallParty.storyboard in Resources */,
+				4D10D35C23774ED600E86EFD /* dancing.json in Resources */,
 				EB814337236E14060047C22B /* AirbnbCereal-Book.ttf in Resources */,
-				EB500678236EA5020067979E /* dancing.json in Resources */,
 				EB81433F236E14630047C22B /* CreateParty.storyboard in Resources */,
 				EB81434C236E37800047C22B /* Main.storyboard in Resources */,
 			);
@@ -520,7 +520,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 43PKD3926A;
+				DEVELOPMENT_TEAM = A959CG2Q2W;
 				INFOPLIST_FILE = Spotify/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -541,7 +541,7 @@
 					"\"UIKit\"",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.spotify.SwiftLoginSample-1";
+				PRODUCT_BUNDLE_IDENTIFIER = "BoomBox-Daru";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
@@ -555,7 +555,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 43PKD3926A;
+				DEVELOPMENT_TEAM = A959CG2Q2W;
 				INFOPLIST_FILE = Spotify/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -576,7 +576,7 @@
 					"\"UIKit\"",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.spotify.SwiftLoginSample-1";
+				PRODUCT_BUNDLE_IDENTIFIER = "BoomBox-Daru";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;

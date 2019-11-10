@@ -33,13 +33,14 @@ var Vote = function () {
             var _req$body = req.body,
                 party_code = _req$body.party_code,
                 user_id = _req$body.user_id,
-                song_id = _req$body.song_id;
+                song_id = _req$body.song_id,
+                vote = _req$body.vote;
 
 
             var client = (0, _mongo2.default)();
             client.connect(async function (err, cli) {
                 var db = cli.db("boom-box");
-                db.collection("parties").findOneAndUpdate({ 'party_code': party_code }, { $inc: { 'song_nominations.$[elem].votes': 1 } }, { arrayFilters: [{ 'elem.song_id': song_id }] }).then(function (result) {
+                db.collection("parties").findOneAndUpdate({ 'party_code': party_code }, { $inc: { 'song_nominations.$[elem].votes': vote ? 1 : -1 } }, { arrayFilters: [{ 'elem.id': song_id }] }).then(function (result) {
                     res.status(200).send("Upvoted");
                 }).catch(function (result) {
                     res.status(400).send("A small piece of me died inside");
@@ -51,6 +52,7 @@ var Vote = function () {
     }, {
         key: 'checkForSongEndingSoon',
         value: async function checkForSongEndingSoon(party_code, token) {
+
             var client = (0, _mongo2.default)();
             client.connect(async function (err, cli) {
                 var db = cli.db("boom-box");
@@ -62,9 +64,13 @@ var Vote = function () {
                     json: true
                 };
 
-                setInterval(async function () {
+                var progressIntervalId = setInterval(async function () {
                     var party = await db.collection("parties").findOne({ 'party_code': party_code });
-                    //console.log(party.now_playing)
+                    if (!party) {
+                        console.log("PARTY OVER");
+                        clearInterval(progressIntervalId);
+                        return;
+                    }
                     var songDuration = party.now_playing.duration_ms;
 
                     (0, _requestPromiseNative2.default)(options).then(async function (body) {
@@ -75,15 +81,16 @@ var Vote = function () {
                         }
                         // the user hasnt started the party playlist
                         if (body.item.id !== party.now_playing.id || body.context.href !== party.playlist.href) {
-                            console.log('Start playing - ' + party.now_playing.name + ' - in the party playlist');
+                            console.log('Start playing - ' + party.now_playing.name + ' - in the "' + party.name + '" playlist');
                             return;
                         }
 
                         var progress = body.progress_ms;
 
                         console.log(progress + ' / ' + songDuration);
+                        var addedSongToPlaylist = false;
 
-                        if (songDuration - progress < 10000) {
+                        if (songDuration - progress < 10000 && !addedSongToPlaylist) {
                             console.log("Last 10 seconds");
                             // add highest rated song to playlist
                             var _party = await db.collection("parties").findOne({ 'party_code': party_code });
@@ -98,18 +105,21 @@ var Vote = function () {
                             console.log('Next song: ' + nextSong.name);
 
                             await _playback2.default.addSongToPlaylist(nextSong, _party.playlist.id, token);
+                            addedSongToPlaylist = true;
 
                             // checking if new song has started playing
-                            var intervalId = setInterval(function () {
+                            var nextIntervalId = setInterval(function () {
 
                                 (0, _requestPromiseNative2.default)(options).then(function (body) {
                                     // the song has changed, stop waiting
                                     if (body.item.id !== _party.now_playing.id) {
                                         console.log("New song started");
-                                        clearInterval(intervalId);
+                                        clearInterval(nextIntervalId);
                                         // update party info
                                         db.collection("parties").updateOne({ party_code: party_code }, { $set: { now_playing: nextSong } });
                                         db.collection("parties").updateOne({ party_code: party_code }, { $pull: { song_nominations: { id: nextSong.id } } });
+
+                                        addedSongToPlaylist = false;
                                     }
                                 }).catch(function (err) {});
                             }, 2000);
@@ -119,7 +129,6 @@ var Vote = function () {
                     });
                 }, 8000);
             });
-
             client.close();
         }
     }]);
@@ -128,8 +137,8 @@ var Vote = function () {
 }();
 
 var sortByVotes = function sortByVotes(firstEl, secondEl) {
-    if (firstEl.votes < secondEl.votes) return -1;
-    if (firstEl.votes > secondEl.votes) return 1;
+    if (firstEl.votes < secondEl.votes) return 1;
+    if (firstEl.votes > secondEl.votes) return -1;
     return 0;
 };
 

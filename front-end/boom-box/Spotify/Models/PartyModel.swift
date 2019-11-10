@@ -21,6 +21,11 @@ class Party {
   var username: String?
   var starter_song_link: String?
   var song_url: String?
+  var vote: Bool?
+  var voteSongId: String?
+  
+
+  let apiUrl = "https://8acf8907.ngrok.io"
   
   func getImage(completion: @escaping (_ repsonse: String) -> Void) {
     
@@ -64,7 +69,7 @@ class Party {
       "token": token!
     ]
     
-    Alamofire.request("https://b9c3fa7a.ngrok.io/party/nomination", method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseString { response in
+    Alamofire.request("\(apiUrl)/party/nomination", method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseString { response in
       
       completion(response.result.isSuccess)
     }
@@ -77,7 +82,7 @@ class Party {
       "token": token!
     ]
     
-    Alamofire.request("https://b9c3fa7a.ngrok.io/party/cops", method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseString { response in
+    Alamofire.request("\(apiUrl)/party/cops", method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseString { response in
       print(response)
       completion(response.result.isSuccess)
       
@@ -95,7 +100,7 @@ class Party {
       "user_id": username!
     ]
     
-    Alamofire.request("https://b9c3fa7a.ngrok.io/party", method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseString { response in
+    Alamofire.request("\(apiUrl)/party", method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseString { response in
       print(response)
       completion(response.result.isSuccess)
       
@@ -109,7 +114,7 @@ class Party {
       "user_id": username!
     ]
     
-    Alamofire.request("https://b9c3fa7a.ngrok.io/party/attendance", method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseString { response in
+    Alamofire.request("\(apiUrl)/party/attendance", method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseString { response in
       print(response)
       completion(response.result.isSuccess)
       
@@ -118,16 +123,30 @@ class Party {
   
   func getPartyInfo(completion: @escaping (_ response: JSON) -> Void) {
     
-    Alamofire.request("https://b9c3fa7a.ngrok.io/party/info?party_code=\(code!)", method: .get, encoding: JSONEncoding.default).validate().responseJSON { response in
-      print(response)
+    Alamofire.request("\(apiUrl)/party/info?party_code=\(code!)", method: .get, encoding: URLEncoding.default, headers: nil).responseJSON { response in
+      //print(response)
       
       if let result = response.result.value {
         let json = JSON(result)
         completion(json)
       }
-      
-      completion(JSON())
+      //print(response)
     }
-    
   }
+    
+    func voteForSong(completion: @escaping (_ response: Bool) -> Void) {
+      
+      let parameters: [String: Any] = [
+        "party_code": code!,
+        "user_id": username!,
+        "vote": vote!,
+        "song_id": voteSongId!
+      ]
+      
+      Alamofire.request("\(apiUrl)/vote", method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseString { response in
+        //print(response)
+        completion(response.result.isSuccess)
+        
+      }
+    }
 }

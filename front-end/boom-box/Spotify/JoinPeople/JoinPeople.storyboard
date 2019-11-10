@@ -58,7 +58,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Before we let you in..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqz-ea-oKq">
-                                <rect key="frame" x="69" y="118" width="276" height="29"/>
+                                <rect key="frame" x="69" y="118" width="276" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="276" id="Kfe-jd-4r3"/>
                                 </constraints>
@@ -67,7 +67,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's the party code?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PIx-sY-EBR">
-                                <rect key="frame" x="121.5" y="171" width="171" height="19"/>
+                                <rect key="frame" x="123.5" y="168" width="167" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="19" id="VCq-ae-bo1"/>
                                 </constraints>
@@ -76,7 +76,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Code" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0a0-Vh-ZXC">
-                                <rect key="frame" x="69" y="238" width="276" height="29"/>
+                                <rect key="frame" x="69" y="235" width="276" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="276" id="2yH-RE-jB9"/>
                                     <constraint firstAttribute="height" constant="29" id="3UM-ii-XdP"/>
