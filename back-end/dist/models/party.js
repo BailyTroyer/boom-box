@@ -39,9 +39,6 @@ var Party = function () {
                 user_id = _req$body.user_id;
 
 
-            console.log(party_code);
-            console.log(user_id);
-
             var client = (0, _mongo2.default)();
             client.connect(function (err, cli) {
                 var db = cli.db("boom-box");

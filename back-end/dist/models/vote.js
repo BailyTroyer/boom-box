@@ -67,7 +67,7 @@ var Vote = function () {
                 var progressIntervalId = setInterval(async function () {
                     var party = await db.collection("parties").findOne({ 'party_code': party_code });
                     if (!party) {
-                        console.log("PARTY OVER");
+                        //console.log("PARTY OVER")
                         clearInterval(progressIntervalId);
                         return;
                     }

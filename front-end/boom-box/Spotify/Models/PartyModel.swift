@@ -78,7 +78,7 @@ class Party {
   func policeAlert(completion: @escaping (_ response: Bool) -> Void) {
     let parameters: [String: Any] = [
       "party_code": code!,
-      "user_id": name!,
+      //"user_id": name!,
       "token": token!
     ]
     
@@ -127,6 +127,7 @@ class Party {
       //print(response)
       
       if let result = response.result.value {
+        
         let json = JSON(result)
         completion(json)
       }

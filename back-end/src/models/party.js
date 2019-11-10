@@ -8,9 +8,6 @@ class Party {
     static async joinParty(req, res){
         const { party_code, user_id } = req.body
 
-        console.log(party_code)
-        console.log(user_id)
-
         const client = newClient();
         client.connect((err, cli) => { 
             const db =  cli.db("boom-box")

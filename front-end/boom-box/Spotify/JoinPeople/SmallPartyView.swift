@@ -14,10 +14,17 @@ import UIKit
 class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
   @IBOutlet weak var tableView: UITableView!
-  @IBOutlet weak var hostName: UILabel!
-  @IBOutlet weak var profPic: UIImageView!
+  @IBOutlet weak var nowPlayingPic: UIImageView!
+  @IBOutlet weak var nowPlayingTitle: UILabel!
+  @IBOutlet weak var guestCount: UILabel!
+  
+  @IBOutlet weak var alert: UIButton!
+  @IBOutlet weak var nominate: UIButton!
+  @IBOutlet weak var exit: UIButton!
   
   var song_nominations: [JSON] = []
+  
+  var first: Bool = true
   
   private let refreshControl = UIRefreshControl()
   
@@ -38,7 +45,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
       print(response?.suggestedFilename ?? url.lastPathComponent)
       print("Download Finished")
       DispatchQueue.main.async() {
-        self.profPic.image = UIImage(data: data)
+        self.nowPlayingPic.image = UIImage(data: data)
       }
     }
   }
@@ -68,15 +75,24 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     table.songId = song["id"].string!
     table.votes.text = "\(song["votes"].int!)"
     
-      
+    table.profilePicture.alpha = 0
     if let url = URL(string: song["album"]["images"][0]["url"].string!) {
       DispatchQueue.global().async {
         let data = try? Data(contentsOf: url) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
         DispatchQueue.main.async {
           table.profilePicture.image = UIImage(data: data!)
+          
+          UIView.animate(withDuration: 0.3, animations: {
+             table.profilePicture.alpha = 1
+           })
         }
       }
     }
+    table.alpha = 0;
+    // do slide-in animation on cell
+    UIView.animate(withDuration: 0.5, animations: {
+      table.alpha = 1
+     })
     
     return table
     
@@ -90,7 +106,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
         DispatchQueue.global().async {
           let data = try? Data(contentsOf: url) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
           DispatchQueue.main.async {
-            self.profPic.image = UIImage(data: data!)
+            self.nowPlayingPic.image = UIImage(data: data!)
           }
         }
       }
@@ -107,21 +123,21 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     tableView.dataSource = self
     tableView.delegate = self
     
-    profPic.layer.borderWidth = 1.0
-    profPic.layer.masksToBounds = false
-    profPic.layer.borderColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-    profPic.layer.cornerRadius = profPic.frame.size.width / 2
-    profPic.clipsToBounds = true
+    nowPlayingPic.layer.masksToBounds = false
+    nowPlayingPic.layer.cornerRadius = nowPlayingPic.frame.size.width / 8
+    nowPlayingPic.clipsToBounds = true
+    
+    exit.layer.cornerRadius = exit.frame.size.width / 2
+    nominate.layer.cornerRadius = nominate.frame.size.width / 2
+    alert.layer.cornerRadius = alert.frame.size.width / 2
     
     tableView.refreshControl = refreshControl
     
     refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
     
-    
-    Party.shared.getPartyInfo(completion: { data in
-      //print(data)
-    })
-    
+    _ = Timer.scheduledTimer(withTimeInterval: 8.0, repeats: true) { timer in
+      self.fetchData()
+    }
   }
   
   @objc private func refreshData(_ sender: Any) {
@@ -129,18 +145,47 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   }
   
   func fetchData() {
-    
+
     // check for updates
     self.refreshControl.endRefreshing()
     
     Party.shared.getPartyInfo(completion: { data in
-      print(data)
-      if(!data["song_nominations"].exists()){return}
+      
       // sort nominations by votes
-      self.song_nominations = data["song_nominations"].arrayValue.sorted(by: {(a, b) in
+      let sortedNoms = data["song_nominations"].arrayValue.sorted(by: {(a, b) in
         return a["votes"].int! > b["votes"].int!
       })
+      if(!data["song_nominations"].exists()){return}
+      if(sortedNoms == self.song_nominations && data["guests"].arrayValue.count + 1 == Int(self.guestCount.text!) && !self.first){return}
       
+      UIView.animate(withDuration: 0.4, animations: {
+        self.tableView.alpha = 0
+       })
+      
+      self.song_nominations = sortedNoms
+      
+      self.guestCount.text = "\(data["guests"].arrayValue.count + 1)"
+      self.nowPlayingTitle.text = "\(data["now_playing"]["name"].string!) - \(data["now_playing"]["artists"][0]["name"].string!)"
+      
+      if let url = URL(string: data["now_playing"]["album"]["images"][0]["url"].string!) {
+        DispatchQueue.global().async {
+          let data = try? Data(contentsOf: url) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+          DispatchQueue.main.async {
+            
+            self.nowPlayingPic.image = UIImage(data: data!)
+            
+            UIView.animate(withDuration: 0.3, animations: {
+              self.nowPlayingPic.alpha = 1
+            })
+            
+          }
+        }
+      }
+      
+      UIView.animate(withDuration: 0.4, animations: {
+        self.tableView.alpha = 1
+       })
+      self.first = false
       self.tableView.reloadData()
     })
   }
@@ -205,7 +250,9 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   }
   
   override func viewWillAppear(_ animated: Bool) {
-    getImage()
+    self.fetchData()
+    self.nowPlayingPic.alpha = 0
+    //getImage()
   }
   
   override func viewDidAppear(_ animated: Bool) {

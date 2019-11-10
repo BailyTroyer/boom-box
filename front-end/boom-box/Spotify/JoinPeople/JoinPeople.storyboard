@@ -185,7 +185,6 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="profilePicture" destination="B7g-Wg-nqH" id="scq-eG-f4L"/>
                                             <outlet property="songName" destination="NfV-IS-8fD" id="JpI-oI-sZk"/>
                                             <outlet property="songSwitch" destination="6h1-Ku-quI" id="MTq-5a-j6s"/>
                                         </connections>
@@ -231,7 +230,6 @@
                     <navigationItem key="navigationItem" id="55r-tE-eme"/>
                     <connections>
                         <outlet property="hostName" destination="We9-VR-XjX" id="Lyb-Fh-z2O"/>
-                        <outlet property="profPic" destination="qXb-zF-4Pe" id="PNn-le-SHh"/>
                         <outlet property="tableView" destination="0TS-Iq-dxf" id="yU9-Bu-jzt"/>
                     </connections>
                 </viewController>
