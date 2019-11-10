@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "babel --presets es2015 -d dist/ src",
+    "build": "babel -d dist/ src",
     "dev": "nodemon --watch src --exec \"npm run build && node dist/app.js\"",
     "start": "node dist/app.js"
   },
