@@ -32,4 +32,7 @@ routes.get("/search", search.searchForSong);
 // voting routes
 routes.post("/vote", vote.voteForSong);
 
+// hello world
+routes.get("/", (req, res) => { res.status(200).send("Hello, Boomer");})
+
 export default routes;
