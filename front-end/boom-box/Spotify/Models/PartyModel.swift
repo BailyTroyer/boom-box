@@ -25,15 +25,14 @@ class Party {
   var voteSongId: String?
   var searchString: String?
   
+  var currentParty: String?
+  var host: Bool = false
+  
 
-  let apiUrl = "https://31ef44ce.ngrok.io"
+  let apiUrl = "https://c81a5c80.ngrok.io"
   //let apiUrl = "https://boom-box-beta.appspot.com"
   
   func getImage(completion: @escaping (_ repsonse: String) -> Void) {
-    
-    //    https://api.spotify.com/v1/me
-    
-    
     let headers: HTTPHeaders = [
       "Authorization": "Bearer \(token!)",
       "Accept": "application/json"
@@ -115,6 +114,7 @@ class Party {
       "party_code": code!,
       "user_id": username!
     ]
+    print("Joining party: \(code!)")
     
     Alamofire.request("\(apiUrl)/party/attendance", method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseString { response in
       print(response)
@@ -123,35 +123,61 @@ class Party {
     }
   }
   
-  func getPartyInfo(completion: @escaping (_ response: JSON) -> Void) {
+  func getPartyInfo(completion: @escaping (_ response: JSON?
+    ) -> Void) {
     
     Alamofire.request("\(apiUrl)/party/info?party_code=\(code!)", method: .get, encoding: URLEncoding.default, headers: nil).responseJSON { response in
       //print(response)
       
-      if let result = response.result.value {
-        
-        let json = JSON(result)
-        completion(json)
+      if(response.response?.statusCode == 400){
+        completion(nil)
       }
-      //print(response)
+      else {
+        completion(JSON(response.result.value!))
+      }
+    }
+  }
+  
+  func leaveParty(completion: @escaping (_ response: Bool) -> Void) {
+    
+    var endpoint: String
+      
+    let parameters: [String: Any] = [
+      "party_code": code!,
+      "user_id": username!
+    ]
+    
+    if(host){
+      endpoint = "/party"
+    }
+    else{
+      endpoint = "/party/attendance"
+    }
+    
+    Alamofire.request("\(apiUrl)\(endpoint)", method: .delete, parameters: parameters, encoding: JSONEncoding.default).validate().responseString { response in
+      completion(response.response?.statusCode == 200)
+      
+      self.code = nil
+      self.host = false
+      
     }
   }
     
-    func voteForSong(completion: @escaping (_ response: Bool) -> Void) {
+  func voteForSong(completion: @escaping (_ response: Bool) -> Void) {
       
-      let parameters: [String: Any] = [
-        "party_code": code!,
-        "user_id": username!,
-        "vote": vote!,
-        "song_id": voteSongId!
-      ]
+    let parameters: [String: Any] = [
+      "party_code": code!,
+      "user_id": username!,
+      "vote": vote!,
+      "song_id": voteSongId!
+    ]
+    
+    Alamofire.request("\(apiUrl)/vote", method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseString { response in
+      //print(response)
+      completion(response.result.isSuccess)
       
-      Alamofire.request("\(apiUrl)/vote", method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseString { response in
-        //print(response)
-        completion(response.result.isSuccess)
-        
-      }
     }
+  }
   
   func getSearchResults(completion: @escaping (_ response: JSON) -> Void) {
     

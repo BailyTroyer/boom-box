@@ -95,6 +95,8 @@ class PartyCode: UIViewController {
       self.started = true
       
       if response {
+        Party.shared.host = true
+        
         if Party.shared.size == "medium" {
           self.performSegue(withIdentifier: "to_large_party", sender: self)
         } else {

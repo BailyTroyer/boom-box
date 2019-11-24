@@ -32,13 +32,20 @@ class Party {
     }
 
     static async leaveParty(req, res){
-        const { user_id } = req.body
+        const { user_id, party_code } = req.body
 
-        Monog.db.collection("users").updateOne({user_id: user_id}, {party_code: null, host: false})
+        Mongo.db.collection("users").updateOne({user_id: user_id}, {$set: {party_code: null, host: false}})
         .then(result => {
-            res.status(200).send("You're out!");
+            Mongo.db.collection("parties").updateOne({party_code: party_code}, {$pull: {guests: user_id}})
+            .then(result => {
+                res.status(200).send("You're out!");
+            })
+            .catch(result => {
+                console.log(result)
+            })
         })
         .catch(result => {
+            console.log(result)
             res.status(400).send("You fucked up");
         })
     }
@@ -167,7 +174,7 @@ class Party {
         if(party){
             res.status(200).json(party);
         }else{
-            res.status(400).send("You fucked up");
+            res.status(400).send("Couldn't find that party");
         }
     }
 }

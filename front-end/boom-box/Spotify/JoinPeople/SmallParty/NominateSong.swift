@@ -33,36 +33,37 @@ class NominateSong: UIViewController, UITableViewDelegate, UITableViewDataSource
     searchResultsTable.dataSource = self
     searchResultsTable.delegate = self
     
+    continueButton = UIButton(frame: CGRect(x: 0, y: (self.view.frame.maxY - 64), width: (self.view.frame.maxX - self.view.frame.maxX/6), height: 50))
+    
+    // button text "sign in"
+    continueButton.setTitle("Nominate Song", for: .normal)
+    
+    // add button target
+    continueButton.addTarget(self, action: #selector(next_view), for: .touchUpInside)
+    
+    // button color white
+    continueButton.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+    
+    // center within view
+    continueButton.center.x = self.view.frame.midX
+    
+    // round button
+    continueButton.layer.cornerRadius = 10
+    // button.layer.borderWidth = 1
+    // button.layer.borderColor = UIColor.black.cgColor
+    
+    continueButton.setTitleColor(UIColor.white, for: .normal)
+    
+    // add button to view
+    self.view.addSubview(continueButton)
+    
+    continueButton.bindToKeyboard()
+    
   }
   
   override func viewDidAppear(_ animated: Bool) {
-      continueButton = UIButton(frame: CGRect(x: 0, y: (self.view.frame.maxY - 64), width: (self.view.frame.maxX - self.view.frame.maxX/6), height: 50))
-      
-      // button text "sign in"
-      continueButton.setTitle("Nominate Song", for: .normal)
-      
-      // add button target
-      continueButton.addTarget(self, action: #selector(next_view), for: .touchUpInside)
-      
-      // button color white
-      continueButton.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
-      
-      // center within view
-      continueButton.center.x = self.view.frame.midX
-      
-      // round button
-      continueButton.layer.cornerRadius = 10
-      // button.layer.borderWidth = 1
-      // button.layer.borderColor = UIColor.black.cgColor
-      
-      continueButton.setTitleColor(UIColor.white, for: .normal)
-      
-      // add button to view
-      self.view.addSubview(continueButton)
-      
-      continueButton.bindToKeyboard()
     
-  searchButton.addTarget(self, action: #selector(doSearch), for: .touchUpInside)
+    searchButton.addTarget(self, action: #selector(doSearch), for: .touchUpInside)
   }
   
   @objc func doSearch() {

@@ -170,12 +170,24 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     Party.shared.getPartyInfo(completion: { data in
       
+      if (data == nil) {
+        let alert = UIAlertController(title: "Looks like this party has ended :(", message: "Press the button to go back...", preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { action in
+          self.exit(self)
+        }))
+
+        self.present(alert, animated: true)
+        
+        return
+      }
+      
       // sort nominations by votes
-      let sortedNoms = data["song_nominations"].arrayValue.sorted(by: {(a, b) in
+      let sortedNoms = data!["song_nominations"].arrayValue.sorted(by: {(a, b) in
         return a["votes"].int! > b["votes"].int!
       })
-      if(!data["song_nominations"].exists()){return}
-      if(sortedNoms == self.song_nominations && data["guests"].arrayValue.count + 1 == Int(self.guestCount.text!) && !self.first){return}
+      if(!data!["song_nominations"].exists()){return}
+      if(sortedNoms == self.song_nominations && data!["guests"].arrayValue.count + 1 == Int(self.guestCount.text!) && !self.first){return}
       
       UIView.animate(withDuration: 0.4, animations: {
         self.tableView.alpha = 0
@@ -183,10 +195,10 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
       
       self.song_nominations = sortedNoms
       
-      self.guestCount.text = "\(data["guests"].arrayValue.count + 1)"
-      self.nowPlayingTitle.text = "\(data["now_playing"]["name"].string!) - \(data["now_playing"]["artists"][0]["name"].string!)"
+      self.guestCount.text = "\(data!["guests"].arrayValue.count + 1)"
+      self.nowPlayingTitle.text = "\(data!["now_playing"]["name"].string!) - \(data!["now_playing"]["artists"][0]["name"].string!)"
       
-      if let url = URL(string: data["now_playing"]["album"]["images"][1]["url"].string!) {
+      if let url = URL(string: data!["now_playing"]["album"]["images"][1]["url"].string!) {
         DispatchQueue.global().async {
           let data = try? Data(contentsOf: url) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
           DispatchQueue.main.async {
@@ -275,6 +287,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   override func viewDidAppear(_ animated: Bool) {
     self.tableView.reloadData()
+    print("VIEW APPEARED")
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -288,6 +301,11 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   }
   
   @IBAction func exit(_ sender: Any) {
+    
+    Party.shared.leaveParty(completion: { success in
+      
+    })
+    
     self.dismiss(animated: true, completion: nil)
   }
 }

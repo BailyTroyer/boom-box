@@ -179,7 +179,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnH-MC-8Uw" userLabel="NowPlayingSong">
-                                <rect key="frame" x="20" y="175" width="0.0" height="0.0"/>
+                                <rect key="frame" x="20" y="153" width="289" height="22"/>
                                 <fontDescription key="fontDescription" name="AirbnbCerealApp-ExtraBold" family="Airbnb Cereal App" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -212,12 +212,15 @@
                             <constraint firstItem="CNc-hk-vER" firstAttribute="top" secondItem="NdP-Nc-wGP" secondAttribute="bottom" constant="9.5" id="ZxQ-Ou-8Zk"/>
                             <constraint firstItem="dAG-3k-AcM" firstAttribute="leading" secondItem="l6N-Eh-Iht" secondAttribute="leading" constant="20" id="azC-iu-iKN"/>
                             <constraint firstItem="dAG-3k-AcM" firstAttribute="top" secondItem="xMf-Hz-RB2" secondAttribute="bottom" constant="-3" id="bT3-yH-h8V"/>
+                            <constraint firstItem="fJW-Oo-Zhj" firstAttribute="leading" secondItem="xnH-MC-8Uw" secondAttribute="trailing" constant="15.5" id="d7O-Nw-1av"/>
                             <constraint firstAttribute="bottomMargin" secondItem="CNc-hk-vER" secondAttribute="bottom" constant="-34" id="e8V-FV-Y6j"/>
                             <constraint firstItem="xnH-MC-8Uw" firstAttribute="leading" secondItem="dAG-3k-AcM" secondAttribute="leading" id="euy-9t-kAd"/>
                             <constraint firstItem="CNc-hk-vER" firstAttribute="top" secondItem="fJW-Oo-Zhj" secondAttribute="bottom" constant="10" id="gqQ-u3-Fa4"/>
                             <constraint firstItem="dAG-3k-AcM" firstAttribute="top" secondItem="NS8-rZ-3ge" secondAttribute="bottom" id="kbF-4c-lQM"/>
                             <constraint firstItem="CNc-hk-vER" firstAttribute="top" secondItem="dAG-3k-AcM" secondAttribute="bottom" constant="27" id="lsb-yp-zau"/>
+                            <constraint firstItem="fJW-Oo-Zhj" firstAttribute="baseline" secondItem="xnH-MC-8Uw" secondAttribute="firstBaseline" id="ojX-Ma-to3"/>
                             <constraint firstItem="l6N-Eh-Iht" firstAttribute="trailing" secondItem="NdP-Nc-wGP" secondAttribute="trailing" constant="16.5" id="tFY-Z0-F5J"/>
+                            <constraint firstAttribute="trailing" secondItem="fJW-Oo-Zhj" secondAttribute="trailing" constant="58.5" id="vGO-Zc-8Ln"/>
                             <constraint firstItem="Owf-Df-SeH" firstAttribute="top" secondItem="l6N-Eh-Iht" secondAttribute="top" constant="35" id="xd7-yC-WZU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="l6N-Eh-Iht"/>

@@ -35,13 +35,18 @@ class Vote {
         let lastActivity = new Date()
 
         let progressIntervalId = setInterval(async () => {
+            if(addedSongToPlaylist) return
+
             const party = await Mongo.db.collection("parties").findOne({'party_code': party_code})
             let elapsedMins = ((new Date() - lastActivity)/1000)/60
-            if(!party || elapsedMins >= 20){
-                //console.log("PARTY OVER")
+            if(!party){
                 clearInterval(progressIntervalId)
-                // delete party from db
                 return;
+            }
+            if(elapsedMins >= 20){
+                clearInterval(progressIntervalId)
+                Mongo.db.collection("parties").deleteOne({party_code: party_code})
+                return
             }
             const songDuration = party.now_playing.duration_ms
 
@@ -69,7 +74,7 @@ class Vote {
                 console.log(progress + ' / ' + songDuration)
                 
 
-                if(songDuration - progress < 10000 && !addedSongToPlaylist){
+                if(songDuration - progress < 10000){
                     console.log("Last 10 seconds")
                     // add highest rated song to playlist
                     const party = await Mongo.db.collection("parties").findOne({'party_code': party_code})
@@ -93,6 +98,7 @@ class Vote {
                         if(elapsedMins >= 20){
                             clearInterval(nextIntervalId);
                             clearInterval(progressIntervalId)
+                            Mongo.db.collection("parties").deleteOne({party_code: party_code})
                             return;
                         }
                         request(playerInfoReq)
@@ -108,13 +114,11 @@ class Vote {
                                 addedSongToPlaylist = false
                             }
                         })
-                        .catch(err => {})
+                        .catch(err => {console.log(err)})
                     }, 2000)
                 }
             })
-            .catch(err => {
-                console.log(err)
-            })
+            .catch(err => {console.log(err)})
         }, 8000)
     }
 }

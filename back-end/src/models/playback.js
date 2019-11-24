@@ -17,6 +17,8 @@ class Playback {
                 res.status(200).send("Paused");
             })
             .catch(result => {
+                
+                console.log(result)
                 res.status(400).send("Something fucked up");
             })
     }
