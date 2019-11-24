@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Mqt-EG-5gB">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -23,7 +23,7 @@
             <objects>
                 <viewController id="Mqt-EG-5gB" customClass="NameView" customModule="BoomBox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="djz-SC-0FS">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ag-tL-YMY">
@@ -37,13 +37,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's get started" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gyl-P2-I1Y">
-                                <rect key="frame" x="126.5" y="120" width="161" height="26"/>
+                                <rect key="frame" x="107" y="120" width="161" height="26"/>
                                 <fontDescription key="fontDescription" name="AirbnbCerealApp-Light" family="Airbnb Cereal App" pointSize="22"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's the name of your party?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgu-HI-wqZ">
-                                <rect key="frame" x="94.5" y="168" width="225" height="19"/>
+                                <rect key="frame" x="75" y="168" width="225" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="19" id="5N7-z2-UEK"/>
                                 </constraints>
@@ -52,7 +52,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HAR-9c-d1Y">
-                                <rect key="frame" x="20" y="235" width="374" height="29"/>
+                                <rect key="frame" x="0.66666666666665719" y="235" width="374" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="RqO-pU-4op"/>
                                     <constraint firstAttribute="width" constant="374" id="YnR-Li-Rse"/>
@@ -91,7 +91,7 @@
             <objects>
                 <viewController id="FZM-4X-uah" customClass="PartyCode" customModule="BoomBox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8AD-Ku-GIT">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IjD-xa-RQ4">
@@ -105,13 +105,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Here's your party code!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ULA-2y-eDO">
-                                <rect key="frame" x="91.5" y="120" width="231" height="26"/>
+                                <rect key="frame" x="72" y="120" width="231" height="26"/>
                                 <fontDescription key="fontDescription" name="AirbnbCerealApp-Light" family="Airbnb Cereal App" pointSize="22"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1bd42fh" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzu-Hk-R0t">
-                                <rect key="frame" x="20" y="235" width="374" height="26"/>
+                                <rect key="frame" x="0.66666666666665719" y="235" width="374" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="374" id="gnd-tN-d7F"/>
                                 </constraints>
@@ -120,7 +120,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qF6-ua-xtv">
-                                <rect key="frame" x="142.5" y="269" width="129" height="30"/>
+                                <rect key="frame" x="123" y="269" width="129" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="129" id="8B5-ep-xZX"/>
                                     <constraint firstAttribute="height" constant="30" id="Ph1-4P-W7H"/>
@@ -131,7 +131,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's go!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Nv-uk-wAZ">
-                                <rect key="frame" x="176" y="154" width="62" height="19"/>
+                                <rect key="frame" x="156.66666666666666" y="154" width="62" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="19" id="TrN-qe-14i"/>
                                 </constraints>
@@ -193,17 +193,17 @@
             <objects>
                 <viewController id="iFV-xN-lQt" customClass="NumberPeople" customModule="BoomBox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U5h-wr-fF0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How many?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lx5-Bb-z5i">
-                                <rect key="frame" x="148.5" y="120" width="117" height="26"/>
+                                <rect key="frame" x="129" y="120" width="117" height="26"/>
                                 <fontDescription key="fontDescription" name="AirbnbCerealApp-Light" family="Airbnb Cereal App" pointSize="22"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guess how many you expect to come :)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Gn-d0-xDU">
-                                <rect key="frame" x="65" y="168" width="284" height="19"/>
+                                <rect key="frame" x="45.666666666666657" y="168" width="284" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="19" id="eaG-CK-zEF"/>
                                 </constraints>
@@ -212,7 +212,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Number of People" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5rZ-Qu-zry">
-                                <rect key="frame" x="20" y="235" width="374" height="29"/>
+                                <rect key="frame" x="0.66666666666665719" y="235" width="374" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="374" id="Bux-2r-Q8U"/>
                                     <constraint firstAttribute="height" constant="29" id="RSg-vf-pGd"/>
@@ -256,7 +256,7 @@
             <objects>
                 <viewController id="dAX-fp-wiQ" customClass="StarterSong" customModule="BoomBox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AT4-XE-3sP">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Starter Song" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oee-nC-0nD">
@@ -269,31 +269,31 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search for a song to start the party with!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tNb-rC-JYx">
-                                <rect key="frame" x="63" y="168" width="288" height="19"/>
+                                <rect key="frame" x="43.666666666666657" y="168" width="288" height="19"/>
                                 <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="16"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PSK-c3-Xll">
-                                <rect key="frame" x="20" y="44" width="36" height="36"/>
+                                <rect key="frame" x="16" y="44" width="36" height="36"/>
                                 <state key="normal" image="left"/>
                                 <connections>
                                     <action selector="back:" destination="dAX-fp-wiQ" eventType="touchUpInside" id="WeN-c4-2HQ"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="w3k-hB-9ny">
-                                <rect key="frame" x="20" y="259.5" width="363" height="520.5"/>
+                                <rect key="frame" x="20" y="259.66666666666674" width="324" height="436.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchResult" rowHeight="73" id="jhT-h7-okE" customClass="SearchResultTableViewCell" customModule="BoomBox" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="363" height="73"/>
+                                        <rect key="frame" x="0.0" y="28" width="324" height="73"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jhT-h7-okE" id="1K9-9K-e2r">
-                                            <rect key="frame" x="0.0" y="0.0" width="363" height="73"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="324" height="73"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I'm Upset" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdY-rZ-v67">
-                                                    <rect key="frame" x="88" y="17" width="255" height="21"/>
+                                                    <rect key="frame" x="83" y="17" width="226" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="266" id="0X7-j7-sN7"/>
                                                         <constraint firstAttribute="height" constant="21" id="3us-12-WfP"/>
@@ -303,13 +303,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drake" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MmK-Tl-gTA">
-                                                    <rect key="frame" x="88" y="37" width="255" height="21"/>
+                                                    <rect key="frame" x="83" y="37" width="226" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="drake" translatesAutoresizingMaskIntoConstraints="NO" id="Vfg-VD-qrn">
-                                                    <rect key="frame" x="20" y="11" width="51" height="51"/>
+                                                    <rect key="frame" x="15" y="11" width="51" height="51"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Vfg-VD-qrn" secondAttribute="height" multiplier="1:1" id="KZm-RE-Zyb"/>
                                                         <constraint firstAttribute="width" constant="51" id="qWG-AT-gix"/>
@@ -338,7 +338,7 @@
                                 </prototypes>
                             </tableView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search for a song..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yyo-o2-MOs">
-                                <rect key="frame" x="20" y="203" width="288" height="34"/>
+                                <rect key="frame" x="20" y="203" width="249" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="ifo-Qd-tiT"/>
                                 </constraints>
@@ -347,7 +347,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NE6-PB-u0C">
-                                <rect key="frame" x="320" y="210" width="31" height="23"/>
+                                <rect key="frame" x="281" y="210" width="31" height="23"/>
                                 <rect key="contentStretch" x="1" y="1" width="1" height="1"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="31" id="M2t-Ww-Eon"/>

@@ -78,7 +78,7 @@ class NameView: UIViewController {
   
   @objc func next_view() {
     if name.text != "" {
-      Party.shared.name = name.text
+        Party.shared.name = name.text
       self.performSegue(withIdentifier: "number_people", sender: self)
     } else {
       print("show error code")

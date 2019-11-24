@@ -29,7 +29,7 @@ class Party {
   var host: Bool = false
   
 
-  let apiUrl = "https://c81a5c80.ngrok.io"
+  let apiUrl = "https://a713daf6.ngrok.io"
   //let apiUrl = "https://boom-box-beta.appspot.com"
   
   func getImage(completion: @escaping (_ repsonse: String) -> Void) {
@@ -106,6 +106,8 @@ class Party {
       completion(response.result.isSuccess)
       
     }
+    
+    self.host = true
   }
   
   func joinParty(completion: @escaping (_ response: Bool) -> Void) {

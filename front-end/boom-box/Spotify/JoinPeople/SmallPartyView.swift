@@ -17,10 +17,13 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   @IBOutlet weak var nowPlayingPic: UIImageView!
   @IBOutlet weak var nowPlayingTitle: UILabel!
   @IBOutlet weak var guestCount: UILabel!
+  @IBOutlet weak var partyCode: UILabel!
   
   @IBOutlet weak var alert: UIButton!
   @IBOutlet weak var nominate: UIButton!
   @IBOutlet weak var exit: UIButton!
+  
+  var partyName: String!
   
   var dataTimer: Timer!
   
@@ -141,6 +144,8 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     messageLabel.textColor = UIColor.gray
     messageLabel.textAlignment = .center;
     messageLabel.sizeToFit()
+    
+    partyCode.text = Party.shared.code
     
     nowPlayingPic.layer.masksToBounds = false
     nowPlayingPic.layer.cornerRadius = nowPlayingPic.frame.size.width / 8
@@ -287,6 +292,16 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   override func viewDidAppear(_ animated: Bool) {
     self.tableView.reloadData()
+    
+    if(Party.shared.host){
+      let alert = UIAlertController(title: "Start playing the music!", message: "You'll need to open spotify on one of your devices and start playing the '\(Party.shared.name!)' playlist.", preferredStyle: .alert)
+
+      alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { action in
+      }))
+
+      self.present(alert, animated: true)
+    }
+
     print("VIEW APPEARED")
   }
   

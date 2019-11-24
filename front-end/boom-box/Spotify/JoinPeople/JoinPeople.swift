@@ -62,7 +62,7 @@ class JoinPeople: UIViewController {
   
   @objc func next_view() {
     
-    Party.shared.code = self.code.text
+    Party.shared.code = self.code.text!.replacingOccurrences(of: " ", with: "")
     Party.shared.joinParty(completion: { result in
       if result {
         self.performSegue(withIdentifier: "show_small_party", sender: self)
