@@ -3,8 +3,16 @@ import { MongoClient } from 'mongodb';
 
 const uri = "mongodb+srv://db_user:Password123@cluster0-alpf4.gcp.mongodb.net/test?retryWrites=true&w=majority";
 
-const newClient = () => {
-    return new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+class Mongo {
+    constructor(){
+        this.db = null
+        const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+        client.connect((err, cli) => { 
+            this.db =  cli.db("boom-box")
+        })
+    }
 }
 
-export default newClient;
+const myMongo = new Mongo()
+
+export default myMongo;

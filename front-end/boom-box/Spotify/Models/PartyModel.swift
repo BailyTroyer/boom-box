@@ -23,9 +23,10 @@ class Party {
   var song_url: String?
   var vote: Bool?
   var voteSongId: String?
+  var searchString: String?
   
 
-  let apiUrl = "https://b8166e01.ngrok.io"
+  let apiUrl = "https://31ef44ce.ngrok.io"
   //let apiUrl = "https://boom-box-beta.appspot.com"
   
   func getImage(completion: @escaping (_ repsonse: String) -> Void) {
@@ -151,4 +152,21 @@ class Party {
         
       }
     }
+  
+  func getSearchResults(completion: @escaping (_ response: JSON) -> Void) {
+    
+    let headers: HTTPHeaders = [
+      "Authorization": "Bearer \(token!)",
+      "Accept": "application/json"
+    ]
+    
+    Alamofire.request("https://api.spotify.com/v1/search?q=\(searchString!)&type=track&limit=10", method: .get, encoding: URLEncoding.default, headers: headers).validate().responseJSON { response in
+      
+      //to get JSON return value
+      if let result = response.result.value {
+        let json = JSON(result)
+        completion(json)
+      }
+    }
+  }
 }

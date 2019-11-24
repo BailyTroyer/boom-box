@@ -1,4 +1,4 @@
-import newClient from '../helpers/mongo';
+import Mongo from '../helpers/mongo';
 import request from 'request-promise-native';
 
 
@@ -6,30 +6,25 @@ class Playback {
     static async pauseMusic(req, res){
         const { party_code } = req.body
 
-        const client = newClient();
-        client.connect(async (err, cli) => { 
-            const db =  cli.db("boom-box")
-            const party = await db.collection("parties").findOne({'party_code': party_code})
-            
-            const options = {
-                uri: "https://api.spotify.com/v1/me/player/pause", 
-                headers: {'Authorization': 'Bearer ' + party.token}
-            }
+        const party = await Mongo.db.collection("parties").findOne({'party_code': party_code})
+        const options = {
+            uri: "https://api.spotify.com/v1/me/player/pause", 
+            headers: {'Authorization': 'Bearer ' + party.token}
+        }
 
-            await request(options)
-                .then(result => {
-                    res.status(200).send("Paused");
-                })
-                .catch(result => {
-                    res.status(400).send("Something fucked up");
-                })
-        });
-
-        client.close()
+        await request(options)
+            .then(result => {
+                res.status(200).send("Paused");
+            })
+            .catch(result => {
+                res.status(400).send("Something fucked up");
+            })
     }
 
     static async getSongInfo(songUrl, token){
-        const songId = songUrl.replace("https://open.spotify.com/track/" , "")
+        const songId = songUrl
+            .replace("https://open.spotify.com/track/" , "")
+            .replace("https://api.spotify.com/v1/tracks/","")
 
         const options = {
             uri: `https://api.spotify.com/v1/tracks/${songId}`,
@@ -37,9 +32,7 @@ class Playback {
         }
 
         const songInfo = await request(options)
-            .then(body => {
-                return body
-            })
+            .then(body => body)
             .catch(err => {
                 console.log(err)
                 return null

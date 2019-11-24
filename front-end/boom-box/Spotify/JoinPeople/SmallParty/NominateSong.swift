@@ -1,8 +1,8 @@
 //
-//  NumberPeople.swift
-//  Spotify
+//  NominateSong.swift
+//  BoomBox
 //
-//  Created by Baily Troyer on 11/3/19.
+//  Created by Darren Matthew on 11/24/19.
 //  Copyright © 2019 baily. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 import UIKit
 
-class StarterSong: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class NominateSong: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
   
   var continueButton: UIButton = UIButton()
@@ -39,7 +39,7 @@ class StarterSong: UIViewController, UITableViewDelegate, UITableViewDataSource 
       continueButton = UIButton(frame: CGRect(x: 0, y: (self.view.frame.maxY - 64), width: (self.view.frame.maxX - self.view.frame.maxX/6), height: 50))
       
       // button text "sign in"
-      continueButton.setTitle("Continue", for: .normal)
+      continueButton.setTitle("Nominate Song", for: .normal)
       
       // add button target
       continueButton.addTarget(self, action: #selector(next_view), for: .touchUpInside)
@@ -62,7 +62,7 @@ class StarterSong: UIViewController, UITableViewDelegate, UITableViewDataSource 
       
       continueButton.bindToKeyboard()
     
-    searchButton.addTarget(self, action: #selector(doSearch), for: .touchUpInside)
+  searchButton.addTarget(self, action: #selector(doSearch), for: .touchUpInside)
   }
   
   @objc func doSearch() {
@@ -142,16 +142,22 @@ class StarterSong: UIViewController, UITableViewDelegate, UITableViewDataSource 
   
   @objc func next_view() {
     // do something here?
-    if let link_text = link, link != "" {
-      Party.shared.starter_song_link = link_text
-      self.performSegue(withIdentifier: "party_code", sender: self)
-    }
+    
+    // nominate song and go back
+    
+    Party.shared.song_url = self.link
+    
+    Party.shared.nominate(completion: { result in
+      
+      if result {
+        print("YESS SUBMITTED")
+      } else {
+        print("FDFDJSFJHDfdsafs")
+      }
+    })
+    
+    self.back(self)
   }
-//
-//  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//    self.view.endEditing(true)
-//    return true
-//  }
 
   
   @IBAction func back(_ sender: Any) {

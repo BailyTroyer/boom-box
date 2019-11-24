@@ -28,6 +28,8 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   var first: Bool = true
   
+  var messageLabel: UILabel!
+  
   private let refreshControl = UIRefreshControl()
   
   lazy var bulletinManager: BLTNItemManager = {
@@ -53,10 +55,16 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    //print("noms: \(song_nominations.count)")
+    if(self.song_nominations.count == 0){
+      self.tableView.backgroundView = self.messageLabel
+    }else{
+      self.tableView.backgroundView = nil
+    }
+
     return self.song_nominations.count
-    //return 8
   }
+  
+  
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if(indexPath.row > self.song_nominations.count - 1){return UITableViewCell()}
@@ -116,7 +124,8 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   }
   
   @IBAction func recommendSong(_ sender: Any) {
-    bulletinManager.showBulletin(above: self)
+    //bulletinManager.showBulletin(above: self)
+    self.go()
   }
   
   override func viewDidLoad() {
@@ -124,6 +133,14 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     tableView.dataSource = self
     tableView.delegate = self
+    
+    let rect = CGRect(origin: CGPoint(x: 50,y :0), size: CGSize(width: tableView.bounds.size.width - 50, height: tableView.bounds.size.height))
+    messageLabel = UILabel(frame: rect)
+    messageLabel.text = "There aren't any song suggestions up... You should make one!"
+    messageLabel.numberOfLines = 0
+    messageLabel.textColor = UIColor.gray
+    messageLabel.textAlignment = .center;
+    messageLabel.sizeToFit()
     
     nowPlayingPic.layer.masksToBounds = false
     nowPlayingPic.layer.cornerRadius = nowPlayingPic.frame.size.width / 8
@@ -220,7 +237,6 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   static func makeTextFieldPage() -> TextFieldBulletinPage {
     
     let page = TextFieldBulletinPage(title: "What's your fav song?")
-    page.isDismissable = false
     page.descriptionText = "Paste the Spotify link here!"
     page.actionButtonTitle = "Submit Song"
     page.isDismissable = true
@@ -248,7 +264,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   }
   
   func go() {
-    self.performSegue(withIdentifier: "popup", sender: self)
+    self.performSegue(withIdentifier: "nominate", sender: self)
   }
   
   override func viewWillAppear(_ animated: Bool) {

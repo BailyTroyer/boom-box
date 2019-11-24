@@ -1,4 +1,4 @@
-import newClient from '../helpers/mongo';
+import Mongo from '../helpers/mongo';
 import Playback from './playback'
 import Vote from './vote'
 import request from 'request-promise-native';
@@ -8,101 +8,80 @@ class Party {
     static async joinParty(req, res){
         const { party_code, user_id } = req.body
 
-        const client = newClient();
-        client.connect(async (err, cli) => { 
-            const db =  cli.db("boom-box")
+        const party = await Mongo.db.collection("parties").findOne({party_code: party_code})
 
-            const party = await db.collection("parties").findOne({party_code: party_code})
-            if(!party){
-                client.close()
-                res.status(404).send("That party Doesnt Exist!");
-                return
-            }
+        if(!party){
+            res.status(404).send("That party Doesnt Exist!");
+            return
+        }
 
-            db.collection("parties").updateOne({party_code: party_code}, {$push: {guests: user_id}})
+        Mongo.db.collection("parties").updateOne({party_code: party_code}, {$push: {guests: user_id}})
+        .then(result => {
+            // add party to user document
+            Mongo.db.collection("users").updateOne({user_id: user_id}, {$set: {party_code: party_code, host: false}}, { upsert: true })
             .then(result => {
-                // add party to user document
-                db.collection("users").updateOne({user_id: user_id}, {$set: {party_code: party_code, host: false}}, { upsert: true })
-                .then(result => {
-                    res.status(200).send("You're in!");
-                })
-                .catch(result => {
-                    res.status(400).send("You fucked up");
-                })  
+                res.status(200).send("You're in!");
             })
             .catch(result => {
                 res.status(400).send("You fucked up");
-            })
-        });
-        client.close();
+            })  
+        })
+        .catch(result => {
+            res.status(400).send("You fucked up");
+        })
     }
 
     static async leaveParty(req, res){
         const { user_id } = req.body
 
-        const client = newClient();
-        client.connect((err, cli) => {
-            const db =  cli.db("boom-box")
-
-            db.collection("users").updateOne({user_id: user_id}, {party_code: null, host: false})
-            .then(result => {
-                res.status(200).send("You're out!");
-            })
-            .catch(result => {
-                res.status(400).send("You fucked up");
-            })
-        });
-
-        client.close();
+        Monog.db.collection("users").updateOne({user_id: user_id}, {party_code: null, host: false})
+        .then(result => {
+            res.status(200).send("You're out!");
+        })
+        .catch(result => {
+            res.status(400).send("You fucked up");
+        })
     }
 
     static async endParty(req, res){
         const { party_code } = req.body
-
-        const client = newClient();
-        client.connect(async (err, cli) => { 
-            const db =  cli.db("boom-box")
             
-            const party = await db.collection("parties").findOne({party_code: party_code})
-            
-            for(let guest_id in party.guests){
-                db.collection("users").updateOne({user_id: guest_id}, {party_code: null})
-            }
+        const party = await Mongo.db.collection("parties").findOne({party_code: party_code})
+        
+        for(let guest_id in party.guests){
+            Mongo.db.collection("users").updateOne({user_id: guest_id}, {party_code: null, host: false})
+        }
 
-            db.collection("parties").deleteOne({party_code: party_code})
+        Mongo.db.collection("parties").deleteOne({party_code: party_code})
             .then(result => {
                 res.status(200).send("Ended party");
             })
             .catch(result => {
                 res.status(400).send("You fucked up");
-            })
-        });
-        client.close();   
+            })  
     }
 
     static async createParty(req, res){
         const { party_code, size, name, token, starter_song, user_id } = req.body
 
-        const songInfo = await Playback.getSongInfo(starter_song, token);
-        const playlist = await createPartyPlaylist(name, user_id, token);
+        const [songInfo, playlist] = await Promise.all([
+            Playback.getSongInfo(starter_song, token),
+            createPartyPlaylist(name, user_id, token)
+        ])
 
         await Playback.addSongToPlaylist(songInfo, playlist.id, token)
 
-        const client = newClient();
-        client.connect((err, cli) => {
-            const db =  cli.db("boom-box")
-
-            db.collection("parties").insertOne({
-                now_playing: songInfo,
-                playlist: playlist,
-                party_code: party_code, 
-                size: size, 
-                name: name, 
-                token: token, 
-                song_nominations: [],
-                guests: [],
-                cops: 0
-            })
+        Mongo.db.collection("parties").insertOne({
+            now_playing: songInfo,
+            playlist: playlist,
+            party_code: party_code, 
+            size: size, 
+            name: name, 
+            token: token, 
+            song_nominations: [],
+            guests: [],
+            cops: 0
+        })
             .then(result => {
                 //start playing playlist
                 startParty(playlist.id, token);
@@ -112,8 +91,6 @@ class Party {
                 console.log(result)
                 res.status(400).send("You fucked up");
             })
-        });
-        client.close();
 
         // runs for the life of the party
         Vote.checkForSongEndingSoon(party_code, token);
@@ -122,30 +99,26 @@ class Party {
     static async nominateSong(req, res){
         const { party_code, song_url, token } = req.body
 
-        let songInfo = await Playback.getSongInfo(song_url, token)
-        songInfo.votes = 0
+        const [songInfo, party] = await Promise.all([
+            Playback.getSongInfo(song_url, token),
+            Mongo.db.collection("parties").findOne({party_code: party_code})
+        ])
 
-        const client = newClient();
-        client.connect(async (err, cli) => { 
-            const db =  cli.db("boom-box")
+        songInfo.votes = 0 // add key to object
 
-            const party = await db.collection("parties").findOne({party_code: party_code})
+        // if the song is already in the nominations
+        if(party.song_nominations.find(song => song.id === songInfo.id)){
+            res.status(200).send("Song already nominated");
+            return
+        }
 
-            // if the dong is already in the nominations
-            if(party.song_nominations.find(song => song.id === songInfo.id)){
-                res.status(200).send("Song already nominated");
-                return
-            }
-
-            db.collection("parties").updateOne({party_code: party_code}, {$push: {song_nominations: songInfo}})
+        Mongo.db.collection("parties").updateOne({party_code: party_code}, {$push: {song_nominations: songInfo}})
             .then(result => {
                 res.status(200).send("Nominated song");
             })
             .catch(result => {
                 res.status(400).send("You fucked up");
             })
-        });
-        client.close();
     }
 
     static async removeNomination(req, res){
@@ -159,55 +132,43 @@ class Party {
     static async emergency(req, res){
         const { party_code, token } = req.body
 
-        const client = newClient();
-        client.connect(async (err, cli) => { 
-            const db =  cli.db("boom-box");
+        const party = await Mongo.db.collection("parties").findOne({party_code: party_code})
 
-            const party = await db.collection("parties").findOne({party_code: party_code})
-
-            if(party.cops === 5){
-                const options = {
-                    method: 'PUT',
-                    uri: "https://api.spotify.com/v1/me/player/pause", 
-                    headers: {'Authorization': 'Bearer ' + token}
-                }
-
-                request(options)
-                    .then(() => {console.log("Paused Song")})
-                    .catch(() => {console.log("Pause Error")})
+        if(party.cops === 5){
+            const options = {
+                method: 'PUT',
+                uri: "https://api.spotify.com/v1/me/player/pause", 
+                headers: {'Authorization': 'Bearer ' + token}
             }
 
-            db.collection("parties").findOneAndUpdate(
-                {'party_code': party_code}, 
-                {$inc: {'cops': 1}})
+            request(options)
+                .then(() => {console.log("Paused Song")})
+                .catch(() => {console.log("Pause Error")})
+        }
+
+        Mongo.db.collection("parties").findOneAndUpdate(
+            {'party_code': party_code}, 
+            {$inc: {'cops': 1}}
+        )
             .then(result => {
                 res.status(200).send("Oh shit da cops");
             })
             .catch(result => {
                 res.status(400).send("A small piece of me died inside");
             })
-        });
-
-        client.close();
     }
 
     static async getPartyInfo(req, res){
 
         const { party_code } = req.query
 
-        const client = newClient();
-        client.connect(async (err, cli) => { 
-            const db =  cli.db("boom-box")
-            
-            const party = await db.collection("parties").findOne({party_code: party_code})
-            
-            if(party){
-                res.status(200).json(party);
-            }else{
-                res.status(400).send("You fucked up");
-            }
-        });
-        client.close();  
+        const party = await Mongo.db.collection("parties").findOne({party_code: party_code})
+        
+        if(party){
+            res.status(200).json(party);
+        }else{
+            res.status(400).send("You fucked up");
+        }
     }
 }
 
@@ -222,12 +183,10 @@ const createPartyPlaylist = async (name, user_id, token) => {
     }
 
     return await request(options)
-    .then(body => {
-        return body
-    })
-    .catch(err => {
-        console.log(err)
-    })
+        .then(body => body)
+        .catch(err => {
+            console.log(err)
+        })
 }
 
 const startParty = async (playlistId, token) => {

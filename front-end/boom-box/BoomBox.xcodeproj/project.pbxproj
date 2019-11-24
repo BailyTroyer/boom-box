@@ -11,6 +11,8 @@
 		4D10D35B23774ED600E86EFD /* duck.json in Resources */ = {isa = PBXBuildFile; fileRef = 4D10D35823774ED500E86EFD /* duck.json */; };
 		4D10D35C23774ED600E86EFD /* dancing.json in Resources */ = {isa = PBXBuildFile; fileRef = 4D10D35923774ED600E86EFD /* dancing.json */; };
 		4D10D35D23774ED600E86EFD /* music-load.json in Resources */ = {isa = PBXBuildFile; fileRef = 4D10D35A23774ED600E86EFD /* music-load.json */; };
+		980F1735238A9E9500316481 /* NominateSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980F1734238A9E9500316481 /* NominateSong.swift */; };
+		981F74DA238A4CCA00025E00 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981F74D9238A4CCA00025E00 /* SearchResultTableViewCell.swift */; };
 		EB50067C236EA8210067979E /* NumberPeople.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB50067B236EA8210067979E /* NumberPeople.swift */; };
 		EB50067E236EAB2B0067979E /* SmallParty.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB50067D236EAB2B0067979E /* SmallParty.storyboard */; };
 		EB500680236EAB370067979E /* LargeParty.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB50067F236EAB370067979E /* LargeParty.storyboard */; };
@@ -40,7 +42,6 @@
 		EB81436F236E89600047C22B /* SmallPartyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB81436E236E89600047C22B /* SmallPartyView.swift */; };
 		EB814373236E93710047C22B /* LargePartyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB814372236E93710047C22B /* LargePartyView.swift */; };
 		EB814375236E94E80047C22B /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB814374236E94E80047C22B /* SongCell.swift */; };
-		EBB8329C236EC71500AC581A /* NewSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB8329B236EC71500AC581A /* NewSong.swift */; };
 		EBB832A0236ED21900AC581A /* TextFieldBulletinTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB8329F236ED21900AC581A /* TextFieldBulletinTag.swift */; };
 		EBB832A2236EEF3300AC581A /* StarterSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB832A1236EEF3300AC581A /* StarterSong.swift */; };
 /* End PBXBuildFile section */
@@ -52,10 +53,12 @@
 		5627D62E736CF97C6E19E280 /* Pods-Spotify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spotify.debug.xcconfig"; path = "Target Support Files/Pods-Spotify/Pods-Spotify.debug.xcconfig"; sourceTree = "<group>"; };
 		62BB019DE5A6861E8AECAB20 /* Pods_Spotify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spotify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63995E4BA735DF84013D26AE /* Pods-Spotify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spotify.release.xcconfig"; path = "Target Support Files/Pods-Spotify/Pods-Spotify.release.xcconfig"; sourceTree = "<group>"; };
+		980F1734238A9E9500316481 /* NominateSong.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = NominateSong.swift; sourceTree = "<group>"; tabWidth = 2; };
+		981F74D9238A4CCA00025E00 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; tabWidth = 2; };
 		EB50067B236EA8210067979E /* NumberPeople.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPeople.swift; sourceTree = "<group>"; };
 		EB50067D236EAB2B0067979E /* SmallParty.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SmallParty.storyboard; sourceTree = "<group>"; };
 		EB50067F236EAB370067979E /* LargeParty.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LargeParty.storyboard; sourceTree = "<group>"; };
-		EB8142FE236E03400047C22B /* Spotify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spotify.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB8142FE236E03400047C22B /* BoomBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoomBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB814301236E03400047C22B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB814303236E03400047C22B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		EB814305236E03400047C22B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -84,9 +87,8 @@
 		EB81436E236E89600047C22B /* SmallPartyView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = SmallPartyView.swift; sourceTree = "<group>"; };
 		EB814372236E93710047C22B /* LargePartyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargePartyView.swift; sourceTree = "<group>"; };
 		EB814374236E94E80047C22B /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
-		EBB8329B236EC71500AC581A /* NewSong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSong.swift; sourceTree = "<group>"; };
 		EBB8329F236ED21900AC581A /* TextFieldBulletinTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldBulletinTag.swift; sourceTree = "<group>"; };
-		EBB832A1236EEF3300AC581A /* StarterSong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarterSong.swift; sourceTree = "<group>"; };
+		EBB832A1236EEF3300AC581A /* StarterSong.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = StarterSong.swift; sourceTree = "<group>"; tabWidth = 2; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,7 +134,7 @@
 		EB8142FF236E03400047C22B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EB8142FE236E03400047C22B /* Spotify.app */,
+				EB8142FE236E03400047C22B /* BoomBox.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -178,6 +180,7 @@
 				EB814344236E26AA0047C22B /* PartyCode.swift */,
 				EB50067B236EA8210067979E /* NumberPeople.swift */,
 				EBB832A1236EEF3300AC581A /* StarterSong.swift */,
+				981F74D9238A4CCA00025E00 /* SearchResultTableViewCell.swift */,
 			);
 			path = CreateParty;
 			sourceTree = "<group>";
@@ -221,7 +224,7 @@
 			children = (
 				EB81436C236E87C40047C22B /* SongCardTableViewCell.swift */,
 				EB50067D236EAB2B0067979E /* SmallParty.storyboard */,
-				EBB8329B236EC71500AC581A /* NewSong.swift */,
+				980F1734238A9E9500316481 /* NominateSong.swift */,
 			);
 			path = SmallParty;
 			sourceTree = "<group>";
@@ -239,9 +242,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EB8142FD236E03400047C22B /* Spotify */ = {
+		EB8142FD236E03400047C22B /* BoomBox */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EB814312236E03410047C22B /* Build configuration list for PBXNativeTarget "Spotify" */;
+			buildConfigurationList = EB814312236E03410047C22B /* Build configuration list for PBXNativeTarget "BoomBox" */;
 			buildPhases = (
 				7F8282C6E9041B71B0A9EF56 /* [CP] Check Pods Manifest.lock */,
 				EB8142FA236E03400047C22B /* Sources */,
@@ -253,9 +256,9 @@
 			);
 			dependencies = (
 			);
-			name = Spotify;
+			name = BoomBox;
 			productName = Spotify;
-			productReference = EB8142FE236E03400047C22B /* Spotify.app */;
+			productReference = EB8142FE236E03400047C22B /* BoomBox.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -273,7 +276,7 @@
 					};
 				};
 			};
-			buildConfigurationList = EB8142F9236E03400047C22B /* Build configuration list for PBXProject "Spotify" */;
+			buildConfigurationList = EB8142F9236E03400047C22B /* Build configuration list for PBXProject "BoomBox" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -286,7 +289,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EB8142FD236E03400047C22B /* Spotify */,
+				EB8142FD236E03400047C22B /* BoomBox */,
 			);
 		};
 /* End PBXProject section */
@@ -368,15 +371,16 @@
 				EB814343236E24D90047C22B /* Extensions.swift in Sources */,
 				EB81436F236E89600047C22B /* SmallPartyView.swift in Sources */,
 				EB814373236E93710047C22B /* LargePartyView.swift in Sources */,
+				980F1735238A9E9500316481 /* NominateSong.swift in Sources */,
 				EB814345236E26AA0047C22B /* PartyCode.swift in Sources */,
 				EB814369236E7FD20047C22B /* PartyModel.swift in Sources */,
+				981F74DA238A4CCA00025E00 /* SearchResultTableViewCell.swift in Sources */,
 				EB814366236E7D3B0047C22B /* JoinPeople.swift in Sources */,
 				EB814306236E03400047C22B /* ViewController.swift in Sources */,
 				EB814341236E245F0047C22B /* NameView.swift in Sources */,
 				EBB832A2236EEF3300AC581A /* StarterSong.swift in Sources */,
 				EB814302236E03400047C22B /* AppDelegate.swift in Sources */,
 				EB814304236E03400047C22B /* SceneDelegate.swift in Sources */,
-				EBB8329C236EC71500AC581A /* NewSong.swift in Sources */,
 				EB50067C236EA8210067979E /* NumberPeople.swift in Sources */,
 				EB81436B236E85FF0047C22B /* CardView.swift in Sources */,
 				EB81436D236E87C40047C22B /* SongCardTableViewCell.swift in Sources */,
@@ -542,7 +546,7 @@
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "BoomBox-Daru";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = BoomBox;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -577,7 +581,7 @@
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "BoomBox-Daru";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = BoomBox;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -587,7 +591,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EB8142F9236E03400047C22B /* Build configuration list for PBXProject "Spotify" */ = {
+		EB8142F9236E03400047C22B /* Build configuration list for PBXProject "BoomBox" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EB814310236E03410047C22B /* Debug */,
@@ -596,7 +600,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EB814312236E03410047C22B /* Build configuration list for PBXNativeTarget "Spotify" */ = {
+		EB814312236E03410047C22B /* Build configuration list for PBXNativeTarget "BoomBox" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EB814313236E03410047C22B /* Debug */,

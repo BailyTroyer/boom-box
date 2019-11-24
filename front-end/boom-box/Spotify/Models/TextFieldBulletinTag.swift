@@ -14,11 +14,10 @@ import BLTNBoard
  */
 
 class TextFieldBulletinPage: FeedbackPageBLTNItem {
-
     @objc public var textField: UITextField!
-
+    
     @objc public var textInputHandler: ((BLTNActionItem, String?) -> Void)? = nil
-
+    
     override func makeViewsUnderDescription(with interfaceBuilder: BLTNInterfaceBuilder) -> [UIView]? {
         textField = interfaceBuilder.makeTextField(placeholder: "Spotify URL", returnKey: .done, delegate: self)
         return [textField]

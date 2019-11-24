@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Spotify.xcodeproj">
+      location = "group:/Users/darrenmatthew/Desktop/BoomBox/boom-box/front-end/boom-box/BoomBox.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
