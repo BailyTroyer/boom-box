@@ -24,13 +24,14 @@ class Party {
   var vote: Bool?
   var voteSongId: String?
   var searchString: String?
+  var playlistId: String?
   
   var currentParty: String?
   var host: Bool = false
   
 
-  //let apiUrl = "https://a713daf6.ngrok.io"
-  let apiUrl = "https://boom-box-beta.appspot.com"
+  let apiUrl = "https://41f1df47.ngrok.io"
+  //let apiUrl = "https://boom-box-beta.appspot.com"
   
   func getImage(completion: @escaping (_ repsonse: String) -> Void) {
     let headers: HTTPHeaders = [
@@ -102,9 +103,9 @@ class Party {
     ]
     
     Alamofire.request("\(apiUrl)/party", method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseString { response in
-      print(response)
-      completion(response.result.isSuccess)
       
+      self.playlistId = response.result.value
+      completion(response.result.isSuccess)
     }
     
     self.host = true

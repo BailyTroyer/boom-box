@@ -11,7 +11,7 @@ class Party {
         const party = await Mongo.db.collection("parties").findOne({party_code: party_code})
 
         if(!party){
-            res.status(404).send("That party Doesnt Exist!");
+            res.status(404).send("That party doesnt exist!");
             return
         }
 
@@ -92,7 +92,7 @@ class Party {
             .then(result => {
                 //start playing playlist
                 startParty(playlist.id, token);
-                res.status(200).send("Created party");
+                res.status(200).send(playlist.id);
             })
             .catch(result => {
                 console.log(result)

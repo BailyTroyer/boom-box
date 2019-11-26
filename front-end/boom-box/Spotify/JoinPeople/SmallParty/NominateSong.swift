@@ -33,7 +33,7 @@ class NominateSong: UIViewController, UITableViewDelegate, UITableViewDataSource
     searchResultsTable.dataSource = self
     searchResultsTable.delegate = self
     
-    continueButton = UIButton(frame: CGRect(x: 0, y: (self.view.frame.maxY - 64), width: (self.view.frame.maxX - self.view.frame.maxX/6), height: 50))
+    continueButton = UIButton(frame: CGRect(x: 0, y: (self.view.frame.maxY - 110), width: (self.view.frame.maxX - self.view.frame.maxX/6), height: 50))
     
     // button text "sign in"
     continueButton.setTitle("Nominate Song", for: .normal)

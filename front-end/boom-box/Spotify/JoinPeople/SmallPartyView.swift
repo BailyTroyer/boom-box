@@ -294,9 +294,15 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     self.tableView.reloadData()
     
     if(Party.shared.host){
-      let alert = UIAlertController(title: "Start playing the music!", message: "You'll need to open spotify on one of your devices and start playing the '\(Party.shared.name!)' playlist.", preferredStyle: .alert)
+      let alert = UIAlertController(title: "Start playing the music!", message: "Open Spotify on any of your devices and start playing the '\(Party.shared.name!)' playlist.", preferredStyle: .alert)
 
-      alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { action in
+      alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+      alert.addAction(UIAlertAction(title: "Open Spotify", style: .default, handler: {action in
+        
+        let playlistUrl = "https://open.spotify.com/playlist/\(Party.shared.playlistId!)"
+        if let url = URL(string: playlistUrl) {
+            UIApplication.shared.open(url)
+        }
       }))
 
       self.present(alert, animated: true)
