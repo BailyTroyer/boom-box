@@ -34,7 +34,7 @@ class NominateSong: UIViewController, UITableViewDelegate, UITableViewDataSource
     searchResultsTable.delegate = self
     searchInput.delegate = self
     
-    continueButton = UIButton(frame: CGRect(x: 0, y: (self.view.frame.maxY - 110), width: (self.view.frame.maxX - self.view.frame.maxX/6), height: 50))
+    continueButton = UIButton(frame: CGRect(x: 0, y: (self.view.frame.maxY - self.view.frame.maxY/6), width: (self.view.frame.maxX - self.view.frame.maxX/6), height: 50))
     
     // button text "sign in"
     continueButton.setTitle("Nominate Song", for: .normal)
@@ -65,9 +65,6 @@ class NominateSong: UIViewController, UITableViewDelegate, UITableViewDataSource
   }
   
   override func viewDidAppear(_ animated: Bool) {
-    
-    
-    
     searchButton.addTarget(self, action: #selector(doSearch), for: .touchUpInside)
     
     searchInput.addTarget(self, action: #selector(self.textFieldDidChange(_:)),

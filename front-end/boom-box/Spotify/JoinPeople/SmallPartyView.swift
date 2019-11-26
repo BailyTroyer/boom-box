@@ -155,7 +155,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     
-    let rect = CGRect(origin: CGPoint(x: 80,y :0), size: CGSize(width: tableView.bounds.size.width - 80, height: tableView.bounds.size.height))
+    let rect = CGRect(origin: CGPoint(x: 200,y :0), size: CGSize(width: tableView.bounds.size.width - 200, height: tableView.bounds.size.height))
     emptyMessageLabel = UILabel(frame: rect)
     emptyMessageLabel.numberOfLines = 0
     emptyMessageLabel.textColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
@@ -213,7 +213,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
         return a["votes"].int! > b["votes"].int!
       })
       if(!data!["song_nominations"].exists()){return}
-      if(sortedNoms == self.song_nominations && data!["guests"].arrayValue.count + 1 == Int(self.guestCount.text!) && !self.first && !Party.shared.partyStarted){return}
+      if(sortedNoms == self.song_nominations && data!["guests"].arrayValue.count + 1 == Int(self.guestCount.text!) && !self.first || !Party.shared.partyStarted){return}
       
       UIView.animate(withDuration: 0.4, animations: {
         self.tableView.alpha = 0

@@ -59,7 +59,7 @@
                                     <constraint firstAttribute="width" constant="374" id="YnR-Li-Rse"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -81,6 +81,7 @@
                         <outlet property="label2" destination="dgu-HI-wqZ" id="hHV-pU-arf"/>
                         <outlet property="name" destination="HAR-9c-d1Y" id="sbb-4x-27o"/>
                         <segue destination="iFV-xN-lQt" kind="modal" identifier="number_people" modalPresentationStyle="fullScreen" id="e7t-6U-dRb"/>
+                        <segue destination="dAX-fp-wiQ" kind="presentation" identifier="skip_size" modalPresentationStyle="fullScreen" id="QVZ-vI-s3H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Gw-fo-pqi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -222,14 +223,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How many?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lx5-Bb-z5i">
-                                <rect key="frame" x="129" y="120" width="117" height="26"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Party size?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lx5-Bb-z5i">
+                                <rect key="frame" x="133.66666666666666" y="120" width="108" height="26"/>
                                 <fontDescription key="fontDescription" name="AirbnbCerealApp-Light" family="Airbnb Cereal App" pointSize="22"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guess how many you expect to come :)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Gn-d0-xDU">
-                                <rect key="frame" x="45.666666666666657" y="168" width="284" height="19"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is this going to be a small or large party?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Gn-d0-xDU">
+                                <rect key="frame" x="42.333333333333343" y="168" width="290.66666666666663" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="19" id="eaG-CK-zEF"/>
                                 </constraints>
@@ -276,7 +277,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bjh-m1-dKc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="628" y="137"/>
+            <point key="canvasLocation" x="596" y="507"/>
         </scene>
         <!--Starter Song-->
         <scene sceneID="aIg-Wu-FvY">
@@ -424,4 +425,7 @@
         <image name="left" width="36" height="36"/>
         <image name="magnifyingglass" catalog="system" width="64" height="56"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="QVZ-vI-s3H"/>
+    </inferredMetricsTieBreakers>
 </document>

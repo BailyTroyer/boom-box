@@ -45,7 +45,7 @@ class PartyCode: UIViewController {
       self.label2.textColor = UIColor.white
     }
     
-    continueButton = UIButton(frame: CGRect(x: 0, y: (self.view.frame.maxY - self.view.frame.maxY/8), width: (self.view.frame.maxX - self.view.frame.maxX/6), height: 50))
+    continueButton = UIButton(frame: CGRect(x: 0, y: (self.view.frame.maxY - self.view.frame.maxY/10), width: (self.view.frame.maxX - self.view.frame.maxX/6), height: 50))
     
     // button text "sign in"
     continueButton.setTitle("Create Party", for: .normal)

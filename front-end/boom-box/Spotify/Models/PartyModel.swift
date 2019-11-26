@@ -94,6 +94,10 @@ class Party {
   
   func createParty(completion: @escaping (_ response: Bool) -> Void) {
     
+    if(name == nil){
+      name = "BoomBox Party - \(code!)"
+    }
+    
     let parameters: [String: Any] = [
       "size": size!,
       "party_code": code!,

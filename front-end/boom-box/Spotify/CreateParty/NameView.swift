@@ -50,7 +50,7 @@ class NameView: UIViewController {
       continueButton = UIButton(frame: CGRect(x: 0, y: (self.view.frame.maxY - self.view.frame.maxY/12), width: (self.view.frame.maxX - self.view.frame.maxX/6), height: 50))
       
       // button text "sign in"
-      continueButton.setTitle("Continue", for: .normal)
+      continueButton.setTitle("Skip", for: .normal)
       
       // add button target
       continueButton.addTarget(self, action: #selector(next_view), for: .touchUpInside)
@@ -77,15 +77,21 @@ class NameView: UIViewController {
   }
   
   @objc func next_view() {
-    if name.text != "" {
-        Party.shared.name = name.text
-      self.performSegue(withIdentifier: "number_people", sender: self)
-    } else {
-      print("show error code")
+    if name.text!.replacingOccurrences(of: " ", with: "") != "" {
+      Party.shared.name = name.text
     }
+    
+    Party.shared.size = "small"
+    self.performSegue(withIdentifier: "skip_size", sender: self)
   }
   
   @objc func textFieldDidChange(_ textField: UITextField) {
+    if(name.text!.replacingOccurrences(of: " ", with: "") == ""){
+      continueButton.setTitle("Skip", for: .normal)
+    }
+    else{
+      continueButton.setTitle("Continue", for: .normal)
+    }
     
   }
   
