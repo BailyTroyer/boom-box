@@ -30,8 +30,8 @@ class Party {
   var host: Bool = false
   
 
-  let apiUrl = "https://41f1df47.ngrok.io"
-  //let apiUrl = "https://boom-box-beta.appspot.com"
+  //let apiUrl = "https://41f1df47.ngrok.io"
+  let apiUrl = "https://boom-box-beta.appspot.com"
   
   func getImage(completion: @escaping (_ repsonse: String) -> Void) {
     let headers: HTTPHeaders = [
@@ -135,7 +135,7 @@ class Party {
       if(response.response?.statusCode == 400){
         completion(nil)
       }
-      else {
+      else if(response.response?.statusCode == 200){
         completion(JSON(response.result.value!))
       }
     }

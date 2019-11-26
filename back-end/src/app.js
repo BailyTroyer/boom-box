@@ -4,7 +4,7 @@ import routes from './helpers/routes';
 import Mongo from './helpers/mongo'
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 Mongo.connect()
     .then(() => {
