@@ -13,6 +13,9 @@ class PartyCode: UIViewController {
   
   @IBOutlet weak var partyCode: UILabel!
   
+  @IBOutlet weak var loadingLabel: UILabel!
+  @IBOutlet weak var loader: UIActivityIndicatorView!
+  
   @IBOutlet weak var label1: UILabel!
   @IBOutlet weak var label2: UILabel!
   var continueButton: UIButton = UIButton()
@@ -30,6 +33,9 @@ class PartyCode: UIViewController {
     
     self.partyCode.text = uuid
     
+    self.loader.alpha = 0
+    self.loadingLabel.alpha = 0
+    
     let userInterfaceStyle = traitCollection.userInterfaceStyle
     print("STYLE: \(userInterfaceStyle)")
     
@@ -38,13 +44,11 @@ class PartyCode: UIViewController {
       self.label1.textColor = UIColor.white
       self.label2.textColor = UIColor.white
     }
-  }
-  
-  override func viewDidAppear(_ animated: Bool) {
-    continueButton = UIButton(frame: CGRect(x: 0, y: (self.view.frame.maxY - self.view.frame.maxY/6), width: (self.view.frame.maxX - self.view.frame.maxX/6), height: 50))
+    
+    continueButton = UIButton(frame: CGRect(x: 0, y: (self.view.frame.maxY - self.view.frame.maxY/8), width: (self.view.frame.maxX - self.view.frame.maxX/6), height: 50))
     
     // button text "sign in"
-    continueButton.setTitle("Continue", for: .normal)
+    continueButton.setTitle("Create Party", for: .normal)
     
     // add button target
     continueButton.addTarget(self, action: #selector(next_view), for: .touchUpInside)
@@ -66,13 +70,17 @@ class PartyCode: UIViewController {
     self.view.addSubview(continueButton)
     
     continueButton.bindToKeyboard()
-    //      self.name.becomeFirstResponder()
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    
+    
     
   }
   
   func randomString(length: Int) -> String {
 
-      let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+      let letters : NSString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
       let len = UInt32(letters.length)
 
       var randomString = ""
@@ -90,9 +98,22 @@ class PartyCode: UIViewController {
     // call createParty
     if(self.started){return}
     
+    
+    
+    UIView.animate(withDuration: 0.3, animations: {
+      self.loader.alpha = 1
+      self.loadingLabel.alpha = 1
+      self.continueButton.alpha = 0.3
+    })
+    
     Party.shared.createParty(completion: { response in
       
       self.started = true
+      
+      UIView.animate(withDuration: 0.3, animations: {
+        self.loader.alpha = 0
+        self.loadingLabel.alpha = 0
+      })
       
       if response {
         Party.shared.host = true
@@ -122,7 +143,7 @@ class PartyCode: UIViewController {
     self.present(alert, animated: true, completion: nil)
 
     // change to desired number of seconds (in this case 5 seconds)
-    let when = DispatchTime.now() + 1
+    let when = DispatchTime.now()
     DispatchQueue.main.asyncAfter(deadline: when){
       // your code with delay
       alert.dismiss(animated: true, completion: nil)

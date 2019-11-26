@@ -52,7 +52,7 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HAR-9c-d1Y">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Party Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HAR-9c-d1Y">
                                 <rect key="frame" x="0.66666666666665719" y="235" width="374" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="RqO-pU-4op"/>
@@ -142,20 +142,37 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="CfW-kr-pqE">
-                                <rect key="frame" x="178" y="472" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="CfW-kr-pqE">
+                                <rect key="frame" x="177" y="437" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="HKH-q8-Y7l"/>
+                                </constraints>
                             </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creating party..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZv-xR-An7">
+                                <rect key="frame" x="107" y="472" width="161" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="19" id="bIz-av-Jx1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="16"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="cZv-xR-An7" firstAttribute="top" secondItem="CfW-kr-pqE" secondAttribute="bottom" constant="15" id="2J8-18-ldX"/>
+                            <constraint firstItem="JqY-y3-ahf" firstAttribute="bottom" secondItem="cZv-xR-An7" secondAttribute="bottom" constant="287" id="5L7-kJ-LCr"/>
+                            <constraint firstItem="CfW-kr-pqE" firstAttribute="leading" secondItem="JqY-y3-ahf" secondAttribute="leading" constant="177" id="6wR-yr-ARq"/>
                             <constraint firstItem="1Nv-uk-wAZ" firstAttribute="top" secondItem="ULA-2y-eDO" secondAttribute="bottom" constant="8" id="Kh3-FY-07O"/>
+                            <constraint firstItem="cZv-xR-An7" firstAttribute="leading" secondItem="JqY-y3-ahf" secondAttribute="leading" constant="107" id="Qh0-pP-LsY"/>
+                            <constraint firstItem="CfW-kr-pqE" firstAttribute="centerX" secondItem="cZv-xR-An7" secondAttribute="centerX" id="RLp-cU-Rzk"/>
                             <constraint firstItem="IjD-xa-RQ4" firstAttribute="leading" secondItem="JqY-y3-ahf" secondAttribute="leading" constant="20" id="TpJ-34-4R5"/>
                             <constraint firstItem="IjD-xa-RQ4" firstAttribute="top" secondItem="JqY-y3-ahf" secondAttribute="top" id="Zrp-rk-LAO"/>
                             <constraint firstItem="ULA-2y-eDO" firstAttribute="centerX" secondItem="JqY-y3-ahf" secondAttribute="centerX" id="ahH-T2-Dag"/>
                             <constraint firstItem="zzu-Hk-R0t" firstAttribute="top" secondItem="ULA-2y-eDO" secondAttribute="bottom" constant="89" id="eyZ-Ma-hC7"/>
                             <constraint firstItem="qF6-ua-xtv" firstAttribute="top" secondItem="zzu-Hk-R0t" secondAttribute="bottom" constant="8" id="hU4-cl-Ymu"/>
                             <constraint firstItem="1Nv-uk-wAZ" firstAttribute="centerX" secondItem="JqY-y3-ahf" secondAttribute="centerX" id="hit-Wt-V13"/>
+                            <constraint firstItem="cZv-xR-An7" firstAttribute="centerX" secondItem="qF6-ua-xtv" secondAttribute="centerX" id="ppT-rV-A2i"/>
                             <constraint firstItem="ULA-2y-eDO" firstAttribute="top" secondItem="JqY-y3-ahf" secondAttribute="top" constant="76" id="smF-Xl-RCO"/>
                             <constraint firstItem="zzu-Hk-R0t" firstAttribute="centerX" secondItem="JqY-y3-ahf" secondAttribute="centerX" id="vG5-7r-cZY"/>
                             <constraint firstItem="qF6-ua-xtv" firstAttribute="centerX" secondItem="JqY-y3-ahf" secondAttribute="centerX" id="wEf-AD-oRb"/>
@@ -166,6 +183,8 @@
                     <connections>
                         <outlet property="label1" destination="ULA-2y-eDO" id="Yec-cg-e0f"/>
                         <outlet property="label2" destination="1Nv-uk-wAZ" id="bbq-ry-Ge6"/>
+                        <outlet property="loader" destination="CfW-kr-pqE" id="8B6-HP-BBN"/>
+                        <outlet property="loadingLabel" destination="cZv-xR-An7" id="8zG-K5-vTc"/>
                         <outlet property="partyCode" destination="zzu-Hk-R0t" id="pTe-90-gWY"/>
                         <segue destination="k6a-6h-Yfq" kind="modal" identifier="to_large_party" modalPresentationStyle="fullScreen" id="sRp-jc-r3u"/>
                         <segue destination="vG3-Ub-acf" kind="modal" identifier="to_small_party" modalPresentationStyle="fullScreen" id="bRQ-iI-1IM"/>

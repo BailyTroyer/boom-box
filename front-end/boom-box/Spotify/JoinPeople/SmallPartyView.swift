@@ -31,7 +31,8 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   var first: Bool = true
   
-  var messageLabel: UILabel!
+  var emptyMessageLabel: UILabel!
+  var emptyMessage: String = ""
   
   private let refreshControl = UIRefreshControl()
   
@@ -59,12 +60,27 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if(self.song_nominations.count == 0){
-      self.tableView.backgroundView = self.messageLabel
+      self.tableView.backgroundView = self.emptyMessageLabel
     }else{
       self.tableView.backgroundView = nil
     }
 
     return self.song_nominations.count
+  }
+  
+  func setBackgroundLabel(){
+    if(!Party.shared.partyStarted){
+      if(Party.shared.host){
+        self.emptyMessageLabel.text = "Oops... It looks like you need to start the music. Go to Spotify and start playing the '\(Party.shared.name!)' playlist!"
+      }
+      else{
+        self.emptyMessageLabel.text = "Oops... It looks like the host hasn't started the playlist!"
+      }
+      
+    }
+    else {
+      self.emptyMessageLabel.text = "There aren't any song suggestions up... You should make one!"
+    }
   }
   
   
@@ -137,22 +153,14 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     tableView.dataSource = self
     tableView.delegate = self
     
-    var message: String
-      
-    if(Party.shared.host && !Party.shared.partyStarted){
-      message = "You need to start the party, host! Go to Spotify on any of your devices, and start playing the '\(Party.shared.name!)' playlist!"
-    }
-    else {
-      message = "There aren't any song suggestions up... You should make one!"
-    }
     
-    let rect = CGRect(origin: CGPoint(x: 50,y :0), size: CGSize(width: tableView.bounds.size.width - 50, height: tableView.bounds.size.height))
-    messageLabel = UILabel(frame: rect)
-    messageLabel.text = message
-    messageLabel.numberOfLines = 0
-    messageLabel.textColor = UIColor.gray
-    messageLabel.textAlignment = .center;
-    messageLabel.sizeToFit()
+    
+    let rect = CGRect(origin: CGPoint(x: 80,y :0), size: CGSize(width: tableView.bounds.size.width - 80, height: tableView.bounds.size.height))
+    emptyMessageLabel = UILabel(frame: rect)
+    emptyMessageLabel.numberOfLines = 0
+    emptyMessageLabel.textColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+    emptyMessageLabel.textAlignment = .center;
+    //emptyMessageLabel.sizeToFit()
     
     partyCode.text = Party.shared.code
     
@@ -199,11 +207,13 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
       
       // sort nominations by votes
       Party.shared.partyStarted = data!["started"].boolValue
+      self.setBackgroundLabel()
+      
       let sortedNoms = data!["song_nominations"].arrayValue.sorted(by: {(a, b) in
         return a["votes"].int! > b["votes"].int!
       })
       if(!data!["song_nominations"].exists()){return}
-      if(sortedNoms == self.song_nominations && data!["guests"].arrayValue.count + 1 == Int(self.guestCount.text!) && !self.first){return}
+      if(sortedNoms == self.song_nominations && data!["guests"].arrayValue.count + 1 == Int(self.guestCount.text!) && !self.first && !Party.shared.partyStarted){return}
       
       UIView.animate(withDuration: 0.4, animations: {
         self.tableView.alpha = 0
