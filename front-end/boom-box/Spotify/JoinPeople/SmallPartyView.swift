@@ -336,6 +336,13 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     self.dataTimer.invalidate()
   }
   
+  func returnToMenu(){
+    if(Party.shared.createVC != nil){
+      Party.shared.createVC!.dismiss(animated: true, completion: nil)
+      Party.shared.createVC = nil
+    }
+  }
+  
   @IBAction func cops(_ sender: Any) {
     Party.shared.policeAlert(completion: { result in
       print("result")
@@ -348,9 +355,8 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     alert.addAction(UIAlertAction(title: "End party", style: .default, handler: { action in
       
-      Party.shared.leaveParty(completion: { success in
-      })
-      self.dismiss(animated: true, completion: nil)
+      Party.shared.leaveParty(completion: {_ in})
+      self.returnToMenu()
     }))
     
     alert.addAction(UIAlertAction(title: "Keep it going", style: .default, handler: {_ in}))
@@ -361,9 +367,8 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
       self.present(alert, animated: true)
     }
     else{
-      Party.shared.leaveParty(completion: { success in
-      })
-      self.dismiss(animated: true, completion: nil)
+      Party.shared.leaveParty(completion: {_ in})
+      self.returnToMenu()
     }
   }
 }

@@ -32,6 +32,12 @@ class NameView: UIViewController {
     for: UIControl.Event.editingChanged)
   }
   
+//  override func viewWillAppear(_ animated: Bool) {
+//    if(Party.shared.createVC == nil){
+//      self.dismiss(animated: true, completion: nil)
+//    }
+//  }
+  
   override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
       super.traitCollectionDidChange(previousTraitCollection)
 

@@ -25,6 +25,7 @@ class Party {
   var voteSongId: String?
   var searchString: String?
   var playlistId: String?
+  var createVC: PartyView? = nil
   
   var currentParty: String?
   var partyStarted: Bool = false
@@ -147,7 +148,7 @@ class Party {
   }
   
   func leaveParty(completion: @escaping (_ response: Bool) -> Void) {
-    
+  
     var endpoint: String
     
     if(code == nil) {

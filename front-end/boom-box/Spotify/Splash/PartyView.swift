@@ -22,6 +22,8 @@ class PartyView: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    Party.shared.createVC = self
+    
     let newPartyRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.newPartyAction))
     newParty.addGestureRecognizer(newPartyRecognizer)
     

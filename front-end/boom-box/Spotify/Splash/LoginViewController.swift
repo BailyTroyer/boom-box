@@ -40,7 +40,7 @@ class LogInViewController: UIViewController {
     
     title.font = customFont
     title.numberOfLines = 2
-    title.textColor = UIColor.white
+    title.textColor = UIColor.black
     self.view.addSubview(title)
     
     // ------ body ------
@@ -63,7 +63,7 @@ class LogInViewController: UIViewController {
     
     body.font = customBodyFont
     body.numberOfLines = 3
-    body.textColor = UIColor.white
+    body.textColor = UIColor.black
     self.view.addSubview(body)
       
       
