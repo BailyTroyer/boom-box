@@ -16,8 +16,9 @@ class PartyView: UIViewController {
   @IBOutlet weak var newParty: UIView!
   @IBOutlet weak var joinPeople: UIView!
   
-  var musicLoad:AnimationView = AnimationView(name: "music-load")
-  var dancing:AnimationView = AnimationView(name: "dancing")
+  var musicLoad: AnimationView = AnimationView(name: "music-load")
+  var dancing: AnimationView = AnimationView(name: "dancing")
+  var danceButton: UIButton = UIButton()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -33,7 +34,6 @@ class PartyView: UIViewController {
     musicLoad.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
     dancing.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
     
-    // label.center.y = view.center.y
     musicLoad.center.x = self.view.center.x
     dancing.center.x = self.view.center.x
     
@@ -43,8 +43,11 @@ class PartyView: UIViewController {
     musicLoad.contentMode = .scaleAspectFill
     dancing.contentMode = .scaleAspectFill
     
-    self.view.addSubview(musicLoad)
-    self.view.addSubview(dancing)
+    newParty.addSubview(musicLoad)
+  
+    danceButton.addSubview(dancing)
+    self.view.addSubview(danceButton)
+    
     musicLoad.play()
     dancing.play()
     
@@ -57,25 +60,17 @@ class PartyView: UIViewController {
     self.musicLoad.stop()
   }
     
-    override func viewWillAppear(_ animated: Bool) {
-        musicLoad.play()
-        dancing.play()
-    }
-  
-  override func viewDidAppear(_ animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     
-
+    musicLoad.play()
+    dancing.play()
   }
   
   @objc func newPartyAction(sender:UITapGestureRecognizer) {
-    
-    print("tap working")
     self.performSegue(withIdentifier: "new_party", sender: self)
   }
   
   @objc func joinPeopleAction(sender:UITapGestureRecognizer) {
-    
-    print("tap working")
     self.performSegue(withIdentifier: "join_people", sender: self)
   }
   

@@ -78,7 +78,7 @@
 		EB81434B236E37800047C22B /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		EB81435D236E3D920047C22B /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
 		EB81435F236E5CDC0047C22B /* JoinPeople.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = JoinPeople.storyboard; sourceTree = "<group>"; };
-		EB814361236E5EE00047C22B /* PartyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyView.swift; sourceTree = "<group>"; };
+		EB814361236E5EE00047C22B /* PartyView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = PartyView.swift; sourceTree = "<group>"; tabWidth = 2; };
 		EB814363236E682F0047C22B /* LoginViewController.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
 		EB814365236E7D3B0047C22B /* JoinPeople.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinPeople.swift; sourceTree = "<group>"; };
 		EB814368236E7FD20047C22B /* PartyModel.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = PartyModel.swift; sourceTree = "<group>"; tabWidth = 2; };

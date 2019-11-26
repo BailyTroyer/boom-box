@@ -68,7 +68,7 @@
                                 <rect key="frame" x="0.0" y="331" width="375" height="336"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Join People!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pTD-BZ-POi">
-                                        <rect key="frame" x="122" y="286.5" width="131" height="30"/>
+                                        <rect key="frame" x="122" y="252.5" width="131" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="131" id="6eX-79-q1x"/>
                                             <constraint firstAttribute="height" constant="30" id="FRG-IS-v7s"/>
@@ -80,7 +80,7 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="pTD-BZ-POi" secondAttribute="bottom" constant="19.5" id="1sM-Sz-POl"/>
+                                    <constraint firstAttribute="bottom" secondItem="pTD-BZ-POi" secondAttribute="bottom" constant="53.5" id="1sM-Sz-POl"/>
                                     <constraint firstItem="pTD-BZ-POi" firstAttribute="centerX" secondItem="WQN-rd-bYj" secondAttribute="centerX" id="WjY-r1-pp5"/>
                                 </constraints>
                             </view>
