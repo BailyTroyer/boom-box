@@ -32,6 +32,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let handled = SpotifyLogin.shared.applicationOpenURL(url) { _ in }
     return handled
   }
+    
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        print("APP WILL TERMINATE")
+        Party.shared.leaveParty(completion: {_ in})
+    }
+    
+    
   //
   //  // MARK: UISceneSession Lifecycle
   //

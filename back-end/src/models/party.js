@@ -54,9 +54,14 @@ class Party {
         const { party_code } = req.body
             
         const party = await Mongo.db.collection("parties").findOne({party_code: party_code})
+
+        if(!party) {
+            res.status(200).send("Party already over");
+            return
+        }
         
         for(let guest_id in party.guests){
-            Mongo.db.collection("users").updateOne({user_id: guest_id}, {party_code: null, host: false})
+            Mongo.db.collection("users").updateOne({user_id: guest_id}, {$set: {party_code: null, host: false}})
         }
 
         Mongo.db.collection("parties").deleteOne({party_code: party_code})
@@ -81,7 +86,8 @@ class Party {
         Mongo.db.collection("parties").insertOne({
             now_playing: songInfo,
             playlist: playlist,
-            party_code: party_code, 
+            party_code: party_code,
+            started: false,
             size: size, 
             name: name, 
             token: token, 

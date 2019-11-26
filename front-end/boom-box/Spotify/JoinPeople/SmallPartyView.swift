@@ -137,9 +137,18 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     tableView.dataSource = self
     tableView.delegate = self
     
+    var message: String
+      
+    if(Party.shared.host && !Party.shared.partyStarted){
+      message = "You need to start the party, host! Go to Spotify on any of your devices, and start playing the '\(Party.shared.name!)' playlist!"
+    }
+    else {
+      message = "There aren't any song suggestions up... You should make one!"
+    }
+    
     let rect = CGRect(origin: CGPoint(x: 50,y :0), size: CGSize(width: tableView.bounds.size.width - 50, height: tableView.bounds.size.height))
     messageLabel = UILabel(frame: rect)
-    messageLabel.text = "There aren't any song suggestions up... You should make one!"
+    messageLabel.text = message
     messageLabel.numberOfLines = 0
     messageLabel.textColor = UIColor.gray
     messageLabel.textAlignment = .center;
@@ -176,7 +185,8 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     Party.shared.getPartyInfo(completion: { data in
       
       if (data == nil) {
-        let alert = UIAlertController(title: "Looks like this party has ended :(", message: "Press the button to go back...", preferredStyle: .alert)
+        self.dataTimer.invalidate()
+        let alert = UIAlertController(title: "Looks like this party has ended :(", message: "Press Okay to go back...", preferredStyle: .alert)
 
         alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { action in
           self.exit(self)
@@ -188,6 +198,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
       }
       
       // sort nominations by votes
+      Party.shared.partyStarted = data!["started"].boolValue
       let sortedNoms = data!["song_nominations"].arrayValue.sorted(by: {(a, b) in
         return a["votes"].int! > b["votes"].int!
       })
@@ -323,10 +334,26 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   @IBAction func exit(_ sender: Any) {
     
-    Party.shared.leaveParty(completion: { success in
+    let alert = UIAlertController(title: "You're the host!", message: "Leaving the party will end it for everyone...", preferredStyle: .alert)
+
+    alert.addAction(UIAlertAction(title: "End party", style: .default, handler: { action in
       
-    })
+      Party.shared.leaveParty(completion: { success in
+      })
+      self.dismiss(animated: true, completion: nil)
+    }))
     
-    self.dismiss(animated: true, completion: nil)
+    alert.addAction(UIAlertAction(title: "Keep it going", style: .default, handler: {_ in}))
+
+    
+    // warn host if ending party
+    if(Party.shared.host){
+      self.present(alert, animated: true)
+    }
+    else{
+      Party.shared.leaveParty(completion: { success in
+      })
+      self.dismiss(animated: true, completion: nil)
+    }
   }
 }

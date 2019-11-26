@@ -177,8 +177,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Js34IE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gje-Am-cJQ">
-                                <rect key="frame" x="113" y="74" width="128" height="31.5"/>
-                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="24"/>
+                                <rect key="frame" x="113" y="77.5" width="128" height="25"/>
+                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="19"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -267,7 +267,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cdD-9L-DGx">
-                                <rect key="frame" x="26" y="217" width="363" height="520.5"/>
+                                <rect key="frame" x="26" y="194" width="363" height="546"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchResult" rowHeight="73" id="rb3-IN-Dab" customClass="SearchResultTableViewCell" customModule="BoomBox" customModuleProvider="target">
@@ -325,18 +325,18 @@
                                 </prototypes>
                             </tableView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search for a song..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2sb-sI-oaS">
-                                <rect key="frame" x="26" y="152" width="165.5" height="33"/>
+                                <rect key="frame" x="62" y="152" width="165.5" height="33"/>
                                 <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wrt-WB-lkv">
-                                <rect key="frame" x="350" y="157" width="31" height="23"/>
+                                <rect key="frame" x="326" y="157" width="31" height="23"/>
                                 <rect key="contentStretch" x="1" y="1" width="1" height="1"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="31" id="ZCW-Bw-SFZ"/>
                                 </constraints>
-                                <color key="tintColor" red="0.80949754740000002" green="0.56544923709999995" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="magnifyingglass" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
                                 </state>
@@ -363,17 +363,17 @@
                         <constraints>
                             <constraint firstItem="IjQ-Xn-KZX" firstAttribute="centerX" secondItem="DOq-Cr-b4k" secondAttribute="centerX" id="1f3-ir-V6E"/>
                             <constraint firstItem="wrt-WB-lkv" firstAttribute="top" secondItem="Sab-fP-wcW" secondAttribute="top" constant="157" id="4z4-bp-FCy"/>
-                            <constraint firstItem="Sab-fP-wcW" firstAttribute="bottom" secondItem="cdD-9L-DGx" secondAttribute="bottom" constant="70.5" id="Dgh-nI-DvQ"/>
-                            <constraint firstItem="cdD-9L-DGx" firstAttribute="top" secondItem="2sb-sI-oaS" secondAttribute="bottom" constant="32" id="JnR-fL-Pgb"/>
+                            <constraint firstItem="Sab-fP-wcW" firstAttribute="bottom" secondItem="cdD-9L-DGx" secondAttribute="bottom" constant="68" id="Dgh-nI-DvQ"/>
+                            <constraint firstItem="cdD-9L-DGx" firstAttribute="top" secondItem="2sb-sI-oaS" secondAttribute="bottom" constant="9" id="JnR-fL-Pgb"/>
                             <constraint firstItem="IjQ-Xn-KZX" firstAttribute="leading" secondItem="Sab-fP-wcW" secondAttribute="leading" constant="91" id="LEo-UH-OgE"/>
-                            <constraint firstItem="2sb-sI-oaS" firstAttribute="leading" secondItem="Sab-fP-wcW" secondAttribute="leading" constant="26" id="Nfq-qn-bMa"/>
+                            <constraint firstItem="2sb-sI-oaS" firstAttribute="leading" secondItem="Sab-fP-wcW" secondAttribute="leading" constant="62" id="Nfq-qn-bMa"/>
                             <constraint firstItem="GAn-w5-VO3" firstAttribute="top" secondItem="Sab-fP-wcW" secondAttribute="top" constant="20" id="TUt-Bi-ZNK"/>
                             <constraint firstItem="GAn-w5-VO3" firstAttribute="leading" secondItem="DOq-Cr-b4k" secondAttribute="leadingMargin" id="ZVM-Lh-Csm"/>
-                            <constraint firstItem="Sab-fP-wcW" firstAttribute="trailing" secondItem="wrt-WB-lkv" secondAttribute="trailing" constant="33" id="eQ6-U5-S1M"/>
+                            <constraint firstItem="Sab-fP-wcW" firstAttribute="trailing" secondItem="wrt-WB-lkv" secondAttribute="trailing" constant="57" id="eQ6-U5-S1M"/>
                             <constraint firstItem="IjQ-Xn-KZX" firstAttribute="top" secondItem="Sab-fP-wcW" secondAttribute="top" constant="71" id="gAF-Nk-dt6"/>
                             <constraint firstItem="2sb-sI-oaS" firstAttribute="top" secondItem="IjQ-Xn-KZX" secondAttribute="bottom" constant="54" id="jMa-i7-ZXs"/>
                             <constraint firstItem="IjQ-Xn-KZX" firstAttribute="centerX" secondItem="cdD-9L-DGx" secondAttribute="centerX" id="onX-ld-QgO"/>
-                            <constraint firstItem="2sb-sI-oaS" firstAttribute="leading" secondItem="cdD-9L-DGx" secondAttribute="leading" id="qd8-fO-jnb"/>
+                            <constraint firstItem="2sb-sI-oaS" firstAttribute="leading" secondItem="cdD-9L-DGx" secondAttribute="leading" constant="36" id="qd8-fO-jnb"/>
                             <constraint firstItem="wrt-WB-lkv" firstAttribute="centerY" secondItem="2sb-sI-oaS" secondAttribute="centerY" id="yrB-Lw-PkW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Sab-fP-wcW"/>

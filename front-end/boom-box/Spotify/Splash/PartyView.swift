@@ -27,17 +27,9 @@ class PartyView: UIViewController {
     
     let joinPeopleRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.joinPeopleAction))
     joinPeople.addGestureRecognizer(joinPeopleRecognizer)
-  }
-  
-  override func viewWillDisappear(_ animated: Bool) {
-    self.dancing.stop()
-    self.musicLoad.stop()
-  }
-  
-  override func viewDidAppear(_ animated: Bool) {
     
-    musicLoad.frame = CGRect(x: 0, y: 0, width: 225, height: 225)
-    dancing.frame = CGRect(x: 0, y: 0, width: 225, height: 225)
+    musicLoad.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+    dancing.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
     
     // label.center.y = view.center.y
     musicLoad.center.x = self.view.center.x
@@ -56,6 +48,21 @@ class PartyView: UIViewController {
     
     musicLoad.loopMode = .loop
     dancing.loopMode = .loop
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    self.dancing.stop()
+    self.musicLoad.stop()
+  }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        musicLoad.play()
+        dancing.play()
+    }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    
+
   }
   
   @objc func newPartyAction(sender:UITapGestureRecognizer) {

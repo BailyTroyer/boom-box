@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 import UIKit
 
-class StarterSong: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class StarterSong: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
   
   
   var continueButton: UIButton = UIButton()
@@ -32,41 +32,51 @@ class StarterSong: UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     searchResultsTable.dataSource = self
     searchResultsTable.delegate = self
+    searchInput.delegate = self
+    
+
+    
+    searchButton.alpha = 0.2
     
   }
   
   override func viewDidAppear(_ animated: Bool) {
-      continueButton = UIButton(frame: CGRect(x: 0, y: (self.view.frame.maxY - 64), width: (self.view.frame.maxX - self.view.frame.maxX/6), height: 50))
-      
-      // button text "sign in"
-      continueButton.setTitle("Continue", for: .normal)
-      
-      // add button target
-      continueButton.addTarget(self, action: #selector(next_view), for: .touchUpInside)
-      
-      // button color white
-      continueButton.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
-      
-      // center within view
-      continueButton.center.x = self.view.frame.midX
-      
-      // round button
-      continueButton.layer.cornerRadius = 10
-      // button.layer.borderWidth = 1
-      // button.layer.borderColor = UIColor.black.cgColor
-      
-      continueButton.setTitleColor(UIColor.white, for: .normal)
-      
-      // add button to view
-      self.view.addSubview(continueButton)
-      
-      continueButton.bindToKeyboard()
+    
+    continueButton = UIButton(frame: CGRect(x: 0, y: (self.view.frame.maxY - 64), width: (self.view.frame.maxX - self.view.frame.maxX/6), height: 50))
+    
+    // button text "sign in"
+    continueButton.setTitle("Continue", for: .normal)
+    
+    // add button target
+    continueButton.addTarget(self, action: #selector(next_view), for: .touchUpInside)
+    
+    // button color white
+    continueButton.backgroundColor = #colorLiteral(red: 0.6913432479, green: 0.2954210937, blue: 0.8822820783, alpha: 1)
+    
+    // center within view
+    continueButton.center.x = self.view.frame.midX
+    
+    // round button
+    continueButton.layer.cornerRadius = 10
+    // button.layer.borderWidth = 1
+    // button.layer.borderColor = UIColor.black.cgColor
+    
+    continueButton.setTitleColor(UIColor.white, for: .normal)
+    
+    // add button to view
+    self.view.addSubview(continueButton)
+    
+    continueButton.bindToKeyboard()
     
     searchButton.addTarget(self, action: #selector(doSearch), for: .touchUpInside)
+  
+    searchInput.addTarget(self, action: #selector(self.textFieldDidChange(_:)),
+                            for: UIControl.Event.editingChanged)
   }
   
   @objc func doSearch() {
-    if(self.searchInput.text == nil) {return}
+    if(self.searchInput.text == nil ||
+    self.searchInput.text == "") {return}
     
     Party.shared.searchString = self.searchInput.text!.replacingOccurrences(of: " ", with: "%20")
     self.link = nil
@@ -90,6 +100,25 @@ class StarterSong: UIViewController, UITableViewDelegate, UITableViewDataSource 
       })
   }
   
+  @objc func textFieldDidChange(_ textField: UITextField) {
+    if(searchInput.text == "" || self.searchInput.text == nil){
+      UIView.animate(withDuration: 0.3, animations: {
+        self.searchButton.alpha = 0.2
+      })
+    }
+    else {
+      UIView.animate(withDuration: 0.3, animations: {
+        self.searchButton.alpha = 1
+      })
+    }
+  }
+  
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    searchInput.resignFirstResponder()
+    self.doSearch()
+    return true
+  }
+  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return results.count
   }
@@ -99,6 +128,8 @@ class StarterSong: UIViewController, UITableViewDelegate, UITableViewDataSource 
     let songUrl = self.results[indexPath.row]["external_urls"]["spotify"].string!
     
     self.link = songUrl
+    
+    self.view.endEditing(true)
     
     UIView.animate(withDuration: 0.3, animations: {
       self.continueButton.alpha = 1
@@ -133,6 +164,10 @@ class StarterSong: UIViewController, UITableViewDelegate, UITableViewDataSource 
   }
   
   func fetchData() {
+    
+    self.results = []
+    self.searchResultsTable.reloadData()
+    
     Party.shared.getSearchResults(completion: { data in
       //print(data)
       self.results = data["tracks"]["items"].arrayValue
@@ -147,11 +182,6 @@ class StarterSong: UIViewController, UITableViewDelegate, UITableViewDataSource 
       self.performSegue(withIdentifier: "party_code", sender: self)
     }
   }
-//
-//  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//    self.view.endEditing(true)
-//    return true
-//  }
 
   
   @IBAction func back(_ sender: Any) {

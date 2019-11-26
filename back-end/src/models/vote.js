@@ -30,6 +30,7 @@ class Vote {
             json: true
         }
 
+        let partyStarted = false
         let addedSongToPlaylist = false;
         let prevProgress = 0;
         let lastActivity = new Date()
@@ -37,7 +38,7 @@ class Vote {
         let progressIntervalId = setInterval(async () => {
             if(addedSongToPlaylist) return
 
-            const party = await Mongo.db.collection("parties").findOne({'party_code': party_code})
+            const party = await Mongo.db.collection("parties").findOne({party_code: party_code})
             let elapsedMins = ((new Date() - lastActivity)/1000)/60
             if(!party){
                 clearInterval(progressIntervalId)
@@ -62,6 +63,12 @@ class Vote {
                 if(body.item.id !== party.now_playing.id || body.context.href !== party.playlist.href){
                     console.log(`Start playing - ${party.now_playing.name} - in the "${party.name}" playlist`)
                     return
+                }
+
+
+                if(!partyStarted){
+                    Mongo.db.collection("parties").updateOne({party_code: party_code}, {$set: {started: true}})
+                    partyStarted = true
                 }
                 
                 const progress = body.progress_ms

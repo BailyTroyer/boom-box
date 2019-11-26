@@ -50,7 +50,7 @@ class PartyCode: UIViewController {
     continueButton.addTarget(self, action: #selector(next_view), for: .touchUpInside)
     
     // button color white
-    continueButton.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+    continueButton.backgroundColor = #colorLiteral(red: 0.6913432479, green: 0.2954210937, blue: 0.8822820783, alpha: 1)
     
     // center within view
     continueButton.center.x = self.view.frame.midX

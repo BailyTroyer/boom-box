@@ -4,15 +4,11 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <array key="AirbnbCereal-Book.ttf">
             <string>AirbnbCerealApp-Book</string>
-        </array>
-        <array key="AirbnbCereal-ExtraBold.ttf">
-            <string>AirbnbCerealApp-ExtraBold</string>
         </array>
         <array key="AirbnbCereal-Light.ttf">
             <string>AirbnbCerealApp-Light</string>
@@ -52,6 +48,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="q4E-Li-0GO"/>
                                 </constraints>
+                                <color key="tintColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="close"/>
                                 <connections>
                                     <action selector="cancel:" destination="NMb-eO-bkc" eventType="touchUpInside" id="Wxy-vt-yba"/>
@@ -82,7 +79,7 @@
                                     <constraint firstAttribute="height" constant="29" id="3UM-ii-XdP"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="one-time-code"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -108,266 +105,8 @@
             </objects>
             <point key="canvasLocation" x="-662.31884057971024" y="0.0"/>
         </scene>
-        <!--Small Party View-->
-        <scene sceneID="PSB-0g-XuJ">
-            <objects>
-                <viewController id="2ot-ke-sG7" customClass="SmallPartyView" customModule="BoomBox" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="xIT-oL-2Bq">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0TS-Iq-dxf">
-                                <rect key="frame" x="0.0" y="192" width="414" height="704"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="songCard" rowHeight="125" id="xLp-Ir-uqn" customClass="SongCardTableViewCell" customModule="BoomBox" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="125"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xLp-Ir-uqn" id="r6f-Id-vjn">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="125"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3PB-oU-zOH" customClass="CardView" customModule="BoomBox" customModuleProvider="target">
-                                                    <rect key="frame" x="10" y="11" width="395" height="107"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="That really long song that nobody knows at all since it's two lines" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NfV-IS-8fD">
-                                                            <rect key="frame" x="69" y="23" width="250" height="66"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="66" id="2ub-9U-Tsg"/>
-                                                                <constraint firstAttribute="width" constant="250" id="VfZ-64-MZF"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="15"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="B7g-Wg-nqH">
-                                                            <rect key="frame" x="327" y="29" width="50" height="50"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="50" id="VEu-9v-bvT"/>
-                                                                <constraint firstAttribute="height" constant="49.999999999999091" id="x6v-1s-EXN"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6h1-Ku-quI">
-                                                            <rect key="frame" x="8" y="38" width="51" height="31"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="31" id="VXn-bj-tww"/>
-                                                            </constraints>
-                                                        </switch>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="NfV-IS-8fD" secondAttribute="bottom" constant="18" id="Bq9-aJ-VBf"/>
-                                                        <constraint firstItem="6h1-Ku-quI" firstAttribute="leading" secondItem="3PB-oU-zOH" secondAttribute="leading" constant="8" id="DMS-wA-ghq"/>
-                                                        <constraint firstItem="NfV-IS-8fD" firstAttribute="leading" secondItem="6h1-Ku-quI" secondAttribute="trailing" constant="12" id="J3H-x6-bgA"/>
-                                                        <constraint firstItem="6h1-Ku-quI" firstAttribute="top" secondItem="3PB-oU-zOH" secondAttribute="top" constant="38" id="KXl-CD-mkp"/>
-                                                        <constraint firstItem="B7g-Wg-nqH" firstAttribute="leading" secondItem="NfV-IS-8fD" secondAttribute="trailing" constant="8" id="Mjs-vm-Ded"/>
-                                                        <constraint firstItem="NfV-IS-8fD" firstAttribute="top" secondItem="3PB-oU-zOH" secondAttribute="top" constant="23" id="Ny9-zH-ZJY"/>
-                                                        <constraint firstItem="B7g-Wg-nqH" firstAttribute="top" secondItem="3PB-oU-zOH" secondAttribute="top" constant="29" id="QQc-ZQ-LXX"/>
-                                                        <constraint firstAttribute="height" constant="107" id="bLq-Ha-dPE"/>
-                                                        <constraint firstAttribute="trailing" secondItem="B7g-Wg-nqH" secondAttribute="trailing" constant="18" id="t6K-0g-YGU"/>
-                                                        <constraint firstAttribute="bottom" secondItem="6h1-Ku-quI" secondAttribute="bottom" constant="38" id="tjY-ex-KOc"/>
-                                                    </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                            <real key="value" value="0.10000000000000001"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="30"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="3PB-oU-zOH" secondAttribute="trailing" constant="9" id="HLh-IP-pVG"/>
-                                                <constraint firstItem="3PB-oU-zOH" firstAttribute="leading" secondItem="r6f-Id-vjn" secondAttribute="leading" constant="10" id="Km6-De-OVH"/>
-                                                <constraint firstAttribute="bottom" secondItem="3PB-oU-zOH" secondAttribute="bottom" constant="7" id="Q8w-b5-zcb"/>
-                                                <constraint firstItem="3PB-oU-zOH" firstAttribute="top" secondItem="r6f-Id-vjn" secondAttribute="top" constant="11" id="zBy-7H-UPS"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="songName" destination="NfV-IS-8fD" id="JpI-oI-sZk"/>
-                                            <outlet property="songSwitch" destination="6h1-Ku-quI" id="MTq-5a-j6s"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="qXb-zF-4Pe">
-                                <rect key="frame" x="157" y="50" width="100" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="99.999999999999091" id="bsI-LM-67q"/>
-                                    <constraint firstAttribute="width" constant="100" id="lDY-aS-Xfg"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Baily Troyer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="We9-VR-XjX">
-                                <rect key="frame" x="150" y="158" width="114.5" height="26"/>
-                                <fontDescription key="fontDescription" name="AirbnbCerealApp-ExtraBold" family="Airbnb Cereal App" pointSize="22"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vko-ST-Zld">
-                                <rect key="frame" x="26" y="44" width="48" height="48"/>
-                                <state key="normal" image="close"/>
-                                <connections>
-                                    <action selector="exit:" destination="2ot-ke-sG7" eventType="touchUpInside" id="UuD-Dl-Ehe"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="qXb-zF-4Pe" firstAttribute="top" secondItem="ZXK-dm-ezv" secondAttribute="top" constant="6" id="CFs-1W-i44"/>
-                            <constraint firstItem="Vko-ST-Zld" firstAttribute="top" secondItem="ZXK-dm-ezv" secondAttribute="top" id="GRa-8T-UmT"/>
-                            <constraint firstItem="Vko-ST-Zld" firstAttribute="leading" secondItem="ZXK-dm-ezv" secondAttribute="leading" constant="26" id="LTQ-sV-000"/>
-                            <constraint firstItem="We9-VR-XjX" firstAttribute="top" secondItem="qXb-zF-4Pe" secondAttribute="bottom" constant="8" id="M1B-TQ-sEF"/>
-                            <constraint firstItem="ZXK-dm-ezv" firstAttribute="trailing" secondItem="0TS-Iq-dxf" secondAttribute="trailing" id="eNN-bf-bVZ"/>
-                            <constraint firstItem="0TS-Iq-dxf" firstAttribute="leading" secondItem="ZXK-dm-ezv" secondAttribute="leading" id="hJo-OZ-I4P"/>
-                            <constraint firstItem="0TS-Iq-dxf" firstAttribute="top" secondItem="We9-VR-XjX" secondAttribute="bottom" constant="8" id="qnp-ss-jY1"/>
-                            <constraint firstItem="We9-VR-XjX" firstAttribute="centerX" secondItem="ZXK-dm-ezv" secondAttribute="centerX" id="tBq-yk-NUv"/>
-                            <constraint firstItem="0TS-Iq-dxf" firstAttribute="bottom" secondItem="ZXK-dm-ezv" secondAttribute="bottom" constant="34" id="xzo-Gm-3Kd"/>
-                            <constraint firstItem="qXb-zF-4Pe" firstAttribute="centerX" secondItem="ZXK-dm-ezv" secondAttribute="centerX" id="zKB-mh-LWV"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="ZXK-dm-ezv"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="55r-tE-eme"/>
-                    <connections>
-                        <outlet property="hostName" destination="We9-VR-XjX" id="Lyb-Fh-z2O"/>
-                        <outlet property="tableView" destination="0TS-Iq-dxf" id="yU9-Bu-jzt"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JiG-sz-YrJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="370" y="0.0"/>
-        </scene>
-        <!--Large Party View-->
-        <scene sceneID="olp-yC-MJ9">
-            <objects>
-                <viewController id="WCL-sc-5bq" customClass="LargePartyView" customModule="BoomBox" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="wgs-Wo-i2K">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="yIq-cC-Sni">
-                                <rect key="frame" x="145" y="51" width="125" height="125"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="124.99999999999909" id="SHK-Oo-9ha"/>
-                                    <constraint firstAttribute="width" constant="125" id="o8v-O2-eJB"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Baily Troyer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZV-Zb-pY8">
-                                <rect key="frame" x="150" y="192" width="114.5" height="26"/>
-                                <fontDescription key="fontDescription" name="AirbnbCerealApp-ExtraBold" family="Airbnb Cereal App" pointSize="22"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PRG-AY-N6f">
-                                <rect key="frame" x="0.0" y="234" width="414" height="662"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="mRV-Lf-x8o">
-                                    <size key="itemSize" width="180" height="180"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SongCell" id="YJz-ke-RpJ" customClass="SongCell" customModule="BoomBox" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="KHG-SK-R59">
-                                            <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="APs-CM-BIL" customClass="CardView" customModule="BoomBox" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="8" width="164" height="164"/>
-                                                    <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="drake" translatesAutoresizingMaskIntoConstraints="NO" id="Avy-el-g3t">
-                                                            <rect key="frame" x="0.0" y="0.0" width="164" height="99"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="166" id="fKm-TD-Wdb"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a long song can be" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRK-gk-Wia">
-                                                            <rect key="frame" x="8" y="107" width="158" height="41"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="41" id="KDv-BE-j8w"/>
-                                                                <constraint firstAttribute="width" constant="158" id="R1y-e2-a85"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" name="AirbnbCerealApp-Light" family="Airbnb Cereal App" pointSize="15"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                    <constraints>
-                                                        <constraint firstItem="tRK-gk-Wia" firstAttribute="leading" secondItem="APs-CM-BIL" secondAttribute="leading" constant="8" id="0kf-V7-FTY"/>
-                                                        <constraint firstItem="Avy-el-g3t" firstAttribute="leading" secondItem="APs-CM-BIL" secondAttribute="leading" id="8of-MW-b1M"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Avy-el-g3t" secondAttribute="trailing" id="SH1-aL-5dW"/>
-                                                        <constraint firstItem="tRK-gk-Wia" firstAttribute="top" secondItem="Avy-el-g3t" secondAttribute="bottom" constant="8" id="UNC-8H-drm"/>
-                                                        <constraint firstItem="Avy-el-g3t" firstAttribute="top" secondItem="APs-CM-BIL" secondAttribute="top" id="b32-Ff-j7y"/>
-                                                        <constraint firstAttribute="bottom" secondItem="tRK-gk-Wia" secondAttribute="bottom" constant="16" id="nKX-Tg-Wqi"/>
-                                                    </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="30"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                            <real key="value" value="0.10000000000000001"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="APs-CM-BIL" secondAttribute="bottom" constant="8" id="0RZ-NX-jrT"/>
-                                                <constraint firstAttribute="height" secondItem="APs-CM-BIL" secondAttribute="height" multiplier="1.09697" id="9v2-qB-LRS"/>
-                                                <constraint firstItem="APs-CM-BIL" firstAttribute="leading" secondItem="KHG-SK-R59" secondAttribute="leading" constant="8" id="PAI-bQ-nWf"/>
-                                                <constraint firstAttribute="trailing" secondItem="APs-CM-BIL" secondAttribute="trailing" constant="8" id="Wet-ef-eoX"/>
-                                                <constraint firstItem="APs-CM-BIL" firstAttribute="top" secondItem="KHG-SK-R59" secondAttribute="top" constant="8" id="qNf-RV-1ag"/>
-                                            </constraints>
-                                        </collectionViewCellContentView>
-                                        <size key="customSize" width="180" height="180"/>
-                                        <connections>
-                                            <outlet property="songImage" destination="Avy-el-g3t" id="mRB-WG-ZuS"/>
-                                            <outlet property="songTitle" destination="tRK-gk-Wia" id="wfj-vt-Kwv"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pmM-Vp-TC7">
-                                <rect key="frame" x="20" y="44" width="48" height="48"/>
-                                <state key="normal" image="close"/>
-                                <connections>
-                                    <action selector="exit:" destination="WCL-sc-5bq" eventType="touchUpInside" id="srp-Vv-M77"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="PRG-AY-N6f" firstAttribute="bottom" secondItem="1Hi-Jr-MUt" secondAttribute="bottom" constant="34" id="37g-1B-yl9"/>
-                            <constraint firstItem="pmM-Vp-TC7" firstAttribute="top" secondItem="1Hi-Jr-MUt" secondAttribute="top" id="8Mh-Bm-jNZ"/>
-                            <constraint firstItem="NZV-Zb-pY8" firstAttribute="centerX" secondItem="PRG-AY-N6f" secondAttribute="centerX" id="BFS-2T-fSD"/>
-                            <constraint firstItem="PRG-AY-N6f" firstAttribute="leading" secondItem="1Hi-Jr-MUt" secondAttribute="leading" id="Btx-DZ-PNb"/>
-                            <constraint firstItem="yIq-cC-Sni" firstAttribute="centerX" secondItem="1Hi-Jr-MUt" secondAttribute="centerX" id="Fg8-R8-dEa"/>
-                            <constraint firstItem="1Hi-Jr-MUt" firstAttribute="trailing" secondItem="PRG-AY-N6f" secondAttribute="trailing" id="IQE-RO-0EY"/>
-                            <constraint firstItem="NZV-Zb-pY8" firstAttribute="top" secondItem="yIq-cC-Sni" secondAttribute="bottom" constant="7.0000000000009095" id="KgC-Y0-5iX"/>
-                            <constraint firstItem="PRG-AY-N6f" firstAttribute="top" secondItem="NZV-Zb-pY8" secondAttribute="bottom" constant="16" id="Mcw-xi-hn2"/>
-                            <constraint firstItem="pmM-Vp-TC7" firstAttribute="leading" secondItem="1Hi-Jr-MUt" secondAttribute="leading" constant="20" id="aJP-W9-ujp"/>
-                            <constraint firstItem="NZV-Zb-pY8" firstAttribute="centerX" secondItem="1Hi-Jr-MUt" secondAttribute="centerX" id="mRO-oH-2OE"/>
-                            <constraint firstItem="yIq-cC-Sni" firstAttribute="top" secondItem="1Hi-Jr-MUt" secondAttribute="top" constant="16" id="oNz-2R-T8P"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="1Hi-Jr-MUt"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="NWN-Nh-jW2"/>
-                    <connections>
-                        <outlet property="collectionView" destination="PRG-AY-N6f" id="ipL-9M-VzL"/>
-                        <outlet property="profilePicture" destination="yIq-cC-Sni" id="xmZ-wW-J7H"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oo6-rZ-ipD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="992.75362318840587" y="-1.3392857142857142"/>
-        </scene>
     </scenes>
     <resources>
         <image name="close" width="24" height="24"/>
-        <image name="drake" width="1000" height="563"/>
-        <image name="profile" width="2363" height="3992"/>
     </resources>
 </document>

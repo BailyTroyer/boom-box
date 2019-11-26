@@ -27,6 +27,7 @@ class Party {
   var playlistId: String?
   
   var currentParty: String?
+  var partyStarted: Bool = false
   var host: Bool = false
   
 
@@ -144,6 +145,11 @@ class Party {
   func leaveParty(completion: @escaping (_ response: Bool) -> Void) {
     
     var endpoint: String
+    
+    if(code == nil) {
+      self.host = false
+      return
+    }
       
     let parameters: [String: Any] = [
       "party_code": code!,
@@ -162,7 +168,6 @@ class Party {
       
       self.code = nil
       self.host = false
-      
     }
   }
     
