@@ -27,12 +27,6 @@ class PartyCode: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    let uuid = randomString(length: 5)
-    self.uuid = uuid
-    Party.shared.code = uuid
-    
-    self.partyCode.text = uuid
-    
     self.loader.alpha = 0
     self.loadingLabel.alpha = 0
     
@@ -73,9 +67,16 @@ class PartyCode: UIViewController {
   }
   
   override func viewDidAppear(_ animated: Bool) {
-    
-    
-    
+    UIView.animate(withDuration: 0.3, animations: {
+      self.partyCode.alpha = 1
+    })
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    self.partyCode.alpha = 0
+    self.uuid = randomString(length: 5)
+    Party.shared.code = self.uuid
+    self.partyCode.text = uuid
   }
   
   func randomString(length: Int) -> String {

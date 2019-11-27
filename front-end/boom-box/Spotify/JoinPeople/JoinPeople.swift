@@ -28,9 +28,7 @@ class JoinPeople: UIViewController {
     let userInterfaceStyle = traitCollection.userInterfaceStyle
     
     if userInterfaceStyle == .dark { }
-  }
-  
-  override func viewDidAppear(_ animated: Bool) {
+    
     continueButton = UIButton(frame: CGRect(x: 0, y: (self.view.frame.maxY - self.view.frame.maxY/12), width: (self.view.frame.maxX - self.view.frame.maxX/6), height: 50))
     
     // button text "sign in"
@@ -57,8 +55,13 @@ class JoinPeople: UIViewController {
     
     continueButton.bindToKeyboard()
     self.code.becomeFirstResponder()
-    
   }
+    
+    override func viewWillAppear(_ animated: Bool) {
+      self.code.becomeFirstResponder()
+    }
+  
+
   
   @objc func next_view() {
     

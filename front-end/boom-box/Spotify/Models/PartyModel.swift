@@ -26,14 +26,13 @@ class Party {
   var searchString: String?
   var playlistId: String?
   var createVC: PartyView? = nil
-  
-  var currentParty: String?
+
   var partyStarted: Bool = false
   var host: Bool = false
   
 
-  //let apiUrl = "https://41f1df47.ngrok.io"
-  let apiUrl = "https://boom-box-beta.appspot.com"
+  let apiUrl = "https://d1d3a554.ngrok.io"
+  //let apiUrl = "https://boom-box-beta.appspot.com"
   
   func getImage(completion: @escaping (_ repsonse: String) -> Void) {
     let headers: HTTPHeaders = [
@@ -95,8 +94,16 @@ class Party {
   
   func createParty(completion: @escaping (_ response: Bool) -> Void) {
     
+    let formatter = DateFormatter()
+    formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.dateFormat = "MM-dd-yy HH:mm a"
+    formatter.amSymbol = "AM"
+    formatter.pmSymbol = "PM"
+    let dateString = formatter.string(from: Date())
+    
+    
     if(name == nil){
-      name = "BoomBox Party - \(code!)"
+      name = "BoomBox - \(code!)"
     }
     
     let parameters: [String: Any] = [
@@ -105,7 +112,8 @@ class Party {
       "name": name!,
       "token": token!,
       "starter_song": starter_song_link!,
-      "user_id": username!
+      "user_id": username!,
+      "time": dateString
     ]
     
     Alamofire.request("\(apiUrl)/party", method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseString { response in
@@ -173,6 +181,7 @@ class Party {
       
       self.code = nil
       self.host = false
+      self.name = nil
     }
   }
     

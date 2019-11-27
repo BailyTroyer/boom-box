@@ -1,6 +1,7 @@
 import Mongo from '../helpers/mongo';
 import Playback from './playback'
 import request from 'request-promise-native';
+import Party from './party'
 
 
 class Vote {
@@ -31,31 +32,37 @@ class Vote {
         }
 
         let partyStarted = false
-        let addedSongToPlaylist = false;
+        let waitingForNextSong = false;
         let prevProgress = 0;
         let lastActivity = new Date()
+        let totalMins;
+        const startTime = lastActivity
 
         let progressIntervalId = setInterval(async () => {
-            if(addedSongToPlaylist) return
-
             const party = await Mongo.db.collection("parties").findOne({party_code: party_code})
+
             let elapsedMins = ((new Date() - lastActivity)/1000)/60
+            totalMins = ((new Date() - startTime)/1000)/60
+
             if(!party){
                 clearInterval(progressIntervalId)
                 return;
             }
-            if(elapsedMins >= 20){
+            if(elapsedMins >= 20 || totalMins >= 60){
                 clearInterval(progressIntervalId)
                 Mongo.db.collection("parties").deleteOne({party_code: party_code})
                 return
             }
+            if(waitingForNextSong) return
+
             const songDuration = party.now_playing.duration_ms
 
+            
 
             request(playerInfoReq)
             .then(async (body) => {
                 // spotify is not open on any of the user's devices
-                if(!body){
+                if(!body || !body.context){
                     console.log("Cmon, at least open Spotify")
                     return
                 }
@@ -87,38 +94,29 @@ class Vote {
                     const party = await Mongo.db.collection("parties").findOne({'party_code': party_code})
                     const nominations = party.song_nominations
 
-                    // if no nominations are up
-                    if(nominations.length === 0) return
-
                     nominations.sort(sortByVotes)
-                    const nextSong = nominations[0]
-
+                    const nextSong = nominations[0] || party.fallback
                     console.log(`Next song: ${nextSong.name}`)
 
                     await Playback.addSongToPlaylist(nextSong, party.playlist.id, token)
-                    addedSongToPlaylist = true
+                    waitingForNextSong = true
 
                     // checking if new song has started playing
-                    lastActivity = new Date()
                     let nextIntervalId = setInterval(() => {
-                        let elapsedMins = ((new Date() - lastActivity)/1000)/60
-                        if(elapsedMins >= 20){
-                            clearInterval(nextIntervalId);
-                            clearInterval(progressIntervalId)
-                            Mongo.db.collection("parties").deleteOne({party_code: party_code})
-                            return;
-                        }
                         request(playerInfoReq)
                         .then((body) => {
-                            // the song has changed, stop waiting
-                            if(body.item.id !== party.now_playing.id){
-                                console.log("New song started")
+                            
+                            if(body.item.id === nextSong.id){
+                                // the song has changed, stop waiting
+                                console.log("Next song started")
                                 clearInterval(nextIntervalId);
                                 // update party info
                                 Mongo.db.collection("parties").updateOne({party_code: party_code}, {$set: {now_playing: nextSong}})
                                 Mongo.db.collection("parties").updateOne({party_code: party_code}, {$pull: {song_nominations: {id: nextSong.id}}})
 
-                                addedSongToPlaylist = false
+                                Party.setFallbackNomination(party_code, nextSong.id, token)
+
+                                waitingForNextSong = false
                             }
                         })
                         .catch(err => {console.log(err)})

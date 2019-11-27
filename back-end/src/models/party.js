@@ -74,11 +74,13 @@ class Party {
     }
 
     static async createParty(req, res){
-        const { party_code, size, name, token, starter_song, user_id } = req.body
+        const { party_code, size, name, token, starter_song, user_id, time } = req.body
+
+        const playlistName = `${name} - ${time}`
 
         const [songInfo, playlist] = await Promise.all([
             Playback.getSongInfo(starter_song, token),
-            createPartyPlaylist(name, user_id, token)
+            createPartyPlaylist(playlistName, user_id, token)
         ])
 
         await Playback.addSongToPlaylist(songInfo, playlist.id, token)
@@ -93,11 +95,14 @@ class Party {
             token: token, 
             song_nominations: [],
             guests: [],
+            fallback: {},
             cops: 0
         })
             .then(result => {
                 //start playing playlist
                 startParty(playlist.id, token);
+                Party.setFallbackNomination(party_code, songInfo.id, token)
+
                 res.status(200).send(playlist.id);
             })
             .catch(result => {
@@ -131,6 +136,29 @@ class Party {
             })
             .catch(result => {
                 res.status(400).send("You fucked up");
+            })
+    }
+
+    static async setFallbackNomination(party_code, seedSongId, token){
+        const options = {
+            uri: `https://api.spotify.com/v1/recommendations/?limit=1&seed_tracks=${seedSongId}`,
+            headers: {'Authorization': 'Bearer ' + token},
+        }
+
+        const recommendations = await request(options)
+            .then(body => body)
+            .catch(err => {
+                console.log(err)
+                return null
+        })
+
+        const songInfo = JSON.parse(recommendations).tracks[0]
+
+        Mongo.db.collection("parties").updateOne({party_code: party_code}, {$set: {fallback: songInfo}})
+            .then(result => {
+            })
+            .catch(err => {
+                console.log(err)
             })
     }
 
