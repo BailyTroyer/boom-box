@@ -38,9 +38,7 @@ class SongCardTableViewCell: UITableViewCell {
     
   @objc func onSwitchValueChanged(sender: UISwitch){
     
-    Party.shared.vote = sender.isOn
-    
-    Party.shared.voteSongId = songId;
+    Party.shared.voteForSong(vote: sender.isOn, songId: songId!, completion: {_ in })
     
     if(sender.isOn){
       self.votes.text = "\(Int(self.votes.text!)! + 1)";
@@ -48,8 +46,6 @@ class SongCardTableViewCell: UITableViewCell {
     else{
       self.votes.text = "\(Int(self.votes.text!)! - 1)";
     }
-    
-    Party.shared.voteForSong(completion: {_ in })
   }
   
   override func setSelected(_ selected: Bool, animated: Bool) {

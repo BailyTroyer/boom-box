@@ -63,7 +63,7 @@ class PartyCode: UIViewController {
     // add button to view
     self.view.addSubview(continueButton)
     
-    continueButton.bindToKeyboard()
+    //continueButton.bindToKeyboard()
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -125,6 +125,18 @@ class PartyCode: UIViewController {
           self.performSegue(withIdentifier: "to_small_party", sender: self)
         }
       } else {
+        // failed to create party
+        self.started = false
+        
+        let alert = UIAlertController(title: "Oh no!", message: "There was an issue creating your party... Our servers may be down.", preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+
+        self.present(alert, animated: true)
+        
+        UIView.animate(withDuration: 0.3, animations: {
+          self.continueButton.alpha = 1
+        })
         print("oh no!")
       }
     })

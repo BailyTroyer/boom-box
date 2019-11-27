@@ -26,12 +26,13 @@ class Party {
   var searchString: String?
   var playlistId: String?
   var createVC: PartyView? = nil
+    var voteHistory: [String] = []
 
   var partyStarted: Bool = false
   var host: Bool = false
   
 
-  let apiUrl = "https://d1d3a554.ngrok.io"
+  let apiUrl = "https://0ee690b4.ngrok.io"
   //let apiUrl = "https://boom-box-beta.appspot.com"
   
   func getImage(completion: @escaping (_ repsonse: String) -> Void) {
@@ -96,9 +97,7 @@ class Party {
     
     let formatter = DateFormatter()
     formatter.locale = Locale(identifier: "en_US_POSIX")
-    formatter.dateFormat = "MM-dd-yy HH:mm a"
-    formatter.amSymbol = "AM"
-    formatter.pmSymbol = "PM"
+    formatter.dateFormat = "MM-dd-yy"
     let dateString = formatter.string(from: Date())
     
     
@@ -125,7 +124,7 @@ class Party {
     self.host = true
   }
   
-  func joinParty(completion: @escaping (_ response: Bool) -> Void) {
+  func joinParty(completion: @escaping (_ response: Int) -> Void) {
     
     let parameters: [String: Any] = [
       "party_code": code!,
@@ -134,8 +133,10 @@ class Party {
     print("Joining party: \(code!)")
     
     Alamofire.request("\(apiUrl)/party/attendance", method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseString { response in
-      print(response)
-      completion(response.result.isSuccess)
+      if(response.response == nil){
+        completion(500)
+      }
+      completion(response.response!.statusCode)
       
     }
   }
@@ -182,16 +183,30 @@ class Party {
       self.code = nil
       self.host = false
       self.name = nil
+      self.voteHistory = []
     }
   }
     
-  func voteForSong(completion: @escaping (_ response: Bool) -> Void) {
+  func voteForSong(vote: Bool, songId: String, completion: @escaping (_ response: Bool) -> Void) {
+    
+    let index = self.voteHistory.firstIndex(of: songId)
+    
+    if(vote){
+      if index == nil {
+        self.voteHistory.append(songId)
+      }
+    }
+    else{
+      if index != nil {
+        self.voteHistory.remove(at: index!)
+      }
+    }
       
     let parameters: [String: Any] = [
       "party_code": code!,
       "user_id": username!,
-      "vote": vote!,
-      "song_id": voteSongId!
+      "vote": vote,
+      "song_id": songId
     ]
     
     Alamofire.request("\(apiUrl)/vote", method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseString { response in

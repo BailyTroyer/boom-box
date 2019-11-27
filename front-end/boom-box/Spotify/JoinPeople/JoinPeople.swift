@@ -18,17 +18,6 @@ class JoinPeople: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    code.addTarget(self, action: #selector(textFieldDidChange(_:)),
-                   for: UIControl.Event.editingChanged)
-  }
-  
-  override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-    super.traitCollectionDidChange(previousTraitCollection)
-    
-    let userInterfaceStyle = traitCollection.userInterfaceStyle
-    
-    if userInterfaceStyle == .dark { }
-    
     continueButton = UIButton(frame: CGRect(x: 0, y: (self.view.frame.maxY - self.view.frame.maxY/12), width: (self.view.frame.maxX - self.view.frame.maxX/6), height: 50))
     
     // button text "sign in"
@@ -54,7 +43,17 @@ class JoinPeople: UIViewController {
     self.view.addSubview(continueButton)
     
     continueButton.bindToKeyboard()
-    self.code.becomeFirstResponder()
+    
+    code.addTarget(self, action: #selector(textFieldDidChange(_:)),
+                   for: UIControl.Event.editingChanged)
+  }
+  
+  override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    super.traitCollectionDidChange(previousTraitCollection)
+    
+    let userInterfaceStyle = traitCollection.userInterfaceStyle
+    
+    if userInterfaceStyle == .dark { }
   }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,11 +65,32 @@ class JoinPeople: UIViewController {
   @objc func next_view() {
     
     Party.shared.code = self.code.text!.replacingOccurrences(of: " ", with: "")
-    Party.shared.joinParty(completion: { result in
-      if result {
+    
+    UIView.animate(withDuration: 0.3, animations: {
+        self.continueButton.alpha = 0.3
+    })
+    Party.shared.joinParty(completion: { code in
+      if code == 200 {
         self.performSegue(withIdentifier: "show_small_party", sender: self)
       } else {
-        print("oh no!")
+        
+        // failed to join party
+        var message: String!
+        
+        if(code == 404){
+            message = "It looks like that party doesn't exist... Did you type the code correctly?"
+        }
+        else{
+            message = "There was an issue joining the party... Our servers may be down."
+        }
+        
+        let alert = UIAlertController(title: "Oh no!", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true)
+        
+        UIView.animate(withDuration: 0.3, animations: {
+          self.continueButton.alpha = 1
+        })
       }
     })
   }

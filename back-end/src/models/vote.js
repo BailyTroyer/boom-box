@@ -33,7 +33,6 @@ class Vote {
 
         let partyStarted = false
         let waitingForNextSong = false;
-        let prevProgress = 0;
         let lastActivity = new Date()
         let totalMins;
         const startTime = lastActivity
@@ -51,6 +50,7 @@ class Vote {
             if(elapsedMins >= 20 || totalMins >= 60){
                 clearInterval(progressIntervalId)
                 Mongo.db.collection("parties").deleteOne({party_code: party_code})
+                console.log("PARTY OVER")
                 return
             }
             if(waitingForNextSong) return
@@ -71,24 +71,19 @@ class Vote {
                     console.log(`Start playing - ${party.now_playing.name} - in the "${party.name}" playlist`)
                     return
                 }
-
-
                 if(!partyStarted){
                     Mongo.db.collection("parties").updateOne({party_code: party_code}, {$set: {started: true}})
                     partyStarted = true
                 }
                 
                 const progress = body.progress_ms
-
-                if(progress != prevProgress){
-                    lastActivity = new Date()
-                }
-                prevProgress = progress
+                lastActivity = new Date()
+                
 
                 console.log(progress + ' / ' + songDuration)
                 
 
-                if(songDuration - progress < 10000){
+                if(songDuration - progress < 15000){
                     console.log("Last 10 seconds")
                     // add highest rated song to playlist
                     const party = await Mongo.db.collection("parties").findOne({'party_code': party_code})
@@ -107,9 +102,11 @@ class Vote {
                         .then((body) => {
                             
                             if(body.item.id === nextSong.id){
-                                // the song has changed, stop waiting
+                                // the next song has started
                                 console.log("Next song started")
                                 clearInterval(nextIntervalId);
+
+                                lastActivity = new Date()
                                 // update party info
                                 Mongo.db.collection("parties").updateOne({party_code: party_code}, {$set: {now_playing: nextSong}})
                                 Mongo.db.collection("parties").updateOne({party_code: party_code}, {$pull: {song_nominations: {id: nextSong.id}}})
@@ -119,7 +116,12 @@ class Vote {
                                 waitingForNextSong = false
                             }
                         })
-                        .catch(err => {console.log(err)})
+                        .catch(err => {
+                            console.log(err)
+                            clearInterval(nextIntervalId);
+                            clearInterval(progressIntervalId);
+
+                        })
                     }, 2000)
                 }
             })
