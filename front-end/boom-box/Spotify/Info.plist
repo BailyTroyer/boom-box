@@ -22,7 +22,6 @@
 	<string>1.0</string>
 	<key>CFBundleURLTypes</key>
 	<array>
-		<string>com.spotify.SwiftLoginSample-1</string>
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
@@ -59,5 +58,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Can we use your bluetooth to look for nearby parties?</string>
 </dict>
 </plist>

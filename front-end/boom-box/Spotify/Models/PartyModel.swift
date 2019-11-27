@@ -26,6 +26,7 @@ class Party {
   var searchString: String?
   var playlistId: String?
   var createVC: PartyView? = nil
+  var voteHistory: [String] = []
   
   var currentParty: String?
   var partyStarted: Bool = false
@@ -176,13 +177,26 @@ class Party {
     }
   }
     
-  func voteForSong(completion: @escaping (_ response: Bool) -> Void) {
+  func voteForSong(vote: Bool, songId: String, completion: @escaping (_ response: Bool) -> Void) {
+    
+    let index = self.voteHistory.firstIndex(of: songId)
+    
+    if(vote){
+      if index == nil {
+        self.voteHistory.append(songId)
+      }
+    }
+    else{
+      if index != nil {
+        self.voteHistory.remove(at: index!)
+      }
+    }
       
     let parameters: [String: Any] = [
       "party_code": code!,
       "user_id": username!,
-      "vote": vote!,
-      "song_id": voteSongId!
+      "vote": vote,
+      "song_id": songId
     ]
     
     Alamofire.request("\(apiUrl)/vote", method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseString { response in

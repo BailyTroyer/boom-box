@@ -23,11 +23,15 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   @IBOutlet weak var nominate: UIButton!
   @IBOutlet weak var exit: UIButton!
   
+  let nearby = Nearby()
+  
   var partyName: String!
   
   var dataTimer: Timer!
   
   var song_nominations: [JSON] = []
+  
+  var userVotes: [String] = []
   
   var first: Bool = true
   
@@ -93,7 +97,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     table.setSelected(true, animated: false)
     
-    if(Party.shared.voteSongId == song["id"].string && Party.shared.vote!){
+    if(Party.shared.voteHistory.contains(song["id"].stringValue)){
       table.songSwitch.isOn = true
     }
     else{
@@ -212,12 +216,13 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
       let sortedNoms = data!["song_nominations"].arrayValue.sorted(by: {(a, b) in
         return a["votes"].int! > b["votes"].int!
       })
-      if(!data!["song_nominations"].exists()){return}
-      if(sortedNoms == self.song_nominations && data!["guests"].arrayValue.count + 1 == Int(self.guestCount.text!) && !self.first || !Party.shared.partyStarted){return}
-      
-      UIView.animate(withDuration: 0.4, animations: {
-        self.tableView.alpha = 0
-       })
+      if(!data!["song_nominations"].exists() && !self.first || !Party.shared.partyStarted){
+        return
+      }
+//
+//      UIView.animate(withDuration: 0.4, animations: {
+//        self.tableView.alpha = 0
+//       })
       
       self.song_nominations = sortedNoms
       
@@ -229,12 +234,20 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
           let data = try? Data(contentsOf: url) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
           DispatchQueue.main.async {
             
-            self.nowPlayingPic.image = UIImage(data: data!)
-            
-            UIView.animate(withDuration: 0.3, animations: {
-              self.nowPlayingPic.alpha = 1
-            })
-            
+            if(self.nowPlayingPic.image != UIImage(data: data!)){
+              self.nowPlayingPic.image = UIImage(data: data!)
+              
+              UIView.animate(
+                withDuration: 0.2,
+                animations: {self.nowPlayingPic.alpha = 0},
+                completion: {_ in
+                  UIView.animate(
+                    withDuration: 0.3,
+                    animations: {self.nowPlayingPic.alpha = 1}
+                  )
+                }
+              )
+            }
           }
         }
       }
@@ -243,7 +256,10 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.tableView.alpha = 1
        })
       self.first = false
-      self.tableView.reloadData()
+      
+      if(sortedNoms != self.song_nominations){
+        self.tableView.reloadData()
+      }
     })
   }
   
@@ -313,6 +329,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   override func viewDidAppear(_ animated: Bool) {
     self.tableView.reloadData()
+    nearby.advertise()
     
     if(Party.shared.host){
       let alert = UIAlertController(title: "Start playing the music!", message: "Open Spotify on any of your devices and start playing the '\(Party.shared.name!)' playlist.", preferredStyle: .alert)

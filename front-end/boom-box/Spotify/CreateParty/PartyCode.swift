@@ -72,12 +72,6 @@ class PartyCode: UIViewController {
     continueButton.bindToKeyboard()
   }
   
-  override func viewDidAppear(_ animated: Bool) {
-    
-    
-    
-  }
-  
   func randomString(length: Int) -> String {
 
       let letters : NSString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"

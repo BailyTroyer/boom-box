@@ -110,7 +110,7 @@ class Party {
     }
 
     static async nominateSong(req, res){
-        const { party_code, song_url, token } = req.body
+        const { party_code, song_url, token, user_id } = req.body
 
         const [songInfo, party] = await Promise.all([
             Playback.getSongInfo(song_url, token),
@@ -118,6 +118,7 @@ class Party {
         ])
 
         songInfo.votes = 0 // add key to object
+        songInfo.nominatedBy = user_id
 
         // if the song is already in the nominations
         if(party.song_nominations.find(song => song.id === songInfo.id)){

@@ -59,7 +59,7 @@
                                     <constraint firstAttribute="width" constant="374" id="YnR-Li-Rse"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <textInputTraits key="textInputTraits" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -287,18 +287,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Starter Song" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oee-nC-0nD">
-                                <rect key="frame" x="103" y="109" width="168" height="27"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="26.5" id="ljA-71-gce"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Starter Song" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oee-nC-0nD">
+                                <rect key="frame" x="103" y="109" width="168" height="28.666666666666657"/>
                                 <fontDescription key="fontDescription" name="AirbnbCerealApp-Light" family="Airbnb Cereal App" pointSize="22"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search for a song to start the party with!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tNb-rC-JYx">
-                                <rect key="frame" x="43.666666666666657" y="167.66666666666666" width="288" height="19"/>
-                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="16"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -310,19 +301,20 @@
                                     <action selector="back:" destination="dAX-fp-wiQ" eventType="touchUpInside" id="WeN-c4-2HQ"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search for a song..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yyo-o2-MOs">
-                                <rect key="frame" x="46" y="202.66666666666666" width="225" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search for a song to start with..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yyo-o2-MOs">
+                                <rect key="frame" x="46" y="164" width="246" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="ifo-Qd-tiT"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="search"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NE6-PB-u0C">
-                                <rect key="frame" x="300" y="209.66666666666666" width="31" height="23"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NE6-PB-u0C">
+                                <rect key="frame" x="297" y="168.66666666666663" width="31" height="23"/>
                                 <rect key="contentStretch" x="1" y="1" width="1" height="1"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="31" id="M2t-Ww-Eon"/>
+                                    <constraint firstAttribute="width" constant="31" id="gN7-mN-bAz"/>
                                 </constraints>
                                 <color key="tintColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="magnifyingglass" catalog="system">
@@ -330,7 +322,7 @@
                                 </state>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="w3k-hB-9ny">
-                                <rect key="frame" x="25" y="241.66666666666666" width="324" height="437.33333333333337"/>
+                                <rect key="frame" x="25" y="203" width="324" height="476"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchResult" rowHeight="73" id="jhT-h7-okE" customClass="SearchResultTableViewCell" customModule="BoomBox" customModuleProvider="target">
@@ -388,20 +380,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="NE6-PB-u0C" firstAttribute="leading" secondItem="Yyo-o2-MOs" secondAttribute="trailing" constant="29" id="0a9-px-goH"/>
-                            <constraint firstItem="w3k-hB-9ny" firstAttribute="centerX" secondItem="tNb-rC-JYx" secondAttribute="centerX" constant="-0.66666666666665719" id="3gN-H6-bXW"/>
-                            <constraint firstItem="Oee-nC-0nD" firstAttribute="top" secondItem="snO-Fh-Rmc" secondAttribute="top" constant="65" id="5mE-uD-Gjv"/>
-                            <constraint firstItem="Yyo-o2-MOs" firstAttribute="top" secondItem="tNb-rC-JYx" secondAttribute="bottom" constant="16" id="9rR-wy-lMI"/>
-                            <constraint firstItem="snO-Fh-Rmc" firstAttribute="trailing" secondItem="NE6-PB-u0C" secondAttribute="trailing" constant="44" id="GEB-fo-jTL"/>
+                            <constraint firstItem="w3k-hB-9ny" firstAttribute="top" secondItem="NE6-PB-u0C" secondAttribute="bottom" constant="9.666666666666714" id="9d2-WD-j9o"/>
+                            <constraint firstItem="snO-Fh-Rmc" firstAttribute="trailing" secondItem="NE6-PB-u0C" secondAttribute="trailing" constant="47" id="CwV-Sa-gRt"/>
                             <constraint firstItem="Yyo-o2-MOs" firstAttribute="leading" secondItem="snO-Fh-Rmc" secondAttribute="leading" constant="46" id="O6H-FZ-v5g"/>
-                            <constraint firstItem="NE6-PB-u0C" firstAttribute="centerY" secondItem="Yyo-o2-MOs" secondAttribute="centerY" constant="1.5" id="PIH-QS-28G"/>
+                            <constraint firstItem="NE6-PB-u0C" firstAttribute="leading" secondItem="Yyo-o2-MOs" secondAttribute="trailing" constant="5" id="OyU-US-1hN"/>
                             <constraint firstItem="w3k-hB-9ny" firstAttribute="leading" secondItem="Yyo-o2-MOs" secondAttribute="leading" constant="-21" id="TJ8-fZ-nqO"/>
+                            <constraint firstItem="Yyo-o2-MOs" firstAttribute="top" secondItem="Oee-nC-0nD" secondAttribute="bottom" constant="26.333333333333343" id="Y1F-SP-2EI"/>
                             <constraint firstItem="w3k-hB-9ny" firstAttribute="centerX" secondItem="AT4-XE-3sP" secondAttribute="centerX" constant="-0.5" id="YV3-KE-Vfz"/>
+                            <constraint firstItem="NE6-PB-u0C" firstAttribute="top" secondItem="snO-Fh-Rmc" secondAttribute="top" constant="124.66666666666663" id="Zmx-7l-vMt"/>
+                            <constraint firstItem="Oee-nC-0nD" firstAttribute="leading" secondItem="snO-Fh-Rmc" secondAttribute="leading" constant="103" id="b8b-0i-e7n"/>
+                            <constraint firstItem="Oee-nC-0nD" firstAttribute="centerX" secondItem="w3k-hB-9ny" secondAttribute="centerX" id="bg8-ST-mB7"/>
+                            <constraint firstItem="Oee-nC-0nD" firstAttribute="top" secondItem="snO-Fh-Rmc" secondAttribute="top" constant="65" id="ezI-VO-gsS"/>
                             <constraint firstItem="PSK-c3-Xll" firstAttribute="top" secondItem="snO-Fh-Rmc" secondAttribute="top" id="hS2-Mq-1zd"/>
-                            <constraint firstItem="tNb-rC-JYx" firstAttribute="top" secondItem="Oee-nC-0nD" secondAttribute="bottom" constant="32" id="nxC-zI-ChS"/>
+                            <constraint firstItem="NE6-PB-u0C" firstAttribute="centerY" secondItem="Yyo-o2-MOs" secondAttribute="centerY" id="r1W-Jn-KV6"/>
                             <constraint firstItem="snO-Fh-Rmc" firstAttribute="bottom" secondItem="w3k-hB-9ny" secondAttribute="bottom" constant="99" id="v5U-Za-M33"/>
                             <constraint firstItem="PSK-c3-Xll" firstAttribute="leading" secondItem="AT4-XE-3sP" secondAttribute="leadingMargin" id="vbf-P7-mmk"/>
-                            <constraint firstItem="tNb-rC-JYx" firstAttribute="centerX" secondItem="Oee-nC-0nD" secondAttribute="centerX" id="wop-fi-UVF"/>
                             <constraint firstItem="w3k-hB-9ny" firstAttribute="top" secondItem="Yyo-o2-MOs" secondAttribute="bottom" constant="5" id="yRX-Ll-cv5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="snO-Fh-Rmc"/>

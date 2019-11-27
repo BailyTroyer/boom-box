@@ -13,6 +13,7 @@
 		4D10D35D23774ED600E86EFD /* music-load.json in Resources */ = {isa = PBXBuildFile; fileRef = 4D10D35A23774ED600E86EFD /* music-load.json */; };
 		980F1735238A9E9500316481 /* NominateSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980F1734238A9E9500316481 /* NominateSong.swift */; };
 		981F74DA238A4CCA00025E00 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981F74D9238A4CCA00025E00 /* SearchResultTableViewCell.swift */; };
+		98F7E1D9238DDD8500EBF658 /* NearbyParties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F7E1D8238DDD8500EBF658 /* NearbyParties.swift */; };
 		EB50067C236EA8210067979E /* NumberPeople.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB50067B236EA8210067979E /* NumberPeople.swift */; };
 		EB50067E236EAB2B0067979E /* SmallParty.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB50067D236EAB2B0067979E /* SmallParty.storyboard */; };
 		EB500680236EAB370067979E /* LargeParty.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB50067F236EAB370067979E /* LargeParty.storyboard */; };
@@ -55,11 +56,12 @@
 		63995E4BA735DF84013D26AE /* Pods-Spotify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spotify.release.xcconfig"; path = "Target Support Files/Pods-Spotify/Pods-Spotify.release.xcconfig"; sourceTree = "<group>"; };
 		980F1734238A9E9500316481 /* NominateSong.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = NominateSong.swift; sourceTree = "<group>"; tabWidth = 2; };
 		981F74D9238A4CCA00025E00 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; tabWidth = 2; };
+		98F7E1D8238DDD8500EBF658 /* NearbyParties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyParties.swift; sourceTree = "<group>"; };
 		EB50067B236EA8210067979E /* NumberPeople.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPeople.swift; sourceTree = "<group>"; };
 		EB50067D236EAB2B0067979E /* SmallParty.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SmallParty.storyboard; sourceTree = "<group>"; };
 		EB50067F236EAB370067979E /* LargeParty.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LargeParty.storyboard; sourceTree = "<group>"; };
 		EB8142FE236E03400047C22B /* BoomBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoomBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		EB814301236E03400047C22B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EB814301236E03400047C22B /* AppDelegate.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; tabWidth = 2; };
 		EB814303236E03400047C22B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		EB814305236E03400047C22B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EB81430A236E03410047C22B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,7 +82,7 @@
 		EB81435F236E5CDC0047C22B /* JoinPeople.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = JoinPeople.storyboard; sourceTree = "<group>"; };
 		EB814361236E5EE00047C22B /* PartyView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = PartyView.swift; sourceTree = "<group>"; tabWidth = 2; };
 		EB814363236E682F0047C22B /* LoginViewController.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
-		EB814365236E7D3B0047C22B /* JoinPeople.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinPeople.swift; sourceTree = "<group>"; };
+		EB814365236E7D3B0047C22B /* JoinPeople.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = JoinPeople.swift; sourceTree = "<group>"; tabWidth = 2; };
 		EB814368236E7FD20047C22B /* PartyModel.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = PartyModel.swift; sourceTree = "<group>"; tabWidth = 2; };
 		EB81436A236E85FF0047C22B /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		EB81436C236E87C40047C22B /* SongCardTableViewCell.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = SongCardTableViewCell.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 			children = (
 				EB814368236E7FD20047C22B /* PartyModel.swift */,
 				EBB8329F236ED21900AC581A /* TextFieldBulletinTag.swift */,
+				98F7E1D8238DDD8500EBF658 /* NearbyParties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				EB814362236E5EE00047C22B /* PartyView.swift in Sources */,
 				EB814343236E24D90047C22B /* Extensions.swift in Sources */,
 				EB81436F236E89600047C22B /* SmallPartyView.swift in Sources */,
+				98F7E1D9238DDD8500EBF658 /* NearbyParties.swift in Sources */,
 				EB814373236E93710047C22B /* LargePartyView.swift in Sources */,
 				980F1735238A9E9500316481 /* NominateSong.swift in Sources */,
 				EB814345236E26AA0047C22B /* PartyCode.swift in Sources */,

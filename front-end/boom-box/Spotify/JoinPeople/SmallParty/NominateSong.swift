@@ -28,13 +28,19 @@ class NominateSong: UIViewController, UITableViewDelegate, UITableViewDataSource
     super.viewDidLoad()
     
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     
     searchResultsTable.dataSource = self
     searchResultsTable.delegate = self
     searchInput.delegate = self
     
-    continueButton = UIButton(frame: CGRect(x: 0, y: (self.view.frame.maxY - self.view.frame.maxY/6), width: (self.view.frame.maxX - self.view.frame.maxX/6), height: 50))
+    searchButton.alpha = 0.2
+    
+
+    
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    continueButton = UIButton(frame: CGRect(x: 0, y: (self.view.frame.maxY - self.view.frame.maxY/8), width: (self.view.frame.maxX - self.view.frame.maxX/6), height: 50))
     
     // button text "sign in"
     continueButton.setTitle("Nominate Song", for: .normal)
@@ -55,18 +61,15 @@ class NominateSong: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     continueButton.setTitleColor(UIColor.white, for: .normal)
     
-    searchButton.alpha = 0.2
+    continueButton.alpha = 0
     
     // add button to view
     self.view.addSubview(continueButton)
     
     continueButton.bindToKeyboard()
+    self.searchInput.becomeFirstResponder()
     
-  }
-  
-  override func viewDidAppear(_ animated: Bool) {
     searchButton.addTarget(self, action: #selector(doSearch), for: .touchUpInside)
-    
     searchInput.addTarget(self, action: #selector(self.textFieldDidChange(_:)),
                             for: UIControl.Event.editingChanged)
   }
@@ -91,10 +94,8 @@ class NominateSong: UIViewController, UITableViewDelegate, UITableViewDataSource
       })
   }
   
-  @objc func keyboardWillHide(notification: NSNotification) {
-      UIView.animate(withDuration: 0.3, animations: {
-        self.continueButton.alpha = 1
-      })
+  func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    self.searchInput.resignFirstResponder()
   }
   
   @objc func textFieldDidChange(_ textField: UITextField) {
@@ -111,6 +112,9 @@ class NominateSong: UIViewController, UITableViewDelegate, UITableViewDataSource
   }
   
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    if(searchInput.text! == ""){
+      return false
+    }
     searchInput.resignFirstResponder()
     self.doSearch()
     return true

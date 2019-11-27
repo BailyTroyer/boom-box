@@ -10,16 +10,19 @@ import Foundation
 import UIKit
 
 class JoinPeople: UIViewController {
-  
+
   @IBOutlet weak var code: UITextField!
   
-  var continueButton: UIButton = UIButton()
+  var continueButton = UIButton()
   
+  let nearby = Nearby()
+
   override func viewDidLoad() {
     super.viewDidLoad()
     
     code.addTarget(self, action: #selector(textFieldDidChange(_:)),
                    for: UIControl.Event.editingChanged)
+    nearby.scan()
   }
   
   override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
