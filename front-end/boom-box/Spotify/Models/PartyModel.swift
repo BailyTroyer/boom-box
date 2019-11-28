@@ -102,7 +102,7 @@ class Party {
     
     
     if(name == nil){
-      name = "BoomBox - \(code!)"
+      name = "BoomBox"
     }
     
     let parameters: [String: Any] = [

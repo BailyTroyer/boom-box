@@ -44,6 +44,7 @@ class Vote {
             totalMins = ((new Date() - startTime)/1000)/60
 
             if(!party){
+                console.log("No Party in DB... ending loop")
                 clearInterval(progressIntervalId)
                 return;
             }
@@ -62,12 +63,16 @@ class Vote {
             request(playerInfoReq)
             .then(async (body) => {
                 // spotify is not open on any of the user's devices
-                if(!body || !body.context){
+                if(!body){
                     console.log("Cmon, at least open Spotify")
                     return
                 }
                 // the user hasnt started the party playlist
-                if(body.item.id !== party.now_playing.id || body.context.href !== party.playlist.href){
+                if(!body.item){
+                    console.log("Probably playing ad...")
+                    return
+                }
+                if(!body.context || body.item.id !== party.now_playing.id || body.context.href !== party.playlist.href){
                     console.log(`Start playing - ${party.now_playing.name} - in the "${party.name}" playlist`)
                     return
                 }
@@ -80,7 +85,7 @@ class Vote {
                 lastActivity = new Date()
                 
 
-                console.log(progress + ' / ' + songDuration)
+                // console.log(progress + ' / ' + songDuration)
                 
 
                 if(songDuration - progress < 15000){
@@ -101,6 +106,10 @@ class Vote {
                         request(playerInfoReq)
                         .then((body) => {
                             
+                            if(!body.item){
+                                console.log("Probably playing ad...")
+                                return
+                            }
                             if(body.item.id === nextSong.id){
                                 // the next song has started
                                 console.log("Next song started")
@@ -125,7 +134,11 @@ class Vote {
                     }, 2000)
                 }
             })
-            .catch(err => {console.log(err)})
+            .catch(err => {
+                console.log(err)
+                clearInterval(nextIntervalId);
+                clearInterval(progressIntervalId);
+            })
         }, 8000)
     }
 }

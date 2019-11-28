@@ -112,7 +112,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
           table.profilePicture.image = UIImage(data: data!)
           
           UIView.animate(withDuration: 0.3, animations: {
-            table.profilePicture.alpha = 0.6
+            table.profilePicture.alpha = 0.5
           })
         }
       }

@@ -48,7 +48,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="q4E-Li-0GO"/>
                                 </constraints>
-                                <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="close"/>
                                 <connections>
                                     <action selector="cancel:" destination="NMb-eO-bkc" eventType="touchUpInside" id="Wxy-vt-yba"/>
@@ -72,7 +72,7 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Code" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0a0-Vh-ZXC">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Party Code" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0a0-Vh-ZXC">
                                 <rect key="frame" x="69" y="235" width="276" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="276" id="2yH-RE-jB9"/>
