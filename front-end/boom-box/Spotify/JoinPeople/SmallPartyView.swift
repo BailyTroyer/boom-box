@@ -153,17 +153,23 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     tableView.dataSource = self
     tableView.delegate = self
     
+
     
     
-    let rect = CGRect(origin: CGPoint(x: 200,y :0), size: CGSize(width: tableView.bounds.size.width - 200, height: tableView.bounds.size.height))
+    
+    let rect = CGRect(origin: CGPoint(x: 400,y :0), size: CGSize(width: tableView.bounds.size.width - 400, height: tableView.bounds.size.height))
     emptyMessageLabel = UILabel(frame: rect)
     emptyMessageLabel.numberOfLines = 0
-    emptyMessageLabel.textColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+    emptyMessageLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
     emptyMessageLabel.textAlignment = .center;
     //emptyMessageLabel.sizeToFit()
     
     partyCode.text = Party.shared.code
     
+    
+    let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+    nowPlayingPic.isUserInteractionEnabled = true
+    nowPlayingPic.addGestureRecognizer(tapGestureRecognizer)
     nowPlayingPic.layer.masksToBounds = false
     nowPlayingPic.layer.cornerRadius = nowPlayingPic.frame.size.width / 8
     nowPlayingPic.clipsToBounds = true
@@ -175,10 +181,25 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     tableView.refreshControl = refreshControl
     
     refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+    refreshControl.tintColor = UIColor.white
+    
     
     self.dataTimer = Timer.scheduledTimer(withTimeInterval: 8.0, repeats: true) { timer in
       self.fetchData()
     }
+  }
+  
+  @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+  {
+    let tappedImage = tapGestureRecognizer.view as! UIImageView
+    
+    if(tappedImage.alpha == 1){
+      UIView.animate(withDuration: 0.3, animations: {self.nowPlayingPic.alpha = 0.1})
+    }else{
+      UIView.animate(withDuration: 0.3, animations: {self.nowPlayingPic.alpha = 1})
+    }
+      
+      // Your action
   }
   
   @objc private func refreshData(_ sender: Any) {

@@ -19,6 +19,8 @@ class NominateSong: UIViewController, UITableViewDelegate, UITableViewDataSource
   @IBOutlet weak var searchButton: UIButton!
   @IBOutlet weak var searchResultsTable: UITableView!
   
+  let cardBackground = UIView()
+  
   var results: [JSON] = []
   
   
@@ -34,9 +36,9 @@ class NominateSong: UIViewController, UITableViewDelegate, UITableViewDataSource
     searchInput.delegate = self
     
     searchButton.alpha = 0.2
+    searchResultsTable.separatorColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
     
-
-    
+    cardBackground.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -141,6 +143,8 @@ class NominateSong: UIViewController, UITableViewDelegate, UITableViewDataSource
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell =  searchResultsTable.dequeueReusableCell(withIdentifier: "searchResult", for: indexPath) as! SearchResultTableViewCell
     
+    cell.selectedBackgroundView = self.cardBackground
+    
     let song = results[indexPath.row]
     
     cell.songTitle.text = song["name"].string!
@@ -148,15 +152,17 @@ class NominateSong: UIViewController, UITableViewDelegate, UITableViewDataSource
     cell.songUrl = song["external_urls"]["spotify"].string!
     
     cell.songArt.alpha = 0
-    if let url = URL(string: song["album"]["images"][2]["url"].string!) {
-      DispatchQueue.global().async {
-        let data = try? Data(contentsOf: url) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-        DispatchQueue.main.async {
-          cell.songArt.image = UIImage(data: data!)
-          
-          UIView.animate(withDuration: 0.3, animations: {
-            cell.songArt.alpha = 1
-          })
+    if let urlString = song["album"]["images"][2]["url"].string {
+      if let url = URL(string: urlString) {
+        DispatchQueue.global().async {
+          let data = try? Data(contentsOf: url) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+          DispatchQueue.main.async {
+            cell.songArt.image = UIImage(data: data!)
+            
+            UIView.animate(withDuration: 0.3, animations: {
+              cell.songArt.alpha = 1
+            })
+          }
         }
       }
     }

@@ -74,14 +74,14 @@ class PartyCode: UIViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     self.partyCode.alpha = 0
-    self.uuid = randomString(length: 5)
+    self.uuid = randomString(length: 6)
     Party.shared.code = self.uuid
     self.partyCode.text = uuid
   }
   
   func randomString(length: Int) -> String {
 
-      let letters : NSString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+      let letters : NSString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
       let len = UInt32(letters.length)
 
       var randomString = ""

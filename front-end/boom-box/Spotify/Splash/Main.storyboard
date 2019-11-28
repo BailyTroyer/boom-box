@@ -19,7 +19,7 @@
                     <view key="view" contentMode="scaleToFill" id="hBW-Wv-OIj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <viewLayoutGuide key="safeArea" id="bnO-ci-cBr"/>
                     </view>
                     <navigationItem key="navigationItem" id="wOG-Vl-ZNq"/>

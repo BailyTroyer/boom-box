@@ -60,7 +60,7 @@
                                     <constraint firstAttribute="width" constant="276" id="Kfe-jd-4r3"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="AirbnbCerealApp-Light" family="Airbnb Cereal App" pointSize="22"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's the party code?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PIx-sY-EBR">
@@ -69,7 +69,7 @@
                                     <constraint firstAttribute="height" constant="19" id="VCq-ae-bo1"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="16"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Party Code" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0a0-Vh-ZXC">
@@ -78,16 +78,23 @@
                                     <constraint firstAttribute="width" constant="276" id="2yH-RE-jB9"/>
                                     <constraint firstAttribute="height" constant="29" id="3UM-ii-XdP"/>
                                 </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="one-time-code"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="continue" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="one-time-code"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="PIx-sY-EBR" firstAttribute="centerX" secondItem="D2T-bB-U49" secondAttribute="centerX" id="9ok-5y-nuK"/>
                             <constraint firstItem="oj0-jH-GmY" firstAttribute="leading" secondItem="D2T-bB-U49" secondAttribute="leading" constant="20" id="AeD-VU-gYx"/>
                             <constraint firstItem="fqz-ea-oKq" firstAttribute="top" secondItem="D2T-bB-U49" secondAttribute="top" constant="74" id="Dcm-eo-Uec"/>
-                            <constraint firstItem="0a0-Vh-ZXC" firstAttribute="centerX" secondItem="D2T-bB-U49" secondAttribute="centerX" id="Iri-zm-AlG"/>
+                            <constraint firstItem="0a0-Vh-ZXC" firstAttribute="centerX" secondItem="D2T-bB-U49" secondAttribute="centerX" id="Iri-zm-AlG">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                                        <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
                             <constraint firstItem="0a0-Vh-ZXC" firstAttribute="top" secondItem="PIx-sY-EBR" secondAttribute="bottom" constant="48" id="Nhg-ra-4wz"/>
                             <constraint firstItem="PIx-sY-EBR" firstAttribute="top" secondItem="fqz-ea-oKq" secondAttribute="bottom" constant="24" id="hKv-cA-aU0"/>
                             <constraint firstItem="fqz-ea-oKq" firstAttribute="centerX" secondItem="D2T-bB-U49" secondAttribute="centerX" id="lhH-Pe-gXW"/>

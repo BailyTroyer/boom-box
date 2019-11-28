@@ -40,7 +40,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's get started" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gyl-P2-I1Y">
                                 <rect key="frame" x="107" y="120" width="161" height="26"/>
                                 <fontDescription key="fontDescription" name="AirbnbCerealApp-Light" family="Airbnb Cereal App" pointSize="22"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's the name of your party?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgu-HI-wqZ">
@@ -49,7 +49,7 @@
                                     <constraint firstAttribute="height" constant="19" id="5N7-z2-UEK"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="16"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Party Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HAR-9c-d1Y">
@@ -59,10 +59,15 @@
                                     <constraint firstAttribute="width" constant="374" id="YnR-Li-Rse"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <textInputTraits key="textInputTraits" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                                        <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="7Ag-tL-YMY" firstAttribute="leading" secondItem="XhH-Fg-68J" secondAttribute="leading" constant="20" id="6GK-KP-S5s"/>
                             <constraint firstItem="dgu-HI-wqZ" firstAttribute="top" secondItem="gyl-P2-I1Y" secondAttribute="bottom" constant="22" id="DnO-Yl-Yg1"/>
@@ -110,7 +115,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Here's your party code!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ULA-2y-eDO">
                                 <rect key="frame" x="72" y="120" width="231" height="26"/>
                                 <fontDescription key="fontDescription" name="AirbnbCerealApp-Light" family="Airbnb Cereal App" pointSize="22"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzu-Hk-R0t">
@@ -118,8 +123,8 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="374" id="gnd-tN-d7F"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Medium" family="Airbnb Cereal App" pointSize="30"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Medium" family="Airbnb Cereal App" pointSize="32"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qF6-ua-xtv">
@@ -140,7 +145,7 @@
                                     <constraint firstAttribute="height" constant="19" id="TrN-qe-14i"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="16"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="CfW-kr-pqE">
@@ -148,6 +153,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="HKH-q8-Y7l"/>
                                 </constraints>
+                                <color key="color" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creating party..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZv-xR-An7">
                                 <rect key="frame" x="107" y="472" width="161" height="19"/>
@@ -159,7 +165,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="cZv-xR-An7" firstAttribute="top" secondItem="CfW-kr-pqE" secondAttribute="bottom" constant="15" id="2J8-18-ldX"/>
                             <constraint firstItem="JqY-y3-ahf" firstAttribute="bottom" secondItem="cZv-xR-An7" secondAttribute="bottom" constant="287" id="5L7-kJ-LCr"/>
@@ -290,7 +296,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Starter Song" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zds-HI-eAs">
                                 <rect key="frame" x="103" y="109" width="168" height="28.666666666666657"/>
                                 <fontDescription key="fontDescription" name="AirbnbCerealApp-Light" family="Airbnb Cereal App" pointSize="22"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AyK-gy-n3j">
@@ -308,10 +314,15 @@
                                 </constraints>
                                 <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="search"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                                        <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cjg-Qd-vva" userLabel="Search Button">
-                                <rect key="frame" x="297" y="168.66666666666663" width="31" height="23"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cjg-Qd-vva" userLabel="Search Button">
+                                <rect key="frame" x="297" y="166.66666666666666" width="31" height="23"/>
                                 <rect key="contentStretch" x="1" y="1" width="1" height="1"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="31" id="YHy-AN-KIA"/>
@@ -323,9 +334,9 @@
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="I81-z5-xdR">
                                 <rect key="frame" x="25" y="203" width="324" height="476"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchResult" rowHeight="73" id="VJl-Vk-TjF" customClass="SearchResultTableViewCell" customModule="BoomBox" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="searchResult" rowHeight="73" id="VJl-Vk-TjF" customClass="SearchResultTableViewCell" customModule="BoomBox" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="324" height="73"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VJl-Vk-TjF" id="JXn-pt-vrc">
@@ -338,13 +349,13 @@
                                                         <constraint firstAttribute="height" constant="21" id="GjO-iP-pHr"/>
                                                         <constraint firstAttribute="width" constant="266" id="cOd-zU-niG"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                                    <color key="textColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drake" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXb-Ey-QrY">
                                                     <rect key="frame" x="83" y="37" width="226" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="13"/>
                                                     <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -369,6 +380,7 @@
                                                 <constraint firstItem="vf6-Ra-psl" firstAttribute="trailing" secondItem="JXn-pt-vrc" secondAttribute="trailingMargin" id="qg7-dC-fad"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                         <connections>
                                             <outlet property="songArt" destination="oV1-aO-CJT" id="aKP-vy-TQ7"/>
                                             <outlet property="songArtist" destination="IXb-Ey-QrY" id="wAu-Hm-aKc"/>
@@ -378,10 +390,10 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="I81-z5-xdR" firstAttribute="centerX" secondItem="wl6-Gh-Axq" secondAttribute="centerX" constant="-0.5" id="1E2-J3-Jhq"/>
-                            <constraint firstItem="Cjg-Qd-vva" firstAttribute="centerY" secondItem="944-yI-I8r" secondAttribute="centerY" id="1iV-Xg-Ww3"/>
+                            <constraint firstItem="Cjg-Qd-vva" firstAttribute="centerY" secondItem="944-yI-I8r" secondAttribute="centerY" constant="-2.8333333333333712" id="1iV-Xg-Ww3"/>
                             <constraint firstItem="Zds-HI-eAs" firstAttribute="leading" secondItem="Xuz-ef-cOZ" secondAttribute="leading" constant="103" id="3CH-Th-pw6"/>
                             <constraint firstItem="Zds-HI-eAs" firstAttribute="top" secondItem="Xuz-ef-cOZ" secondAttribute="top" constant="65" id="3Pa-ev-THo"/>
                             <constraint firstItem="I81-z5-xdR" firstAttribute="top" secondItem="944-yI-I8r" secondAttribute="bottom" constant="5" id="846-eb-bon"/>
@@ -391,10 +403,10 @@
                             <constraint firstItem="I81-z5-xdR" firstAttribute="leading" secondItem="944-yI-I8r" secondAttribute="leading" constant="-21" id="LFD-DM-LWV"/>
                             <constraint firstItem="AyK-gy-n3j" firstAttribute="top" secondItem="Xuz-ef-cOZ" secondAttribute="top" id="Njr-4J-LIV"/>
                             <constraint firstItem="AyK-gy-n3j" firstAttribute="leading" secondItem="wl6-Gh-Axq" secondAttribute="leadingMargin" id="QXg-Pp-GqY"/>
-                            <constraint firstItem="I81-z5-xdR" firstAttribute="top" secondItem="Cjg-Qd-vva" secondAttribute="bottom" constant="9.666666666666714" id="gwd-DJ-ooo"/>
+                            <constraint firstItem="I81-z5-xdR" firstAttribute="top" secondItem="Cjg-Qd-vva" secondAttribute="bottom" constant="13.333333333333371" id="gwd-DJ-ooo"/>
                             <constraint firstItem="Zds-HI-eAs" firstAttribute="centerX" secondItem="I81-z5-xdR" secondAttribute="centerX" id="h5w-gS-UFd"/>
                             <constraint firstItem="944-yI-I8r" firstAttribute="leading" secondItem="Xuz-ef-cOZ" secondAttribute="leading" constant="46" id="qzo-7K-dcS"/>
-                            <constraint firstItem="Cjg-Qd-vva" firstAttribute="top" secondItem="Xuz-ef-cOZ" secondAttribute="top" constant="124.66666666666663" id="wHF-CG-4Ph"/>
+                            <constraint firstItem="Cjg-Qd-vva" firstAttribute="top" secondItem="Xuz-ef-cOZ" secondAttribute="top" constant="122.66666666666663" id="wHF-CG-4Ph"/>
                             <constraint firstItem="Cjg-Qd-vva" firstAttribute="leading" secondItem="944-yI-I8r" secondAttribute="trailing" constant="5" id="yjP-wm-E60"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Xuz-ef-cOZ"/>
