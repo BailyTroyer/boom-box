@@ -32,8 +32,8 @@ class Party {
   var host: Bool = false
   
 
-  let apiUrl = "https://acc31429.ngrok.io"
-  //let apiUrl = "https://boom-box-beta.appspot.com"
+  //let apiUrl = "https://acc31429.ngrok.io"
+  let apiUrl = "https://boom-box-beta.appspot.com"
   
   func getImage(completion: @escaping (_ repsonse: String) -> Void) {
     let headers: HTTPHeaders = [
