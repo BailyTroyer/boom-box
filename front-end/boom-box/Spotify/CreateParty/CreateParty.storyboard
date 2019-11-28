@@ -31,7 +31,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="xzE-Mj-zhF"/>
                                 </constraints>
-                                <color key="tintColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="close"/>
                                 <connections>
                                     <action selector="cancel:" destination="Mqt-EG-5gB" eventType="touchUpInside" id="9dY-Hy-yOe"/>
@@ -106,7 +106,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="1h8-E0-HF1"/>
                                 </constraints>
-                                <color key="tintColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="left"/>
                                 <connections>
                                     <action selector="back:" destination="FZM-4X-uah" eventType="touchUpInside" id="hcJ-fj-kD7"/>
@@ -133,7 +133,7 @@
                                     <constraint firstAttribute="width" constant="129" id="8B5-ep-xZX"/>
                                     <constraint firstAttribute="height" constant="30" id="Ph1-4P-W7H"/>
                                 </constraints>
-                                <color key="tintColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Copy to Clipboard!"/>
                                 <connections>
                                     <action selector="copyClipBoard:" destination="FZM-4X-uah" eventType="touchUpInside" id="CqE-EM-7cQ"/>
@@ -301,7 +301,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AyK-gy-n3j">
                                 <rect key="frame" x="16" y="44" width="36" height="36"/>
-                                <color key="tintColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="left"/>
                                 <connections>
                                     <action selector="back:" destination="dAX-fp-wiQ" eventType="touchUpInside" id="HMh-9G-4th"/>
@@ -327,7 +327,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="31" id="YHy-AN-KIA"/>
                                 </constraints>
-                                <color key="tintColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="magnifyingglass" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
                                 </state>

@@ -50,7 +50,7 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B5K-2s-BSf">
                                         <rect key="frame" x="16" y="52" width="24" height="24"/>
-                                        <color key="tintColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" image="close"/>
                                         <connections>
                                             <action selector="exit:" destination="VdB-dr-3J7" eventType="touchUpInside" id="RmH-NA-78m"/>
@@ -74,11 +74,11 @@
                                             <constraint firstAttribute="height" constant="30" id="FRG-IS-v7s"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="AirbnbCerealApp-Medium" family="Airbnb Cereal App" pointSize="23"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="pTD-BZ-POi" secondAttribute="bottom" constant="53.5" id="1sM-Sz-POl"/>
                                     <constraint firstItem="pTD-BZ-POi" firstAttribute="centerX" secondItem="WQN-rd-bYj" secondAttribute="centerX" id="WjY-r1-pp5"/>

@@ -51,17 +51,14 @@ class NominateSong: UIViewController, UITableViewDelegate, UITableViewDataSource
     continueButton.addTarget(self, action: #selector(next_view), for: .touchUpInside)
     
     // button color white
-    continueButton.backgroundColor = #colorLiteral(red: 0.6913432479, green: 0.2954210937, blue: 0.8822820783, alpha: 1)
+    continueButton.backgroundColor = #colorLiteral(red: 1, green: 0.8729196191, blue: 0.03638987988, alpha: 1)
+    continueButton.setTitleColor(#colorLiteral(red: 0.1612424775, green: 0.1719595896, blue: 0.1890429046, alpha: 1), for: .normal)
     
     // center within view
     continueButton.center.x = self.view.frame.midX
     
     // round button
     continueButton.layer.cornerRadius = 10
-    // button.layer.borderWidth = 1
-    // button.layer.borderColor = UIColor.black.cgColor
-    
-    continueButton.setTitleColor(UIColor.white, for: .normal)
     
     continueButton.alpha = 0
     
