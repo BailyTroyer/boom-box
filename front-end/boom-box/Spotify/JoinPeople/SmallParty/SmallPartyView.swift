@@ -61,72 +61,85 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if(self.song_nominations.count == 0){
-      self.tableView.backgroundView = self.emptyMessageLabel
-    }else{
-      self.tableView.backgroundView = nil
-    }
+    self.setBackgroundLabel()
+    //self.tableView.backgroundView = self.emptyMessageLabel
+//    if(self.song_nominations.count == 0){
+//      self.tableView.backgroundView = self.emptyMessageLabel
+//    }else{
+//      self.tableView.backgroundView = nil
+//    }
 
     return self.song_nominations.count
   }
   
   func setBackgroundLabel(){
-    if(!Party.shared.partyStarted){
-      if(Party.shared.host){
-        self.emptyMessageLabel.text = "Oops... You need to start the music!\n\nGo to Spotify and start playing the '\(Party.shared.name!)' playlist!"
+    var message: String
+    if(self.song_nominations.count == 0){
+      if(!Party.shared.partyStarted){
+        if(Party.shared.host){
+          message = "Oops... You need to start the music!\n\nGo to Spotify and start playing the \n'\(Party.shared.name!)' playlist!"
+        }
+        else{
+          message = "Oops... It looks like the host hasn't started the playlist!"
+        }
+        
       }
-      else{
-        self.emptyMessageLabel.text = "Oops... It looks like the host hasn't started the playlist!"
+      else {
+        message = "There aren't any song nominations up...\n\n\nTap to add a song!"
       }
-      
     }
-    else {
-      self.emptyMessageLabel.text = "There aren't any song nominations up...\n\nYou should add a song!"
+    else{
+      message = "\n\n\nTap to add a song!"
     }
+    
+    let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: message)
+    attributedString.setColor(color: #colorLiteral(red: 0.4755314086, green: 0.3991935802, blue: 0.01888621333, alpha: 1), forText: "add a song!")
+    attributedString.setColor(color: #colorLiteral(red: 0.4755314086, green: 0.3991935802, blue: 0.01888621333, alpha: 1), forText: "'\(Party.shared.name!)'")
+    emptyMessageLabel.attributedText = attributedString
   }
   
   
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if(indexPath.row > self.song_nominations.count - 1){return UITableViewCell()}
-    let table =  tableView.dequeueReusableCell(withIdentifier: "songCard", for: indexPath) as! SongCardTableViewCell
+    let cell =  tableView.dequeueReusableCell(withIdentifier: "songCard", for: indexPath) as! SongCardTableViewCell
     
     let song = song_nominations[indexPath.row]
     
-    table.setSelected(true, animated: false)
+    cell.setSelected(true, animated: false)
     
     if(Party.shared.voteHistory.contains(song["id"].stringValue)){
-      table.songSwitch.isOn = true
+      cell.songSwitch.isOn = true
     }
     else{
-      table.songSwitch.isOn = false
+      cell.songSwitch.isOn = false
     }
     
-    table.songName.text = "\(song["name"].string!) - \(song["artists"][0]["name"].string!)"
-    table.songId = song["id"].string!
-    table.votes.text = "\(song["votes"].int!)"
+    cell.artistName.text = song["artists"][0]["name"].string!
+    cell.songName.text = song["name"].string!
+    cell.songId = song["id"].string!
+    cell.votes.text = "\(song["votes"].int!)"
     
-    table.profilePicture.alpha = 0
+    cell.profilePicture.alpha = 0
+    
     if let url = URL(string: song["album"]["images"][0]["url"].string!) {
       DispatchQueue.global().async {
         let data = try? Data(contentsOf: url) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
         DispatchQueue.main.async {
-          table.profilePicture.image = UIImage(data: data!)
+          cell.profilePicture.image = UIImage(data: data!)
           
           UIView.animate(withDuration: 0.3, animations: {
-            table.profilePicture.alpha = 0.5
+            cell.profilePicture.alpha = 0.5
           })
         }
       }
     }
-    table.alpha = 0;
-    // do slide-in animation on cell
-    UIView.animate(withDuration: 0.5, animations: {
-      table.alpha = 1
-     })
     
-    return table
+    let scale = 1.0 - (CGFloat(indexPath.row) / 15.0)
     
+    cell.transform = CGAffineTransform.init(scaleX: scale, y: scale)
+    
+    return cell
   }
   
   func getImage() {
@@ -157,14 +170,29 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     let rect = CGRect(origin: CGPoint(x: 400,y :0), size: CGSize(width: tableView.bounds.size.width - 400, height: tableView.bounds.size.height))
+    guard let customFont = UIFont(name: "AirbnbCerealApp-Medium", size: 16) else {
+        fatalError("""
+    Failed to load the "AirbnbCereal-Medium" font.
+    Make sure the font file is included in the project and the font name is spelled correctly.
+    """
+        )
+    }
     emptyMessageLabel = UILabel(frame: rect)
     emptyMessageLabel.numberOfLines = 0
     emptyMessageLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
     emptyMessageLabel.textAlignment = .center;
     emptyMessageLabel.alpha = 0
+    emptyMessageLabel.font = customFont
+    
+    tableView.backgroundView = emptyMessageLabel
+    
+    
+    let tableTouchRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedTableView))
+    tableView.addGestureRecognizer(tableTouchRecognizer)
+    //self.view.addGestureRecognizer(tableTouchRecognizer)
+    
     
     partyCode.text = Party.shared.code
-    
     
     let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
     nowPlayingPic.isUserInteractionEnabled = true
@@ -173,6 +201,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     nowPlayingPic.layer.cornerRadius = nowPlayingPic.frame.size.width / 8
     nowPlayingPic.clipsToBounds = true
     //nowPlayingPic.alpha = 0.1
+    self.nowPlayingTitle.text = ""
     
     exit.layer.cornerRadius = exit.frame.size.width / 2
     nominate.layer.cornerRadius = nominate.frame.size.width / 2
@@ -184,11 +213,35 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     refreshControl.tintColor = UIColor.lightGray
     
     
-    self.dataTimer = Timer.scheduledTimer(withTimeInterval: 8.0, repeats: true) { timer in
+    self.dataTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { timer in
       self.fetchData()
     }
     
     
+  }
+  
+  @objc func tappedTableView(tap: UITapGestureRecognizer){
+    let location = tap.location(in: self.tableView)
+    let path = self.tableView.indexPathForRow(at: location)
+    if path != nil {
+      //self.tableView.delegate?.tableView!(self.tableView, didSelectRowAt: path)
+    } else {
+        // handle tap on empty space below existing rows however you want
+      if(song_nominations.count == 0){
+        if(!Party.shared.partyStarted){ // open spotify
+          let playlistUrl = "https://open.spotify.com/playlist/\(Party.shared.playlistId!)"
+          if let url = URL(string: playlistUrl) {
+              UIApplication.shared.open(url)
+          }
+        }
+        else{ // add a song
+          self.go()
+        }
+      }
+      else{
+        self.go()
+      }
+    }
   }
   
   @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
@@ -207,7 +260,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   }
   
   func fetchData() {
-    print("Fetching data")
+    //print("Fetching data")
 
     // check for updates
     self.refreshControl.endRefreshing()
@@ -343,6 +396,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   override func viewWillAppear(_ animated: Bool) {
     self.fetchData()
+    
     //self.nowPlayingPic.alpha = 0.1
     //getImage()
   }
@@ -350,7 +404,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   override func viewDidAppear(_ animated: Bool) {
     self.tableView.reloadData()
     
-    print("set new partyview")
+    //print("set new partyview")
     Party.shared.partyView = self
     
     if(Party.shared.host){
@@ -427,4 +481,13 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
       self.returnToMenu()
     }
   }
+}
+
+extension NSMutableAttributedString {
+
+    func setColor(color: UIColor, forText stringValue: String) {
+       let range: NSRange = self.mutableString.range(of: stringValue, options: .caseInsensitive)
+      self.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
+    }
+
 }

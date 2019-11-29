@@ -17,6 +17,7 @@ class SongCardTableViewCell: UITableViewCell {
   
   @IBOutlet weak var profilePicture: UIImageView!
   @IBOutlet weak var songName: UILabel!
+  @IBOutlet weak var artistName: UILabel!
   @IBOutlet weak var songSwitch: UISwitch!
   @IBOutlet weak var votes: UILabel!
     
