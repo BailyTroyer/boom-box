@@ -135,9 +135,9 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
       }
     }
     
-    let scale = 1.0 - (CGFloat(indexPath.row) / 15.0)
-    
-    cell.transform = CGAffineTransform.init(scaleX: scale, y: scale)
+//    let scale = 1.0 - (CGFloat(indexPath.row) / 15.0)
+//    
+//    cell.transform = CGAffineTransform.init(scaleX: scale, y: scale)
     
     return cell
   }
