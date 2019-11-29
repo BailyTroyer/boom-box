@@ -41,47 +41,57 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gve-CQ-DVf" customClass="CardView" customModule="BoomBox" customModuleProvider="target">
                                                     <rect key="frame" x="10" y="11" width="394" height="107"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Giw-ef-8MP">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="drake" translatesAutoresizingMaskIntoConstraints="NO" id="Giw-ef-8MP">
                                                             <rect key="frame" x="0.0" y="0.0" width="394" height="107"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="Giw-ef-8MP" secondAttribute="height" multiplier="394:107" id="cJ4-CP-MXC"/>
-                                                            </constraints>
                                                         </imageView>
                                                         <switch contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="SOB-qS-Mg0">
-                                                            <rect key="frame" x="8.5" y="57" width="51" height="31"/>
+                                                            <rect key="frame" x="325" y="38" width="51" height="31"/>
                                                             <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </switch>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0re-r0-HKS">
-                                                            <rect key="frame" x="26" y="23" width="14" height="30"/>
-                                                            <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="18"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I'm Upset" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BWc-Ox-uZ6" userLabel="Song Name">
+                                                            <rect key="frame" x="65" y="32" width="264" height="21"/>
+                                                            <fontDescription key="fontDescription" name="AirbnbCerealApp-Light" family="Airbnb Cereal App" pointSize="21"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drake" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pd-m4-tBM" userLabel="Artist Name">
+                                                            <rect key="frame" x="65" y="57" width="264" height="19"/>
+                                                            <fontDescription key="fontDescription" name="AirbnbCerealApp-ExtraBold" family="Airbnb Cereal App" pointSize="13"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0re-r0-HKS">
+                                                            <rect key="frame" x="8" y="31" width="49" height="45"/>
+                                                            <fontDescription key="fontDescription" name="AirbnbCerealApp-Light" family="Airbnb Cereal App" pointSize="38"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                             <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                             <size key="shadowOffset" width="1" height="1"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bad" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pd-m4-tBM" userLabel="Song Name">
-                                                            <rect key="frame" x="73" y="15" width="265" height="77"/>
-                                                            <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="19"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                     <constraints>
-                                                        <constraint firstItem="1pd-m4-tBM" firstAttribute="top" secondItem="Gve-CQ-DVf" secondAttribute="top" constant="15" id="Avf-Zx-aYk"/>
-                                                        <constraint firstAttribute="bottom" secondItem="SOB-qS-Mg0" secondAttribute="bottom" constant="19" id="Cf0-pI-GXU"/>
-                                                        <constraint firstItem="0re-r0-HKS" firstAttribute="top" secondItem="Gve-CQ-DVf" secondAttribute="top" constant="23" id="EQr-ly-4eE"/>
-                                                        <constraint firstItem="1pd-m4-tBM" firstAttribute="leading" secondItem="0re-r0-HKS" secondAttribute="trailing" constant="33" id="JFu-JS-H3t"/>
-                                                        <constraint firstItem="SOB-qS-Mg0" firstAttribute="leading" secondItem="Gve-CQ-DVf" secondAttribute="leading" constant="8.5" id="Lad-Pt-Gl8"/>
-                                                        <constraint firstItem="Giw-ef-8MP" firstAttribute="centerY" secondItem="Gve-CQ-DVf" secondAttribute="centerY" id="OBA-GY-cr0"/>
-                                                        <constraint firstItem="Giw-ef-8MP" firstAttribute="top" secondItem="Gve-CQ-DVf" secondAttribute="top" id="SqP-F3-UPn"/>
-                                                        <constraint firstItem="Giw-ef-8MP" firstAttribute="centerY" secondItem="1pd-m4-tBM" secondAttribute="centerY" id="Zw8-PZ-Ufa"/>
-                                                        <constraint firstItem="1pd-m4-tBM" firstAttribute="leading" secondItem="SOB-qS-Mg0" secondAttribute="trailing" constant="15.5" id="atb-fW-55R"/>
-                                                        <constraint firstAttribute="trailing" secondItem="1pd-m4-tBM" secondAttribute="trailing" constant="56" id="cCz-35-Md4"/>
-                                                        <constraint firstItem="0re-r0-HKS" firstAttribute="centerX" secondItem="SOB-qS-Mg0" secondAttribute="centerX" id="dCv-fz-zGX"/>
-                                                        <constraint firstItem="Giw-ef-8MP" firstAttribute="leading" secondItem="Gve-CQ-DVf" secondAttribute="leading" id="gqe-SH-wa3"/>
-                                                        <constraint firstItem="SOB-qS-Mg0" firstAttribute="top" secondItem="0re-r0-HKS" secondAttribute="bottom" constant="4" id="hHS-pU-3hW"/>
-                                                        <constraint firstItem="Giw-ef-8MP" firstAttribute="centerX" secondItem="Gve-CQ-DVf" secondAttribute="centerX" id="hg8-x2-mUX"/>
+                                                        <constraint firstItem="0re-r0-HKS" firstAttribute="top" secondItem="Gve-CQ-DVf" secondAttribute="top" constant="31" id="1gH-bW-XfN"/>
+                                                        <constraint firstItem="1pd-m4-tBM" firstAttribute="top" secondItem="BWc-Ox-uZ6" secondAttribute="bottom" constant="4" id="BWJ-ZO-6pw"/>
+                                                        <constraint firstItem="BWc-Ox-uZ6" firstAttribute="leading" secondItem="1pd-m4-tBM" secondAttribute="leading" id="DAn-E1-UdG"/>
+                                                        <constraint firstItem="BWc-Ox-uZ6" firstAttribute="trailing" secondItem="1pd-m4-tBM" secondAttribute="trailing" id="GTR-2x-8nr"/>
+                                                        <constraint firstItem="Giw-ef-8MP" firstAttribute="centerX" secondItem="Gve-CQ-DVf" secondAttribute="centerX" id="IFT-JX-yn7"/>
+                                                        <constraint firstItem="BWc-Ox-uZ6" firstAttribute="leading" secondItem="0re-r0-HKS" secondAttribute="trailing" constant="8" id="LUb-fr-uS9"/>
+                                                        <constraint firstItem="Giw-ef-8MP" firstAttribute="leading" secondItem="Gve-CQ-DVf" secondAttribute="leading" id="N8p-d0-RLK"/>
+                                                        <constraint firstAttribute="width" constant="394" id="OBr-KO-Ura"/>
+                                                        <constraint firstAttribute="height" constant="107" id="R0i-6T-1XQ"/>
+                                                        <constraint firstItem="0re-r0-HKS" firstAttribute="centerY" secondItem="SOB-qS-Mg0" secondAttribute="centerY" id="SLQ-6m-MkG"/>
+                                                        <constraint firstAttribute="trailing" secondItem="BWc-Ox-uZ6" secondAttribute="trailing" constant="65" id="Uls-F2-yMT"/>
+                                                        <constraint firstItem="Giw-ef-8MP" firstAttribute="centerY" secondItem="Gve-CQ-DVf" secondAttribute="centerY" id="ZSx-vo-n8c"/>
+                                                        <constraint firstItem="Giw-ef-8MP" firstAttribute="centerY" secondItem="0re-r0-HKS" secondAttribute="centerY" id="bog-6a-u12"/>
+                                                        <constraint firstItem="Giw-ef-8MP" firstAttribute="top" secondItem="Gve-CQ-DVf" secondAttribute="top" id="fJu-5Y-XlS"/>
+                                                        <constraint firstItem="0re-r0-HKS" firstAttribute="firstBaseline" secondItem="1pd-m4-tBM" secondAttribute="firstBaseline" id="kM3-G5-bAr"/>
+                                                        <constraint firstItem="Giw-ef-8MP" firstAttribute="centerX" secondItem="1pd-m4-tBM" secondAttribute="centerX" id="qI6-1O-wc5"/>
+                                                        <constraint firstItem="0re-r0-HKS" firstAttribute="bottom" secondItem="1pd-m4-tBM" secondAttribute="bottom" id="rYp-PU-GlP"/>
+                                                        <constraint firstAttribute="width" secondItem="Gve-CQ-DVf" secondAttribute="height" multiplier="394:107" id="vpT-oo-i3Z"/>
+                                                        <constraint firstItem="0re-r0-HKS" firstAttribute="leading" secondItem="Gve-CQ-DVf" secondAttribute="leadingMargin" id="vvZ-C8-MPU"/>
+                                                        <constraint firstAttribute="trailing" secondItem="SOB-qS-Mg0" secondAttribute="trailing" constant="20" id="xyv-0b-KSz"/>
+                                                        <constraint firstItem="BWc-Ox-uZ6" firstAttribute="top" secondItem="Gve-CQ-DVf" secondAttribute="top" constant="32" id="zOh-tD-q6y"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
@@ -98,10 +108,10 @@
                                             </subviews>
                                             <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Gve-CQ-DVf" secondAttribute="bottom" constant="-4" id="3pF-hP-VKf"/>
-                                                <constraint firstItem="Gve-CQ-DVf" firstAttribute="centerX" secondItem="awO-uZ-Js7" secondAttribute="centerX" id="8UQ-nn-E0V"/>
-                                                <constraint firstItem="Gve-CQ-DVf" firstAttribute="top" secondItem="awO-uZ-Js7" secondAttribute="topMargin" id="GNC-sM-xvf"/>
-                                                <constraint firstItem="Gve-CQ-DVf" firstAttribute="leading" secondItem="awO-uZ-Js7" secondAttribute="leadingMargin" constant="-10" id="xCv-dz-xCc"/>
+                                                <constraint firstItem="Gve-CQ-DVf" firstAttribute="centerX" secondItem="awO-uZ-Js7" secondAttribute="centerX" id="7xZ-YR-LFs"/>
+                                                <constraint firstItem="Gve-CQ-DVf" firstAttribute="top" secondItem="awO-uZ-Js7" secondAttribute="topMargin" id="cY3-Mt-wdn"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Gve-CQ-DVf" secondAttribute="bottom" constant="-4" id="imP-PZ-3p5"/>
+                                                <constraint firstItem="Gve-CQ-DVf" firstAttribute="leading" secondItem="awO-uZ-Js7" secondAttribute="leadingMargin" constant="-10" id="wpl-RT-Cqf"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
