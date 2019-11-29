@@ -35,6 +35,7 @@ class Vote {
         let waitingForNextSong = false;
         let lastActivity = new Date()
         let totalMins;
+        let advertising = false
         const startTime = lastActivity
 
         let progressIntervalId = setInterval(async () => {
@@ -68,8 +69,10 @@ class Vote {
                     return
                 }
                 // the user hasnt started the party playlist
-                if(!body.item){
+                if(!body.item && !advertising){
                     console.log("Probably playing ad...")
+                    Mongo.db.collection("parties").updateOne({party_code: party_code}, {$set: {playing_ad: true}})
+                    advertising = true
                     return
                 }
                 if(!body.context || body.item.id !== party.now_playing.id || body.context.href !== party.playlist.href){
@@ -79,6 +82,14 @@ class Vote {
                 if(!partyStarted){
                     Mongo.db.collection("parties").updateOne({party_code: party_code}, {$set: {started: true}})
                     partyStarted = true
+                }
+
+                /* the user has started the playlist || an ad has stopped playing */
+
+
+                if(advertising){
+                    Mongo.db.collection("parties").updateOne({party_code: party_code}, {$set: {playing_ad: false}})
+                    advertising = false
                 }
                 
                 const progress = body.progress_ms
@@ -106,13 +117,19 @@ class Vote {
                         request(playerInfoReq)
                         .then((body) => {
                             
-                            if(!body.item){
-                                console.log("Probably playing ad...")
+                            
+                            if(!body.item && !advertising){ // an ad is playing
+                                Mongo.db.collection("parties").updateOne({party_code: party_code}, {$set: {playing_ad: true}})
+                                advertising = true
                                 return
                             }
-                            if(body.item.id === nextSong.id){
-                                // the next song has started
+                            if(body.item.id === nextSong.id){ // the next song has started
                                 console.log("Next song started")
+                                if(advertising){
+                                    Mongo.db.collection("parties").updateOne({party_code: party_code}, {$set: {playing_ad: false}})
+                                    advertising = false
+                                }
+
                                 clearInterval(nextIntervalId);
 
                                 lastActivity = new Date()

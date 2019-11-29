@@ -81,6 +81,11 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="continue" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="one-time-code"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                                        <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
@@ -104,8 +109,8 @@
                     </view>
                     <connections>
                         <outlet property="code" destination="0a0-Vh-ZXC" id="qtl-0u-Ko6"/>
-                        <segue destination="iaW-FJ-Dzg" kind="modal" identifier="show_small_party" modalPresentationStyle="fullScreen" id="3Ga-pE-G64"/>
-                        <segue destination="fVq-dQ-poz" kind="modal" identifier="show_large_party" modalPresentationStyle="fullScreen" id="D6x-r0-K94"/>
+                        <segue destination="iaW-FJ-Dzg" kind="presentation" identifier="show_small_party" modalPresentationStyle="fullScreen" id="3Ga-pE-G64"/>
+                        <segue destination="fVq-dQ-poz" kind="presentation" identifier="show_large_party" modalPresentationStyle="fullScreen" id="D6x-r0-K94"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2a6-eL-XTw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

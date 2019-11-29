@@ -18,15 +18,6 @@ class NumberPeople: UIViewController {
     super.viewDidLoad()
   }
   
-  override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-      super.traitCollectionDidChange(previousTraitCollection)
-
-      let userInterfaceStyle = traitCollection.userInterfaceStyle // Either .unspecified, .light, or .dark
-      // Update your user interface based on the appearance
-    
-      print("userInterface style")
-  }
-  
   override func viewDidAppear(_ animated: Bool) {
       continueButton = UIButton(frame: CGRect(x: 0, y: (self.view.frame.maxY - self.view.frame.maxY/12), width: (self.view.frame.maxX - self.view.frame.maxX/6), height: 50))
       

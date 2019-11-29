@@ -24,8 +24,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="t9w-bg-UGq">
-                                <rect key="frame" x="145" y="51" width="125" height="125"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="t9w-bg-UGq">
+                                <rect key="frame" x="144.5" y="51" width="125" height="125"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="124.99999999999909" id="XFz-4k-n0a"/>
                                     <constraint firstAttribute="width" constant="125" id="kt1-tO-DXs"/>
@@ -126,9 +126,9 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="nEb-10-5JS" firstAttribute="top" secondItem="t9w-bg-UGq" secondAttribute="bottom" constant="7.0000000000009095" id="4RP-FR-W1x"/>
+                            <constraint firstItem="nEb-10-5JS" firstAttribute="top" secondItem="t9w-bg-UGq" secondAttribute="bottom" constant="16.000000000000909" id="4RP-FR-W1x"/>
                             <constraint firstItem="2g5-du-yKr" firstAttribute="trailing" secondItem="e2q-WI-uMe" secondAttribute="trailing" constant="25" id="4pd-ed-jQy"/>
-                            <constraint firstItem="t9w-bg-UGq" firstAttribute="top" secondItem="2g5-du-yKr" secondAttribute="top" constant="16" id="5RA-cu-N1u"/>
+                            <constraint firstItem="t9w-bg-UGq" firstAttribute="top" secondItem="2g5-du-yKr" secondAttribute="top" constant="7" id="5RA-cu-N1u"/>
                             <constraint firstItem="2g5-du-yKr" firstAttribute="trailing" secondItem="ega-Ch-J0p" secondAttribute="trailing" id="6X0-l1-Dpf"/>
                             <constraint firstItem="ega-Ch-J0p" firstAttribute="top" secondItem="nEb-10-5JS" secondAttribute="bottom" constant="16" id="NYD-Gz-ZWw"/>
                             <constraint firstItem="ega-Ch-J0p" firstAttribute="bottom" secondItem="2g5-du-yKr" secondAttribute="bottom" constant="34" id="Ppg-c5-f0Q"/>

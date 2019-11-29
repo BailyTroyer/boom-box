@@ -25,8 +25,10 @@ class Party {
   var voteSongId: String?
   var searchString: String?
   var playlistId: String?
+  var playlistName: String?
   var createVC: PartyView? = nil
-    var voteHistory: [String] = []
+  var partyView: SmallPartyView? = nil
+  var voteHistory: [String] = []
 
   var partyStarted: Bool = false
   var host: Bool = false
@@ -105,6 +107,8 @@ class Party {
       name = "BoomBox"
     }
     
+    self.playlistName = "\(name!) - \(dateString)"
+    
     let parameters: [String: Any] = [
       "size": size!,
       "party_code": code!,
@@ -178,29 +182,19 @@ class Party {
     }
     
     Alamofire.request("\(apiUrl)\(endpoint)", method: .delete, parameters: parameters, encoding: JSONEncoding.default).validate().responseString { response in
+      
       completion(response.response?.statusCode == 200)
       
       self.code = nil
       self.host = false
       self.name = nil
+      self.partyView = nil
       self.voteHistory = []
     }
   }
     
   func voteForSong(vote: Bool, songId: String, completion: @escaping (_ response: Bool) -> Void) {
     
-    let index = self.voteHistory.firstIndex(of: songId)
-    
-    if(vote){
-      if index == nil {
-        self.voteHistory.append(songId)
-      }
-    }
-    else{
-      if index != nil {
-        self.voteHistory.remove(at: index!)
-      }
-    }
       
     let parameters: [String: Any] = [
       "party_code": code!,
@@ -210,9 +204,21 @@ class Party {
     ]
     
     Alamofire.request("\(apiUrl)/vote", method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseString { response in
-      //print(response)
-      completion(response.result.isSuccess)
       
+      let index = self.voteHistory.firstIndex(of: songId)
+      
+      if(vote){
+        if index == nil {
+          self.voteHistory.append(songId)
+        }
+      }
+      else{
+        if index != nil {
+          self.voteHistory.remove(at: index!)
+        }
+      }
+      
+      completion(response.result.isSuccess)
     }
   }
   
@@ -223,7 +229,7 @@ class Party {
       "Accept": "application/json"
     ]
     
-    Alamofire.request("https://api.spotify.com/v1/search?q=\(searchString!)&type=track&limit=10", method: .get, encoding: URLEncoding.default, headers: headers).validate().responseJSON { response in
+    Alamofire.request("https://api.spotify.com/v1/search?q=\(searchString!)&type=track&limit=20", method: .get, encoding: URLEncoding.default, headers: headers).validate().responseJSON { response in
       
       //to get JSON return value
       if let result = response.result.value {

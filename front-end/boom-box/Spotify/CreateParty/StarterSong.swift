@@ -39,13 +39,12 @@ class StarterSong: UIViewController, UITableViewDelegate, UITableViewDataSource,
     searchResultsTable.separatorColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
     
     cardBackground.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+    
+    continueButton = UIButton(frame: CGRect(x: 0, y: (self.view.frame.maxY - self.view.frame.maxY/8), width: (self.view.frame.maxX - self.view.frame.maxX/6), height: 50))
   }
     
   
   override func viewDidAppear(_ animated: Bool) {
-    
-    continueButton = UIButton(frame: CGRect(x: 0, y: (self.view.frame.maxY - self.view.frame.maxY/8), width: (self.view.frame.maxX - self.view.frame.maxX/6), height: 50))
-    
     // button text "sign in"
     continueButton.setTitle("Continue", for: .normal)
     

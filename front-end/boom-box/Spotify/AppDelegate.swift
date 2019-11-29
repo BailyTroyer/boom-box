@@ -34,11 +34,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
     
     
-    func applicationWillTerminate(_ application: UIApplication) {
-        print("APP WILL TERMINATE")
-        Party.shared.leaveParty(completion: {_ in})
+  func applicationWillTerminate(_ application: UIApplication) {
+      print("APP WILL TERMINATE")
+      Party.shared.leaveParty(completion: {_ in})
+  }
+  
+  func applicationWillResignActive(_ application: UIApplication) {
+    if(Party.shared.partyView != nil){
+      UIView.animate(withDuration: 0.3, animations: {
+        Party.shared.partyView?.emptyMessageLabel.alpha = 0
+      })
     }
-    
+  }
+  
+  func applicationDidBecomeActive(_ application: UIApplication) {
+    if(Party.shared.partyView != nil){
+      Party.shared.partyView?.startEmptyMessageAnimation()
+    }
+  }
     
   //
   //  // MARK: UISceneSession Lifecycle

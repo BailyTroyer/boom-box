@@ -96,6 +96,7 @@ class Party {
             song_nominations: [],
             guests: [],
             fallback: {},
+            playing_ad: false,
             cops: 0
         })
             .then(result => {

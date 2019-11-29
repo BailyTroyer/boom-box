@@ -24,7 +24,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="wOG-Vl-ZNq"/>
                     <connections>
-                        <segue destination="VdB-dr-3J7" kind="modal" identifier="authed" modalPresentationStyle="fullScreen" id="WuI-eb-vHZ"/>
+                        <segue destination="VdB-dr-3J7" kind="presentation" identifier="authed" modalPresentationStyle="fullScreen" id="WuI-eb-vHZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pcW-X6-GI4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -103,8 +103,8 @@
                     <connections>
                         <outlet property="joinPeople" destination="WQN-rd-bYj" id="G5l-WQ-XQb"/>
                         <outlet property="newParty" destination="qc3-Fn-Ayd" id="7y0-f5-cZ9"/>
-                        <segue destination="HSj-mD-laO" kind="modal" identifier="new_party" modalPresentationStyle="fullScreen" id="Yde-zI-huv"/>
-                        <segue destination="Bmb-VX-zlB" kind="modal" identifier="join_people" modalPresentationStyle="fullScreen" id="z89-3O-JOa"/>
+                        <segue destination="HSj-mD-laO" kind="presentation" identifier="new_party" modalPresentationStyle="fullScreen" id="Yde-zI-huv"/>
+                        <segue destination="Bmb-VX-zlB" kind="presentation" identifier="join_people" modalPresentationStyle="fullScreen" id="z89-3O-JOa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3PX-9w-xal" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

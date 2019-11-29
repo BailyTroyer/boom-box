@@ -181,6 +181,7 @@ class NominateSong: UIViewController, UITableViewDelegate, UITableViewDataSource
   
   @objc func next_view() {
     // do something here?
+    if(self.link == nil){return}
     
     // nominate song and go back
     
@@ -200,6 +201,10 @@ class NominateSong: UIViewController, UITableViewDelegate, UITableViewDataSource
 
   
   @IBAction func back(_ sender: Any) {
-    self.dismiss(animated: true, completion: nil)
+    self.dismiss(animated: true, completion: {
+      if(Party.shared.partyView != nil){
+        Party.shared.partyView?.fetchData()
+      }
+    })
   }
 }

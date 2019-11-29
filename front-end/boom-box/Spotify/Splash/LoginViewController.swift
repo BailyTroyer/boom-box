@@ -15,6 +15,7 @@ class LogInViewController: UIViewController {
   
   var loginButton: SpotifyLoginButton!
   var animationView: AnimationView!
+  var viewThing: UIView = UIView()
     
   override func viewWillAppear(_ animated: Bool) {
     animationView.play()
@@ -97,7 +98,8 @@ class LogInViewController: UIViewController {
         .userReadEmail
       ]
     )
-    let viewThing = UIView(frame: CGRect(x: 0, y: (self.view.frame.maxY - self.view.frame.maxY/5), width: (self.view.frame.maxX - self.view.frame.maxX/4), height: 40))
+    
+    viewThing = UIView(frame: CGRect(x: 0, y: (self.view.frame.maxY - self.view.frame.maxY/5), width: (self.view.frame.maxX - self.view.frame.maxX/4), height: 40))
     loginButton.center.x = viewThing.center.x
 
     viewThing.center.x = self.view.center.x
@@ -105,20 +107,12 @@ class LogInViewController: UIViewController {
     viewThing.addSubview(loginButton)
     self.view.addSubview(viewThing)
     
-//    self.view.addSubview(button)
-//    self.loginButton = button
     NotificationCenter.default.addObserver(self,
                                            selector: #selector(loginSuccessful),
                                            name: .SpotifyLoginSuccessful,
                                            object: nil)
   }
 
-  
-//  override func viewWillLayoutSubviews() {
-//    super.viewWillLayoutSubviews()
-//    loginButton?.center = self.view.center
-//  }
-  
   deinit {
     NotificationCenter.default.removeObserver(self)
   }
@@ -126,10 +120,11 @@ class LogInViewController: UIViewController {
   @objc func loginSuccessful() {
     SpotifyLogin.shared.getAccessToken { (accessToken, error) in
       if let token=accessToken, error==nil {
-        print(token)
-        Party.shared.username = SpotifyLogin.shared.username
-        Party.shared.token = token
-        self.performSegue(withIdentifier: "authed", sender: self)
+        if(token != Party.shared.token){
+          Party.shared.username = SpotifyLogin.shared.username
+          Party.shared.token = token
+          self.performSegue(withIdentifier: "authed", sender: self)
+        }
       }
     }
   }

@@ -85,7 +85,7 @@
                         <outlet property="label1" destination="gyl-P2-I1Y" id="VFD-gY-9QM"/>
                         <outlet property="label2" destination="dgu-HI-wqZ" id="hHV-pU-arf"/>
                         <outlet property="name" destination="HAR-9c-d1Y" id="sbb-4x-27o"/>
-                        <segue destination="iFV-xN-lQt" kind="modal" identifier="number_people" modalPresentationStyle="fullScreen" id="e7t-6U-dRb"/>
+                        <segue destination="iFV-xN-lQt" kind="presentation" identifier="number_people" modalPresentationStyle="fullScreen" id="e7t-6U-dRb"/>
                         <segue destination="dAX-fp-wiQ" kind="presentation" identifier="skip_size" modalPresentationStyle="fullScreen" id="QVZ-vI-s3H"/>
                     </connections>
                 </viewController>
@@ -103,9 +103,6 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IjD-xa-RQ4">
                                 <rect key="frame" x="20" y="44" width="36" height="36"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="36" id="1h8-E0-HF1"/>
-                                </constraints>
                                 <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="left"/>
                                 <connections>
@@ -118,21 +115,8 @@
                                 <color key="textColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzu-Hk-R0t">
-                                <rect key="frame" x="0.66666666666665719" y="235" width="374" height="0.0"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="374" id="gnd-tN-d7F"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Medium" family="Airbnb Cereal App" pointSize="32"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qF6-ua-xtv">
-                                <rect key="frame" x="123" y="243" width="129" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="129" id="8B5-ep-xZX"/>
-                                    <constraint firstAttribute="height" constant="30" id="Ph1-4P-W7H"/>
-                                </constraints>
+                                <rect key="frame" x="123" y="306" width="129" height="30"/>
                                 <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Copy to Clipboard!"/>
                                 <connections>
@@ -140,49 +124,54 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's go!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Nv-uk-wAZ">
-                                <rect key="frame" x="156.66666666666666" y="154" width="62" height="19"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="19" id="TrN-qe-14i"/>
-                                </constraints>
+                                <rect key="frame" x="137" y="154" width="101" height="19"/>
                                 <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="16"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="CfW-kr-pqE">
-                                <rect key="frame" x="177" y="437" width="20" height="20"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="CfW-kr-pqE">
+                                <rect key="frame" x="175" y="467" width="20" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="HKH-q8-Y7l"/>
+                                    <constraint firstAttribute="height" constant="20" id="fKi-eE-gs4"/>
                                 </constraints>
                                 <color key="color" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creating party..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZv-xR-An7">
-                                <rect key="frame" x="107" y="472" width="161" height="19"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="19" id="bIz-av-Jx1"/>
-                                </constraints>
+                                <rect key="frame" x="107" y="502" width="161" height="19"/>
                                 <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="16"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzu-Hk-R0t">
+                                <rect key="frame" x="45" y="244" width="285" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="UW1-1f-pwE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Medium" family="Airbnb Cereal App" pointSize="32"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="cZv-xR-An7" firstAttribute="top" secondItem="CfW-kr-pqE" secondAttribute="bottom" constant="15" id="2J8-18-ldX"/>
-                            <constraint firstItem="JqY-y3-ahf" firstAttribute="bottom" secondItem="cZv-xR-An7" secondAttribute="bottom" constant="287" id="5L7-kJ-LCr"/>
-                            <constraint firstItem="CfW-kr-pqE" firstAttribute="leading" secondItem="JqY-y3-ahf" secondAttribute="leading" constant="177" id="6wR-yr-ARq"/>
-                            <constraint firstItem="1Nv-uk-wAZ" firstAttribute="top" secondItem="ULA-2y-eDO" secondAttribute="bottom" constant="8" id="Kh3-FY-07O"/>
-                            <constraint firstItem="cZv-xR-An7" firstAttribute="leading" secondItem="JqY-y3-ahf" secondAttribute="leading" constant="107" id="Qh0-pP-LsY"/>
-                            <constraint firstItem="CfW-kr-pqE" firstAttribute="centerX" secondItem="cZv-xR-An7" secondAttribute="centerX" id="RLp-cU-Rzk"/>
-                            <constraint firstItem="IjD-xa-RQ4" firstAttribute="leading" secondItem="JqY-y3-ahf" secondAttribute="leading" constant="20" id="TpJ-34-4R5"/>
-                            <constraint firstItem="IjD-xa-RQ4" firstAttribute="top" secondItem="JqY-y3-ahf" secondAttribute="top" id="Zrp-rk-LAO"/>
-                            <constraint firstItem="ULA-2y-eDO" firstAttribute="centerX" secondItem="JqY-y3-ahf" secondAttribute="centerX" id="ahH-T2-Dag"/>
-                            <constraint firstItem="zzu-Hk-R0t" firstAttribute="top" secondItem="ULA-2y-eDO" secondAttribute="bottom" constant="89" id="eyZ-Ma-hC7"/>
-                            <constraint firstItem="qF6-ua-xtv" firstAttribute="top" secondItem="zzu-Hk-R0t" secondAttribute="bottom" constant="8" id="hU4-cl-Ymu"/>
-                            <constraint firstItem="1Nv-uk-wAZ" firstAttribute="centerX" secondItem="JqY-y3-ahf" secondAttribute="centerX" id="hit-Wt-V13"/>
-                            <constraint firstItem="cZv-xR-An7" firstAttribute="centerX" secondItem="qF6-ua-xtv" secondAttribute="centerX" id="ppT-rV-A2i"/>
-                            <constraint firstItem="ULA-2y-eDO" firstAttribute="top" secondItem="JqY-y3-ahf" secondAttribute="top" constant="76" id="smF-Xl-RCO"/>
-                            <constraint firstItem="zzu-Hk-R0t" firstAttribute="centerX" secondItem="JqY-y3-ahf" secondAttribute="centerX" id="vG5-7r-cZY"/>
-                            <constraint firstItem="qF6-ua-xtv" firstAttribute="centerX" secondItem="JqY-y3-ahf" secondAttribute="centerX" id="wEf-AD-oRb"/>
+                            <constraint firstItem="zzu-Hk-R0t" firstAttribute="centerX" secondItem="1Nv-uk-wAZ" secondAttribute="centerX" id="3i1-bc-32G"/>
+                            <constraint firstItem="qF6-ua-xtv" firstAttribute="centerX" secondItem="CfW-kr-pqE" secondAttribute="centerX" constant="2.5" id="8gk-q3-N5E"/>
+                            <constraint firstItem="cZv-xR-An7" firstAttribute="leading" secondItem="JqY-y3-ahf" secondAttribute="leading" constant="107" id="9ap-H8-lwo"/>
+                            <constraint firstItem="qF6-ua-xtv" firstAttribute="top" secondItem="zzu-Hk-R0t" secondAttribute="bottom" constant="14" id="Hbh-Wv-ycl"/>
+                            <constraint firstItem="JqY-y3-ahf" firstAttribute="bottom" secondItem="cZv-xR-An7" secondAttribute="bottom" constant="257" id="KN7-S6-jDp"/>
+                            <constraint firstItem="CfW-kr-pqE" firstAttribute="centerX" secondItem="cZv-xR-An7" secondAttribute="centerX" constant="-2.5" id="PfM-H8-Yja"/>
+                            <constraint firstItem="zzu-Hk-R0t" firstAttribute="leading" secondItem="JqY-y3-ahf" secondAttribute="leading" constant="45" id="W7n-zI-Wpo"/>
+                            <constraint firstItem="ULA-2y-eDO" firstAttribute="top" secondItem="JqY-y3-ahf" secondAttribute="top" constant="76" id="Ykk-M9-7ma"/>
+                            <constraint firstItem="zzu-Hk-R0t" firstAttribute="top" secondItem="1Nv-uk-wAZ" secondAttribute="bottom" constant="71" id="ZIE-Ju-gw9"/>
+                            <constraint firstItem="cZv-xR-An7" firstAttribute="top" secondItem="CfW-kr-pqE" secondAttribute="bottom" constant="15" id="agg-dh-Lq0"/>
+                            <constraint firstItem="zzu-Hk-R0t" firstAttribute="centerX" secondItem="8AD-Ku-GIT" secondAttribute="centerX" id="cLc-Qn-Akd"/>
+                            <constraint firstItem="zzu-Hk-R0t" firstAttribute="centerX" secondItem="qF6-ua-xtv" secondAttribute="centerX" id="hmb-0P-mR0"/>
+                            <constraint firstItem="1Nv-uk-wAZ" firstAttribute="top" secondItem="ULA-2y-eDO" secondAttribute="bottom" constant="8" id="kLk-t0-r0A"/>
+                            <constraint firstItem="IjD-xa-RQ4" firstAttribute="top" secondItem="JqY-y3-ahf" secondAttribute="top" id="pRv-qa-E30"/>
+                            <constraint firstItem="CfW-kr-pqE" firstAttribute="leading" secondItem="JqY-y3-ahf" secondAttribute="leading" constant="175" id="vSt-FP-BgS"/>
+                            <constraint firstItem="ULA-2y-eDO" firstAttribute="centerX" secondItem="1Nv-uk-wAZ" secondAttribute="centerX" id="xQ3-kn-pYz"/>
+                            <constraint firstItem="IjD-xa-RQ4" firstAttribute="leading" secondItem="JqY-y3-ahf" secondAttribute="leading" constant="20" id="xkJ-Bb-A9S"/>
+                            <constraint firstItem="1Nv-uk-wAZ" firstAttribute="leading" secondItem="JqY-y3-ahf" secondAttribute="leading" constant="137" id="zxd-Q0-8uJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JqY-y3-ahf"/>
                     </view>
@@ -193,8 +182,8 @@
                         <outlet property="loader" destination="CfW-kr-pqE" id="8B6-HP-BBN"/>
                         <outlet property="loadingLabel" destination="cZv-xR-An7" id="8zG-K5-vTc"/>
                         <outlet property="partyCode" destination="zzu-Hk-R0t" id="pTe-90-gWY"/>
-                        <segue destination="k6a-6h-Yfq" kind="modal" identifier="to_large_party" modalPresentationStyle="fullScreen" id="sRp-jc-r3u"/>
-                        <segue destination="vG3-Ub-acf" kind="modal" identifier="to_small_party" modalPresentationStyle="fullScreen" id="bRQ-iI-1IM"/>
+                        <segue destination="k6a-6h-Yfq" kind="presentation" identifier="to_large_party" modalPresentationStyle="fullScreen" id="sRp-jc-r3u"/>
+                        <segue destination="vG3-Ub-acf" kind="presentation" identifier="to_small_party" modalPresentationStyle="fullScreen" id="bRQ-iI-1IM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mxl-hy-xoo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -278,7 +267,7 @@
                     <navigationItem key="navigationItem" id="vMc-gD-rDE"/>
                     <connections>
                         <outlet property="nubmerPeople" destination="5rZ-Qu-zry" id="1I5-ZK-ZIE"/>
-                        <segue destination="dAX-fp-wiQ" kind="modal" identifier="starter_song" modalPresentationStyle="fullScreen" id="Hfv-c4-BxF"/>
+                        <segue destination="dAX-fp-wiQ" kind="presentation" identifier="starter_song" id="Hfv-c4-BxF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bjh-m1-dKc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -411,11 +400,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Xuz-ef-cOZ"/>
                     </view>
+                    <navigationItem key="navigationItem" id="3wr-hi-T3x"/>
                     <connections>
                         <outlet property="searchButton" destination="Cjg-Qd-vva" id="xb2-Ed-bVK"/>
                         <outlet property="searchInput" destination="944-yI-I8r" id="NV4-6Q-E5P"/>
                         <outlet property="searchResultsTable" destination="I81-z5-xdR" id="LQs-bk-fI9"/>
-                        <segue destination="FZM-4X-uah" kind="modal" identifier="party_code" modalPresentationStyle="fullScreen" id="eHx-U2-kwf"/>
+                        <segue destination="FZM-4X-uah" kind="presentation" identifier="party_code" modalPresentationStyle="fullScreen" id="eHx-U2-kwf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lky-mX-w90" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -59,18 +59,18 @@
 		EB50067D236EAB2B0067979E /* SmallParty.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SmallParty.storyboard; sourceTree = "<group>"; };
 		EB50067F236EAB370067979E /* LargeParty.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LargeParty.storyboard; sourceTree = "<group>"; };
 		EB8142FE236E03400047C22B /* BoomBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoomBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		EB814301236E03400047C22B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EB814301236E03400047C22B /* AppDelegate.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; tabWidth = 2; };
 		EB814303236E03400047C22B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		EB814305236E03400047C22B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EB81430A236E03410047C22B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB81430D236E03410047C22B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB81430F236E03410047C22B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EB814330236E14060047C22B /* AirbnbCereal-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "AirbnbCereal-ExtraBold.ttf"; path = "../../../../../cereal-airbnb-font/AirbnbCereal-ExtraBold.ttf"; sourceTree = "<group>"; };
-		EB814331236E14060047C22B /* AirbnbCereal-Book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "AirbnbCereal-Book.ttf"; path = "../../../../../cereal-airbnb-font/AirbnbCereal-Book.ttf"; sourceTree = "<group>"; };
-		EB814332236E14060047C22B /* AirbnbCereal-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "AirbnbCereal-Medium.ttf"; path = "../../../../../cereal-airbnb-font/AirbnbCereal-Medium.ttf"; sourceTree = "<group>"; };
-		EB814333236E14060047C22B /* AirbnbCereal-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "AirbnbCereal-Bold.ttf"; path = "../../../../../cereal-airbnb-font/AirbnbCereal-Bold.ttf"; sourceTree = "<group>"; };
-		EB814334236E14060047C22B /* AirbnbCereal-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "AirbnbCereal-Light.ttf"; path = "../../../../../cereal-airbnb-font/AirbnbCereal-Light.ttf"; sourceTree = "<group>"; };
-		EB814335236E14060047C22B /* AirbnbCereal-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "AirbnbCereal-Black.ttf"; path = "../../../../../cereal-airbnb-font/AirbnbCereal-Black.ttf"; sourceTree = "<group>"; };
+		EB814330236E14060047C22B /* AirbnbCereal-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AirbnbCereal-ExtraBold.ttf"; sourceTree = "<group>"; };
+		EB814331236E14060047C22B /* AirbnbCereal-Book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AirbnbCereal-Book.ttf"; sourceTree = "<group>"; };
+		EB814332236E14060047C22B /* AirbnbCereal-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AirbnbCereal-Medium.ttf"; sourceTree = "<group>"; };
+		EB814333236E14060047C22B /* AirbnbCereal-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AirbnbCereal-Bold.ttf"; sourceTree = "<group>"; };
+		EB814334236E14060047C22B /* AirbnbCereal-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AirbnbCereal-Light.ttf"; sourceTree = "<group>"; };
+		EB814335236E14060047C22B /* AirbnbCereal-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AirbnbCereal-Black.ttf"; sourceTree = "<group>"; };
 		EB81433E236E14630047C22B /* CreateParty.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateParty.storyboard; sourceTree = "<group>"; };
 		EB814340236E245F0047C22B /* NameView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = NameView.swift; sourceTree = "<group>"; tabWidth = 2; };
 		EB814342236E24D90047C22B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -80,11 +80,11 @@
 		EB81435F236E5CDC0047C22B /* JoinPeople.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = JoinPeople.storyboard; sourceTree = "<group>"; };
 		EB814361236E5EE00047C22B /* PartyView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = PartyView.swift; sourceTree = "<group>"; tabWidth = 2; };
 		EB814363236E682F0047C22B /* LoginViewController.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
-		EB814365236E7D3B0047C22B /* JoinPeople.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinPeople.swift; sourceTree = "<group>"; };
+		EB814365236E7D3B0047C22B /* JoinPeople.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = JoinPeople.swift; sourceTree = "<group>"; tabWidth = 2; };
 		EB814368236E7FD20047C22B /* PartyModel.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = PartyModel.swift; sourceTree = "<group>"; tabWidth = 2; };
 		EB81436A236E85FF0047C22B /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		EB81436C236E87C40047C22B /* SongCardTableViewCell.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = SongCardTableViewCell.swift; sourceTree = "<group>"; };
-		EB81436E236E89600047C22B /* SmallPartyView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = SmallPartyView.swift; sourceTree = "<group>"; };
+		EB81436E236E89600047C22B /* SmallPartyView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = SmallPartyView.swift; sourceTree = "<group>"; tabWidth = 2; };
 		EB814372236E93710047C22B /* LargePartyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargePartyView.swift; sourceTree = "<group>"; };
 		EB814374236E94E80047C22B /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
 		EBB8329F236ED21900AC581A /* TextFieldBulletinTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldBulletinTag.swift; sourceTree = "<group>"; };
@@ -169,8 +169,9 @@
 				EB814334236E14060047C22B /* AirbnbCereal-Light.ttf */,
 				EB814332236E14060047C22B /* AirbnbCereal-Medium.ttf */,
 			);
-			path = fonts;
-			sourceTree = "<group>";
+			name = fonts;
+			path = Spotify/fonts;
+			sourceTree = SOURCE_ROOT;
 		};
 		EB81433C236E14470047C22B /* CreateParty */ = {
 			isa = PBXGroup;
@@ -191,7 +192,6 @@
 				EB814371236E935B0047C22B /* LargeParty */,
 				EB814370236E93560047C22B /* SmallParty */,
 				EB81435F236E5CDC0047C22B /* JoinPeople.storyboard */,
-				EB81436E236E89600047C22B /* SmallPartyView.swift */,
 				EB814365236E7D3B0047C22B /* JoinPeople.swift */,
 				EB81436A236E85FF0047C22B /* CardView.swift */,
 			);
@@ -225,6 +225,7 @@
 				EB81436C236E87C40047C22B /* SongCardTableViewCell.swift */,
 				EB50067D236EAB2B0067979E /* SmallParty.storyboard */,
 				980F1734238A9E9500316481 /* NominateSong.swift */,
+				EB81436E236E89600047C22B /* SmallPartyView.swift */,
 			);
 			path = SmallParty;
 			sourceTree = "<group>";
@@ -454,7 +455,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -508,7 +509,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -526,7 +527,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A959CG2Q2W;
 				INFOPLIST_FILE = Spotify/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -561,7 +562,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A959CG2Q2W;
 				INFOPLIST_FILE = Spotify/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
