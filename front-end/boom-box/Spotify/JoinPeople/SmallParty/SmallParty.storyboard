@@ -31,11 +31,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CNc-hk-vER">
-                                <rect key="frame" x="0.0" y="212" width="414" height="684"/>
+                                <rect key="frame" x="0.0" y="212" width="414" height="650"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="684" id="ytY-S2-aCy"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="songCard" rowHeight="125" id="nT7-xO-9a8" customClass="SongCardTableViewCell" customModule="BoomBox" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="125"/>
@@ -53,6 +50,7 @@
                                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="SOB-qS-Mg0">
                                                             <rect key="frame" x="325" y="38" width="51" height="31"/>
                                                             <color key="tintColor" red="0.35743178934010156" green="0.35743178934010156" blue="0.35743178934010156" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="onTintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </switch>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0re-r0-HKS">
                                                             <rect key="frame" x="8" y="31" width="49" height="45"/>
@@ -238,7 +236,7 @@
                             <constraint firstItem="xnH-MC-8Uw" firstAttribute="centerX" secondItem="CNc-hk-vER" secondAttribute="centerX" id="18M-xU-SrN"/>
                             <constraint firstItem="xnH-MC-8Uw" firstAttribute="top" secondItem="xMf-Hz-RB2" secondAttribute="bottom" constant="10" id="1dd-fK-C73"/>
                             <constraint firstItem="xnH-MC-8Uw" firstAttribute="top" secondItem="kJz-nh-7Vm" secondAttribute="bottom" constant="39.5" id="BD6-Ra-grH"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="CNc-hk-vER" secondAttribute="bottom" constant="-34" id="DQ8-6t-f0R"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="CNc-hk-vER" secondAttribute="bottom" id="DQ8-6t-f0R"/>
                             <constraint firstItem="7cY-R6-ni8" firstAttribute="leading" secondItem="l6N-Eh-Iht" secondAttribute="leading" constant="26" id="I4Y-Ve-6K9"/>
                             <constraint firstItem="Owf-Df-SeH" firstAttribute="top" secondItem="KjR-28-AWt" secondAttribute="bottom" constant="6.5" id="JBK-3w-K52"/>
                             <constraint firstItem="xnH-MC-8Uw" firstAttribute="leading" secondItem="yqP-mr-dOG" secondAttribute="leadingMargin" id="LGt-xQ-jvd"/>

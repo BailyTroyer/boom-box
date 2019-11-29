@@ -94,7 +94,9 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: message)
     attributedString.setColor(color: #colorLiteral(red: 0.4755314086, green: 0.3991935802, blue: 0.01888621333, alpha: 1), forText: "add a song!")
-    attributedString.setColor(color: #colorLiteral(red: 0.4755314086, green: 0.3991935802, blue: 0.01888621333, alpha: 1), forText: "'\(Party.shared.name!)'")
+    if(Party.shared.host){
+      attributedString.setColor(color: #colorLiteral(red: 0.4755314086, green: 0.3991935802, blue: 0.01888621333, alpha: 1), forText: "'\(Party.shared.name!)'")
+    }
     emptyMessageLabel.attributedText = attributedString
   }
   
@@ -136,10 +138,14 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
 //    let scale = 1.0 - (CGFloat(indexPath.row) / 15.0)
-//    
+//
 //    cell.transform = CGAffineTransform.init(scaleX: scale, y: scale)
     
     return cell
+  }
+  
+  func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+    print("Pressed: \(indexPath.row)")
   }
   
   func getImage() {

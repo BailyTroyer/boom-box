@@ -143,7 +143,6 @@
 			isa = PBXGroup;
 			children = (
 				EB814367236E7FC90047C22B /* Models */,
-				4D10D35923774ED600E86EFD /* dancing.json */,
 				EB81434A236E375E0047C22B /* Splash */,
 				EB81433D236E14520047C22B /* JoinPeople */,
 				EB81433C236E14470047C22B /* CreateParty */,
@@ -201,6 +200,7 @@
 		EB81434A236E375E0047C22B /* Splash */ = {
 			isa = PBXGroup;
 			children = (
+				4D10D35923774ED600E86EFD /* dancing.json */,
 				4D10D35823774ED500E86EFD /* duck.json */,
 				4D10D35A23774ED600E86EFD /* music-load.json */,
 				EB81434B236E37800047C22B /* Main.storyboard */,
