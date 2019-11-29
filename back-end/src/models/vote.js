@@ -63,7 +63,7 @@ class Vote {
 
             request(playerInfoReq)
             .then(async (body) => {
-                // spotify is not open on any of the user's devices
+                // spotify is not active on any of the user's devices
                 if(!body){
                     console.log("Cmon, at least open Spotify")
                     return
@@ -96,7 +96,7 @@ class Vote {
                 lastActivity = new Date()
                 
 
-                // console.log(progress + ' / ' + songDuration)
+                console.log(progress + ' / ' + songDuration)
                 
 
                 if(songDuration - progress < 15000){
@@ -117,7 +117,8 @@ class Vote {
                         request(playerInfoReq)
                         .then((body) => {
                             
-                            
+                            if(!body){return} // spotify inactive
+
                             if(!body.item ){ // an ad is playing
                                 if(!advertising){
                                     Mongo.db.collection("parties").updateOne({party_code: party_code}, {$set: {playing_ad: true}})
