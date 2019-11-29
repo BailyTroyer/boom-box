@@ -76,11 +76,11 @@ class Party {
     static async createParty(req, res){
         const { party_code, size, name, token, starter_song, user_id, time } = req.body
 
-        const playlistName = `${name} - ${time}`
+        //const playlistName = `${name} - ${time}`
 
         const [songInfo, playlist] = await Promise.all([
             Playback.getSongInfo(starter_song, token),
-            createPartyPlaylist(playlistName, user_id, token)
+            createPartyPlaylist(name, user_id, token)
         ])
 
         await Playback.addSongToPlaylist(songInfo, playlist.id, token)

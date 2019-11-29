@@ -50,6 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func applicationDidBecomeActive(_ application: UIApplication) {
     if(Party.shared.partyView != nil){
       Party.shared.partyView?.startEmptyMessageAnimation()
+      Party.shared.partyView?.fetchData()
     }
   }
     

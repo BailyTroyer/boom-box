@@ -104,10 +104,8 @@ class Party {
     
     
     if(name == nil){
-      name = "BoomBox"
+      name = "BoomBox - \(code!)"
     }
-    
-    self.playlistName = "\(name!) - \(dateString)"
     
     let parameters: [String: Any] = [
       "size": size!,

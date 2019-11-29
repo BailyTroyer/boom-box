@@ -25,6 +25,8 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   var partyName: String!
   
+  var playingAd: Bool = false
+  
   var dataTimer: Timer!
   
   var song_nominations: [JSON] = []
@@ -71,7 +73,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   func setBackgroundLabel(){
     if(!Party.shared.partyStarted){
       if(Party.shared.host){
-        self.emptyMessageLabel.text = "Oops... You need to start the music!\n\nGo to Spotify and start playing the '\(Party.shared.playlistName!)' playlist!"
+        self.emptyMessageLabel.text = "Oops... You need to start the music!\n\nGo to Spotify and start playing the '\(Party.shared.name!)' playlist!"
       }
       else{
         self.emptyMessageLabel.text = "Oops... It looks like the host hasn't started the playlist!"
@@ -172,7 +174,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     nowPlayingPic.layer.masksToBounds = false
     nowPlayingPic.layer.cornerRadius = nowPlayingPic.frame.size.width / 8
     nowPlayingPic.clipsToBounds = true
-    nowPlayingPic.alpha = 0.1
+    //nowPlayingPic.alpha = 0.1
     
     exit.layer.cornerRadius = exit.frame.size.width / 2
     nominate.layer.cornerRadius = nominate.frame.size.width / 2
@@ -181,7 +183,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     tableView.refreshControl = refreshControl
     
     refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
-    refreshControl.tintColor = UIColor.white
+    refreshControl.tintColor = UIColor.lightGray
     
     
     self.dataTimer = Timer.scheduledTimer(withTimeInterval: 8.0, repeats: true) { timer in
@@ -200,8 +202,6 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     }else{
       UIView.animate(withDuration: 0.3, animations: {self.nowPlayingPic.alpha = 1})
     }
-      
-      // Your action
   }
   
   @objc private func refreshData(_ sender: Any) {
@@ -217,9 +217,9 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
       
       if (data == nil) {
         self.dataTimer.invalidate()
-        let alert = UIAlertController(title: "Looks like this party has ended :(", message: "Press Okay to go back...", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Looks like this party has ended :(", message: "Press OK to go back...", preferredStyle: .alert)
 
-        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { action in
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
           self.exit(self)
         }))
 
@@ -232,13 +232,25 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
       Party.shared.partyStarted = data!["started"].boolValue
       self.setBackgroundLabel()
       
-      let sortedNoms = data!["song_nominations"].arrayValue.sorted(by: {(a, b) in
-        return a["votes"].int! > b["votes"].int!
-      })
+      if(data!["playing_ad"].boolValue){
+        self.playingAd = true
+        self.nowPlayingTitle.text = "Advertisement..."
+        UIView.animate(withDuration: 0.3, animations: {self.nowPlayingPic.alpha = 0})
+      }
+      else if(self.playingAd){ // was playing ad, not anymore
+        self.playingAd = false
+        UIView.animate(withDuration: 0.3, animations: {self.nowPlayingPic.alpha = 1})
+      }
       
       if(!data!["song_nominations"].exists() && !self.first || !Party.shared.partyStarted){
         return
       }
+      
+      let sortedNoms = data!["song_nominations"].arrayValue.sorted(by: {(a, b) in
+        return a["votes"].int! > b["votes"].int!
+      })
+      
+      
       
       self.guestCount.text = "\(data!["guests"].arrayValue.count + 1)"
       let newNowPlayingTitle = "\(data!["now_playing"]["name"].string!) - \(data!["now_playing"]["artists"][0]["name"].string!)"
@@ -248,11 +260,14 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
           DispatchQueue.global().async {
             let data = try? Data(contentsOf: url) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
             DispatchQueue.main.async {
-              self.nowPlayingTitle.text = newNowPlayingTitle
-              UIView.animate(withDuration: 0.2, animations: {self.nowPlayingPic.alpha = 0}, completion: {_ in
+              
+              if(!self.playingAd){
+                self.nowPlayingTitle.text = newNowPlayingTitle
+              }
+              
+              UIView.transition(with: self.nowPlayingPic!, duration: 0.4, options: .transitionCrossDissolve, animations: {
                 self.nowPlayingPic.image = UIImage(data: data!)
-                UIView.animate(withDuration: 0.3, animations: {self.nowPlayingPic.alpha = 1})
-              })
+              }, completion: nil)
             }
           }
         }
@@ -329,7 +344,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   override func viewWillAppear(_ animated: Bool) {
     self.fetchData()
-    self.nowPlayingPic.alpha = 0.1
+    //self.nowPlayingPic.alpha = 0.1
     //getImage()
   }
   
@@ -337,7 +352,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     self.tableView.reloadData()
     
     if(Party.shared.host){
-      let alert = UIAlertController(title: "Start playing the music!", message: "Open Spotify and start playing the '\(Party.shared.playlistName!)' playlist.", preferredStyle: .alert)
+      let alert = UIAlertController(title: "Start playing the music!", message: "Open Spotify and start playing the '\(Party.shared.name!)' playlist.", preferredStyle: .alert)
 
       alert.addAction(UIAlertAction(title: "I'll do it myself", style: .cancel, handler: {_ in
         self.startEmptyMessageAnimation()

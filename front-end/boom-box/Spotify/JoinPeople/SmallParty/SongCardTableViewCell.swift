@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 protocol SongCardTableViewCellDelegate: class {
   func didVote(onCell: SongCardTableViewCell)
@@ -40,11 +41,19 @@ class SongCardTableViewCell: UITableViewCell {
     
     Party.shared.voteForSong(vote: sender.isOn, songId: songId!, completion: {_ in })
     
+    let index = Party.shared.partyView?.song_nominations.firstIndex(where: {song in
+      return song["id"].stringValue == songId!
+    })
+    
+    
+    
     if(sender.isOn){
       self.votes.text = "\(Int(self.votes.text!)! + 1)";
+      Party.shared.partyView?.song_nominations[index!]["votes"].int! += 1
     }
     else{
       self.votes.text = "\(Int(self.votes.text!)! - 1)";
+      Party.shared.partyView?.song_nominations[index!]["votes"].int! -= 1
     }
   }
   
