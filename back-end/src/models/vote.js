@@ -118,19 +118,22 @@ class Vote {
                         .then((body) => {
                             
                             
-                            if(!body.item && !advertising){ // an ad is playing
-                                Mongo.db.collection("parties").updateOne({party_code: party_code}, {$set: {playing_ad: true}})
-                                advertising = true
+                            if(!body.item ){ // an ad is playing
+                                if(!advertising){
+                                    Mongo.db.collection("parties").updateOne({party_code: party_code}, {$set: {playing_ad: true}})
+                                    advertising = true
+                                }
                                 return
                             }
                             if(body.item.id === nextSong.id){ // the next song has started
                                 console.log("Next song started")
+
+                                clearInterval(nextIntervalId);
+
                                 if(advertising){
                                     Mongo.db.collection("parties").updateOne({party_code: party_code}, {$set: {playing_ad: false}})
                                     advertising = false
                                 }
-
-                                clearInterval(nextIntervalId);
 
                                 lastActivity = new Date()
                                 // update party info

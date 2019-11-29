@@ -152,8 +152,6 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    Party.shared.partyView = self
-    
     tableView.dataSource = self
     tableView.delegate = self
     
@@ -209,6 +207,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   }
   
   func fetchData() {
+    print("Fetching data")
 
     // check for updates
     self.refreshControl.endRefreshing()
@@ -351,10 +350,13 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   override func viewDidAppear(_ animated: Bool) {
     self.tableView.reloadData()
     
+    print("set new partyview")
+    Party.shared.partyView = self
+    
     if(Party.shared.host){
       let alert = UIAlertController(title: "Start playing the music!", message: "Open Spotify and start playing the '\(Party.shared.name!)' playlist.", preferredStyle: .alert)
 
-      alert.addAction(UIAlertAction(title: "I'll do it myself", style: .cancel, handler: {_ in
+      alert.addAction(UIAlertAction(title: "I'll do it myself", style: .destructive, handler: {_ in
         self.startEmptyMessageAnimation()
       }))
       

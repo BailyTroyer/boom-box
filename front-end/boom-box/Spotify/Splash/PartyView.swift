@@ -23,8 +23,6 @@ class PartyView: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    Party.shared.createVC = self
-    
     let newPartyRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.newPartyAction))
     newParty.addGestureRecognizer(newPartyRecognizer)
     
@@ -58,6 +56,7 @@ class PartyView: UIViewController {
   override func viewWillDisappear(_ animated: Bool) {
     self.dancing.stop()
     self.musicLoad.stop()
+    Party.shared.createVC = self
   }
     
   override func viewWillAppear(_ animated: Bool) {

@@ -55,7 +55,7 @@
 		63995E4BA735DF84013D26AE /* Pods-Spotify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spotify.release.xcconfig"; path = "Target Support Files/Pods-Spotify/Pods-Spotify.release.xcconfig"; sourceTree = "<group>"; };
 		980F1734238A9E9500316481 /* NominateSong.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = NominateSong.swift; sourceTree = "<group>"; tabWidth = 2; };
 		981F74D9238A4CCA00025E00 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; tabWidth = 2; };
-		EB50067B236EA8210067979E /* NumberPeople.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPeople.swift; sourceTree = "<group>"; };
+		EB50067B236EA8210067979E /* NumberPeople.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = NumberPeople.swift; sourceTree = "<group>"; tabWidth = 2; };
 		EB50067D236EAB2B0067979E /* SmallParty.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SmallParty.storyboard; sourceTree = "<group>"; };
 		EB50067F236EAB370067979E /* LargeParty.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LargeParty.storyboard; sourceTree = "<group>"; };
 		EB8142FE236E03400047C22B /* BoomBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoomBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
