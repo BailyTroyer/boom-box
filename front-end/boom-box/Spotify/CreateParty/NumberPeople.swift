@@ -69,4 +69,8 @@ class NumberPeople: UIViewController {
   @IBAction func back(_ sender: Any) {
     self.dismiss(animated: true, completion: nil)
   }
+  
+  override var preferredStatusBarStyle: UIStatusBarStyle {
+    return .lightContent
+  }
 }

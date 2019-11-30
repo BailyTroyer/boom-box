@@ -61,4 +61,8 @@ class LargePartyView: UIViewController, UICollectionViewDelegate, UICollectionVi
       print("result")
     })
   }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+      return .lightContent
+    }
 }

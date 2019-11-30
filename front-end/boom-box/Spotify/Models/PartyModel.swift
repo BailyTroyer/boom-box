@@ -34,8 +34,8 @@ class Party {
   var host: Bool = false
   
 
-  //let apiUrl = "https://1b312ffe.ngrok.io"
-  let apiUrl = "https://boom-box-beta.appspot.com"
+  let apiUrl = "https://35bf35f0.ngrok.io"
+  //let apiUrl = "https://boom-box-beta.appspot.com"
   
   func getImage(completion: @escaping (_ repsonse: String) -> Void) {
     let headers: HTTPHeaders = [
@@ -68,7 +68,7 @@ class Party {
     
   }
   
-  func nominate(completion: @escaping (_ response: Bool) -> Void) {
+  func nominate(completion: @escaping (_ response: Any) -> Void) {
     let parameters: [String: Any] = [
       "party_code": code!,
       "song_url": song_url!,
@@ -77,7 +77,7 @@ class Party {
     
     Alamofire.request("\(apiUrl)/party/nomination", method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseString { response in
       
-      completion(response.result.isSuccess)
+      completion(response)
     }
   }
   
@@ -146,8 +146,10 @@ class Party {
   func getPartyInfo(completion: @escaping (_ response: JSON?
     ) -> Void) {
     
+    //print("Called GetPartyInfo")
+    
     Alamofire.request("\(apiUrl)/party/info?party_code=\(code!)", method: .get, encoding: URLEncoding.default, headers: nil).responseJSON { response in
-      //print(response)
+      //print(response.response?.statusCode)
       
       if(response.response?.statusCode == 400){
         completion(nil)
@@ -206,9 +208,9 @@ class Party {
       let index = self.voteHistory.firstIndex(of: songId)
       
       if(vote){
-        if index == nil {
+        //if index == nil {
           self.voteHistory.append(songId)
-        }
+        //}
       }
       else{
         if index != nil {

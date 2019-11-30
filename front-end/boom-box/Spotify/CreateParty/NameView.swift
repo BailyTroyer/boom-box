@@ -111,4 +111,8 @@ class NameView: UIViewController, UITextFieldDelegate {
     self.dismiss(animated: true, completion: nil)
   }
   
+  override var preferredStatusBarStyle: UIStatusBarStyle {
+    return .lightContent
+  }
+  
 }

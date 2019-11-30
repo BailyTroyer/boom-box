@@ -187,13 +187,15 @@ class NominateSong: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     Party.shared.song_url = self.link
     
-    Party.shared.nominate(completion: { result in
+    Party.shared.nominate(completion: { response in
       
-      if result {
-        print("YESS SUBMITTED")
-      } else {
-        print("FDFDJSFJHDfdsafs")
-      }
+      print(response)
+      
+//      if response != nil {
+//        print("YESS SUBMITTED")
+//      } else {
+//        print(response)
+//      }
     })
     
     self.back(self)
@@ -206,5 +208,9 @@ class NominateSong: UIViewController, UITableViewDelegate, UITableViewDataSource
         Party.shared.partyView?.fetchData()
       }
     })
+  }
+  
+  override var preferredStatusBarStyle: UIStatusBarStyle {
+    return .lightContent
   }
 }

@@ -137,9 +137,15 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
       }
     }
     
-//    let scale = 1.0 - (CGFloat(indexPath.row) / 15.0)
-//
-//    cell.transform = CGAffineTransform.init(scaleX: scale, y: scale)
+    let top = tableView.convert(CGPoint(x: cell.frame.midX, y: cell.frame.minY), to: tableView.superview)
+    
+    //find distance from the top of table view
+    let distFromTop = top.y - tableView.frame.minY
+    
+    let scale = 1.0 - (CGFloat(distFromTop) / 2500.0)
+    let transform = CGAffineTransform.init(scaleX: scale, y: scale)
+    
+    cell.profilePicture.superview?.transform = transform
     
     return cell
   }
@@ -147,6 +153,32 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
     print("Pressed: \(indexPath.row)")
   }
+  
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    transformCells(view: scrollView as! UITableView)
+  }
+  
+  func transformCells(view: UITableView){
+    let visibleCells = view.visibleCells as! [SongCardTableViewCell]
+
+    for cell in visibleCells{
+      // table view top
+      let top = view.convert(CGPoint(x: cell.frame.midX, y: cell.frame.minY), to: view.superview)
+      
+      //find distance from the top of table view
+      let distFromTop = top.y - tableView.frame.minY
+      
+      let scale = 1.0 - (CGFloat(distFromTop) / 2500.0)
+      
+      //-5x^{2}\ +\ 5
+      
+      //let scale = sqrt(-(CGFloat(distFromTop) / view.frame.maxY))
+      let transform = CGAffineTransform.init(scaleX: scale, y: scale)
+      
+      cell.profilePicture.superview?.transform = transform
+    }
+  }
+  
   
   func getImage() {
     
@@ -204,7 +236,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     nowPlayingPic.isUserInteractionEnabled = true
     nowPlayingPic.addGestureRecognizer(tapGestureRecognizer)
     nowPlayingPic.layer.masksToBounds = false
-    nowPlayingPic.layer.cornerRadius = nowPlayingPic.frame.size.width / 8
+    //nowPlayingPic.layer.cornerRadius = nowPlayingPic.frame.size.width / 10
     nowPlayingPic.clipsToBounds = true
     //nowPlayingPic.alpha = 0.1
     self.nowPlayingTitle.text = ""
@@ -219,10 +251,9 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     refreshControl.tintColor = UIColor.lightGray
     
     
-    self.dataTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { timer in
+    self.dataTimer = Timer.scheduledTimer(withTimeInterval: 8.0, repeats: true) { timer in
       self.fetchData()
     }
-    
     
   }
   
@@ -383,13 +414,13 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
       
       Party.shared.song_url = text
       
-      Party.shared.nominate(completion: { result in
-        if result {
-          print("YESS SUBMITTED")
-        } else {
-          print("FDFDJSFJHDfdsafs")
-        }
-      })
+//      Party.shared.nominate(completion: { result in
+//        if result {
+//          print("YESS SUBMITTED")
+//        } else {
+//          print("FDFDJSFJHDfdsafs")
+//        }
+//      })
     }
     
     return page
@@ -487,13 +518,20 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
       self.returnToMenu()
     }
   }
+  
+  override var preferredStatusBarStyle: UIStatusBarStyle {
+    return .lightContent
+  }
 }
 
 extension NSMutableAttributedString {
 
     func setColor(color: UIColor, forText stringValue: String) {
        let range: NSRange = self.mutableString.range(of: stringValue, options: .caseInsensitive)
+      
       self.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
+      self.addAttribute(NSAttributedString.Key.underlineStyle, value: 1, range: range)
+
     }
 
 }

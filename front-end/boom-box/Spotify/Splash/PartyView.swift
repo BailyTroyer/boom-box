@@ -76,4 +76,8 @@ class PartyView: UIViewController {
   @IBAction func exit(_ sender: Any) {
     self.dismiss(animated: true, completion: nil)
   }
+  
+  override var preferredStatusBarStyle: UIStatusBarStyle {
+    return .lightContent
+  }
 }
