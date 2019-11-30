@@ -29,13 +29,14 @@ class Party {
   var createVC: PartyView? = nil
   var partyView: SmallPartyView? = nil
   var voteHistory: [String] = []
+  var autoParty: Bool = false
 
   var partyStarted: Bool = false
   var host: Bool = false
   
 
-  //let apiUrl = "https://35bf35f0.ngrok.io"
-  let apiUrl = "https://boom-box-beta.appspot.com"
+  let apiUrl = "https://faf95877.ngrok.io"
+  //let apiUrl = "https://boom-box-beta.appspot.com"
   
   func getImage(completion: @escaping (_ repsonse: String) -> Void) {
     let headers: HTTPHeaders = [
@@ -120,10 +121,19 @@ class Party {
     Alamofire.request("\(apiUrl)/party", method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseString { response in
       
       self.playlistId = response.result.value
+      
+      UserDefaults.standard.set(self.code!, forKey: "partyCode")
+      UserDefaults.standard.set(true, forKey: "isHost")
+      UserDefaults.standard.synchronize()
+      self.host = true
+      self.autoParty = false
+      
       completion(response.result.isSuccess)
     }
     
-    self.host = true
+
+    
+    
   }
   
   func joinParty(completion: @escaping (_ response: Int) -> Void) {
@@ -135,11 +145,11 @@ class Party {
     print("Joining party: \(code!)")
     
     Alamofire.request("\(apiUrl)/party/attendance", method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseString { response in
+      self.autoParty = false
       if(response.response == nil){
         completion(500)
       }
       completion(response.response!.statusCode)
-      
     }
   }
   
@@ -190,6 +200,10 @@ class Party {
       self.name = nil
       self.partyView = nil
       self.voteHistory = []
+      
+      UserDefaults.standard.set(nil, forKey: "partyCode")
+      UserDefaults.standard.set(false, forKey: "isHost")
+      UserDefaults.standard.synchronize()
     }
   }
     

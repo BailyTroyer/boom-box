@@ -17,8 +17,6 @@ class PartyCode: UIViewController {
   @IBOutlet weak var loadingLabel: UILabel!
   @IBOutlet weak var loader: UIActivityIndicatorView!
   
-  @IBOutlet weak var loaderView: UIView!
-  
   @IBOutlet weak var label1: UILabel!
   @IBOutlet weak var label2: UILabel!
   var continueButton: UIButton = UIButton()
@@ -27,7 +25,7 @@ class PartyCode: UIViewController {
     
   var started = false
   
-  var lottieLoader: AnimationView = AnimationView(name: "loader")
+  var lottieLoader: AnimationView = AnimationView(name: "loading")
   
     
   override func viewDidLoad() {
@@ -57,23 +55,23 @@ class PartyCode: UIViewController {
     // add button to view
     self.view.addSubview(continueButton)
     
-    lottieLoader.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+    lottieLoader.frame = CGRect(x: 0, y: 0, width: 250, height: 250)
     lottieLoader.center.x = self.view.center.x
-    lottieLoader.center.y = self.view.center.y + self.view.frame.maxY/6
+    lottieLoader.center.y = self.view.center.y + self.view.frame.maxY/4
     lottieLoader.contentMode = .scaleAspectFill
-    
-    loaderView.addSubview(lottieLoader)
-    lottieLoader.play()
+    lottieLoader.alpha = 0
+
+    self.view.addSubview(lottieLoader)
     lottieLoader.loopMode = .loop
   }
   
   override func viewDidAppear(_ animated: Bool) {
-    UIView.animate(withDuration: 0.3, animations: {
-      self.partyCode.alpha = 1
-    })
+//    UIView.animate(withDuration: 0.3, animations: {
+//      self.partyCode.alpha = 1
+//    })
   }
   
-  override func viewWillDisappear(_ animated: Bool) {
+  override func viewDidDisappear(_ animated: Bool) {
     self.lottieLoader.stop()
   }
   
@@ -81,34 +79,44 @@ class PartyCode: UIViewController {
     self.partyCode.alpha = 0
     self.uuid = randomString(length: 6)
     Party.shared.code = self.uuid
-    self.partyCode.text = uuid
-    lottieLoader.play()
+    //self.partyCode.text = uuid
+    
+    
+    UIView.animate(withDuration: 0.3, animations: {
+      self.partyCode.alpha = 1
+    })
   }
   
   func randomString(length: Int) -> String {
 
-      let letters : NSString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-      let len = UInt32(letters.length)
+    let letters : NSString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    let len = UInt32(letters.length)
 
-      var randomString = ""
+    var randomString = ""
 
-      for _ in 0 ..< length {
-          let rand = arc4random_uniform(len)
-          var nextChar = letters.character(at: Int(rand))
-          randomString += NSString(characters: &nextChar, length: 1) as String
+    for _ in 0 ..< length {
+      let rand = arc4random_uniform(len)
+      var nextChar = letters.character(at: Int(rand))
+      if(randomString == ""){
+        randomString += NSString(characters: &nextChar, length: 1) as String
       }
+      else{
+        randomString += "•\(NSString(characters: &nextChar, length: 1) as String)"
+      }
+    }
+    
+    self.partyCode.text = randomString
 
-      return randomString
+    return randomString.replacingOccurrences(of: "•", with: "")
   }
   
   @objc func next_view() {
-    // call createParty
-    if(self.started){return}
+    if(self.started){return} // if the request is already in progress
     
-    
+    lottieLoader.play()
     
     UIView.animate(withDuration: 0.3, animations: {
-      self.loader.alpha = 1
+      self.lottieLoader.alpha = 1
       self.loadingLabel.alpha = 1
       self.continueButton.alpha = 0.3
     })
@@ -116,7 +124,7 @@ class PartyCode: UIViewController {
     Party.shared.createParty(completion: { response in
       
       UIView.animate(withDuration: 0.3, animations: {
-        self.loader.alpha = 0
+        self.lottieLoader.alpha = 0
         self.loadingLabel.alpha = 0
       })
       

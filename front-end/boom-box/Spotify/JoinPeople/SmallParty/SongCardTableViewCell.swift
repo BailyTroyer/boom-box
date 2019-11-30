@@ -31,7 +31,7 @@ class SongCardTableViewCell: UITableViewCell {
     
     profilePicture.layer.borderWidth = 1.0
     profilePicture.layer.masksToBounds = false
-    profilePicture.layer.borderColor = UIColor.white.cgColor
+    profilePicture.layer.borderColor = UIColor.lightGray.cgColor
     profilePicture.layer.cornerRadius = 30
     profilePicture.clipsToBounds = true
     

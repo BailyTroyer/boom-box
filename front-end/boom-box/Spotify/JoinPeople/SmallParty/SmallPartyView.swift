@@ -23,6 +23,8 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   @IBOutlet weak var nominate: UIButton!
   @IBOutlet weak var exit: UIButton!
   
+  var nowPlayingSong: String?
+  
   var partyName: String!
   
   var playingAd: Bool = false
@@ -61,7 +63,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    self.setBackgroundLabel()
+    //self.setBackgroundLabel()
     //self.tableView.backgroundView = self.emptyMessageLabel
 //    if(self.song_nominations.count == 0){
 //      self.tableView.backgroundView = self.emptyMessageLabel
@@ -77,10 +79,10 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     if(self.song_nominations.count == 0){
       if(!Party.shared.partyStarted){
         if(Party.shared.host){
-          message = "Oops... You need to start the music!\n\nGo to Spotify and start playing the \n'\(Party.shared.name!)' playlist!"
+          message = "Oops... You need to start the music!\n\nGo to Spotify and start playing\n\(self.nowPlayingSong!) in the \(Party.shared.name!) playlist!"
         }
         else{
-          message = "Oops... It looks like the host hasn't started the playlist!"
+          message = "Oops... It looks like the host isn't playing the playlist!"
         }
         
       }
@@ -95,7 +97,8 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: message)
     attributedString.setColor(color: #colorLiteral(red: 0.4755314086, green: 0.3991935802, blue: 0.01888621333, alpha: 1), forText: "add a song!")
     if(Party.shared.host){
-      attributedString.setColor(color: #colorLiteral(red: 0.4755314086, green: 0.3991935802, blue: 0.01888621333, alpha: 1), forText: "'\(Party.shared.name!)'")
+      attributedString.setColor(color: #colorLiteral(red: 0.4755314086, green: 0.3991935802, blue: 0.01888621333, alpha: 1), forText: Party.shared.name!)
+      attributedString.setColor(color: #colorLiteral(red: 0.4755314086, green: 0.3991935802, blue: 0.01888621333, alpha: 1), forText: self.nowPlayingSong!)
     }
     emptyMessageLabel.attributedText = attributedString
   }
@@ -227,10 +230,9 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     let tableTouchRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedTableView))
     tableView.addGestureRecognizer(tableTouchRecognizer)
-    //self.view.addGestureRecognizer(tableTouchRecognizer)
+
     
     
-    partyCode.text = Party.shared.code
     
     let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
     nowPlayingPic.isUserInteractionEnabled = true
@@ -239,7 +241,8 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     //nowPlayingPic.layer.cornerRadius = nowPlayingPic.frame.size.width / 10
     nowPlayingPic.clipsToBounds = true
     //nowPlayingPic.alpha = 0.1
-    self.nowPlayingTitle.text = ""
+    nowPlayingTitle.text = ""
+    partyCode.text =  ""
     
     exit.layer.cornerRadius = exit.frame.size.width / 2
     nominate.layer.cornerRadius = nominate.frame.size.width / 2
@@ -263,9 +266,9 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     if path != nil {
       //self.tableView.delegate?.tableView!(self.tableView, didSelectRowAt: path)
     } else {
-        // handle tap on empty space below existing rows however you want
+        // handle tap on empty space below existing rows
       if(song_nominations.count == 0){
-        if(!Party.shared.partyStarted){ // open spotify
+        if(!Party.shared.partyStarted && Party.shared.host){ // open spotify
           let playlistUrl = "https://open.spotify.com/playlist/\(Party.shared.playlistId!)"
           if let url = URL(string: playlistUrl) {
               UIApplication.shared.open(url)
@@ -309,7 +312,8 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
         let alert = UIAlertController(title: "Looks like this party has ended :(", message: "Press OK to go back...", preferredStyle: .alert)
 
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-          self.exit(self)
+
+          self.returnToMenu()
         }))
 
         self.present(alert, animated: true)
@@ -317,8 +321,11 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
         return
       }
       
-      // sort nominations by votes
+      
       Party.shared.partyStarted = data!["started"].boolValue
+      Party.shared.name = data!["name"].stringValue
+      self.partyCode.text = data!["party_code"].stringValue
+      self.nowPlayingSong = data!["now_playing"]["name"].stringValue
       self.setBackgroundLabel()
       
       if(data!["playing_ad"].boolValue){
@@ -332,9 +339,15 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
       }
       
       if(!data!["song_nominations"].exists() && !self.first || !Party.shared.partyStarted){
+        self.song_nominations = []
+        self.nowPlayingTitle.text = ""
+        UIView.animate(withDuration: 0.3, animations: {self.nowPlayingPic.alpha = 0.3})
+        self.tableView.reloadData()
+        
         return
       }
       
+      // sort nominations by votes
       let sortedNoms = data!["song_nominations"].arrayValue.sorted(by: {(a, b) in
         return a["votes"].int! > b["votes"].int!
       })
@@ -365,6 +378,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
       self.first = false
       if(sortedNoms != self.song_nominations){
         self.song_nominations = sortedNoms
+        self.setBackgroundLabel()
         self.tableView.reloadData()
         
         if(self.song_nominations.count == 0){
@@ -444,27 +458,39 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     //print("set new partyview")
     Party.shared.partyView = self
     
+    var alert: UIAlertController? = nil
+    
     if(Party.shared.host){
-      let alert = UIAlertController(title: "Start playing the music!", message: "Open Spotify and start playing the '\(Party.shared.name!)' playlist.", preferredStyle: .alert)
-
-      alert.addAction(UIAlertAction(title: "I'll do it myself", style: .destructive, handler: {_ in
-        self.startEmptyMessageAnimation()
-      }))
-      
-      alert.addAction(UIAlertAction(title: "Open Spotify", style: .default, handler: {_ in
+      if(Party.shared.autoParty){
+        alert = UIAlertController(title: "Welcome back!", message: "You're still the host of this party.", preferredStyle: .alert)
+        alert!.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in self.startEmptyMessageAnimation()}))
+      }
+      else{
+        alert = UIAlertController(title: "Start playing the music!", message: "Open Spotify and start playing the '\(Party.shared.name!)' playlist.", preferredStyle: .alert)
+        alert!.addAction(UIAlertAction(title: "I'll do it myself", style: .destructive, handler: {_ in self.startEmptyMessageAnimation() }))
         
-        self.startEmptyMessageAnimation()
-        
-        let playlistUrl = "https://open.spotify.com/playlist/\(Party.shared.playlistId!)"
-        if let url = URL(string: playlistUrl) {
-            UIApplication.shared.open(url)
-        }
-      }))
-
-      self.present(alert, animated: true)
+        alert!.addAction(UIAlertAction(title: "Open Spotify", style: .default, handler: {_ in
+          
+          self.startEmptyMessageAnimation()
+          
+          let playlistUrl = "https://open.spotify.com/playlist/\(Party.shared.playlistId!)"
+          if let url = URL(string: playlistUrl) {
+              UIApplication.shared.open(url)
+          }
+        }))
+      }
     }else{
+      if(Party.shared.autoParty){
+        alert = UIAlertController(title: "Welcome back!", message: "The last party you were in is still going on.", preferredStyle: .alert)
+        alert!.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in self.startEmptyMessageAnimation()}))
+      }
       self.startEmptyMessageAnimation()
     }
+    
+    if(alert != nil){
+      self.present(alert!, animated: true)
+    }
+    
 
     print("VIEW APPEARED")
   }
@@ -480,6 +506,11 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
       })
       Party.shared.createVC = nil
     }
+    else{
+      self.dismiss(animated: true, completion: nil)
+    }
+    
+    
   }
   
   func startEmptyMessageAnimation(){
@@ -504,8 +535,9 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     let alert = UIAlertController(title: "You're the host!", message: "Leaving the party will end it for everyone...", preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Keep it going", style: .cancel, handler: nil))
     alert.addAction(UIAlertAction(title: "End party", style: .destructive, handler: { action in
-      Party.shared.leaveParty(completion: {_ in})
-      self.returnToMenu()
+      Party.shared.leaveParty(completion: {_ in
+        self.returnToMenu()
+      })
     }))
     
     
@@ -514,8 +546,9 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
       self.present(alert, animated: true)
     }
     else{
-      Party.shared.leaveParty(completion: {_ in})
-      self.returnToMenu()
+      Party.shared.leaveParty(completion: {_ in
+        self.returnToMenu()
+      })
     }
   }
   

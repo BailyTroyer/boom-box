@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="K4v-aV-Hqd">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -25,6 +26,7 @@
                     <navigationItem key="navigationItem" id="wOG-Vl-ZNq"/>
                     <connections>
                         <segue destination="VdB-dr-3J7" kind="presentation" identifier="authed" modalPresentationStyle="fullScreen" id="WuI-eb-vHZ"/>
+                        <segue destination="FuX-HZ-HY2" kind="presentation" identifier="auto_party" modalPresentationStyle="fullScreen" id="6fp-zr-Rh6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pcW-X6-GI4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -43,7 +45,7 @@
                                 <rect key="frame" x="0.0" y="-44" width="375" height="376"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Party!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubO-da-wT6">
-                                        <rect key="frame" x="131.5" y="331.5" width="112.5" height="27"/>
+                                        <rect key="frame" x="129" y="328.5" width="117.5" height="30"/>
                                         <fontDescription key="fontDescription" name="AirbnbCerealApp-Medium" family="Airbnb Cereal App" pointSize="23"/>
                                         <color key="textColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -130,6 +132,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YX3-a7-8GK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1251" y="160"/>
+        </scene>
+        <!--SmallParty-->
+        <scene sceneID="Ge0-7N-fYP">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SmallParty" id="FuX-HZ-HY2" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B3n-B4-VYS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-234" y="-357"/>
         </scene>
     </scenes>
     <resources>

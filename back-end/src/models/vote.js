@@ -51,6 +51,8 @@ class Vote {
 
             let totalMins = ((new Date() - party.start_time)/1000)/60
 
+            console.log(totalMins)
+
 
             if(totalMins >= 120){
                 clearInterval(progressIntervalId)
@@ -62,6 +64,8 @@ class Vote {
 
             const songDuration = party.now_playing.duration_ms
 
+            // make sure we have the latest party token
+            playerInfoReq.headers = {'Authorization': 'Bearer ' + party.token}
             request(playerInfoReq)
             .then(async (body) => {
                 // spotify is not active on any of the user's devices
@@ -128,6 +132,8 @@ class Vote {
 
                     // checking if new song has started playing
                     nextIntervalId = setInterval(() => {
+                        // make sure we have the latest party token
+                        playerInfoReq.headers = {'Authorization': 'Bearer ' + party.token}
                         request(playerInfoReq)
                         .then((body) => {
                             

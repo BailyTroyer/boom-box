@@ -53,7 +53,7 @@ class PartyView: UIViewController {
     dancing.loopMode = .loop
   }
   
-  override func viewWillDisappear(_ animated: Bool) {
+  override func viewDidDisappear(_ animated: Bool) {
     self.dancing.stop()
     self.musicLoad.stop()
     Party.shared.createVC = self

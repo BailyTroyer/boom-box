@@ -65,6 +65,10 @@ class JoinPeople: UIViewController, UITextFieldDelegate {
     })
     Party.shared.joinParty(completion: { code in
       if code == 200 {
+        UserDefaults.standard.set(Party.shared.code, forKey: "partyCode")
+        UserDefaults.standard.set(false, forKey: "isHost")
+        UserDefaults.standard.synchronize()
+        
         self.performSegue(withIdentifier: "show_small_party", sender: self)
       } else {
         

@@ -140,11 +140,8 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NrN-a9-EMe">
-                                <rect key="frame" x="74" y="421" width="227" height="71"/>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creating party..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZv-xR-An7">
-                                <rect key="frame" x="129" y="500" width="117.33333333333331" height="21"/>
+                                <rect key="frame" x="129" y="526" width="117.33333333333331" height="21"/>
                                 <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="16"/>
                                 <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <nil key="highlightedColor"/>
@@ -161,12 +158,9 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="zzu-Hk-R0t" firstAttribute="centerX" secondItem="1Nv-uk-wAZ" secondAttribute="centerX" id="3i1-bc-32G"/>
-                            <constraint firstItem="NrN-a9-EMe" firstAttribute="centerX" secondItem="qF6-ua-xtv" secondAttribute="centerX" id="8UO-ui-cp5"/>
                             <constraint firstItem="cZv-xR-An7" firstAttribute="leading" secondItem="JqY-y3-ahf" secondAttribute="leading" constant="129" id="9ap-H8-lwo"/>
-                            <constraint firstItem="cZv-xR-An7" firstAttribute="top" secondItem="NrN-a9-EMe" secondAttribute="bottom" constant="8" id="FRM-Uc-0Lr"/>
                             <constraint firstItem="qF6-ua-xtv" firstAttribute="top" secondItem="zzu-Hk-R0t" secondAttribute="bottom" constant="14" id="Hbh-Wv-ycl"/>
-                            <constraint firstItem="JqY-y3-ahf" firstAttribute="bottom" secondItem="cZv-xR-An7" secondAttribute="bottom" constant="257" id="KN7-S6-jDp"/>
-                            <constraint firstItem="NrN-a9-EMe" firstAttribute="leading" secondItem="JqY-y3-ahf" secondAttribute="leading" constant="74" id="Lij-dH-N8h"/>
+                            <constraint firstItem="JqY-y3-ahf" firstAttribute="bottom" secondItem="cZv-xR-An7" secondAttribute="bottom" constant="231" id="KN7-S6-jDp"/>
                             <constraint firstItem="zzu-Hk-R0t" firstAttribute="leading" secondItem="JqY-y3-ahf" secondAttribute="leading" constant="45" id="W7n-zI-Wpo"/>
                             <constraint firstItem="ULA-2y-eDO" firstAttribute="top" secondItem="JqY-y3-ahf" secondAttribute="top" constant="76" id="Ykk-M9-7ma"/>
                             <constraint firstItem="zzu-Hk-R0t" firstAttribute="top" secondItem="1Nv-uk-wAZ" secondAttribute="bottom" constant="71" id="ZIE-Ju-gw9"/>
@@ -174,7 +168,6 @@
                             <constraint firstItem="zzu-Hk-R0t" firstAttribute="centerX" secondItem="qF6-ua-xtv" secondAttribute="centerX" id="hmb-0P-mR0"/>
                             <constraint firstItem="1Nv-uk-wAZ" firstAttribute="top" secondItem="ULA-2y-eDO" secondAttribute="bottom" constant="8" id="kLk-t0-r0A"/>
                             <constraint firstItem="IjD-xa-RQ4" firstAttribute="top" secondItem="JqY-y3-ahf" secondAttribute="top" id="pRv-qa-E30"/>
-                            <constraint firstItem="NrN-a9-EMe" firstAttribute="top" secondItem="8AD-Ku-GIT" secondAttribute="top" constant="421" id="qUx-PB-7j3"/>
                             <constraint firstItem="ULA-2y-eDO" firstAttribute="centerX" secondItem="1Nv-uk-wAZ" secondAttribute="centerX" id="xQ3-kn-pYz"/>
                             <constraint firstItem="IjD-xa-RQ4" firstAttribute="leading" secondItem="JqY-y3-ahf" secondAttribute="leading" constant="20" id="xkJ-Bb-A9S"/>
                             <constraint firstItem="1Nv-uk-wAZ" firstAttribute="leading" secondItem="JqY-y3-ahf" secondAttribute="leading" constant="137" id="zxd-Q0-8uJ"/>
@@ -191,7 +184,6 @@
                         <outlet property="label1" destination="ULA-2y-eDO" id="Yec-cg-e0f"/>
                         <outlet property="label2" destination="1Nv-uk-wAZ" id="bbq-ry-Ge6"/>
                         <outlet property="loader" destination="CfW-kr-pqE" id="8B6-HP-BBN"/>
-                        <outlet property="loaderView" destination="NrN-a9-EMe" id="hMG-oS-WFv"/>
                         <outlet property="loadingLabel" destination="cZv-xR-An7" id="8zG-K5-vTc"/>
                         <outlet property="partyCode" destination="zzu-Hk-R0t" id="pTe-90-gWY"/>
                         <segue destination="k6a-6h-Yfq" kind="presentation" identifier="to_large_party" modalPresentationStyle="fullScreen" id="sRp-jc-r3u"/>

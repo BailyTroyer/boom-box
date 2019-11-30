@@ -21,8 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                   clientSecret: "6637f60d371142d59b9c9511ed42333c",
                                   redirectURL: redirectURL)
     
-    UINavigationBar.appearance().backIndicatorImage = UIImage()
-    UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage()
+//    UINavigationBar.appearance().backIndicatorImage = UIImage()
+//    UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage()
+    
     return true
   }
   
