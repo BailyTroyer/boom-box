@@ -97,7 +97,8 @@ class Party {
             guests: [],
             fallback: {},
             playing_ad: false,
-            cops: 0
+            cops: 0,
+            start_time: new Date()
         })
             .then(result => {
                 //start playing playlist
@@ -205,6 +206,16 @@ class Party {
         const { party_code } = req.query
 
         const party = await Mongo.db.collection("parties").findOne({party_code: party_code})
+
+        // the interval loop in checkForSongEndingSoon can be terminated if the app engine instance dies
+        // we check if its been more than 15 seconds since the party last received an update and
+        // restart the interval loop if needed
+        const sinceLastActive = (new Date() - party.last_active)/1000
+        if(sinceLastActive > 15){
+            console.log("RESTARTED PARTY LOOP")
+            Mongo.db.collection("parties").updateOne({party_code: party_code}, {$set: {last_active: new Date()}})
+            Vote.checkForSongEndingSoon(party_code, party.token);
+        }
         
         if(party){
             res.status(200).json(party);
