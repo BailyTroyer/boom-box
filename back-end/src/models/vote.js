@@ -34,32 +34,32 @@ class Vote {
         let partyStarted = false
         let waitingForNextSong = false;
         let lastActivity = new Date()
-        let totalMins;
+        let totalMins = 0;
         let advertising = false
+        let nextIntervalId = null
         const startTime = lastActivity
 
         let progressIntervalId = setInterval(async () => {
+            if(waitingForNextSong) return
+
             const party = await Mongo.db.collection("parties").findOne({party_code: party_code})
 
             let elapsedMins = ((new Date() - lastActivity)/1000)/60
             totalMins = ((new Date() - startTime)/1000)/60
 
             if(!party){
-                console.log("No Party in DB... ending loop")
+                console.log("No Party in DB or party ended... ending loop")
                 clearInterval(progressIntervalId)
                 return;
             }
-            if(elapsedMins >= 20 || totalMins >= 60){
+            if(elapsedMins >= 20 || totalMins >= 55){
                 clearInterval(progressIntervalId)
                 Mongo.db.collection("parties").deleteOne({party_code: party_code})
                 console.log("PARTY OVER")
                 return
             }
-            if(waitingForNextSong) return
 
             const songDuration = party.now_playing.duration_ms
-
-            
 
             request(playerInfoReq)
             .then(async (body) => {
@@ -103,6 +103,13 @@ class Vote {
                     console.log("Last 10 seconds")
                     // add highest rated song to playlist
                     const party = await Mongo.db.collection("parties").findOne({'party_code': party_code})
+
+                    if(!party){
+                        console.log("No Party in DB... ending loop")
+                        clearInterval(progressIntervalId)
+                        return;
+                    }
+
                     const nominations = party.song_nominations
 
                     nominations.sort(sortByVotes)
@@ -113,7 +120,7 @@ class Vote {
                     waitingForNextSong = true
 
                     // checking if new song has started playing
-                    let nextIntervalId = setInterval(() => {
+                    nextIntervalId = setInterval(() => {
                         request(playerInfoReq)
                         .then((body) => {
                             
@@ -131,7 +138,7 @@ class Vote {
 
                                 clearInterval(nextIntervalId);
 
-                                if(advertising){
+                                if(advertising){ // ad is no longer playing
                                     Mongo.db.collection("parties").updateOne({party_code: party_code}, {$set: {playing_ad: false}})
                                     advertising = false
                                 }
@@ -147,6 +154,8 @@ class Vote {
                             }
                         })
                         .catch(err => {
+                            // usually happens when access token expires
+                            Mongo.db.collection("parties").deleteOne({party_code: party_code})
                             console.log(err)
                             clearInterval(nextIntervalId);
                             clearInterval(progressIntervalId);
@@ -156,6 +165,8 @@ class Vote {
                 }
             })
             .catch(err => {
+                // usually happens when access token expires
+                Mongo.db.collection("parties").deleteOne({party_code: party_code})
                 console.log(err)
                 clearInterval(nextIntervalId);
                 clearInterval(progressIntervalId);

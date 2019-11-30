@@ -13,6 +13,7 @@
 		4D10D35D23774ED600E86EFD /* music-load.json in Resources */ = {isa = PBXBuildFile; fileRef = 4D10D35A23774ED600E86EFD /* music-load.json */; };
 		980F1735238A9E9500316481 /* NominateSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980F1734238A9E9500316481 /* NominateSong.swift */; };
 		981F74DA238A4CCA00025E00 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981F74D9238A4CCA00025E00 /* SearchResultTableViewCell.swift */; };
+		98675C3B23929CCF00C8996A /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 98675C3A23929CCF00C8996A /* loading.json */; };
 		EB50067C236EA8210067979E /* NumberPeople.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB50067B236EA8210067979E /* NumberPeople.swift */; };
 		EB50067E236EAB2B0067979E /* SmallParty.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB50067D236EAB2B0067979E /* SmallParty.storyboard */; };
 		EB500680236EAB370067979E /* LargeParty.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB50067F236EAB370067979E /* LargeParty.storyboard */; };
@@ -55,6 +56,7 @@
 		63995E4BA735DF84013D26AE /* Pods-Spotify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spotify.release.xcconfig"; path = "Target Support Files/Pods-Spotify/Pods-Spotify.release.xcconfig"; sourceTree = "<group>"; };
 		980F1734238A9E9500316481 /* NominateSong.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = NominateSong.swift; sourceTree = "<group>"; tabWidth = 2; };
 		981F74D9238A4CCA00025E00 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; tabWidth = 2; };
+		98675C3A23929CCF00C8996A /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		EB50067B236EA8210067979E /* NumberPeople.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = NumberPeople.swift; sourceTree = "<group>"; tabWidth = 2; };
 		EB50067D236EAB2B0067979E /* SmallParty.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SmallParty.storyboard; sourceTree = "<group>"; };
 		EB50067F236EAB370067979E /* LargeParty.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LargeParty.storyboard; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				EB814303236E03400047C22B /* SceneDelegate.swift */,
 				EB814305236E03400047C22B /* ViewController.swift */,
 				EB81430A236E03410047C22B /* Assets.xcassets */,
+				98675C3A23929CCF00C8996A /* loading.json */,
 				EB81430C236E03410047C22B /* LaunchScreen.storyboard */,
 				EB81430F236E03410047C22B /* Info.plist */,
 				EB814342236E24D90047C22B /* Extensions.swift */,
@@ -304,6 +307,7 @@
 				EB81433B236E14060047C22B /* AirbnbCereal-Black.ttf in Resources */,
 				EB814336236E14060047C22B /* AirbnbCereal-ExtraBold.ttf in Resources */,
 				EB814339236E14060047C22B /* AirbnbCereal-Bold.ttf in Resources */,
+				98675C3B23929CCF00C8996A /* loading.json in Resources */,
 				EB814338236E14060047C22B /* AirbnbCereal-Medium.ttf in Resources */,
 				4D10D35D23774ED600E86EFD /* music-load.json in Resources */,
 				EB81430E236E03410047C22B /* LaunchScreen.storyboard in Resources */,

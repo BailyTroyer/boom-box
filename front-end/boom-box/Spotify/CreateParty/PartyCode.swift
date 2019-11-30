@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Lottie
 
 class PartyCode: UIViewController {
   
@@ -15,6 +16,8 @@ class PartyCode: UIViewController {
   
   @IBOutlet weak var loadingLabel: UILabel!
   @IBOutlet weak var loader: UIActivityIndicatorView!
+  
+  @IBOutlet weak var loaderView: UIView!
   
   @IBOutlet weak var label1: UILabel!
   @IBOutlet weak var label2: UILabel!
@@ -24,21 +27,15 @@ class PartyCode: UIViewController {
     
   var started = false
   
+  var lottieLoader: AnimationView = AnimationView(name: "loader")
+  
+    
   override func viewDidLoad() {
     super.viewDidLoad()
     
     self.loader.alpha = 0
     self.loadingLabel.alpha = 0
-    
-    let userInterfaceStyle = traitCollection.userInterfaceStyle
-    print("STYLE: \(userInterfaceStyle)")
-    
-    if userInterfaceStyle == .dark {
-      print("fdsfds")
-      self.label1.textColor = UIColor.white
-      self.label2.textColor = UIColor.white
-    }
-    
+
     continueButton = UIButton(frame: CGRect(x: 0, y: (self.view.frame.maxY - self.view.frame.maxY/10), width: (self.view.frame.maxX - self.view.frame.maxX/6), height: 50))
     
     // button text "sign in"
@@ -60,7 +57,14 @@ class PartyCode: UIViewController {
     // add button to view
     self.view.addSubview(continueButton)
     
-    //continueButton.bindToKeyboard()
+    lottieLoader.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+    lottieLoader.center.x = self.view.center.x
+    lottieLoader.center.y = self.view.center.y + self.view.frame.maxY/6
+    lottieLoader.contentMode = .scaleAspectFill
+    
+    loaderView.addSubview(lottieLoader)
+    lottieLoader.play()
+    lottieLoader.loopMode = .loop
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -69,11 +73,16 @@ class PartyCode: UIViewController {
     })
   }
   
+  override func viewWillDisappear(_ animated: Bool) {
+    self.lottieLoader.stop()
+  }
+  
   override func viewWillAppear(_ animated: Bool) {
     self.partyCode.alpha = 0
     self.uuid = randomString(length: 6)
     Party.shared.code = self.uuid
     self.partyCode.text = uuid
+    lottieLoader.play()
   }
   
   func randomString(length: Int) -> String {
@@ -103,10 +112,8 @@ class PartyCode: UIViewController {
       self.loadingLabel.alpha = 1
       self.continueButton.alpha = 0.3
     })
-    
+    self.started = true
     Party.shared.createParty(completion: { response in
-      
-      self.started = true
       
       UIView.animate(withDuration: 0.3, animations: {
         self.loader.alpha = 0
