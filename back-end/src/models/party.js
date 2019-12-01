@@ -1,6 +1,6 @@
 import Mongo from '../helpers/mongo';
 import Playback from './playback'
-import Vote from './vote'
+import manageParty from '../helpers/party_manager'
 import request from 'request-promise-native';
 
 
@@ -103,8 +103,7 @@ class Party {
             last_active: new Date()
         })
             .then(result => {
-                //start playing playlist
-                startParty(playlist.id, token);
+                startPlaylist(playlist.id, token);
                 Party.setFallbackNomination(party_code, songInfo.id, token)
 
                 res.status(200).send(playlist.id);
@@ -115,18 +114,23 @@ class Party {
             })
 
         // runs for the life of the party
-        Vote.checkForSongEndingSoon(party_code, token);
+        manageParty(party_code, token);
     }
 
     static async nominateSong(req, res){
-        const { party_code, song_url, token } = req.body
+        const { party_code, song_url, user_id, token } = req.body
 
         const [songInfo, party] = await Promise.all([
             Playback.getSongInfo(song_url, token),
             Mongo.db.collection("parties").findOne({party_code: party_code})
         ])
 
+        if(!party || !songInfo){
+            res.status(400).send("Party doenst exist/no song info");
+        }
+
         songInfo.votes = 0 // add key to object
+        songInfo.nominated_by = user_id
 
         // if the song is already in the nominations
         if(party.song_nominations.find(song => song.id === songInfo.id)){
@@ -167,7 +171,16 @@ class Party {
     }
 
     static async removeNomination(req, res){
-        res.status(200).send("Remove song nomination");
+        const { party_code, song_id } = req.body
+        console.log(song_id)
+
+        Mongo.db.collection("parties").updateOne({party_code: party_code}, {$pull: {song_nominations: song_id}})
+            .then(result => {
+                res.status(200).send("Removed nomination");
+            })
+            .catch(result => {
+                res.status(400).send("You fucked up");
+            })
     }
 
     static async selectRandomUsers(req, res){
@@ -205,21 +218,22 @@ class Party {
 
     static async getPartyInfo(req, res){
 
-        const { party_code } = req.query
+        const { party_code, token, user_id } = req.query
 
         const party = await Mongo.db.collection("parties").findOne({party_code: party_code})
-
-
         
         if(party){
-            // the interval loop in checkForSongEndingSoon can be terminated if the app engine instance dies
+            // grab token from host in case it is a newer one
+            const newToken = user_id == party.host_id ? token : party.token;
+
+            // the interval loop in manageParty can be terminated if the app engine instance dies
             // we check if its been more than 15 seconds since the party last received an update and
             // restart the interval loop if needed
             const sinceLastActive = (new Date() - party.last_active)/1000
             if(sinceLastActive > 15){
                 console.log("RESTARTED PARTY LOOP")
-                Mongo.db.collection("parties").updateOne({party_code: party_code}, {$set: {last_active: new Date()}})
-                Vote.checkForSongEndingSoon(party_code, party.token);
+                Mongo.db.collection("parties").updateOne({party_code: party_code}, {$set: {last_active: new Date(), token: newToken}})
+                manageParty(party_code, newToken);
             }
             
             res.status(200).json(party);
@@ -246,7 +260,7 @@ const createPartyPlaylist = async (name, user_id, token) => {
         })
 }
 
-const startParty = async (playlistId, token) => {
+const startPlaylist = async (playlistId, token) => {
     const context = `spotify:playlist:${playlistId}`
     const options = {
         method: 'PUT',
