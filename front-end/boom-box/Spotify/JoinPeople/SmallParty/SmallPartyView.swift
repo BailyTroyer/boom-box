@@ -35,8 +35,6 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   var first: Bool = true
   
-  var placeholderCell: SongCardTableViewCell!
-  
   var emptyMessageLabel: UILabel!
   var emptyMessageButton: UIButton!
   
@@ -101,14 +99,9 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell =  tableView.dequeueReusableCell(withIdentifier: "songCard", for: indexPath) as! SongCardTableViewCell
-    //tableView.de
+
     let song = song_nominations[indexPath.row]
-    if (song == ""){
-      return self.placeholderCell
-    }
-    
-    //cell.setSelected(true, animated: false)
-    
+
     if(song["nominated_by"].stringValue == Party.shared.username){
       cell.songSwitch.isHidden = true
       cell.denominate.isHidden = false

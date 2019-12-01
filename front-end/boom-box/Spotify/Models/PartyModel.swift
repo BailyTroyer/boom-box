@@ -35,8 +35,8 @@ class Party {
   var host: Bool = false
   
 
-  let apiUrl = "https://e366f9fd.ngrok.io"
-  //let apiUrl = "https://boom-box-beta.appspot.com"
+  //let apiUrl = "https://e366f9fd.ngrok.io"
+  let apiUrl = "https://boom-box-beta.appspot.com"
   
   func getImage(completion: @escaping (_ repsonse: String) -> Void) {
     let headers: HTTPHeaders = [
@@ -262,7 +262,7 @@ class Party {
       "Accept": "application/json"
     ]
     
-    Alamofire.request("https://api.spotify.com/v1/search?q=\(searchString!)&type=track&limit=20", method: .get, encoding: URLEncoding.default, headers: headers).validate().responseJSON { response in
+    Alamofire.request("https://api.spotify.com/v1/search?q=\(searchString!)&type=track&limit=30", method: .get, encoding: URLEncoding.default, headers: headers).validate().responseJSON { response in
       
       //to get JSON return value
       if let result = response.result.value {
