@@ -123,33 +123,35 @@ class LogInViewController: UIViewController {
 
   
   @objc func loginSuccessful() {
+    print("CALLED LOGIN SUCCESSFUL")
     SpotifyLogin.shared.getAccessToken { (accessToken, error) in
       if let token=accessToken, error==nil {
-        if(token != Party.shared.token){
-          Party.shared.username = SpotifyLogin.shared.username
-          Party.shared.token = token
-          
-          // Try to connect to party from their last session
-          let defaults = UserDefaults.standard
+        Party.shared.username = SpotifyLogin.shared.username
+        Party.shared.token = token
+        
+        // Try to connect to party from their last session
+        let defaults = UserDefaults.standard
 
-          let partyCode = defaults.string(forKey: "partyCode")
-          let isHost = defaults.bool(forKey: "isHost")
+        let partyCode = defaults.string(forKey: "partyCode")
+        let isHost = defaults.bool(forKey: "isHost")
+        
+        if let code = partyCode {
+          Party.shared.code = code
+          Party.shared.host = isHost
           
-          if let code = partyCode {
-            Party.shared.code = code
-            Party.shared.host = isHost
-            
-            // check if party is still going
-            Party.shared.getPartyInfo(completion: {data in
-              if(data == nil){
-                self.performSegue(withIdentifier: "authed", sender: self)
-              }
-              else{
-                Party.shared.autoParty = true
-                self.performSegue(withIdentifier: "auto_party", sender: self)
-              }
-            })
-          }
+          // check if party is still going
+          Party.shared.getPartyInfo(completion: {data in
+            if(data == nil){
+              self.performSegue(withIdentifier: "authed", sender: self)
+            }
+            else{
+              Party.shared.autoParty = true
+              self.performSegue(withIdentifier: "auto_party", sender: self)
+            }
+          })
+        }
+        else{
+          self.performSegue(withIdentifier: "authed", sender: self)
         }
       }
     }

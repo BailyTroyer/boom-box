@@ -35,6 +35,8 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   var first: Bool = true
   
+  var placeholderCell: SongCardTableViewCell!
+  
   var emptyMessageLabel: UILabel!
   var emptyMessageButton: UIButton!
   
@@ -63,14 +65,6 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    //self.setBackgroundLabel()
-    //self.tableView.backgroundView = self.emptyMessageLabel
-//    if(self.song_nominations.count == 0){
-//      self.tableView.backgroundView = self.emptyMessageLabel
-//    }else{
-//      self.tableView.backgroundView = nil
-//    }
-
     return self.song_nominations.count
   }
   
@@ -79,7 +73,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     if(self.song_nominations.count == 0){
       if(!Party.shared.partyStarted){
         if(Party.shared.host){
-          message = "Oops... You need to start the music!\n\nGo to Spotify and start playing\n\(self.nowPlayingSong!) in the \(Party.shared.name!) playlist!"
+          message = "Oops... You need to start the music!\n\nGo to Spotify on any device and start playing\n\(self.nowPlayingSong!) in the \(Party.shared.name!) playlist!"
         }
         else{
           message = "Oops... It looks like the host isn't playing the playlist!"
@@ -106,12 +100,22 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    if(indexPath.row > self.song_nominations.count - 1){return UITableViewCell()}
     let cell =  tableView.dequeueReusableCell(withIdentifier: "songCard", for: indexPath) as! SongCardTableViewCell
-    
+    //tableView.de
     let song = song_nominations[indexPath.row]
+    if (song == ""){
+      return self.placeholderCell
+    }
     
-    cell.setSelected(true, animated: false)
+    //cell.setSelected(true, animated: false)
+    
+    if(song["nominated_by"].stringValue == Party.shared.username){
+      cell.songSwitch.isHidden = true
+      cell.denominate.isHidden = false
+    }else{
+      cell.denominate.isHidden = true
+      cell.songSwitch.isHidden = false
+    }
     
     if(Party.shared.voteHistory.contains(song["id"].stringValue)){
       cell.songSwitch.isOn = true
@@ -139,16 +143,18 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
       }
     }
-    
+//
     let top = tableView.convert(CGPoint(x: cell.frame.midX, y: cell.frame.minY), to: tableView.superview)
-    
+
     //find distance from the top of table view
     let distFromTop = top.y - tableView.frame.minY
-    
+
     let scale = 1.0 - (CGFloat(distFromTop) / 2500.0)
     let transform = CGAffineTransform.init(scaleX: scale, y: scale)
     
-    cell.profilePicture.superview?.transform = transform
+    UIView.animate(withDuration: 0.2, delay: 0, options:[.curveEaseInOut, .allowUserInteraction], animations: {
+      cell.profilePicture.superview?.transform = transform
+    }, completion: nil)
     
     return cell
   }
@@ -176,9 +182,19 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
       //-5x^{2}\ +\ 5
       
       //let scale = sqrt(-(CGFloat(distFromTop) / view.frame.maxY))
-      let transform = CGAffineTransform.init(scaleX: scale, y: scale)
+      //if(cell.profilePicture.superview?.transform = CGAffineTransform())
       
+ 
+      let transform = CGAffineTransform.init(scaleX: scale, y: scale)
+
+      UIView.animate(withDuration: 0.2, delay: 0, options:[.curveEaseInOut, .allowUserInteraction], animations: {
+        cell.profilePicture.superview?.transform = transform
+      }, completion: nil)
       cell.profilePicture.superview?.transform = transform
+      //print(cell.profilePicture.superview?.transform)
+
+      //cell.profilePicture.superview?.transform = transform
+      
     }
   }
   
@@ -200,6 +216,12 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   @IBAction func recommendSong(_ sender: Any) {
     //bulletinManager.showBulletin(above: self)
+    UIView.animate(withDuration: 0.25, delay: 0, options: [.curveEaseInOut], animations: {
+      self.nominate.transform = CGAffineTransform.init(rotationAngle: CGFloat.pi/2)
+    }, completion: nil)
+
+    self.dataTimer.invalidate()
+    
     self.go()
   }
   
@@ -208,7 +230,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     tableView.dataSource = self
     tableView.delegate = self
-    
+
     
     let rect = CGRect(origin: CGPoint(x: 400,y :0), size: CGSize(width: tableView.bounds.size.width - 400, height: tableView.bounds.size.height))
     guard let customFont = UIFont(name: "AirbnbCerealApp-Medium", size: 16) else {
@@ -226,14 +248,9 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     emptyMessageLabel.font = customFont
     
     tableView.backgroundView = emptyMessageLabel
-    
-    
+
     let tableTouchRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedTableView))
     tableView.addGestureRecognizer(tableTouchRecognizer)
-
-    
-    
-    
     let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
     nowPlayingPic.isUserInteractionEnabled = true
     nowPlayingPic.addGestureRecognizer(tapGestureRecognizer)
@@ -254,10 +271,23 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     refreshControl.tintColor = UIColor.lightGray
     
     
+    self.startDataTimer()
+  }
+  
+  func startDataTimer(){
+    print("started timer")
     self.dataTimer = Timer.scheduledTimer(withTimeInterval: 8.0, repeats: true) { timer in
+      UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseInOut, .allowUserInteraction], animations: {
+        self.exit.transform = CGAffineTransform.init(scaleX: 1.2, y: 1.2)
+        self.nominate.transform = CGAffineTransform.init(scaleX: 1.2, y: 1.2)
+      }, completion: {_ in
+        UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseInOut, .allowUserInteraction], animations: {
+          self.exit.transform = CGAffineTransform.init(scaleX: 1.0, y: 1.0)
+          self.nominate.transform = CGAffineTransform.init(scaleX: 1.0, y: 1.0)
+        })
+      })
       self.fetchData()
     }
-    
   }
   
   @objc func tappedTableView(tap: UITapGestureRecognizer){
@@ -275,11 +305,11 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
           }
         }
         else{ // add a song
-          self.go()
+          self.recommendSong(self)
         }
       }
       else{
-        self.go()
+        self.recommendSong(self)
       }
     }
   }
@@ -326,6 +356,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
       Party.shared.name = data!["name"].stringValue
       self.partyCode.text = data!["party_code"].stringValue
       self.nowPlayingSong = data!["now_playing"]["name"].stringValue
+      Party.shared.playlistId = data!["playlist"]["id"].stringValue
       self.setBackgroundLabel()
       
       if(data!["playing_ad"].boolValue){
@@ -342,9 +373,14 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.song_nominations = []
         self.nowPlayingTitle.text = ""
         UIView.animate(withDuration: 0.3, animations: {self.nowPlayingPic.alpha = 0.3})
+        self.setBackgroundLabel()
         self.tableView.reloadData()
         
         return
+      }
+      
+      if(self.nowPlayingPic.alpha == 0.3){
+        UIView.animate(withDuration: 0.3, animations: {self.nowPlayingPic.alpha = 1})
       }
       
       // sort nominations by votes
@@ -447,9 +483,6 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   override func viewWillAppear(_ animated: Bool) {
     self.fetchData()
-    
-    //self.nowPlayingPic.alpha = 0.1
-    //getImage()
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -531,10 +564,21 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   }
   
   @IBAction func exit(_ sender: Any) {
+    self.dataTimer.invalidate()
+    print(self.dataTimer.isValid)
+    UIView.animate(withDuration: 0.25, delay: 0, options: [.curveEaseInOut], animations: {
+      self.exit.transform = CGAffineTransform.init(rotationAngle: CGFloat.pi/2)
+    }, completion: nil)
     
     let alert = UIAlertController(title: "You're the host!", message: "Leaving the party will end it for everyone...", preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "Keep it going", style: .cancel, handler: nil))
-    alert.addAction(UIAlertAction(title: "End party", style: .destructive, handler: { action in
+    alert.addAction(UIAlertAction(title: "Keep it going", style: .cancel, handler: { _ in
+      self.startDataTimer()
+      UIView.animate(withDuration: 0.25, delay: 0, options: [.curveEaseInOut], animations: {
+        self.exit.transform = CGAffineTransform.init(rotationAngle: 0)
+      }, completion: nil)
+    }))
+    
+    alert.addAction(UIAlertAction(title: "End party", style: .destructive, handler: { _ in
       Party.shared.leaveParty(completion: {_ in
         self.returnToMenu()
       })

@@ -187,25 +187,27 @@ class NominateSong: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     Party.shared.song_url = self.link
     
-    Party.shared.nominate(completion: { response in
-      
-      print(response)
-      
-//      if response != nil {
-//        print("YESS SUBMITTED")
-//      } else {
-//        print(response)
-//      }
+    Party.shared.nominate(completion: { code in
+      if(code == 200){
+        self.back(self)
+      }else{
+        let alert = UIAlertController(title: "Oops! That didn't work...", message: "Press OK to go back...", preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+      }
     })
-    
-    self.back(self)
   }
 
   
   @IBAction func back(_ sender: Any) {
+    UIView.animate(withDuration: 0.25, delay: 0.5, options: [.curveEaseInOut, .allowUserInteraction], animations: {
+      Party.shared.partyView?.nominate.transform = CGAffineTransform.init(rotationAngle: 0)
+    }, completion: nil)
+
     self.dismiss(animated: true, completion: {
       if(Party.shared.partyView != nil){
         Party.shared.partyView?.fetchData()
+        Party.shared.partyView?.startDataTimer()
       }
     })
   }

@@ -35,7 +35,7 @@ class Party {
   var host: Bool = false
   
 
-  let apiUrl = "https://faf95877.ngrok.io"
+  let apiUrl = "https://e366f9fd.ngrok.io"
   //let apiUrl = "https://boom-box-beta.appspot.com"
   
   func getImage(completion: @escaping (_ repsonse: String) -> Void) {
@@ -69,16 +69,35 @@ class Party {
     
   }
   
-  func nominate(completion: @escaping (_ response: Any) -> Void) {
+  func nominate(completion: @escaping (_ response: Int) -> Void) {
     let parameters: [String: Any] = [
       "party_code": code!,
       "song_url": song_url!,
-      "token": token!
+      "token": token!,
+      "user_id": username!
     ]
     
     Alamofire.request("\(apiUrl)/party/nomination", method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseString { response in
       
-      completion(response)
+      if(response.response == nil){
+        completion(500)
+      }
+      completion(response.response!.statusCode)
+    }
+  }
+  
+  func removeNomination(songId: String, completion: @escaping (_ response: Int) -> Void) {
+    let parameters: [String: Any] = [
+      "party_code": code!,
+      "song_id": songId
+    ]
+    
+    Alamofire.request("\(apiUrl)/party/nomination", method: .delete, parameters: parameters, encoding: JSONEncoding.default).validate().responseString { response in
+      
+      if(response.response == nil){
+        completion(500)
+      }
+      completion(response.response!.statusCode)
     }
   }
   
@@ -158,7 +177,7 @@ class Party {
     
     //print("Called GetPartyInfo")
     
-    Alamofire.request("\(apiUrl)/party/info?party_code=\(code!)", method: .get, encoding: URLEncoding.default, headers: nil).responseJSON { response in
+    Alamofire.request("\(apiUrl)/party/info?party_code=\(code!)&token=\(token!)&user_id=\(username!)", method: .get, encoding: URLEncoding.default, headers: nil).responseJSON { response in
       //print(response.response?.statusCode)
       
       if(response.response?.statusCode == 400){

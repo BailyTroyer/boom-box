@@ -174,7 +174,7 @@ class Party {
         const { party_code, song_id } = req.body
         console.log(song_id)
 
-        Mongo.db.collection("parties").updateOne({party_code: party_code}, {$pull: {song_nominations: song_id}})
+        Mongo.db.collection("parties").updateOne({party_code: party_code}, {$pull: {"song_nominations": {"id": song_id}}})
             .then(result => {
                 res.status(200).send("Removed nomination");
             })

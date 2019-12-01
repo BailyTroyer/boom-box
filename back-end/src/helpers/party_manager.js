@@ -20,7 +20,6 @@ const manageParty = (party_code, token) => {
     let firstRun = true
 
     let progressIntervalId = setInterval(async () => {
-        console.log(progressIntervalId)
         if(firstRun){
             await Mongo.db.collection("parties").updateOne({party_code: party_code}, {$set: {manager_id: managerId}})
             firstRun = false
@@ -35,7 +34,6 @@ const manageParty = (party_code, token) => {
         }
         // to prevent having multiple managers
         if(party.manager_id != managerId){
-            console.log(progressIntervalId)
             console.log("ENDED EXCESS MANAGER")
             clearInterval(progressIntervalId)
             clearInterval(nextIntervalId)
@@ -92,10 +90,10 @@ const manageParty = (party_code, token) => {
             /* the user has started the playlist || an ad has stopped playing */
 
 
-            if(advertising){
-                Mongo.db.collection("parties").updateOne({party_code: party_code}, {$set: {playing_ad: false}})
-                advertising = false
-            }
+            //if(advertising){
+            Mongo.db.collection("parties").updateOne({party_code: party_code}, {$set: {playing_ad: false}})
+                //advertising = false
+            //}
             
             const progress = body.progress_ms
             

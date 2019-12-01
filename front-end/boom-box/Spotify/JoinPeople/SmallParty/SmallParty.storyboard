@@ -45,13 +45,13 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="374" height="107"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drake" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pd-m4-tBM" userLabel="Artist Name">
-                                                            <rect key="frame" x="64" y="58" width="237" height="21"/>
+                                                            <rect key="frame" x="64" y="57.5" width="237" height="21"/>
                                                             <fontDescription key="fontDescription" name="AirbnbCerealApp-ExtraBold" family="Airbnb Cereal App" pointSize="16"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I'm Upset" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BWc-Ox-uZ6" userLabel="Song Name">
-                                                            <rect key="frame" x="64" y="26" width="237" height="27"/>
+                                                            <rect key="frame" x="64" y="26" width="237" height="26.5"/>
                                                             <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="20"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -68,10 +68,25 @@
                                                             <size key="shadowOffset" width="1" height="1"/>
                                                         </label>
                                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="SOB-qS-Mg0">
-                                                            <rect key="frame" x="308" y="38" width="51" height="31"/>
+                                                            <rect key="frame" x="308" y="38" width="50" height="31"/>
                                                             <color key="tintColor" red="0.35743178934010156" green="0.35743178934010156" blue="0.35743178934010156" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <color key="onTintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </switch>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96P-1a-sfF">
+                                                            <rect key="frame" x="295" y="26" width="74" height="58"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="74" id="bOs-dH-NTA"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <state key="normal" image="trash" catalog="system">
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" scale="large" weight="light"/>
+                                                            </state>
+                                                            <state key="highlighted">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="23" scale="large" weight="light"/>
+                                                            </state>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                     <constraints>
@@ -79,6 +94,7 @@
                                                         <constraint firstItem="Giw-ef-8MP" firstAttribute="leading" secondItem="Gve-CQ-DVf" secondAttribute="leading" id="3PI-7e-rzQ"/>
                                                         <constraint firstItem="0re-r0-HKS" firstAttribute="leading" secondItem="Gve-CQ-DVf" secondAttribute="leadingMargin" id="6VS-iV-Qpu"/>
                                                         <constraint firstItem="Giw-ef-8MP" firstAttribute="centerY" secondItem="Gve-CQ-DVf" secondAttribute="centerY" id="7oq-qF-ybC"/>
+                                                        <constraint firstItem="96P-1a-sfF" firstAttribute="bottom" secondItem="0re-r0-HKS" secondAttribute="bottom" id="9g9-7e-rwr"/>
                                                         <constraint firstItem="0re-r0-HKS" firstAttribute="centerY" secondItem="Giw-ef-8MP" secondAttribute="centerY" id="A8m-tP-Fg7"/>
                                                         <constraint firstItem="1pd-m4-tBM" firstAttribute="top" secondItem="BWc-Ox-uZ6" secondAttribute="bottom" constant="5" id="BL1-g3-cV2"/>
                                                         <constraint firstItem="BWc-Ox-uZ6" firstAttribute="top" secondItem="Gve-CQ-DVf" secondAttribute="top" constant="26" id="FDf-Ky-Ai5"/>
@@ -89,10 +105,13 @@
                                                         <constraint firstItem="1pd-m4-tBM" firstAttribute="leading" secondItem="0re-r0-HKS" secondAttribute="trailing" constant="13" id="iex-ga-rm1"/>
                                                         <constraint firstItem="SOB-qS-Mg0" firstAttribute="leading" secondItem="Giw-ef-8MP" secondAttribute="trailing" constant="-66" id="oIm-hb-ar1"/>
                                                         <constraint firstItem="0re-r0-HKS" firstAttribute="centerY" secondItem="SOB-qS-Mg0" secondAttribute="centerY" id="pBE-3G-ezu"/>
+                                                        <constraint firstAttribute="trailing" secondItem="96P-1a-sfF" secondAttribute="trailing" constant="5" id="piz-9Z-KWX"/>
                                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="107" id="t6u-Nb-oCC"/>
+                                                        <constraint firstItem="96P-1a-sfF" firstAttribute="centerX" secondItem="SOB-qS-Mg0" secondAttribute="centerX" id="tsF-Nd-T0h"/>
                                                         <constraint firstAttribute="width" secondItem="Gve-CQ-DVf" secondAttribute="height" multiplier="394:107" constant="-20" id="vpT-oo-i3Z"/>
                                                         <constraint firstItem="SOB-qS-Mg0" firstAttribute="leading" secondItem="1pd-m4-tBM" secondAttribute="trailing" constant="7" id="x0H-cD-S1G"/>
                                                         <constraint firstItem="BWc-Ox-uZ6" firstAttribute="leading" secondItem="1pd-m4-tBM" secondAttribute="leading" id="xOm-yr-kNe"/>
+                                                        <constraint firstItem="96P-1a-sfF" firstAttribute="top" secondItem="BWc-Ox-uZ6" secondAttribute="top" id="zMi-rc-1IY"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
@@ -116,6 +135,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="artistName" destination="1pd-m4-tBM" id="kkN-dD-ULO"/>
+                                            <outlet property="denominate" destination="96P-1a-sfF" id="WRV-9o-wpP"/>
                                             <outlet property="profilePicture" destination="Giw-ef-8MP" id="7CM-dV-ucj"/>
                                             <outlet property="songName" destination="BWc-Ox-uZ6" id="6fS-Gb-LKu"/>
                                             <outlet property="songSwitch" destination="SOB-qS-Mg0" id="uYD-nq-5nm"/>
@@ -129,12 +149,13 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="mPo-jN-EVT"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Light" family="Airbnb Cereal App" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJz-nh-7Vm">
                                 <rect key="frame" x="47" y="86" width="48" height="48"/>
+                                <color key="backgroundColor" red="0.24313725490196078" green="0.2627450980392157" blue="0.28627450980392155" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="Jc1-nZ-Gdc"/>
                                     <constraint firstAttribute="width" constant="48" id="fDg-UZ-Ev4"/>
@@ -211,6 +232,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Owf-Df-SeH">
                                 <rect key="frame" x="324" y="87" width="48" height="48"/>
+                                <color key="backgroundColor" red="0.24313725490196078" green="0.2627450980392157" blue="0.28627450980392155" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="48" id="YNf-dz-HoY"/>
                                     <constraint firstAttribute="height" constant="48" id="fdp-Pa-DBX"/>
@@ -428,5 +450,6 @@
         <image name="drake" width="1000" height="563"/>
         <image name="magnifyingglass" catalog="system" width="64" height="56"/>
         <image name="person.3.fill" catalog="system" width="71" height="34"/>
+        <image name="trash" catalog="system" width="60" height="64"/>
     </resources>
 </document>

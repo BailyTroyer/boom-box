@@ -21,8 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                   clientSecret: "6637f60d371142d59b9c9511ed42333c",
                                   redirectURL: redirectURL)
     
-//    UINavigationBar.appearance().backIndicatorImage = UIImage()
-//    UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage()
+    UINavigationBar.appearance().backIndicatorImage = UIImage()
+    UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage()
     
     return true
   }
@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
   func applicationWillTerminate(_ application: UIApplication) {
       print("APP WILL TERMINATE")
-      Party.shared.leaveParty(completion: {_ in})
+      //Party.shared.leaveParty(completion: {_ in})
   }
   
   func applicationWillResignActive(_ application: UIApplication) {

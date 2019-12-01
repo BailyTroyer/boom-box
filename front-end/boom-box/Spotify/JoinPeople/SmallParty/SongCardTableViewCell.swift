@@ -20,6 +20,7 @@ class SongCardTableViewCell: UITableViewCell {
   @IBOutlet weak var artistName: UILabel!
   @IBOutlet weak var songSwitch: UISwitch!
   @IBOutlet weak var votes: UILabel!
+  @IBOutlet weak var denominate: UIButton!
     
   var songId: String?
   
@@ -31,11 +32,46 @@ class SongCardTableViewCell: UITableViewCell {
     
     profilePicture.layer.borderWidth = 1.0
     profilePicture.layer.masksToBounds = false
-    profilePicture.layer.borderColor = UIColor.lightGray.cgColor
+    profilePicture.layer.borderColor = UIColor.white.cgColor
     profilePicture.layer.cornerRadius = 30
     profilePicture.clipsToBounds = true
     
     songSwitch.addTarget(self, action: #selector(onSwitchValueChanged(sender:)), for: .valueChanged)
+    denominate.addTarget(self, action: #selector(removeSongNomination), for: .touchUpInside)
+  }
+  
+  @objc func removeSongNomination(){
+    print(songId!)
+    var message = "Are you sure you want to remove this nomination?"
+    if(Int(self.votes.text!) == 1){
+      message += "\nIt has 1 vote!"
+    }else if (Int(self.votes.text!)! > 1){
+      message += "\nIt has \(self.votes.text!) votes!"
+    }
+      
+    let alert = UIAlertController(title: "Remove nomination", message: message, preferredStyle: .alert)
+    
+    alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: {_ in
+      Party.shared.removeNomination(songId: self.songId!, completion: {code in
+        let transform = CGAffineTransform.init(translationX: (self.superview?.frame.maxX)!, y: 0)
+        UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseInOut], animations: {
+          self.transform = transform
+        }, completion: {_ in
+          let idx = Party.shared.partyView?.song_nominations.firstIndex(where: {song in
+            return song["id"].stringValue == self.songId!
+          })
+          
+          Party.shared.partyView?.song_nominations.remove(at: idx!)
+          Party.shared.partyView?.tableView.reloadData()
+          self.transform = CGAffineTransform.init(translationX: 0, y: 0)
+        })
+      })
+    }))
+    
+    alert.addAction(UIAlertAction(title: "Keep it", style: .cancel, handler: nil))
+    
+    Party.shared.partyView!.present(alert, animated: true)
+    
   }
     
   @objc func onSwitchValueChanged(sender: UISwitch){
