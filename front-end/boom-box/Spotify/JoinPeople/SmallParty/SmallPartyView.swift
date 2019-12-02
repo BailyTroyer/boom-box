@@ -35,6 +35,8 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   var first: Bool = true
   
+  let imageCache = NSCache<NSString, UIImage>()
+  
   var emptyMessageLabel: UILabel!
   var emptyMessageButton: UIButton!
   
@@ -99,8 +101,9 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell =  tableView.dequeueReusableCell(withIdentifier: "songCard", for: indexPath) as! SongCardTableViewCell
-
+    
     let song = song_nominations[indexPath.row]
+    
 
     if(song["nominated_by"].stringValue == Party.shared.userId){
       cell.songSwitch.isHidden = true
@@ -122,33 +125,51 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     cell.songId = song["id"].string!
     cell.votes.text = "\(song["votes"].int!)"
     
-    cell.profilePicture.alpha = 0
+    cell.profilePicture.alpha = 0.5
+    if(cell.position != indexPath.row){
+      print("Old cell new index")
+      cell.profilePicture.image = nil
+    }
     
-    if let url = URL(string: song["album"]["images"][0]["url"].string!) {
-      DispatchQueue.global().async {
-        let data = try? Data(contentsOf: url) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-        DispatchQueue.main.async {
-          cell.profilePicture.image = UIImage(data: data!)
-          
-          UIView.animate(withDuration: 0.3, animations: {
-            cell.profilePicture.alpha = 0.5
-          })
+    if let url = URL(string: song["album"]["images"][0]["url"].stringValue) {
+      if let cachedImage = imageCache.object(forKey: song["album"]["images"][0]["url"].stringValue as NSString) {
+        if(cell.position != indexPath.row){
+          cell.profilePicture.image = cachedImage
+        }
+        else{
+          UIView.transition(with: cell.profilePicture, duration: 0.4, options: .transitionCrossDissolve, animations: {
+            cell.profilePicture.image = cachedImage
+          }, completion: nil)
+        }
+      } else {
+        DispatchQueue.global().async {
+          let data = try? Data(contentsOf: url) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+          DispatchQueue.main.async {
+            let image = UIImage(data: data!)
+            self.imageCache.setObject(image!, forKey: song["album"]["images"][0]["url"].stringValue as NSString)
+            UIView.transition(with: cell.profilePicture, duration: 0.4, options: .transitionCrossDissolve, animations: {
+              cell.profilePicture.image = image
+            }, completion: nil)
+          }
         }
       }
     }
+
+//    let top = tableView.convert(CGPoint(x: cell.frame.midX, y: cell.frame.minY), to: tableView.superview)
 //
-    let top = tableView.convert(CGPoint(x: cell.frame.midX, y: cell.frame.minY), to: tableView.superview)
-
-    //find distance from the top of table view
-    let distFromTop = top.y - tableView.frame.minY
-
-    let scale = 1.0 - (CGFloat(distFromTop) / 2500.0)
-    let transform = CGAffineTransform.init(scaleX: scale, y: scale)
-    
-    UIView.animate(withDuration: 0.2, delay: 0, options:[.curveEaseInOut, .allowUserInteraction], animations: {
-      cell.profilePicture.superview?.transform = transform
-    }, completion: nil)
-    
+//    //find distance from the top of table view
+//    let distFromTop = top.y - tableView.frame.minY
+//
+//    let scale = 1.0 - (CGFloat(distFromTop) / 2500.0)
+//    print(scale)
+//    let transform = CGAffineTransform.init(scaleX: scale, y: scale)
+//
+//    UIView.animate(withDuration: 0.2, delay: 0, options:[.curveEaseInOut, .allowUserInteraction], animations: {
+//      cell.profilePicture.superview?.transform = transform
+//    }, completion: nil)
+//    cell.position = indexPath.row
+//    transformCells(view: self.tableView)
+    cell.position = indexPath.row
     return cell
   }
   
@@ -156,40 +177,40 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     print("Pressed: \(indexPath.row)")
   }
   
-  func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    transformCells(view: scrollView as! UITableView)
-  }
-  
-  func transformCells(view: UITableView){
-    let visibleCells = view.visibleCells as! [SongCardTableViewCell]
-
-    for cell in visibleCells{
-      // table view top
-      let top = view.convert(CGPoint(x: cell.frame.midX, y: cell.frame.minY), to: view.superview)
-      
-      //find distance from the top of table view
-      let distFromTop = top.y - tableView.frame.minY
-      
-      let scale = 1.0 - (CGFloat(distFromTop) / 2500.0)
-      
-      //-5x^{2}\ +\ 5
-      
-      //let scale = sqrt(-(CGFloat(distFromTop) / view.frame.maxY))
-      //if(cell.profilePicture.superview?.transform = CGAffineTransform())
-      
- 
-      let transform = CGAffineTransform.init(scaleX: scale, y: scale)
-
-      UIView.animate(withDuration: 0.2, delay: 0, options:[.curveEaseInOut, .allowUserInteraction], animations: {
-        cell.profilePicture.superview?.transform = transform
-      }, completion: nil)
-      cell.profilePicture.superview?.transform = transform
-      //print(cell.profilePicture.superview?.transform)
-
-      //cell.profilePicture.superview?.transform = transform
-      
-    }
-  }
+//  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//    //transformCells(view: scrollView as! UITableView)
+//  }
+//  
+//  func transformCells(view: UITableView){
+//    let visibleCells = view.visibleCells as! [SongCardTableViewCell]
+//
+//    for cell in visibleCells{
+//      // table view top
+//      let top = view.convert(CGPoint(x: cell.frame.midX, y: cell.frame.minY), to: view.superview)
+//      
+//      //find distance from the top of table view
+//      let distFromTop = top.y - tableView.frame.minY
+//      
+//      let scale = 1.0 - (CGFloat(distFromTop) / 2500.0)
+//      
+//      //-5x^{2}\ +\ 5
+//      
+//      //let scale = sqrt(-(CGFloat(distFromTop) / view.frame.maxY))
+//      //if(cell.profilePicture.superview?.transform = CGAffineTransform())
+//      
+// 
+//      let transform = CGAffineTransform.init(scaleX: scale, y: scale)
+//
+//      UIView.animate(withDuration: 0.2, delay: 0, options:[.curveEaseInOut, .allowUserInteraction], animations: {
+//        cell.profilePicture.superview?.transform = transform
+//      }, completion: nil)
+//      cell.profilePicture.superview?.transform = transform
+//      //print(cell.profilePicture.superview?.transform)
+//
+//      //cell.profilePicture.superview?.transform = transform
+//      
+//    }
+//  }
   
   @IBAction func recommendSong(_ sender: Any) {
     //bulletinManager.showBulletin(above: self)
@@ -233,9 +254,6 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     nowPlayingPic.isUserInteractionEnabled = true
     nowPlayingPic.addGestureRecognizer(tapGestureRecognizer)
     nowPlayingPic.layer.masksToBounds = false
-//    nowPlayingPic.layer.cornerRadius = nowPlayingPic.frame.size.width / 16
-//    nowPlayingPic.layer.borderWidth = 1
-//    nowPlayingPic.layer.borderColor = UIColor.white.cgColor
     nowPlayingPic.clipsToBounds = true
     
     

@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2P0-Hj-6J2">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -39,10 +38,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gve-CQ-DVf" customClass="CardView" customModule="BoomBox" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="9" width="374" height="107"/>
+                                                    <rect key="frame" x="20" y="9" width="374" height="100"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="drake" translatesAutoresizingMaskIntoConstraints="NO" id="Giw-ef-8MP">
-                                                            <rect key="frame" x="0.0" y="0.0" width="374" height="107"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Giw-ef-8MP">
+                                                            <rect key="frame" x="0.0" y="4" width="374" height="104"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drake" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pd-m4-tBM" userLabel="Artist Name">
                                                             <rect key="frame" x="64" y="57.5" width="237" height="21"/>
@@ -93,22 +92,21 @@
                                                         <constraint firstItem="BWc-Ox-uZ6" firstAttribute="trailing" secondItem="1pd-m4-tBM" secondAttribute="trailing" id="12L-Pn-fdG"/>
                                                         <constraint firstItem="Giw-ef-8MP" firstAttribute="leading" secondItem="Gve-CQ-DVf" secondAttribute="leading" id="3PI-7e-rzQ"/>
                                                         <constraint firstItem="0re-r0-HKS" firstAttribute="leading" secondItem="Gve-CQ-DVf" secondAttribute="leadingMargin" id="6VS-iV-Qpu"/>
-                                                        <constraint firstItem="Giw-ef-8MP" firstAttribute="centerY" secondItem="Gve-CQ-DVf" secondAttribute="centerY" id="7oq-qF-ybC"/>
+                                                        <constraint firstItem="Giw-ef-8MP" firstAttribute="centerY" secondItem="Gve-CQ-DVf" secondAttribute="centerY" constant="6" id="7oq-qF-ybC"/>
                                                         <constraint firstItem="96P-1a-sfF" firstAttribute="bottom" secondItem="0re-r0-HKS" secondAttribute="bottom" id="9g9-7e-rwr"/>
-                                                        <constraint firstItem="0re-r0-HKS" firstAttribute="centerY" secondItem="Giw-ef-8MP" secondAttribute="centerY" id="A8m-tP-Fg7"/>
+                                                        <constraint firstItem="0re-r0-HKS" firstAttribute="centerY" secondItem="Giw-ef-8MP" secondAttribute="centerY" constant="-2.5" id="A8m-tP-Fg7"/>
                                                         <constraint firstItem="1pd-m4-tBM" firstAttribute="top" secondItem="BWc-Ox-uZ6" secondAttribute="bottom" constant="5" id="BL1-g3-cV2"/>
                                                         <constraint firstItem="BWc-Ox-uZ6" firstAttribute="top" secondItem="Gve-CQ-DVf" secondAttribute="top" constant="26" id="FDf-Ky-Ai5"/>
                                                         <constraint firstItem="0re-r0-HKS" firstAttribute="top" secondItem="Gve-CQ-DVf" secondAttribute="top" constant="23" id="Gzb-kC-Kfo"/>
                                                         <constraint firstItem="Giw-ef-8MP" firstAttribute="centerX" secondItem="Gve-CQ-DVf" secondAttribute="centerX" id="T84-Rh-83S"/>
-                                                        <constraint firstItem="Giw-ef-8MP" firstAttribute="top" secondItem="Gve-CQ-DVf" secondAttribute="top" id="YtI-fi-KWw"/>
+                                                        <constraint firstItem="Giw-ef-8MP" firstAttribute="top" secondItem="Gve-CQ-DVf" secondAttribute="top" constant="4" id="YtI-fi-KWw"/>
                                                         <constraint firstItem="SOB-qS-Mg0" firstAttribute="leading" secondItem="BWc-Ox-uZ6" secondAttribute="trailing" constant="7" id="h6w-BW-bow"/>
                                                         <constraint firstItem="1pd-m4-tBM" firstAttribute="leading" secondItem="0re-r0-HKS" secondAttribute="trailing" constant="13" id="iex-ga-rm1"/>
                                                         <constraint firstItem="SOB-qS-Mg0" firstAttribute="leading" secondItem="Giw-ef-8MP" secondAttribute="trailing" constant="-66" id="oIm-hb-ar1"/>
                                                         <constraint firstItem="0re-r0-HKS" firstAttribute="centerY" secondItem="SOB-qS-Mg0" secondAttribute="centerY" id="pBE-3G-ezu"/>
                                                         <constraint firstAttribute="trailing" secondItem="96P-1a-sfF" secondAttribute="trailing" constant="5" id="piz-9Z-KWX"/>
-                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="107" id="t6u-Nb-oCC"/>
+                                                        <constraint firstAttribute="height" constant="100" id="t6u-Nb-oCC"/>
                                                         <constraint firstItem="96P-1a-sfF" firstAttribute="centerX" secondItem="SOB-qS-Mg0" secondAttribute="centerX" id="tsF-Nd-T0h"/>
-                                                        <constraint firstAttribute="width" secondItem="Gve-CQ-DVf" secondAttribute="height" multiplier="394:107" constant="-20" id="vpT-oo-i3Z"/>
                                                         <constraint firstItem="SOB-qS-Mg0" firstAttribute="leading" secondItem="1pd-m4-tBM" secondAttribute="trailing" constant="7" id="x0H-cD-S1G"/>
                                                         <constraint firstItem="BWc-Ox-uZ6" firstAttribute="leading" secondItem="1pd-m4-tBM" secondAttribute="leading" id="xOm-yr-kNe"/>
                                                         <constraint firstItem="96P-1a-sfF" firstAttribute="top" secondItem="BWc-Ox-uZ6" secondAttribute="top" id="zMi-rc-1IY"/>
@@ -129,8 +127,10 @@
                                             <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstItem="Gve-CQ-DVf" firstAttribute="centerX" secondItem="awO-uZ-Js7" secondAttribute="centerX" id="7xZ-YR-LFs"/>
+                                                <constraint firstAttribute="trailing" secondItem="Gve-CQ-DVf" secondAttribute="trailing" constant="20" id="9BR-aq-lcE"/>
+                                                <constraint firstItem="Gve-CQ-DVf" firstAttribute="leading" secondItem="awO-uZ-Js7" secondAttribute="leading" constant="20" id="Kt3-IW-eus"/>
                                                 <constraint firstItem="Gve-CQ-DVf" firstAttribute="top" secondItem="awO-uZ-Js7" secondAttribute="topMargin" constant="-2" id="cY3-Mt-wdn"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Gve-CQ-DVf" secondAttribute="bottom" constant="-2" id="imP-PZ-3p5"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Gve-CQ-DVf" secondAttribute="bottom" constant="5" id="imP-PZ-3p5"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

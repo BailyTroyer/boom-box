@@ -21,9 +21,9 @@ class SongCardTableViewCell: UITableViewCell {
   @IBOutlet weak var songSwitch: UISwitch!
   @IBOutlet weak var votes: UILabel!
   @IBOutlet weak var denominate: UIButton!
-    
-  var songId: String?
   
+  var position: Int = -1
+  var songId: String?
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -35,6 +35,8 @@ class SongCardTableViewCell: UITableViewCell {
     profilePicture.layer.borderColor = UIColor.white.cgColor
     profilePicture.layer.cornerRadius = 30
     profilePicture.clipsToBounds = true
+    
+    profilePicture.image = nil
     
     songSwitch.addTarget(self, action: #selector(onSwitchValueChanged(sender:)), for: .valueChanged)
     denominate.addTarget(self, action: #selector(removeSongNomination), for: .touchUpInside)
@@ -62,8 +64,9 @@ class SongCardTableViewCell: UITableViewCell {
           })
           
           Party.shared.partyView?.song_nominations.remove(at: idx!)
-          Party.shared.partyView?.tableView.reloadData()
           self.transform = CGAffineTransform.init(translationX: 0, y: 0)
+          self.profilePicture.image = nil
+          Party.shared.partyView?.tableView.reloadData()
         })
       })
     }))
