@@ -9,14 +9,26 @@
 import Foundation
 import UIKit
 
-class JoinPeople: UIViewController, UITextFieldDelegate {
+class JoinPeople: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
   
   @IBOutlet weak var code: UITextField!
+  @IBOutlet weak var nearbyStatus: UILabel!
   
   var continueButton: UIButton = UIButton()
   
+  @IBOutlet weak var nearbyPartiesTable: UITableView!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    nearbyPartiesTable.dataSource = self
+    nearbyPartiesTable.delegate = self
+    
+    nearbyStatus.text = ""
+    
+    NearbyPartyManager.shared.currentNearbyParties = []
+    NearbyPartyManager.shared.nearbyTable = nearbyPartiesTable
+    NearbyPartyManager.shared.searchForNearbyParties()
     
     code.delegate = self
     
@@ -49,9 +61,75 @@ class JoinPeople: UIViewController, UITextFieldDelegate {
                    for: UIControl.Event.editingChanged)
   }
     
-    override func viewWillAppear(_ animated: Bool) {
-      self.code.becomeFirstResponder()
+  override func viewWillAppear(_ animated: Bool) {
+    //self.code.becomeFirstResponder()
+  }
+  
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    if(NearbyPartyManager.shared.currentNearbyParties.count == 0){
+      self.nearbyStatus.text = "There aren't any parties nearby...\nTry typing the party code above!"
+    }else{
+      self.nearbyStatus.text = "We found some parties nearby!"
     }
+    return NearbyPartyManager.shared.currentNearbyParties.count
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+    
+    let cell =  nearbyPartiesTable.dequeueReusableCell(withIdentifier: "nearbyParty", for: indexPath) as! NearbyPartyCell
+    self.code.text = NearbyPartyManager.shared.currentNearbyParties[indexPath.row]["code"]
+    
+    self.view.endEditing(true)
+    
+    UIView.animate(withDuration: 0.3, animations: {
+      self.continueButton.alpha = 1
+    })
+    UIView.animate(
+      withDuration: 0.2,
+      animations: {cell.superview?.transform = CGAffineTransform.init(scaleX: 1.2, y: 1.2)}
+    )
+  }
+  
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell =  nearbyPartiesTable.dequeueReusableCell(withIdentifier: "nearbyParty", for: indexPath) as! NearbyPartyCell
+    
+    
+    
+    //cell.selectedBackgroundView = self.cardBackground
+    let code = NearbyPartyManager.shared.currentNearbyParties[indexPath.row]["code"]
+    cell.partyCode = code
+    
+    Party.shared.getPartyInfo(partyCode: code!, completion: {data in
+      if let party = data {
+        
+        cell.hostName.text = party["host_display_name"].stringValue
+        
+        cell.partyName.text = party["name"].stringValue
+        
+        UIView.animate(withDuration: 0.3, animations: {
+          cell.nowPlayingArt.alpha = 0
+        })
+        
+        if let urlString = party["now_playing"]["album"]["images"][1]["url"].string {
+          if let url = URL(string: urlString) {
+            DispatchQueue.global().async {
+              let data = try? Data(contentsOf: url) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+              DispatchQueue.main.async {
+                cell.nowPlayingArt.image = UIImage(data: data!)
+                
+                UIView.animate(withDuration: 0.3, animations: {
+                  cell.nowPlayingArt.alpha = 0.6
+                })
+              }
+            }
+          }
+        }
+      }else{return}
+    })
+      
+    return cell
+  }
   
 
   
@@ -117,6 +195,7 @@ class JoinPeople: UIViewController, UITextFieldDelegate {
   
   override func viewWillDisappear(_ animated: Bool) {
     self.code.resignFirstResponder()
+    NearbyPartyManager.shared.stop()
   }
   
   @IBAction func cancel(_ sender: Any) {

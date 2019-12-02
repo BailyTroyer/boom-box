@@ -74,7 +74,7 @@ class Party {
     }
 
     static async createParty(req, res){
-        const { party_code, size, name, token, starter_song, user_id, time } = req.body
+        const { party_code, size, name, token, starter_song, user_id, time, display_name } = req.body
 
         //const playlistName = `${name} - ${time}`
 
@@ -100,6 +100,7 @@ class Party {
             cops: 0,
             start_time: new Date(),
             host_id: user_id,
+            host_display_name: display_name,
             last_active: new Date()
         })
             .then(result => {

@@ -18,7 +18,7 @@ class Party {
   var size: String?
   var user_id: String?
   var token: String?
-  var username: String?
+  var userId: String?
   var starter_song_link: String?
   var song_url: String?
   var vote: Bool?
@@ -30,6 +30,10 @@ class Party {
   var partyView: SmallPartyView? = nil
   var voteHistory: [String] = []
   var autoParty: Bool = false
+  
+  var userImageUrl: String?
+  var userDisplayName: String?
+  var userIsPremium: Bool?
 
   var partyStarted: Bool = false
   var host: Bool = false
@@ -38,7 +42,7 @@ class Party {
   //let apiUrl = "https://e366f9fd.ngrok.io"
   let apiUrl = "https://boom-box-beta.appspot.com"
   
-  func getImage(completion: @escaping (_ repsonse: String) -> Void) {
+  func fetchUserInfo() {
     let headers: HTTPHeaders = [
       "Authorization": "Bearer \(token!)",
       "Accept": "application/json"
@@ -46,27 +50,23 @@ class Party {
     
     Alamofire.request("https://api.spotify.com/v1/me", method: .get, encoding: URLEncoding.default, headers: headers).validate().responseJSON { response in
       
-      print(response)
+      //print(response)
       //to get status code
       if let status = response.response?.statusCode {
         switch(status){
-        case 201:
-          print("example success")
+        case 200:
+          if let result = response.result.value {
+            let json = JSON(result)
+
+            self.userImageUrl = json["images"][0]["url"].stringValue
+            self.userDisplayName = json["display_name"].stringValue
+            self.userIsPremium = json["product"].stringValue == "premium"
+          }
         default:
           print("error with response status: \(status)")
         }
       }
-      //to get JSON return value
-      if let result = response.result.value {
-        let json = JSON(result)
-        
-        let imageURL = (json["images"][0]["url"]).stringValue
-        completion(imageURL)
-      }
-      completion("")
-      
     }
-    
   }
   
   func nominate(completion: @escaping (_ response: Int) -> Void) {
@@ -74,7 +74,7 @@ class Party {
       "party_code": code!,
       "song_url": song_url!,
       "token": token!,
-      "user_id": username!
+      "user_id": userId!
     ]
     
     Alamofire.request("\(apiUrl)/party/nomination", method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseString { response in
@@ -133,8 +133,9 @@ class Party {
       "name": name!,
       "token": token!,
       "starter_song": starter_song_link!,
-      "user_id": username!,
-      "time": dateString
+      "user_id": userId!,
+      "time": dateString,
+      "display_name": userDisplayName!
     ]
     
     Alamofire.request("\(apiUrl)/party", method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseString { response in
@@ -159,7 +160,7 @@ class Party {
     
     let parameters: [String: Any] = [
       "party_code": code!,
-      "user_id": username!
+      "user_id": userId!
     ]
     print("Joining party: \(code!)")
     
@@ -172,12 +173,12 @@ class Party {
     }
   }
   
-  func getPartyInfo(completion: @escaping (_ response: JSON?
+  func getPartyInfo(partyCode: String, completion: @escaping (_ response: JSON?
     ) -> Void) {
     
     //print("Called GetPartyInfo")
     
-    Alamofire.request("\(apiUrl)/party/info?party_code=\(code!)&token=\(token!)&user_id=\(username!)", method: .get, encoding: URLEncoding.default, headers: nil).responseJSON { response in
+    Alamofire.request("\(apiUrl)/party/info?party_code=\(partyCode)&token=\(token!)&user_id=\(userId!)", method: .get, encoding: URLEncoding.default, headers: nil).responseJSON { response in
       //print(response.response?.statusCode)
       
       if(response.response?.statusCode == 400){
@@ -200,7 +201,7 @@ class Party {
       
     let parameters: [String: Any] = [
       "party_code": code!,
-      "user_id": username!
+      "user_id": userId!
     ]
     
     if(host){
@@ -231,7 +232,7 @@ class Party {
       
     let parameters: [String: Any] = [
       "party_code": code!,
-      "user_id": username!,
+      "user_id": userId!,
       "vote": vote,
       "song_id": songId
     ]

@@ -14,6 +14,8 @@
 		980F1735238A9E9500316481 /* NominateSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980F1734238A9E9500316481 /* NominateSong.swift */; };
 		981F74DA238A4CCA00025E00 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981F74D9238A4CCA00025E00 /* SearchResultTableViewCell.swift */; };
 		98675C412392B82900C8996A /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 98675C402392B82900C8996A /* loading.json */; };
+		98D0308C23944EE100767484 /* NearbyParties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D0308B23944EE100767484 /* NearbyParties.swift */; };
+		98D0308E2394700D00767484 /* NearbyPartyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D0308D2394700D00767484 /* NearbyPartyCell.swift */; };
 		EB50067C236EA8210067979E /* NumberPeople.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB50067B236EA8210067979E /* NumberPeople.swift */; };
 		EB50067E236EAB2B0067979E /* SmallParty.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB50067D236EAB2B0067979E /* SmallParty.storyboard */; };
 		EB500680236EAB370067979E /* LargeParty.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB50067F236EAB370067979E /* LargeParty.storyboard */; };
@@ -57,6 +59,8 @@
 		980F1734238A9E9500316481 /* NominateSong.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = NominateSong.swift; sourceTree = "<group>"; tabWidth = 2; };
 		981F74D9238A4CCA00025E00 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; tabWidth = 2; };
 		98675C402392B82900C8996A /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
+		98D0308B23944EE100767484 /* NearbyParties.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = NearbyParties.swift; sourceTree = "<group>"; tabWidth = 2; };
+		98D0308D2394700D00767484 /* NearbyPartyCell.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = NearbyPartyCell.swift; sourceTree = "<group>"; tabWidth = 2; };
 		EB50067B236EA8210067979E /* NumberPeople.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = NumberPeople.swift; sourceTree = "<group>"; tabWidth = 2; };
 		EB50067D236EAB2B0067979E /* SmallParty.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SmallParty.storyboard; sourceTree = "<group>"; };
 		EB50067F236EAB370067979E /* LargeParty.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LargeParty.storyboard; sourceTree = "<group>"; };
@@ -195,6 +199,7 @@
 				EB814370236E93560047C22B /* SmallParty */,
 				EB81435F236E5CDC0047C22B /* JoinPeople.storyboard */,
 				EB814365236E7D3B0047C22B /* JoinPeople.swift */,
+				98D0308D2394700D00767484 /* NearbyPartyCell.swift */,
 				EB81436A236E85FF0047C22B /* CardView.swift */,
 			);
 			path = JoinPeople;
@@ -218,6 +223,7 @@
 			children = (
 				EB814368236E7FD20047C22B /* PartyModel.swift */,
 				EBB8329F236ED21900AC581A /* TextFieldBulletinTag.swift */,
+				98D0308B23944EE100767484 /* NearbyParties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -375,6 +381,7 @@
 				EB814362236E5EE00047C22B /* PartyView.swift in Sources */,
 				EB814343236E24D90047C22B /* Extensions.swift in Sources */,
 				EB81436F236E89600047C22B /* SmallPartyView.swift in Sources */,
+				98D0308C23944EE100767484 /* NearbyParties.swift in Sources */,
 				EB814373236E93710047C22B /* LargePartyView.swift in Sources */,
 				980F1735238A9E9500316481 /* NominateSong.swift in Sources */,
 				EB814345236E26AA0047C22B /* PartyCode.swift in Sources */,
@@ -386,6 +393,7 @@
 				EBB832A2236EEF3300AC581A /* StarterSong.swift in Sources */,
 				EB814302236E03400047C22B /* AppDelegate.swift in Sources */,
 				EB814304236E03400047C22B /* SceneDelegate.swift in Sources */,
+				98D0308E2394700D00767484 /* NearbyPartyCell.swift in Sources */,
 				EB50067C236EA8210067979E /* NumberPeople.swift in Sources */,
 				EB81436B236E85FF0047C22B /* CardView.swift in Sources */,
 				EB81436D236E87C40047C22B /* SongCardTableViewCell.swift in Sources */,
@@ -531,7 +539,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A959CG2Q2W;
 				INFOPLIST_FILE = Spotify/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -566,7 +574,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A959CG2Q2W;
 				INFOPLIST_FILE = Spotify/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

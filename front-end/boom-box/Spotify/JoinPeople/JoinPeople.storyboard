@@ -7,8 +7,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="AirbnbCereal-Bold.ttf">
+            <string>AirbnbCerealApp-Bold</string>
+        </array>
         <array key="AirbnbCereal-Book.ttf">
             <string>AirbnbCerealApp-Book</string>
+        </array>
+        <array key="AirbnbCereal-ExtraBold.ttf">
+            <string>AirbnbCerealApp-ExtraBold</string>
         </array>
         <array key="AirbnbCereal-Light.ttf">
             <string>AirbnbCerealApp-Light</string>
@@ -54,32 +60,80 @@
                                     <action selector="cancel:" destination="NMb-eO-bkc" eventType="touchUpInside" id="Wxy-vt-yba"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Before we let you in..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqz-ea-oKq">
-                                <rect key="frame" x="69" y="118" width="276" height="26"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are parties nearby!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqz-ea-oKq">
+                                <rect key="frame" x="8" y="189" width="398" height="29"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="276" id="Kfe-jd-4r3"/>
+                                    <constraint firstAttribute="height" constant="29" id="SFH-yO-cdq"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Light" family="Airbnb Cereal App" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="23"/>
                                 <color key="textColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's the party code?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PIx-sY-EBR">
-                                <rect key="frame" x="123.5" y="168" width="167" height="19"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="19" id="VCq-ae-bo1"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="16"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Party Code" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0a0-Vh-ZXC">
-                                <rect key="frame" x="69" y="235" width="276" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="276" id="2yH-RE-jB9"/>
-                                    <constraint firstAttribute="height" constant="29" id="3UM-ii-XdP"/>
-                                </constraints>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" estimatedRowHeight="150" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uo8-li-3T1">
+                                <rect key="frame" x="20" y="240" width="374" height="622"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="nearbyParty" rowHeight="150" id="LSb-pX-xTF" customClass="NearbyPartyCell" customModule="BoomBox" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="374" height="150"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LSb-pX-xTF" id="9dc-NR-uTJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="150"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="drake" translatesAutoresizingMaskIntoConstraints="NO" id="1AC-qB-Fe6">
+                                                    <rect key="frame" x="20" y="11" width="334" height="129"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sad vibes only" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8LV-cr-ffd">
+                                                    <rect key="frame" x="30" y="16" width="314" height="75"/>
+                                                    <fontDescription key="fontDescription" name="AirbnbCerealApp-ExtraBold" family="Airbnb Cereal App" pointSize="27"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="daruicide" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kiW-k4-pR9">
+                                                    <rect key="frame" x="30" y="112" width="189" height="23"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="189" id="kxE-5F-07D"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="AirbnbCerealApp-Bold" family="Airbnb Cereal App" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hosted by:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="B9J-ek-b5g">
+                                                    <rect key="frame" x="30" y="90" width="67" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="AirbnbCerealApp-Light" family="Airbnb Cereal App" pointSize="11"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstItem="1AC-qB-Fe6" firstAttribute="trailing" secondItem="9dc-NR-uTJ" secondAttribute="trailingMargin" id="Ny9-Ya-nxn"/>
+                                                <constraint firstItem="8LV-cr-ffd" firstAttribute="top" secondItem="9dc-NR-uTJ" secondAttribute="topMargin" constant="5" id="OUP-XO-pGt"/>
+                                                <constraint firstItem="1AC-qB-Fe6" firstAttribute="centerX" secondItem="8LV-cr-ffd" secondAttribute="centerX" id="cei-oN-CQg"/>
+                                                <constraint firstItem="kiW-k4-pR9" firstAttribute="leading" secondItem="B9J-ek-b5g" secondAttribute="leading" id="inJ-df-YUx"/>
+                                                <constraint firstItem="8LV-cr-ffd" firstAttribute="leading" secondItem="B9J-ek-b5g" secondAttribute="leading" id="l6E-kQ-vmb"/>
+                                                <constraint firstItem="1AC-qB-Fe6" firstAttribute="leading" secondItem="9dc-NR-uTJ" secondAttribute="leadingMargin" id="pkN-o6-oj9"/>
+                                                <constraint firstItem="B9J-ek-b5g" firstAttribute="top" secondItem="8LV-cr-ffd" secondAttribute="bottom" constant="-1" id="rRy-Hu-V6b"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="1AC-qB-Fe6" secondAttribute="bottom" constant="-1" id="rs1-De-xN6"/>
+                                                <constraint firstItem="kiW-k4-pR9" firstAttribute="top" secondItem="8LV-cr-ffd" secondAttribute="bottom" constant="21" id="uo7-9r-QLg"/>
+                                                <constraint firstItem="1AC-qB-Fe6" firstAttribute="top" secondItem="9dc-NR-uTJ" secondAttribute="topMargin" id="vKf-wA-cEU"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                        <connections>
+                                            <outlet property="hostName" destination="kiW-k4-pR9" id="A2H-X5-RS2"/>
+                                            <outlet property="nowPlayingArt" destination="1AC-qB-Fe6" id="B5r-v7-AzH"/>
+                                            <outlet property="partyName" destination="8LV-cr-ffd" id="O3M-gw-ZAY"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Manually enter party code..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0a0-Vh-ZXC">
+                                <rect key="frame" x="62" y="117" width="305" height="33"/>
+                                <color key="backgroundColor" red="0.14431605050014931" green="0.15390813388927574" blue="0.16919812817258884" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="21"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="continue" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="one-time-code"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
@@ -90,25 +144,26 @@
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="PIx-sY-EBR" firstAttribute="centerX" secondItem="D2T-bB-U49" secondAttribute="centerX" id="9ok-5y-nuK"/>
+                            <constraint firstItem="uo8-li-3T1" firstAttribute="leading" secondItem="oj0-jH-GmY" secondAttribute="leading" id="1MV-wf-sUb"/>
+                            <constraint firstItem="0a0-Vh-ZXC" firstAttribute="top" secondItem="oj0-jH-GmY" secondAttribute="bottom" constant="49" id="1xX-uH-7Y7"/>
+                            <constraint firstItem="fqz-ea-oKq" firstAttribute="leading" secondItem="D2T-bB-U49" secondAttribute="leading" constant="8" id="8l5-Ba-Frr"/>
                             <constraint firstItem="oj0-jH-GmY" firstAttribute="leading" secondItem="D2T-bB-U49" secondAttribute="leading" constant="20" id="AeD-VU-gYx"/>
-                            <constraint firstItem="fqz-ea-oKq" firstAttribute="top" secondItem="D2T-bB-U49" secondAttribute="top" constant="74" id="Dcm-eo-Uec"/>
-                            <constraint firstItem="0a0-Vh-ZXC" firstAttribute="centerX" secondItem="D2T-bB-U49" secondAttribute="centerX" id="Iri-zm-AlG">
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
-                                        <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </constraint>
-                            <constraint firstItem="0a0-Vh-ZXC" firstAttribute="top" secondItem="PIx-sY-EBR" secondAttribute="bottom" constant="48" id="Nhg-ra-4wz"/>
-                            <constraint firstItem="PIx-sY-EBR" firstAttribute="top" secondItem="fqz-ea-oKq" secondAttribute="bottom" constant="24" id="hKv-cA-aU0"/>
-                            <constraint firstItem="fqz-ea-oKq" firstAttribute="centerX" secondItem="D2T-bB-U49" secondAttribute="centerX" id="lhH-Pe-gXW"/>
+                            <constraint firstItem="0a0-Vh-ZXC" firstAttribute="leading" secondItem="D2T-bB-U49" secondAttribute="leading" constant="62" id="BF4-0R-bYF"/>
+                            <constraint firstItem="uo8-li-3T1" firstAttribute="top" secondItem="fqz-ea-oKq" secondAttribute="bottom" constant="22" id="Fmp-aa-8HU"/>
+                            <constraint firstItem="fqz-ea-oKq" firstAttribute="top" secondItem="ebx-jf-DsF" secondAttribute="top" constant="189" id="Ora-Zf-Rv8"/>
+                            <constraint firstItem="uo8-li-3T1" firstAttribute="bottom" secondItem="D2T-bB-U49" secondAttribute="bottom" id="X90-eY-LIA"/>
+                            <constraint firstItem="fqz-ea-oKq" firstAttribute="top" secondItem="0a0-Vh-ZXC" secondAttribute="bottom" constant="39" id="hHB-rT-slq"/>
                             <constraint firstItem="oj0-jH-GmY" firstAttribute="top" secondItem="D2T-bB-U49" secondAttribute="top" id="mKc-ie-MJC"/>
+                            <constraint firstItem="fqz-ea-oKq" firstAttribute="centerX" secondItem="0a0-Vh-ZXC" secondAttribute="centerX" constant="-7.5" id="q90-zt-EDn"/>
+                            <constraint firstItem="fqz-ea-oKq" firstAttribute="centerX" secondItem="uo8-li-3T1" secondAttribute="centerX" id="tGD-1G-nOO"/>
+                            <constraint firstItem="fqz-ea-oKq" firstAttribute="centerX" secondItem="ebx-jf-DsF" secondAttribute="centerX" id="utK-0r-xz5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="D2T-bB-U49"/>
                     </view>
                     <connections>
                         <outlet property="code" destination="0a0-Vh-ZXC" id="qtl-0u-Ko6"/>
+                        <outlet property="nearbyPartiesTable" destination="uo8-li-3T1" id="mAi-7d-C40"/>
+                        <outlet property="nearbyStatus" destination="fqz-ea-oKq" id="8lx-ep-dg9"/>
                         <segue destination="iaW-FJ-Dzg" kind="presentation" identifier="show_small_party" modalPresentationStyle="fullScreen" id="3Ga-pE-G64"/>
                         <segue destination="fVq-dQ-poz" kind="presentation" identifier="show_large_party" modalPresentationStyle="fullScreen" id="D6x-r0-K94"/>
                     </connections>
@@ -120,5 +175,6 @@
     </scenes>
     <resources>
         <image name="close" width="24" height="24"/>
+        <image name="drake" width="1000" height="563"/>
     </resources>
 </document>

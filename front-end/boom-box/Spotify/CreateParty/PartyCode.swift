@@ -65,12 +65,6 @@ class PartyCode: UIViewController {
     lottieLoader.loopMode = .loop
   }
   
-  override func viewDidAppear(_ animated: Bool) {
-//    UIView.animate(withDuration: 0.3, animations: {
-//      self.partyCode.alpha = 1
-//    })
-  }
-  
   override func viewDidDisappear(_ animated: Bool) {
     self.lottieLoader.stop()
   }

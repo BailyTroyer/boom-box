@@ -126,8 +126,10 @@ class LogInViewController: UIViewController {
     print("CALLED LOGIN SUCCESSFUL")
     SpotifyLogin.shared.getAccessToken { (accessToken, error) in
       if let token=accessToken, error==nil {
-        Party.shared.username = SpotifyLogin.shared.username
+        Party.shared.userId = SpotifyLogin.shared.username
         Party.shared.token = token
+        
+        Party.shared.fetchUserInfo()
         
         // Try to connect to party from their last session
         let defaults = UserDefaults.standard
@@ -140,7 +142,7 @@ class LogInViewController: UIViewController {
           Party.shared.host = isHost
           
           // check if party is still going
-          Party.shared.getPartyInfo(completion: {data in
+          Party.shared.getPartyInfo(partyCode: code, completion: {data in
             if(data == nil){
               self.performSegue(withIdentifier: "authed", sender: self)
             }

@@ -102,7 +102,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     let song = song_nominations[indexPath.row]
 
-    if(song["nominated_by"].stringValue == Party.shared.username){
+    if(song["nominated_by"].stringValue == Party.shared.userId){
       cell.songSwitch.isHidden = true
       cell.denominate.isHidden = false
     }else{
@@ -191,22 +191,6 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
   }
   
-  
-  func getImage() {
-    
-    Party.shared.getImage(completion: { imageURL in
-      
-      if let url = URL(string: imageURL) {
-        DispatchQueue.global().async {
-          let data = try? Data(contentsOf: url) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-          DispatchQueue.main.async {
-            self.nowPlayingPic.image = UIImage(data: data!)
-          }
-        }
-      }
-    })
-  }
-  
   @IBAction func recommendSong(_ sender: Any) {
     //bulletinManager.showBulletin(above: self)
     UIView.animate(withDuration: 0.25, delay: 0, options: [.curveEaseInOut], animations: {
@@ -223,6 +207,8 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     tableView.dataSource = self
     tableView.delegate = self
+    
+    NearbyPartyManager.shared.broadcastPartyCode()
 
     
     let rect = CGRect(origin: CGPoint(x: 400,y :0), size: CGSize(width: tableView.bounds.size.width - 400, height: tableView.bounds.size.height))
@@ -268,15 +254,18 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   }
   
   func startDataTimer(){
-    print("started timer")
+    //print("started timer")
     self.dataTimer = Timer.scheduledTimer(withTimeInterval: 8.0, repeats: true) { timer in
-      UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseInOut, .allowUserInteraction], animations: {
+      let prevAlpha = self.nowPlayingPic.alpha
+      UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseInOut, .allowUserInteraction], animations: {
         self.exit.transform = CGAffineTransform.init(scaleX: 1.2, y: 1.2)
         self.nominate.transform = CGAffineTransform.init(scaleX: 1.2, y: 1.2)
+        self.nowPlayingPic.alpha = 0.4
       }, completion: {_ in
-        UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseInOut, .allowUserInteraction], animations: {
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseInOut, .allowUserInteraction], animations: {
           self.exit.transform = CGAffineTransform.init(scaleX: 1.0, y: 1.0)
           self.nominate.transform = CGAffineTransform.init(scaleX: 1.0, y: 1.0)
+          self.nowPlayingPic.alpha = prevAlpha
         })
       })
       self.fetchData()
@@ -328,7 +317,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     // check for updates
     self.refreshControl.endRefreshing()
     
-    Party.shared.getPartyInfo(completion: { data in
+    Party.shared.getPartyInfo(partyCode: Party.shared.code!, completion: { data in
       
       if (data == nil) {
         self.dataTimer.invalidate()
@@ -354,7 +343,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
       
       if(data!["playing_ad"].boolValue){
         self.playingAd = true
-        self.nowPlayingTitle.text = "Advertisement..."
+        self.nowPlayingTitle.text = "An ad is playing..."
         UIView.animate(withDuration: 0.3, animations: {self.nowPlayingPic.alpha = 0})
       }
       else if(self.playingAd){ // was playing ad, not anymore
@@ -526,6 +515,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   }
   
   func returnToMenu(){
+    NearbyPartyManager.shared.stop()
     if(Party.shared.createVC != nil){
       Party.shared.createVC!.dismiss(animated: true, completion: {
         self.dismiss(animated: true, completion: nil)
@@ -535,8 +525,6 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     else{
       self.dismiss(animated: true, completion: nil)
     }
-    
-    
   }
   
   func startEmptyMessageAnimation(){
