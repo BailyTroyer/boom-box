@@ -60,15 +60,18 @@
                                     <action selector="cancel:" destination="NMb-eO-bkc" eventType="touchUpInside" id="Wxy-vt-yba"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are parties nearby!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqz-ea-oKq">
-                                <rect key="frame" x="8" y="189" width="398" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="29" id="SFH-yO-cdq"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="23"/>
-                                <color key="textColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Manually enter party code..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0a0-Vh-ZXC">
+                                <rect key="frame" x="62" y="117" width="305" height="33"/>
+                                <color key="backgroundColor" red="0.14431605050014931" green="0.15390813388927574" blue="0.16919812817258884" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="21"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="continue" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="one-time-code"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                                        <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" estimatedRowHeight="150" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uo8-li-3T1">
                                 <rect key="frame" x="20" y="240" width="374" height="622"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
@@ -129,30 +132,27 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Manually enter party code..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0a0-Vh-ZXC">
-                                <rect key="frame" x="62" y="117" width="305" height="33"/>
-                                <color key="backgroundColor" red="0.14431605050014931" green="0.15390813388927574" blue="0.16919812817258884" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="21"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="continue" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="one-time-code"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
-                                        <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There aren't any parties nearby..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqz-ea-oKq">
+                                <rect key="frame" x="27" y="186" width="360" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="SFH-yO-cdq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AirbnbCerealApp-Book" family="Airbnb Cereal App" pointSize="19"/>
+                                <color key="textColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="uo8-li-3T1" firstAttribute="leading" secondItem="oj0-jH-GmY" secondAttribute="leading" id="1MV-wf-sUb"/>
                             <constraint firstItem="0a0-Vh-ZXC" firstAttribute="top" secondItem="oj0-jH-GmY" secondAttribute="bottom" constant="49" id="1xX-uH-7Y7"/>
-                            <constraint firstItem="fqz-ea-oKq" firstAttribute="leading" secondItem="D2T-bB-U49" secondAttribute="leading" constant="8" id="8l5-Ba-Frr"/>
+                            <constraint firstItem="fqz-ea-oKq" firstAttribute="leading" secondItem="D2T-bB-U49" secondAttribute="leading" constant="27" id="8l5-Ba-Frr"/>
                             <constraint firstItem="oj0-jH-GmY" firstAttribute="leading" secondItem="D2T-bB-U49" secondAttribute="leading" constant="20" id="AeD-VU-gYx"/>
                             <constraint firstItem="0a0-Vh-ZXC" firstAttribute="leading" secondItem="D2T-bB-U49" secondAttribute="leading" constant="62" id="BF4-0R-bYF"/>
-                            <constraint firstItem="uo8-li-3T1" firstAttribute="top" secondItem="fqz-ea-oKq" secondAttribute="bottom" constant="22" id="Fmp-aa-8HU"/>
-                            <constraint firstItem="fqz-ea-oKq" firstAttribute="top" secondItem="ebx-jf-DsF" secondAttribute="top" constant="189" id="Ora-Zf-Rv8"/>
+                            <constraint firstItem="uo8-li-3T1" firstAttribute="top" secondItem="fqz-ea-oKq" secondAttribute="bottom" constant="25" id="Fmp-aa-8HU"/>
+                            <constraint firstItem="fqz-ea-oKq" firstAttribute="top" secondItem="ebx-jf-DsF" secondAttribute="top" constant="186" id="Ora-Zf-Rv8"/>
                             <constraint firstItem="uo8-li-3T1" firstAttribute="bottom" secondItem="D2T-bB-U49" secondAttribute="bottom" id="X90-eY-LIA"/>
-                            <constraint firstItem="fqz-ea-oKq" firstAttribute="top" secondItem="0a0-Vh-ZXC" secondAttribute="bottom" constant="39" id="hHB-rT-slq"/>
+                            <constraint firstItem="fqz-ea-oKq" firstAttribute="top" secondItem="0a0-Vh-ZXC" secondAttribute="bottom" constant="36" id="hHB-rT-slq"/>
                             <constraint firstItem="oj0-jH-GmY" firstAttribute="top" secondItem="D2T-bB-U49" secondAttribute="top" id="mKc-ie-MJC"/>
                             <constraint firstItem="fqz-ea-oKq" firstAttribute="centerX" secondItem="0a0-Vh-ZXC" secondAttribute="centerX" constant="-7.5" id="q90-zt-EDn"/>
                             <constraint firstItem="fqz-ea-oKq" firstAttribute="centerX" secondItem="uo8-li-3T1" secondAttribute="centerX" id="tGD-1G-nOO"/>

@@ -16,6 +16,8 @@ class JoinPeople: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
   
   var continueButton: UIButton = UIButton()
   
+  var emptyMessageLabel: UILabel!
+  
   @IBOutlet weak var nearbyPartiesTable: UITableView!
   
   override func viewDidLoad() {
@@ -25,6 +27,23 @@ class JoinPeople: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
     nearbyPartiesTable.delegate = self
     
     nearbyStatus.text = ""
+    
+    guard let customFont = UIFont(name: "AirbnbCerealApp-Book", size: 16) else {
+        fatalError("""
+    Failed to load the "AirbnbCereal-Medium" font.
+    Make sure the font file is included in the project and the font name is spelled correctly.
+    """
+        )
+    }
+    emptyMessageLabel = UILabel()
+    emptyMessageLabel.numberOfLines = 0
+    emptyMessageLabel.textColor = #colorLiteral(red: 0.2759276235, green: 0.2987528678, blue: 0.3319122779, alpha: 1)
+    emptyMessageLabel.textAlignment = .center;
+    emptyMessageLabel.alpha = 0
+    emptyMessageLabel.font = customFont
+    
+    nearbyPartiesTable.backgroundView = emptyMessageLabel
+    emptyMessageLabel.attributedText = NSMutableAttributedString(string: "")
     
     NearbyPartyManager.shared.currentNearbyParties = []
     NearbyPartyManager.shared.nearbyTable = nearbyPartiesTable
@@ -61,14 +80,28 @@ class JoinPeople: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
                    for: UIControl.Event.editingChanged)
   }
     
-  override func viewWillAppear(_ animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     //self.code.becomeFirstResponder()
+    UIView.animate(withDuration: 0.3, animations: {
+      self.emptyMessageLabel.alpha = 1
+    })
+  }
+  
+  func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    self.code.resignFirstResponder()
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if(NearbyPartyManager.shared.currentNearbyParties.count == 0){
-      self.nearbyStatus.text = "There aren't any parties nearby...\nTry typing the party code above!"
+      emptyMessageLabel.attributedText = NSMutableAttributedString(string: "\n\nThere aren't any parties nearby...")
+      self.code.becomeFirstResponder()
+      UIView.animate(withDuration: 0.3, animations: {
+        self.emptyMessageLabel.alpha = 1
+      })
+      self.nearbyStatus.text = ""
     }else{
+      UIView.animate(withDuration: 0.3, animations: {self.emptyMessageLabel.alpha = 0})
+      emptyMessageLabel.attributedText = NSMutableAttributedString(string: "")
       self.nearbyStatus.text = "We found some parties nearby!"
     }
     return NearbyPartyManager.shared.currentNearbyParties.count

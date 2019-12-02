@@ -210,8 +210,6 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     NearbyPartyManager.shared.broadcastPartyCode()
 
-    
-    let rect = CGRect(origin: CGPoint(x: 400,y :0), size: CGSize(width: tableView.bounds.size.width - 400, height: tableView.bounds.size.height))
     guard let customFont = UIFont(name: "AirbnbCerealApp-Medium", size: 16) else {
         fatalError("""
     Failed to load the "AirbnbCereal-Medium" font.
@@ -219,7 +217,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     """
         )
     }
-    emptyMessageLabel = UILabel(frame: rect)
+    emptyMessageLabel = UILabel()
     emptyMessageLabel.numberOfLines = 0
     emptyMessageLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
     emptyMessageLabel.textAlignment = .center;
@@ -231,12 +229,16 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
     let tableTouchRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedTableView))
     tableView.addGestureRecognizer(tableTouchRecognizer)
     let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+    
     nowPlayingPic.isUserInteractionEnabled = true
     nowPlayingPic.addGestureRecognizer(tapGestureRecognizer)
     nowPlayingPic.layer.masksToBounds = false
-    //nowPlayingPic.layer.cornerRadius = nowPlayingPic.frame.size.width / 10
+//    nowPlayingPic.layer.cornerRadius = nowPlayingPic.frame.size.width / 16
+//    nowPlayingPic.layer.borderWidth = 1
+//    nowPlayingPic.layer.borderColor = UIColor.white.cgColor
     nowPlayingPic.clipsToBounds = true
-    //nowPlayingPic.alpha = 0.1
+    
+    
     nowPlayingTitle.text = ""
     partyCode.text =  ""
     
@@ -256,16 +258,16 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
   func startDataTimer(){
     //print("started timer")
     self.dataTimer = Timer.scheduledTimer(withTimeInterval: 8.0, repeats: true) { timer in
-      let prevAlpha = self.nowPlayingPic.alpha
+      //let prevAlpha = self.nowPlayingPic.alpha
       UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseInOut, .allowUserInteraction], animations: {
         self.exit.transform = CGAffineTransform.init(scaleX: 1.2, y: 1.2)
         self.nominate.transform = CGAffineTransform.init(scaleX: 1.2, y: 1.2)
-        self.nowPlayingPic.alpha = 0.4
+        //if(!self.playingAd){self.nowPlayingPic.alpha = 0.4}
       }, completion: {_ in
         UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseInOut, .allowUserInteraction], animations: {
           self.exit.transform = CGAffineTransform.init(scaleX: 1.0, y: 1.0)
           self.nominate.transform = CGAffineTransform.init(scaleX: 1.0, y: 1.0)
-          self.nowPlayingPic.alpha = prevAlpha
+          //if(!self.playingAd){self.nowPlayingPic.alpha = prevAlpha}
         })
       })
       self.fetchData()
@@ -353,16 +355,12 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
       
       if(!data!["song_nominations"].exists() && !self.first || !Party.shared.partyStarted){
         self.song_nominations = []
-        self.nowPlayingTitle.text = ""
-        UIView.animate(withDuration: 0.3, animations: {self.nowPlayingPic.alpha = 0.3})
+        self.nowPlayingTitle.text = ". . ."
+        self.nowPlayingPic.image = nil
         self.setBackgroundLabel()
         self.tableView.reloadData()
         
         return
-      }
-      
-      if(self.nowPlayingPic.alpha == 0.3){
-        UIView.animate(withDuration: 0.3, animations: {self.nowPlayingPic.alpha = 1})
       }
       
       // sort nominations by votes
@@ -445,14 +443,6 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
       item.manager?.dismissBulletin()
       
       Party.shared.song_url = text
-      
-//      Party.shared.nominate(completion: { result in
-//        if result {
-//          print("YESS SUBMITTED")
-//        } else {
-//          print("FDFDJSFJHDfdsafs")
-//        }
-//      })
     }
     
     return page
@@ -489,9 +479,7 @@ class SmallPartyView: UIViewController, UITableViewDelegate, UITableViewDataSour
           self.startEmptyMessageAnimation()
           
           let playlistUrl = "https://open.spotify.com/playlist/\(Party.shared.playlistId!)"
-          if let url = URL(string: playlistUrl) {
-              UIApplication.shared.open(url)
-          }
+          if let url = URL(string: playlistUrl) {UIApplication.shared.open(url)}
         }))
       }
     }else{
