@@ -155,7 +155,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJz-nh-7Vm">
                                 <rect key="frame" x="47" y="86" width="48" height="48"/>
-                                <color key="backgroundColor" red="0.24313725490196078" green="0.2627450980392157" blue="0.28627450980392155" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.21176470588235294" green="0.22745098039215686" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="Jc1-nZ-Gdc"/>
                                     <constraint firstAttribute="width" constant="48" id="fDg-UZ-Ev4"/>
@@ -232,7 +232,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Owf-Df-SeH">
                                 <rect key="frame" x="324" y="87" width="48" height="48"/>
-                                <color key="backgroundColor" red="0.24313725490196078" green="0.2627450980392157" blue="0.28627450980392155" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.21176470588235294" green="0.22745098039215686" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="48" id="YNf-dz-HoY"/>
                                     <constraint firstAttribute="height" constant="48" id="fdp-Pa-DBX"/>
@@ -396,7 +396,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qJP-Tv-UJA">
-                                <rect key="frame" x="20" y="20" width="24" height="24"/>
+                                <rect key="frame" x="20" y="20" width="48" height="48"/>
                                 <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="close"/>
                                 <connections>
